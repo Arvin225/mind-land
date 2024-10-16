@@ -1,4 +1,4 @@
-import { Dropdown, Flex } from "antd"
+import { Dropdown, Flex, MenuProps, TreeDataNode } from "antd"
 import SlipEditor from "./components/SlipEditor";
 import { fetchGetAllCards, fetchGetTags, setCards } from "@/store/modules/slipBoxStore";
 import { useEffect, useState } from "react";
@@ -768,12 +768,16 @@ function SlipBox() {
     /* -------------------------------------未获取到数据之前不允许进一步执行（数据拼接构造、渲染等)------------------------------------- */
 
     // 标签树数组
-    const tagTrees = []
+    const tagTrees: TreeDataNode[] = []
+
+    interface Tag_ extends Tag {
+        treeBuildAccomplished: boolean
+    }
     // 初始化标记
-    const tags_ = tags.map(tag => ({ ...tag, TreeBuildAccomplished: false }))
+    const tags_: Tag_[] = tags.map(tag => ({ ...tag, treeBuildAccomplished: false }))
 
     // 标签项菜单
-    const tagMenuItems = [
+    const tagMenuItems: MenuProps['items'] = [
         { label: '置顶', key: 'pin', style: { color: '#6d6d6d' } },
         { label: '重命名', key: 'rename', style: { color: '#6d6d6d' } },
         { type: 'divider' },
@@ -782,9 +786,9 @@ function SlipBox() {
     ]
 
     // 构建标签树的函数
-    function buildTagTree(tag) {
+    function buildTagTree(tag: Tag_) {
         // 递归终止条件：已完成标签树的构建
-        if (tag.TreeBuildAccomplished) {
+        if (tag.treeBuildAccomplished) {
             // 查找该标签树的索引
             const tempTreeIndex = tagTrees.findIndex(tree => tree.key === tag.id)
             // 获得该标签树
@@ -797,15 +801,15 @@ function SlipBox() {
         const children = tag.children
         // 有孩子
         if (children.length) {
-            const childNodes = []
+            const childNodes: TreeDataNode[] = []
             children.forEach(cid => {
-                const ctag = tags_.find(tag => tag.id === cid) // todo 后续看是否可优化
+                const ctag = tags_.find(tag => tag.id === cid)! // todo 后续看是否可优化
                 //递归
                 childNodes.push(buildTagTree(ctag))
             })
 
             // 标记当前tag为已构建标签树
-            tag.TreeBuildAccomplished = true
+            tag.treeBuildAccomplished = true
 
             // 业务逻辑
             return ({
@@ -826,7 +830,7 @@ function SlipBox() {
             })
         } else {
             // 无孩子（临界值处理）：叶子节点直接返回
-            tag.TreeBuildAccomplished = true // 标记为已构建
+            tag.treeBuildAccomplished = true // 标记为已构建
             return ({
                 title:
                     <Dropdown
@@ -848,7 +852,7 @@ function SlipBox() {
 
     // 开始构建
     tags_.forEach(tag => {
-        if (!tag.TreeBuildAccomplished) tagTrees.push(buildTagTree(tag))
+        if (!tag.treeBuildAccomplished) tagTrees.push(buildTagTree(tag))
     })
 
     return (
@@ -865,8 +869,8 @@ function SlipBox() {
                 theme="colored"
                 transition={Bounce}
             />
-            <Flex horizontal={'true'} gap={20} justify="center">
-                <Flex vertical={'true'} style={{ width: '600px' }} justify={'flex-start'} align={'center'}>
+            <Flex gap={20} justify="center"> //todo 看水平排列是否生效
+                <Flex vertical={true} style={{ width: '600px' }} justify={'flex-start'} align={'center'}>
                     <Flex justify={'space-between'} style={{ width: '100%' }}>
                         <Flex style={{ maxWidth: '60%' }} gap={10} align="center">
 

@@ -1,11 +1,11 @@
 import { deleteTagAPI, getTagAPI, patchTagAPI } from "@/apis/slipBox"
 import _ from "lodash"
 
-let cid
-const deletedTagIds = []
-const decreasedTagIds = []
+let cid: string
+const deletedTagIds: string[] = []
+const decreasedTagIds: string[] = []
 // 卡片计数-1的函数 
-async function decrease(id, count) {
+async function decrease(id: string, count: number) {
     // 递归终止条件：id为空或减过
     if (!id || decreasedTagIds.includes(id)) return
 
@@ -43,7 +43,7 @@ async function decrease(id, count) {
 
 }
 
-const decreaseCardCountChildren = async (id, count = 1) => {
+const decreaseCardCountChildren = async (id: string, count = 1) => {
     await decrease(id, count)
     return deletedTagIds
 }

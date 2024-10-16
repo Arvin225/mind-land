@@ -6,3 +6,12 @@ export interface Card {
     tags: string[]
     del: boolean
 }
+
+export interface Tag {
+    id: string
+    tagName: string
+    parent: string
+    children: string[]
+    cardCount: number
+    cards: string[]
+}

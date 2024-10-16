@@ -17,21 +17,20 @@ import {
 import { Button, Layout, Input, Menu, theme } from 'antd';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 
-import { useDispatch, useSelector } from 'react-redux';
 import { fetchToDoListNames } from '@/store/modules/toDoStore';
 import { postToDoListNameAPI } from '@/apis/layout';
 import { Bounce, ToastContainer, toast } from 'react-toastify';
 import ListName from '../ToDo/components/ListName';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 
-const { Header, Sider, Content } = Layout;
+const { Sider, Content } = Layout;
 
 
 function Container() {
 
     const [collapsed, setCollapsed] = useState(false);
     const {
-        token: { colorBgContainer, borderRadiusLG },
+        token: { colorBgContainer },
     } = theme.useToken();
 
     const location = useLocation()
@@ -65,13 +64,13 @@ function Container() {
         e.stopPropagation() // 阻止事件冒泡，以免触发父级菜单选中事件
         if (inputValue.trim()) {
             // 添加到数据库
-            postToDoListNameAPI(inputValue).then(res => {
+            postToDoListNameAPI(inputValue).then(() => {
                 // 成功 重新请求列表名 刷新store 重渲染
                 dispatch(fetchToDoListNames())
                 // 清空输入框
                 setInputValue('');
                 // setIsEditing(false)
-            }).catch(err => {
+            }).catch(() => {
                 // 失败 提示用户
                 toast.error('新增失败，请稍后重试')
             })

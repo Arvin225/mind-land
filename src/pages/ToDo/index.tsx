@@ -7,6 +7,7 @@ import { Card, Input, Affix } from "antd"
 import { PlusOutlined } from "@ant-design/icons"
 import { postToDoItemAPI } from "@/apis/toDo"
 import { Bounce, ToastContainer, toast } from "react-toastify"
+import { useAppDispatch, useAppSelector } from "@/store/hooks"
 
 function ToDo() {
 
@@ -19,9 +20,9 @@ function ToDo() {
 
     const params = useParams()
 
-    const list = params.list
+    const list = params.list!
 
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
 
     // 异步请求当前列表数据
     useEffect(() => {
@@ -29,15 +30,15 @@ function ToDo() {
         dispatch(fetchGetToDoList(list)) // 更新完toDoList后会更新loading
     }, [list])
     // 获取加载状态
-    const { loading } = useSelector(state => state.toDo)
+    const loading = useAppSelector(state => state.toDo.loadingToDoList)
     // 获取当前列表数据
-    const { toDoList } = useSelector(state => state.toDo)
+    const toDoList = useAppSelector(state => state.toDo.toDoList)
 
 
     // 获取列表名
-    const { toDoListNames } = useSelector(state => state.toDo)
+    const toDoListNames = useAppSelector(state => state.toDo.toDoListNames)
     // 假设传递的list是listId，查找其列表名，查到了就是在自定义列表，没查到就是在智能列表
-    let listName, sysListName, star, listId
+    let listName: string | undefined, sysListName: string | undefined, star: boolean, listId: string
     const findListName = toDoListNames.find(item => item.id === list)
     if (findListName) {
         // 自定义列表中

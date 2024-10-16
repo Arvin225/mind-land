@@ -16,8 +16,8 @@ interface PostToDoItem {
     done?: boolean,
     star?: boolean,
     del?: boolean,
-    listId: string,
-    listName: string
+    listId?: string,
+    listName?: string
 }
 // 新增toDo项
 export function postToDoItemAPI(toDoItem: PostToDoItem) {

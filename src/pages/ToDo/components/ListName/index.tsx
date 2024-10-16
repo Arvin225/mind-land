@@ -1,20 +1,23 @@
-import { Dropdown, Modal, Form, Input } from "antd"
+import { Dropdown, Modal, Form, Input, MenuProps } from "antd"
 import { ExclamationCircleFilled } from "@ant-design/icons"
 import { deleteToDoListNameAPI, patchToDoListNameAPI } from "@/apis/layout"
-import { useDispatch } from "react-redux"
 import { fetchToDoListNames } from "@/store/modules/toDoStore"
 import { Bounce, ToastContainer, toast } from "react-toastify"
 import { getToDoListAPI, patchToDoItemAPI } from "@/apis/toDo"
 import { useState } from "react"
-import { useLocation, useHistory, useNavigate, useNavigation, redirect, Link } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
+import { useAppDispatch } from "@/store/hooks"
+import { AxiosResponse } from "axios"
+import { ToDoItem } from "../../interfaces"
+
 
 const { confirm } = Modal
 
-function ListName({ item: { id, listName } }) {
+function ListName({ item: { id, listName } }: { item: { id: string, listName: string } }) {
 
     const [form] = Form.useForm();
 
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
     // 右键菜单项
     const items = [
         { label: '编辑', key: 'edit' },
@@ -23,7 +26,7 @@ function ListName({ item: { id, listName } }) {
 
     const [open, setOpen] = useState(false)
     // 编辑保存事件
-    const onEditSave = (values) => {
+    const onEditSave = (values: { newName: string }) => {
         // 具体的保存操作
         saveEdit(values)
         // 关闭Modal
@@ -31,11 +34,11 @@ function ListName({ item: { id, listName } }) {
     };
 
     // 编辑操作
-    const saveEdit = ({ newName }) => {
+    const saveEdit = ({ newName }: { newName: string }) => {
         if (newName.trim() && newName !== listName) {
 
             // 更新列表名的操作
-            function updateListName() {
+            const updateListName = () => { //todo 后续抽取出来
                 // 请求数据库更新
                 patchToDoListNameAPI({ id, listName: newName }).then(res => {
                     // 重新渲染自定义列表
@@ -49,8 +52,8 @@ function ListName({ item: { id, listName } }) {
             getToDoListAPI({ listId: id, done: false }).then(res => {
                 // 有待办则更新所有待办的listName
                 if (res.data.length) {
-                    const promiseList = []
-                    res.data.forEach(async item => {
+                    const promiseList: AxiosResponse<any, any>[] = []
+                    res.data.forEach(async (item: ToDoItem) => {
                         promiseList.push(await patchToDoItemAPI({ id: item.id, listName: newName }))
                     })
                     Promise.all(promiseList).then(resList => {
@@ -99,8 +102,8 @@ function ListName({ item: { id, listName } }) {
             // 有任务先删任务
             if (res.data.length) {
                 // 依次发送修改请求 // todo 将就一下，有后端了后端做
-                const promiseList = []
-                res.data.forEach(async item => {
+                const promiseList: AxiosResponse<any, any>[] = []
+                res.data.forEach(async (item: ToDoItem) => {
                     promiseList.push(await patchToDoItemAPI({ id: item.id, del: true, listId: '', listName: '' }))
                 })
                 Promise.all(promiseList).then(resList => {
@@ -123,7 +126,7 @@ function ListName({ item: { id, listName } }) {
     }
 
     // 展示删除确认框
-    const showDeleteConfirm = (listName) => {
+    const showDeleteConfirm = (listName: string) => {
         confirm({
             title: `删除 ${listName} 列表？`,
             icon: <ExclamationCircleFilled />,
@@ -139,7 +142,7 @@ function ListName({ item: { id, listName } }) {
 
 
     // 处理右键菜单点击
-    const handleContextMenuClick = (e) => {
+    const handleContextMenuClick: MenuProps["onClick"] = (e) => {
         e.domEvent.stopPropagation()
         switch (e.key) {
             case 'edit':

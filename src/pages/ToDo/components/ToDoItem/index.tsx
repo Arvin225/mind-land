@@ -1,11 +1,13 @@
-import { Card, Checkbox, Input, Tag, Dropdown } from "antd"
+import { Card, Checkbox, Input, Tag, Dropdown, CheckboxProps, MenuProps } from "antd"
 import { StarFilled, StarOutlined } from "@ant-design/icons"
 import { useEffect, useState } from "react"
 import { deleteToDoItemAPI, patchToDoItemAPI } from "@/apis/toDo"
 import { Bounce, ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { ToDoItem as ToDoItemType } from "../../interfaces";
+import { CheckboxChangeEvent } from "antd/es/checkbox";
 
-function ToDoItem({ item, tag }) { //只有在 全部 中时，tag才有值（所属列表名）
+function ToDoItem({ item, tag }: { item: ToDoItemType, tag?: string }) { //只有在 全部 中时，tag才有值（所属列表名）
 
     const { id, content, done, star, del } = item
 
@@ -26,7 +28,7 @@ function ToDoItem({ item, tag }) { //只有在 全部 中时，tag才有值（�
 
     // 处理输入框失焦
     let content_ = content
-    const handleBlur = (e) => {
+    const handleBlur = (e: React.ChangeEvent<HTMLInputElement>) => {
         //内容发生改变则提交修改到数据库
         if (e.target.value !== content_) {
             patchToDoItemAPI({ id: id, content: e.target.value }).then(res => {
@@ -43,8 +45,8 @@ function ToDoItem({ item, tag }) { //只有在 全部 中时，tag才有值（�
 
     // 具体的"完成"操作
     const [disabled, setDisabled] = useState(false)
-    const [visible, setVisible] = useState(done ? done : !done)
-    function checkItem(e, done) { // 值得注意的是，此代码块中的两个函数均为异步函数，会按顺序执行
+    const [visible, setVisible] = useState<boolean>(done ? done : !done)
+    function checkItem(e: CheckboxChangeEvent, done: boolean) { // 值得注意的是，此代码块中的两个函数均为异步函数，会按顺序执行
         // 禁用checkbox
         setDisabled(true)
         // 提交数据库修改done
@@ -62,7 +64,7 @@ function ToDoItem({ item, tag }) { //只有在 全部 中时，tag才有值（�
     }
 
     // 处理check事件
-    const handleCheck = (e) => {
+    const handleCheck: CheckboxProps['onChange'] = (e) => {
         // 表明在非‘已完成’和‘删除’列表，执行了提交完成的操作
         if (e.target.checked) {
             checkItem(e, true)
@@ -75,7 +77,7 @@ function ToDoItem({ item, tag }) { //只有在 全部 中时，tag才有值（�
 
 
     // 删除操作
-    const deleteItem = (permanent) => {
+    const deleteItem = (permanent?: boolean) => {
         // todo 禁用删除选项
         // 永久删除 // todo 只有在回收站列表才有永久删除选项,且有且只有永久删除和恢复选项
         if (permanent) {
@@ -121,7 +123,7 @@ function ToDoItem({ item, tag }) { //只有在 全部 中时，tag才有值（�
     ];
 
     // 处理右键菜单点击
-    const handleContextMenuClick = ({ key }) => {
+    const handleContextMenuClick: MenuProps["onClick"] = ({ key }) => {
         switch (key) {
             case 'delete':
                 deleteItem()
@@ -155,7 +157,7 @@ function ToDoItem({ item, tag }) { //只有在 全部 中时，tag才有值（�
                         <Card type="inner" style={{ marginTop: 6 }
                         } size="default" >
                             <Checkbox className="checkBox" style={{ marginLeft: 6 }} checked={done} onChange={handleCheck} disabled={disabled} />
-                            <Input defaultValue={content} variant="borderless" style={{ marginLeft: 12, minWidth: '50%', maxWidth: '86%' }} onBlur={(e) => handleBlur(e)} onPressEnter={(e) => e.target.blur(e, true)} />
+                            <Input defaultValue={content} variant="borderless" style={{ marginLeft: 12, minWidth: '50%', maxWidth: '86%' }} onBlur={(e) => handleBlur(e)} onPressEnter={(e) => (e.target as HTMLInputElement).blur()} />
                             <div style={{ float: 'right' }} >
                                 <Tag bordered={false} style={{ marginLeft: 20, marginRight: 20 }} >{tag}</Tag>
                                 {/* 条件渲染：根据星标状态切换icon样式 */}
