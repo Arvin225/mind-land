@@ -377,21 +377,9 @@
         "updateTime": "2024-10-14 18:59",
         "words": 8
       },
-      "tags": [
-        "2001"
-      ],
-      "del": false
+      "tags": [],
+      "del": true
     }
   ],
-  "tags": [
-    {
-      "id": "2001",
-      "tagName": "test",
-      "children": [],
-      "cardCount": 1,
-      "cards": [
-        "536a"
-      ]
-    }
-  ]
+  "tags": []
 }

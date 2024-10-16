@@ -2,8 +2,6 @@ import { Dropdown, Flex, MenuProps, TreeDataNode } from "antd"
 import SlipEditor from "./components/SlipEditor";
 import { fetchGetAllCards, fetchGetTags, setCards } from "@/store/modules/slipBoxStore";
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
 import CardList from "./components/CardList";
 import PathBar from "./components/PathBar";
 import SortMenu from "./components/SortMenu";
@@ -764,7 +762,7 @@ function SlipBox() {
 
 
     /* -------------------------------------未获取到数据之前不允许进一步执行（数据拼接构造、渲染等)------------------------------------- */
-    if (loadingCards || loadingTags) return
+    if (loadingCards || loadingTags) return <div>加载中...</div>
     /* -------------------------------------未获取到数据之前不允许进一步执行（数据拼接构造、渲染等)------------------------------------- */
 
     // 标签树数组
@@ -869,7 +867,7 @@ function SlipBox() {
                 theme="colored"
                 transition={Bounce}
             />
-            <Flex gap={20} justify="center"> //todo 看水平排列是否生效
+            <Flex gap={20} justify="center">
                 <Flex vertical={true} style={{ width: '600px' }} justify={'flex-start'} align={'center'}>
                     <Flex justify={'space-between'} style={{ width: '100%' }}>
                         <Flex style={{ maxWidth: '60%' }} gap={10} align="center">
