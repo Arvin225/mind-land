@@ -9,7 +9,7 @@ import RightSider from "./components/RightSider";
 import SearchBar from "./components/SearchBar";
 import _ from "lodash";
 import { deleteTagAPI, getCardAPI, getTagAPI, getTagByTagNameAPI, patchCardAPI, patchTagAPI, postCardAPI, postTagAPI } from "@/apis/slipBox";
-import { Bounce, Id, toast, ToastContainer } from "react-toastify";
+import { Bounce, toast, ToastContainer } from "react-toastify";
 import { compile } from "html-to-text";
 import usePathItems from "./hooks/usePathItems";
 import getCardsByTagId from "./functions/getCardsByTagId";
@@ -762,7 +762,7 @@ function SlipBox() {
 
 
     /* -------------------------------------未获取到数据之前不允许进一步执行（数据拼接构造、渲染等)------------------------------------- */
-    if (loadingCards || loadingTags) return <div>加载中...</div>
+    if (loadingCards || loadingTags) return (<div>加载中...</div>)
     /* -------------------------------------未获取到数据之前不允许进一步执行（数据拼接构造、渲染等)------------------------------------- */
 
     // 标签树数组

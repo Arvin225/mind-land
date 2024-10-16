@@ -1,6 +1,6 @@
 import '@wangeditor/editor/dist/css/style.css'
 import { Editor, Toolbar } from '@wangeditor/editor-for-react'
-import { Boot, IButtonMenu, IDomEditor } from "@wangeditor/editor";
+import { Boot, IButtonMenu, IDomEditor, IEditorConfig, IToolbarConfig } from "@wangeditor/editor";
 import { useEffect, useState } from 'react';
 import { Button, Typography } from 'antd';
 
@@ -55,7 +55,7 @@ function SlipEditor({ inputSubmit }: { inputSubmit: Function }) {
     }
 
     // 工具栏配置
-    const toolbarConfig = {
+    const toolbarConfig: Partial<IToolbarConfig> = {
         toolbarKeys: [
             'uploadImage', '|',
             {
@@ -72,7 +72,7 @@ function SlipEditor({ inputSubmit }: { inputSubmit: Function }) {
         }
     }
     // 编辑器配置
-    const editorConfig = {
+    const editorConfig: Partial<IEditorConfig> = {
         placeholder: '现在的想法是...',
     }
 

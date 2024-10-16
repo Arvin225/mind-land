@@ -7,16 +7,16 @@ const request = axios.create({
 })
 
 
-const CancelToken = axios.CancelToken
+/* const CancelToken = axios.CancelToken
 interface RequestItem {
     url?: string
     method?: string
     data?: string
     params?: string,
 }
-let requestQueue: RequestItem[] = []
+let requestQueue: RequestItem[] = [] */
 // 请求拦截调用：重复请求时取消当前请求
-function handleRequest(config: InternalAxiosRequestConfig<any>) {
+/* function handleRequest(config: InternalAxiosRequestConfig<any>) {
     // 提取四个参数用于区分相同的请求
     // const { url, method, data = {}, params = {} } = config;
     // const jData = JSON.stringify(data), jParams = JSON.stringify(params)
@@ -40,10 +40,10 @@ function handleRequest(config: InternalAxiosRequestConfig<any>) {
             method,
         })
     }
-}
+} */
 
 // 响应拦截调用：得到响应，将当前请求从请求队列中移除
-function handleResponse(config: InternalAxiosRequestConfig<any>) {
+/* function handleResponse(config: InternalAxiosRequestConfig<any>) {
     // const { url, method, data = JSON.stringify({}), params = JSON.stringify({}) } = config
     const { url, method } = config
     const reqQueue = requestQueue.filter(item => {
@@ -51,12 +51,12 @@ function handleResponse(config: InternalAxiosRequestConfig<any>) {
         return item.url !== url && item.method !== method
     })
     requestQueue = reqQueue
-}
+} */
 
 // 请求拦截器
 request.interceptors.request.use(
     (config) => {
-        handleRequest(config) // 取消请求后，会向控制台报错，下面的代码便不执行，也就不会发送请求了
+        // handleRequest(config) // 取消请求后，会向控制台报错，下面的代码便不执行，也就不会发送请求了
         return config
     },
     (error) => {
@@ -69,7 +69,7 @@ request.interceptors.response.use(
     (response) => {
         // 2xx 范围内的状态码都会触发该函数。
         // 对响应数据做点什么
-        handleResponse(response.config)
+        // handleResponse(response.config)
         return response
     },
     (error) => {

@@ -1,6 +1,6 @@
 import { Card, Checkbox, Input, Tag, Dropdown, CheckboxProps, MenuProps } from "antd"
 import { StarFilled, StarOutlined } from "@ant-design/icons"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { deleteToDoItemAPI, patchToDoItemAPI } from "@/apis/toDo"
 import { Bounce, ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';

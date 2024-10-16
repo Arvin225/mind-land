@@ -77,9 +77,7 @@ function Container() {
         }
     };
 
-    if (loadingToDoListNames) {
-        return <div>加载中...</div>
-    }
+    if (loadingToDoListNames) return (<div>加载中...</div>)
 
     return (
         <>
