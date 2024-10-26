@@ -19,7 +19,7 @@ import { MenuInfo } from "rc-menu/lib/interface"
     style?: { color: string },
     type?: string
 } */
-function CardList({ cards, onCardMenuClick }: { cards: MyCard[], onCardMenuClick: (e: MenuInfo, id: string, tagIds: string[]) => void }) {
+function CardList({ cards, onCardMenuClick }: { cards: MyCard[], onCardMenuClick: (e: MenuInfo, id: number, tagIds: number[]) => void }) {
 
     const cardMenuItems: ItemType[] = [
         {

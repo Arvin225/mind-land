@@ -1,17 +1,17 @@
 export interface Card {
-    id: string
+    id: number
     content: string
     builtOrDelTime: string
     statistics: { builtTime: string, updateTime: string, words: number }
-    tags: string[]
+    tags: number[]
     del: boolean
 }
 
 export interface Tag {
-    id: string
+    id: number
     tagName: string
-    parent: string
-    children: string[]
+    parent: number
+    children: number[]
     cardCount: number
-    cards: string[]
+    cards: number[]
 }

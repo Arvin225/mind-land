@@ -1,7 +1,7 @@
 import { getTagAPI, patchTagAPI } from "@/apis/slipBox"
 import { Tag } from "../interfaces"
 
-const recursiveTagParent = async (tagId: string, task: (tag: Tag) => void) => {
+const recursiveTagParent = async (tagId: number, task: (tag: Tag) => void) => {
     // 递归终止条件
     if (!tagId) return
 

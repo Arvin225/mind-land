@@ -2,10 +2,10 @@ import { getCardAPI, getTagAPI } from "@/apis/slipBox"
 import _ from "lodash"
 import { Card } from "../interfaces"
 
-const getCardsByTagId = async (tagId: string) => {
+const getCardsByTagId = async (tagId: number) => {
 
     // 获取标签及其后代标签的卡片id，返回卡片id数组
-    async function getCardIdsByTagAndOffspring(tagId: string) {
+    async function getCardIdsByTagAndOffspring(tagId: number) {
         const res = await getTagAPI(tagId)
         const tag = res.data
         if (!tag) {

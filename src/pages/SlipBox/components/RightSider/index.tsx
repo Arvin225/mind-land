@@ -10,7 +10,7 @@ function RightSider({ treeData, onSelect, selectedKey }: { treeData: any, onSele
             <Tree treeData={[
                 {
                     title: '全部卡片',
-                    key: '',
+                    key: 0,
                     style: { color: '#9d9d9d' }
                 },
                 {

@@ -1,23 +1,23 @@
-import { getAllCardsAPI, getTagsAPI } from "@/apis/slipBox";
+import { getCardsAPI, getTagsAPI } from "@/apis/slipBox";
 import { createSlice, Dispatch, PayloadAction, UnknownAction } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
 import { AppDispatch } from "..";
 
 interface Card {
-    id: string,
+    id: number,
     content: string,
     builtOrDelTime: string,
     statistics: { builtTime: string, updateTime: string, words: number },
-    tags: string[],
+    tags: number[],
     del: boolean
 }
 interface Tag {
-    id: string,
+    id: number,
     tagName: string,
-    parent: string,
-    children: string[],
+    parent: number,
+    children: number[],
     cardCount: number,
-    cards: string[]
+    cards: number[]
 }
 
 interface SlipBoxState {
@@ -56,11 +56,11 @@ const slipBoxStore = createSlice({
 // 解构出actionCreater
 const { setCards, setLoadingCards, setTags, setLoadingTags } = slipBoxStore.actions
 
-// 异步获取所有cards
-function fetchGetAllCards(del: boolean) {
+// 异步获取cards
+function fetchGetCards(getBy: { del: boolean } | { tagId: number }) {
     return async (dispatch: AppDispatch) => {
         try {
-            const res = await getAllCardsAPI(del)
+            const res = await getCardsAPI(getBy)
             dispatch(setCards(res.data))
             dispatch(setLoadingCards(false))
         } catch (error) {
@@ -85,7 +85,7 @@ function fetchGetTags() {
 }
 
 // 导出actionCreater
-export { setCards, fetchGetAllCards, setLoadingCards, setTags, fetchGetTags, setLoadingTags }
+export { setCards, fetchGetCards, setLoadingCards, setTags, fetchGetTags, setLoadingTags }
 
 // 默认导出reducer
 export default slipBoxStore.reducer
