@@ -1,23 +1,24 @@
 import request from "@/utils/request";
+import { Response } from "./interfaces/Response";
 
 // 获取所有todo-list名称
-export function getToDoListNamesAPI() {
-    return request.get('http://localhost:3300/toDoListNames') //得到的是一个promise对象，后续可以进行then和catch
+export function getToDoListsAPI() {
+    return request.get('/to-do/lists') //得到的是一个promise对象，后续可以进行then和catch
 }
 
 // 新增todo-list名称
-export function postToDoListNameAPI(listName: string) {
-    return request.post('/toDoListNames', { listName })
+export function postToDoListAPI(name: string): Promise<Response> {
+    return request.post('/to-do/lists', { name })
 }
 
 // 删除todo-list名称
-export function deleteToDoListNameAPI(id: string) {
-    return request.delete(`/toDoListNames/${id}`)
+export function deleteToDoListAPI(id: number): Promise<Response> {
+    return request.delete(`/to-do/lists/${id}`)
 }
 
 // 修改todo-list名称
-export function patchToDoListNameAPI(listName: { id: string, listName: string }) {
-    return request.patch(`/toDoListNames/${listName.id}`, listName)
+export function patchToDoListAPI(list: { id: number, name: string }): Promise<Response> {
+    return request.patch('/to-do/lists', list)
 }
 
 /* 

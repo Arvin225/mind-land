@@ -1,13 +1,13 @@
-export interface ToDoListName {
-    id: string,
-    listName: string
+export interface ToDoList {
+    id: number,
+    name: string
 }
 export interface ToDoItem {
-    id: string,
+    id: number,
     content: string,
     done: boolean,
     star: boolean,
     del: boolean,
-    listId: string,
+    listId: number,
     listName: string
 }

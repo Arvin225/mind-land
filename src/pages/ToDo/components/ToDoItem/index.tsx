@@ -13,32 +13,40 @@ function ToDoItem({ item, tag }: { item: ToDoItemType, tag?: string }) { //只�
 
     // 处理星标点击
     const [star_, setStar_] = useState(star)
-    const handleStarClick = () => {
-        // 提交修改到数据库
-        patchToDoItemAPI({ id: id, star: !star_ }).then(res => {
-            // 成功：修改星标状态
-            setStar_(!star_) //异步
-            // todo 在星标列表中时 visible false
-        }).catch(err => {
-            // 失败：提示失败
-            toast.error('操作失败，请稍后重试')
-        })
+    const handleStarClick = async () => {
+
+        const { code, message, result } = await patchToDoItemAPI({ id: id, star: !star_ })
+        if (code === -1) {
+            toast.error(message)
+            console.error(result)
+            return
+        }
+
+        // 成功：修改星标状态
+        setStar_(!star_)
+        // todo 在星标列表中时 visible false
+
     }
 
 
     // 处理输入框失焦
     let content_ = content
-    const handleBlur = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleBlur = async (e: React.ChangeEvent<HTMLInputElement>) => {
         //内容发生改变则提交修改到数据库
         if (e.target.value !== content_) {
-            patchToDoItemAPI({ id: id, content: e.target.value }).then(res => {
-                // 修改成功，保存本次修改的内容，以供下次比对使用
-                content_ = e.target.value
-            }).catch(err => {
-                // 修改失败，提示失败，并复原旧值
-                toast.error('修改失败，请稍后再试');
+
+            const { code, message, result } = await patchToDoItemAPI({ id: id, content: e.target.value })
+            if (code === -1) {
+                toast.error(message)
+                console.error(result)
+                // 修改失败，复原旧值
                 e.target.defaultValue = content_
-            })
+                return
+            }
+
+            // 修改成功，保存本次修改的内容，以供下次比对使用
+            content_ = e.target.value
+
         }
     }
 
@@ -46,21 +54,24 @@ function ToDoItem({ item, tag }: { item: ToDoItemType, tag?: string }) { //只�
     // 具体的"完成"操作
     const [disabled, setDisabled] = useState(false)
     const [visible, setVisible] = useState<boolean>(done ? done : !done)
-    function checkItem(e: CheckboxChangeEvent, done: boolean) { // 值得注意的是，此代码块中的两个函数均为异步函数，会按顺序执行
+    async function checkItem(e: CheckboxChangeEvent, done: boolean) { // 值得注意的是，此代码块中的两个函数均为异步函数，会按顺序执行
         // 禁用checkbox
         setDisabled(true)
-        // 提交数据库修改done
-        patchToDoItemAPI({ id: id, done: done }).then(res => {
-            // 修改成功，卸载当前todo项
-            setVisible(!visible)
-        }).catch(err => {
-            // 修改失败，提示用户
-            toast.error('提交失败，请稍后再试')
+
+        const { code, message, result } = await patchToDoItemAPI({ id: id, done: done })
+        if (code === -1) {
+            toast.error(message)
+            console.error(result)
             // 回滚check状态
             e.target.checked = !done //todo 可能无效，后续用状态
             // 取消checkBox的禁用
             setDisabled(false)
-        })
+            return
+        }
+
+        // 修改成功，卸载当前todo项
+        setVisible(!visible)
+
     }
 
     // 处理check事件
@@ -77,33 +88,22 @@ function ToDoItem({ item, tag }: { item: ToDoItemType, tag?: string }) { //只�
 
 
     // 删除操作
-    const deleteItem = (permanent?: boolean) => {
+    const deleteItem = async (permanent?: boolean) => { // todo 只有在回收站列表才有永久删除选项,且有且只有永久删除和恢复选项
+
         // todo 禁用删除选项
-        // 永久删除 // todo 只有在回收站列表才有永久删除选项,且有且只有永久删除和恢复选项
-        if (permanent) {
-            deleteToDoItemAPI(id).then(res => {
-                // 删除成功
-                // visible false
-                setVisible(false)
-            }).catch(err => {
-                // 删除失败
-                // 提示用户
-                toast.error('删除失败，请稍后再试')
-            })
-        } else {
-            // 非永久删除
-            patchToDoItemAPI({ id: id, del: true }).then(res => {
-                // 删除成功
-                // visible false
-                // toast.success('删除成功')
-                setVisible(false)
-            }).catch(err => {
-                // 删除失败
-                // 提示用户
-                toast.error('删除失败，请稍后再试')
-            })
+
+        const { code, message, result } = await deleteToDoItemAPI({ id, permanent })
+        if (code === -1) {
+            toast.error(message)
+            console.error(result)
+            return
         }
-        // 取消禁用删除选项
+
+        // 删除成功
+        // visible false
+        setVisible(false)
+
+        // todo 取消禁用删除选项
     }
 
     // 右键菜单 // todo 后续适配不同列表

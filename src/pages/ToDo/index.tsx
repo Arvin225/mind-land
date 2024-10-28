@@ -1,20 +1,20 @@
 import { useParams } from "react-router-dom"
 import ToDoItem from "./components/ToDoItem"
 import { useEffect, useState } from "react"
-import { fetchGetToDoList, setLoadingToDoList } from "@/store/modules/toDoStore"
 import { Card, Input, Affix } from "antd"
 import { PlusOutlined } from "@ant-design/icons"
 import { postToDoItemAPI } from "@/apis/toDo"
 import { Bounce, ToastContainer, toast } from "react-toastify"
 import { useAppDispatch, useAppSelector } from "@/store/hooks"
+import { fetchGetToDoItems, setLoadingToDoItems } from "@/store/modules/toDoStore"
 
 function ToDo() {
 
-    const systemListName = [
-        { id: 'all', listName: '全部' },
-        { id: 'star', listName: '星标' },
-        { id: 'done', listName: '已完成' },
-        { id: 'bin', listName: '回收站' },
+    const systemList = [
+        { id: 'all', name: '全部' },
+        { id: 'star', name: '星标' },
+        { id: 'done', name: '已完成' },
+        { id: 'bin', name: '回收站' },
     ]
 
     const params = useParams()
@@ -25,29 +25,35 @@ function ToDo() {
 
     // 异步请求当前列表数据
     useEffect(() => {
-        dispatch(setLoadingToDoList(true)) // 路由每次进来都重置下loading
-        dispatch(fetchGetToDoList(list)) // 更新完toDoList后会更新loading
+        dispatch(setLoadingToDoItems(true)) // 路由每次进来都重置下loading
+        dispatch(fetchGetToDoItems(list)) // 更新完toDoList后会更新loading
     }, [list])
     // 获取加载状态
-    const loading = useAppSelector(state => state.toDo.loadingToDoList)
+    const loading = useAppSelector(state => state.toDo.loadingToDoItems)
     // 获取当前列表数据
-    const toDoList = useAppSelector(state => state.toDo.toDoList)
+    const toDoItems = useAppSelector(state => state.toDo.toDoItems)
 
 
     // 获取列表名
-    const toDoListNames = useAppSelector(state => state.toDo.toDoListNames)
-    // 假设传递的list是listId，查找其列表名，查到了就是在自定义列表，没查到就是在智能列表
+    const toDoLists = useAppSelector(state => state.toDo.toDoLists)
+
     let listName: string | undefined, sysListName: string | undefined, star: boolean, listId: string
-    const findListName = toDoListNames.find(item => item.id === list)
-    if (findListName) {
-        // 自定义列表中
-        listName = findListName.listName
-        listId = list // 如果是在自定义列表中，则设置所属列表
+    // list是number类型则在自定义列表，否则（是string类型）在智能列表
+    // 自定义列表中
+    if (typeof list === 'number') {
+        const findList = toDoLists.find(item => item.id === list)
+        if (findList) {
+            listName = findList.name
+            listId = list // 如果是在自定义列表中，则设置所属列表
+        } else {
+            // todo 不存在的列表,路由到404页面
+        }
+
+        // 在智能列表中
     } else {
-        const findSystemListName = systemListName.find(item => item.id === list)
-        if (findSystemListName) {
-            // 智能列表中
-            sysListName = findSystemListName.listName
+        const findSystemList = systemList.find(item => item.id === list)
+        if (findSystemList) {
+            sysListName = findSystemList.name
             sysListName === '星标' && (star = true) // 如果是在星标列表，star为true
         } else {
             // todo 不存在的列表,路由到404页面
@@ -56,19 +62,24 @@ function ToDo() {
 
     // 新增todo
     const [inputValue, setInputValue] = useState('')
-    const addToDo = () => {
-        if (inputValue.trim()) //非空判断
+    const addToDo = async () => {
+        if (inputValue.trim()) {
             // todo 禁用输入框
+
             // 提交到数据库
-            postToDoItemAPI({ content: inputValue, star: star, listId: listId, listName: listName }).then(res => {
-                // 成功，重新请求列表更新store渲染列表，取消禁用输入框
-                dispatch(fetchGetToDoList(list))
-                // 清空输入框
-                setInputValue('')
-            }).catch(err => {
-                // 失败，提示用户，取消禁用输入框
-                toast.error('操作失败，请稍后再试')
-            })
+            const { code, message, result } = await postToDoItemAPI({ content: inputValue, star: star, listId: listId, listName: listName })
+            if (code === -1) {
+                toast.error(message)
+                console.error(result)
+                return
+            }
+
+            // 成功，重新请求列表更新store渲染列表，取消禁用输入框
+            dispatch(fetchGetToDoItems(list))
+            // 清空输入框
+            setInputValue('')
+
+        }
     }
 
     if (loading) {
@@ -92,7 +103,7 @@ function ToDo() {
             <Card title={listName ? listName : sysListName} bordered={false}>
                 {/* 渲染to-do项组件 */}
                 {/* 条件渲染：在智能列表时加上tag属性（给列表名） */}
-                {sysListName ? toDoList.map(item => <ToDoItem item={item} tag={item.listName} key={item.id} />) : toDoList.map(item => <ToDoItem item={item} key={item.id} />)}
+                {sysListName ? toDoItems.map(item => <ToDoItem item={item} tag={item.listName} key={item.id} />) : toDoItems.map(item => <ToDoItem item={item} key={item.id} />)}
 
                 {/* to-do input表单 */}
                 <Affix offsetTop={830}>

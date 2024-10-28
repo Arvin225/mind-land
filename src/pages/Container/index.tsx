@@ -17,11 +17,11 @@ import {
 import { Button, Layout, Input, Menu, theme } from 'antd';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 
-import { fetchToDoListNames } from '@/store/modules/toDoStore';
-import { postToDoListNameAPI } from '@/apis/layout';
+import { postToDoListAPI } from '@/apis/layout';
 import { Bounce, ToastContainer, toast } from 'react-toastify';
-import ListName from '../ToDo/components/ListName';
+import List from '../ToDo/components/List';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
+import { fetchGetToDoLists } from '@/store/modules/toDoStore';
 
 const { Sider, Content } = Layout;
 
@@ -48,36 +48,39 @@ function Container() {
 
     // 异步请求ToDo的自定义列表
     useEffect(() => {
-        dispatch(fetchToDoListNames())
+        dispatch(fetchGetToDoLists())
     }, [dispatch])
 
     // 获取loading
-    const loadingToDoListNames = useAppSelector(state => state.toDo.loadingToDoListNames)
+    const loadingToDoLists = useAppSelector(state => state.toDo.loadingToDoLists)
     // 获取ToDo的自定义列表
-    const toDoListNames = useAppSelector(state => state.toDo.toDoListNames)
+    const toDoLists = useAppSelector(state => state.toDo.toDoLists)
 
 
     // 新增列表  
     // const [isEditing, setIsEditing] = useState(false)
     const [inputValue, setInputValue] = useState('')
-    const addToDoListName = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    const addToDoListName = async (e: React.KeyboardEvent<HTMLInputElement>) => {
         e.stopPropagation() // 阻止事件冒泡，以免触发父级菜单选中事件
         if (inputValue.trim()) {
+
             // 添加到数据库
-            postToDoListNameAPI(inputValue).then(() => {
-                // 成功 重新请求列表名 刷新store 重渲染
-                dispatch(fetchToDoListNames())
-                // 清空输入框
-                setInputValue('');
-                // setIsEditing(false)
-            }).catch(() => {
-                // 失败 提示用户
-                toast.error('新增失败，请稍后重试')
-            })
+            const { code, message, result } = await postToDoListAPI(inputValue)
+            if (code === -1) {
+                toast.error(message)
+                console.error(result)
+                return;
+            }
+
+            // 成功 重新请求列表名 刷新store 重渲染
+            dispatch(fetchGetToDoLists())
+            // 清空输入框
+            setInputValue('');
+            // setIsEditing(false)
         }
     };
 
-    if (loadingToDoListNames) return (<div>加载中...</div>)
+    if (loadingToDoLists) return (<div>加载中...</div>)
 
     return (
         <>
@@ -157,10 +160,10 @@ function Container() {
                                             },
                                             { type: 'divider' },
 
-                                            ...(toDoListNames.map(item => ({
+                                            ...(toDoLists.map(item => ({
                                                 key: `todo/${item.id}`,
                                                 // icon: <UploadOutlined />,
-                                                label: <ListName item={item} />,
+                                                label: <List item={item} />,
                                                 style: { fontSize: '12px' }
                                             }))),
 

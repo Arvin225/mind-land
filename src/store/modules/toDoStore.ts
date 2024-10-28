@@ -1,36 +1,37 @@
-import { getToDoListNamesAPI } from "@/apis/layout";
-import { getToDoListAPI } from "@/apis/toDo";
+import { getToDoListsAPI } from "@/apis/layout";
+import { getToDoItemsAPI } from "@/apis/toDo";
 
 import { createSlice, Dispatch, PayloadAction, UnknownAction } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
 import { AppDispatch } from "..";
+import { set } from "lodash";
 
-interface ToDoListName {
-    id: string,
-    listName: string
+interface ToDoList {
+    id: number,
+    name: string
 }
 interface ToDoItem {
-    id: string,
+    id: number,
     content: string,
     done: boolean,
     star: boolean,
     del: boolean,
-    listId: string,
+    listId: number,
     listName: string
 }
 
 interface ToDoState {
-    toDoListNames: ToDoListName[]
-    loadingToDoListNames: boolean
-    toDoList: ToDoItem[]
-    loadingToDoList: boolean
+    toDoLists: ToDoList[]
+    loadingToDoLists: boolean
+    toDoItems: ToDoItem[]
+    loadingToDoItems: boolean
 }
 
 const initialState: ToDoState = {
-    toDoListNames: [],
-    loadingToDoListNames: true,
-    toDoList: [],
-    loadingToDoList: true
+    toDoLists: [],
+    loadingToDoLists: true,
+    toDoItems: [],
+    loadingToDoItems: true
 }
 
 const toDoStore = createSlice({
@@ -39,35 +40,35 @@ const toDoStore = createSlice({
     initialState,
     // 配置修改方法（同步）
     reducers: {
-        setToDoListNames(state, action: PayloadAction<ToDoListName[]>) {
-            state.toDoListNames = action.payload
+        setToDoLists(state, action: PayloadAction<ToDoList[]>) {
+            state.toDoLists = action.payload
         },
-        setLoadingToDoListNames(state, action: PayloadAction<boolean>) {
-            state.loadingToDoListNames = action.payload
+        setLoadingToDoLists(state, action: PayloadAction<boolean>) {
+            state.loadingToDoLists = action.payload
         },
 
-        setToDoList(state, action: PayloadAction<ToDoItem[]>) {
-            state.toDoList = action.payload
+        setToDoItems(state, action: PayloadAction<ToDoItem[]>) {
+            state.toDoItems = action.payload
         },
-        setLoadingToDoList(state, action: PayloadAction<boolean>) {
-            state.loadingToDoList = action.payload
+        setLoadingToDoItems(state, action: PayloadAction<boolean>) {
+            state.loadingToDoItems = action.payload
         }
     }
 })
 
 
 /* ------------------------------------------------解构出actionCreater------------------------------------------------ */
-const { setToDoListNames, setLoadingToDoListNames, setToDoList, setLoadingToDoList } = toDoStore.actions
+const { setToDoLists, setLoadingToDoLists, setToDoItems, setLoadingToDoItems } = toDoStore.actions
 
 
 /* ------------------------------------------------异步方法------------------------------------------------ */
 // 获取自定义列表名
-const fetchToDoListNames = () => {
+const fetchGetToDoLists = () => {
     return async (dispatch: AppDispatch) => {
         try {
-            const res = await getToDoListNamesAPI()
-            dispatch(setToDoListNames(res.data))
-            dispatch(setLoadingToDoListNames(false))
+            const res = await getToDoListsAPI()
+            dispatch(setToDoLists(res.data))
+            dispatch(setLoadingToDoLists(false))
         } catch (error) {
             toast.error('获取列表失败，请稍后重试')
             console.error('Error: ', error);
@@ -76,29 +77,29 @@ const fetchToDoListNames = () => {
 }
 
 // 获取todo列表
-const fetchGetToDoList = (list: string) => {
+const fetchGetToDoItems = (list: any) => {
     return async (dispatch: AppDispatch) => {
         let res
         try {
             switch (list) {
                 case 'all':
-                    res = await getToDoListAPI({ done: false })
+                    res = await getToDoItemsAPI({ done: false })
                     break;
                 case 'star':
-                    res = await getToDoListAPI({ star: true, done: false })
+                    res = await getToDoItemsAPI({ star: true, done: false })
                     break;
                 case 'done':
-                    res = await getToDoListAPI({ done: true })
+                    res = await getToDoItemsAPI({ done: true })
                     break;
                 case 'bin':
-                    res = await getToDoListAPI({ del: true })
+                    res = await getToDoItemsAPI({ del: true })
                     break;
                 default:
-                    res = await getToDoListAPI({ listId: list, done: false })
+                    res = await getToDoItemsAPI({ listId: list, done: false })
                     break;
             }
-            dispatch(setToDoList(res.data))
-            dispatch(setLoadingToDoList(false))
+            dispatch(setToDoItems(res.data))
+            dispatch(setLoadingToDoItems(false))
         } catch (error) {
             toast.error('获取当前列表待办项失败，请稍后重试')
             console.error('Error: ', error);
@@ -109,7 +110,7 @@ const fetchGetToDoList = (list: string) => {
 
 /* ------------------------------------------------导出------------------------------------------------ */
 // 按需导出actionCreater
-export { setToDoListNames, fetchToDoListNames, setLoadingToDoListNames, setToDoList, fetchGetToDoList, setLoadingToDoList }
+export { setToDoLists, fetchGetToDoLists, setLoadingToDoLists, setToDoItems, fetchGetToDoItems, setLoadingToDoItems }
 
 // 默认导出reducer
 export default toDoStore.reducer
