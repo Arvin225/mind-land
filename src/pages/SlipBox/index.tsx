@@ -59,7 +59,7 @@ function SlipBox() {
         } else {
             // 在标签下时
             const res = await getTagAPI(currentTagId)
-            const currentTagName = res.data.tagName
+            const currentTagName = res.result.tagName
             // 新增的卡片的标签中有属于当前标签时重新拉取当前标签下的卡片
             result?.tags.find(tag => tag.tagName.startsWith(currentTagName))
                 && dispatch(fetchGetCards({ tagId: currentTagId }))
@@ -224,7 +224,7 @@ function SlipBox() {
                 return
             }
             // 1.4 如果选中的标签是被删标签的父级标签时
-            const currentTagName = res.data.tagName
+            const currentTagName = res.result.tagName
             if (tagName.startsWith(currentTagName)) {
                 dispatch(fetchGetCards({ tagId: currentTagId }))
             }

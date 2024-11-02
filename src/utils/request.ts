@@ -1,8 +1,8 @@
-import axios, { InternalAxiosRequestConfig } from 'axios'
+import axios, { AxiosResponse, InternalAxiosRequestConfig } from 'axios'
 
 // 配置基础request
 const request = axios.create({
-    baseURL: 'http://localhost:3300', // 需包含协议前缀
+    baseURL: process.env.NODE_ENV === 'development' ? '/api' : 'http://localhost:3100', // 需包含协议前缀
     timeout: 5000,
 })
 
@@ -66,11 +66,11 @@ request.interceptors.request.use(
 
 // 响应拦截器
 request.interceptors.response.use(
-    (response) => {
+    (response: AxiosResponse) => {
         // 2xx 范围内的状态码都会触发该函数。
         // 对响应数据做点什么
         // handleResponse(response.config)
-        return response
+        return response.data
     },
     (error) => {
         // 超出 2xx 范围的状态码都会触发该函数。

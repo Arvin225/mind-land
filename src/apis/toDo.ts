@@ -9,7 +9,7 @@ interface GetToDoItemsBy {
 }
 // 获取toDo列表
 export function getToDoItemsAPI(getBy: GetToDoItemsBy) {
-    return request.get('/to-do/items', { data: { del: false, ...getBy } })
+    return request.get<any, Response>('/to-do/items', { params: { del: false, ...getBy } })
 }
 
 interface PostToDoItem {
@@ -22,12 +22,12 @@ interface PostToDoItem {
 }
 // 新增toDo项
 export function postToDoItemAPI(toDoItem: PostToDoItem): Promise<Response> {
-    return request.post('/to-do/items', { done: false, star: false, del: false, ...toDoItem })
+    return request.post<any, Response>('/to-do/items', { done: false, star: false, del: false, ...toDoItem })
 }
 
 // 删除toDo项
 export function deleteToDoItemAPI(deleteItemDto: { id: number, permanent?: boolean }): Promise<Response> {
-    return request.delete('/to-do/items', { data: deleteItemDto })
+    return request.delete<any, Response>('/to-do/items', { data: deleteItemDto })
 }
 
 interface PatchToDoItem {
@@ -41,7 +41,7 @@ interface PatchToDoItem {
 }
 // 修改toDo项（删除、编辑内容、修改状态、修改分组）
 export function patchToDoItemAPI(toDoItem: PatchToDoItem): Promise<Response> {
-    return request.patch(`/to-do/items/${toDoItem.id}`, toDoItem)
+    return request.patch<any, Response>('/to-do/items', toDoItem)
 }
 /* 
 // todo 后端实现通过列表id删除toDo项
@@ -51,6 +51,6 @@ export function patchToDoItemByListIdAPI(listId: string) {
 
 // 获取toDo项
 export function getToDoItemAPI(id: number) {
-    return request.get(`/to-do/items/${id}`)
+    return request.get<any, Response>(`/to-do/items/${id}`)
 }
 

@@ -61,7 +61,7 @@ function fetchGetCards(getBy: { del: boolean } | { tagId: number }) {
     return async (dispatch: AppDispatch) => {
         try {
             const res = await getCardsAPI(getBy)
-            dispatch(setCards(res.data))
+            dispatch(setCards(res.result))
             dispatch(setLoadingCards(false))
         } catch (error) {
             toast.error('获取卡片失败，请稍后重试')
@@ -75,7 +75,7 @@ function fetchGetTags() {
     return async (dispatch: AppDispatch) => {
         try {
             const res = await getTagsAPI()
-            dispatch(setTags(res.data))
+            dispatch(setTags(res.result))
             dispatch(setLoadingTags(false))
         } catch (error) {
             toast.error('获取标签失败，请稍后重试')

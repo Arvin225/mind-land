@@ -8,5 +8,16 @@ export default {
     },
     typescript: {
         enableTypeChecking: true /* (default value) */,
+    },
+    devServer: {
+        proxy: {
+            '/api': {
+                target: 'http://localhost:3100',
+                changeOrigin: true,
+                pathRewrite: {
+                    '^/api': ''
+                }
+            }
+        }
     }
 }
