@@ -1,7 +1,10 @@
 import { getCardsAPI, getTagsAPI } from "@/apis/slipBox";
-import { createSlice, Dispatch, PayloadAction, UnknownAction } from "@reduxjs/toolkit";
-import { toast } from "react-toastify";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { AppDispatch } from "..";
+import { message } from "antd";
+
+
+const [messageApi] = message.useMessage()
 
 interface Card {
     id: number,
@@ -64,7 +67,7 @@ function fetchGetCards(getBy: { del: boolean } | { tagId: number }) {
             dispatch(setCards(res.result))
             dispatch(setLoadingCards(false))
         } catch (error) {
-            toast.error('获取卡片失败，请稍后重试')
+            messageApi.error('获取卡片失败，请稍后重试')
             console.error('Error: ', error);
         }
     }
@@ -78,7 +81,7 @@ function fetchGetTags() {
             dispatch(setTags(res.result))
             dispatch(setLoadingTags(false))
         } catch (error) {
-            toast.error('获取标签失败，请稍后重试')
+            messageApi.error('获取标签失败，请稍后重试')
             console.error('Error: ', error);
         }
     }

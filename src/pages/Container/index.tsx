@@ -14,11 +14,10 @@ import {
     AuditOutlined
 } from '@ant-design/icons';
 
-import { Button, Layout, Input, Menu, theme } from 'antd';
+import { Button, Layout, Input, Menu, theme, message } from 'antd';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 
 import { postToDoListAPI } from '@/apis/layout';
-import { Bounce, ToastContainer, toast } from 'react-toastify';
 import List from '../ToDo/components/List';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { fetchGetToDoLists } from '@/store/modules/toDoStore';
@@ -27,6 +26,8 @@ const { Sider, Content } = Layout;
 
 
 function Container() {
+
+    const [messageApi] = message.useMessage();
 
     const [collapsed, setCollapsed] = useState(false);
     const {
@@ -67,7 +68,7 @@ function Container() {
             // 添加到数据库
             const { code, message, result } = await postToDoListAPI(inputValue)
             if (code === -1) {
-                toast.error(message)
+                messageApi.error(message)
                 console.error(result)
                 return;
             }
@@ -84,18 +85,6 @@ function Container() {
 
     return (
         <>
-            <ToastContainer position="top-left"
-                autoClose={2000}
-                hideProgressBar
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-                theme="colored"
-                transition={Bounce}
-            />
             <Layout>
                 <Sider trigger={null} collapsible collapsed={collapsed} theme="light" style={{ minHeight: '100vh' }}>
                     <div className="demo-logo-vertical" />

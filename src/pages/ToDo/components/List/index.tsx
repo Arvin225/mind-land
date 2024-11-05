@@ -1,8 +1,7 @@
-import { Dropdown, Modal, Form, Input, MenuProps } from "antd"
+import { Dropdown, Modal, Form, Input, MenuProps, message } from "antd"
 import { ExclamationCircleFilled } from "@ant-design/icons"
 import { deleteToDoListAPI, patchToDoListAPI } from "@/apis/layout"
 import { fetchGetToDoLists } from "@/store/modules/toDoStore"
-import { Bounce, ToastContainer, toast } from "react-toastify"
 import { useState } from "react"
 import { useLocation, useNavigate } from "react-router-dom"
 import { useAppDispatch } from "@/store/hooks"
@@ -12,7 +11,9 @@ const { confirm } = Modal
 
 function List({ item: { id, name } }: { item: { id: number, name: string } }) {
 
-    const [form] = Form.useForm();
+    const [form] = Form.useForm()
+
+    const [messageApi] = message.useMessage()
 
     const dispatch = useAppDispatch()
     // 右键菜单项
@@ -36,7 +37,7 @@ function List({ item: { id, name } }: { item: { id: number, name: string } }) {
 
             const { code, message, result } = await patchToDoListAPI({ id, name: newName })
             if (code === -1) {
-                toast.error(message)
+                messageApi.error(message)
                 console.error(result)
                 return
             }
@@ -55,7 +56,7 @@ function List({ item: { id, name } }: { item: { id: number, name: string } }) {
 
         const { code, message, result } = await deleteToDoListAPI(id)
         if (code === -1) {
-            toast.error(message)
+            messageApi.error(message)
             console.error(result)
             return
         }
@@ -104,18 +105,6 @@ function List({ item: { id, name } }: { item: { id: number, name: string } }) {
 
     return (
         <>
-            <ToastContainer position="top-center"
-                autoClose={2000}
-                hideProgressBar
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-                theme="colored"
-                transition={Bounce}
-            />
             <Dropdown menu={{ items, onClick: handleContextMenuClick }} trigger={['contextMenu']}>
                 <div>{name}</div>
             </Dropdown>

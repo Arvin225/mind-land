@@ -1,14 +1,12 @@
-import { Card, Checkbox, Input, Tag, Dropdown, CheckboxProps, MenuProps } from "antd"
+import { Card, Checkbox, Input, Tag, Dropdown, CheckboxProps, MenuProps, message } from "antd"
 import { StarFilled, StarOutlined } from "@ant-design/icons"
 import { useState } from "react"
 import { deleteToDoItemAPI, patchToDoItemAPI } from "@/apis/toDo"
-import { Bounce, ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import { ToDoItem as ToDoItemType } from "../../interfaces";
 import { CheckboxChangeEvent } from "antd/es/checkbox";
 
 function ToDoItem({ item, tag }: { item: ToDoItemType, tag?: string }) { //只有在 全部 中时，tag才有值（所属列表名）
-
+    const [messageApi] = message.useMessage()
     const { id, content, done, star, del } = item
 
     // 处理星标点击
@@ -17,7 +15,7 @@ function ToDoItem({ item, tag }: { item: ToDoItemType, tag?: string }) { //只�
 
         const { code, message, result } = await patchToDoItemAPI({ id: id, star: !star_ })
         if (code === -1) {
-            toast.error(message)
+            messageApi.error(message)
             console.error(result)
             return
         }
@@ -37,7 +35,7 @@ function ToDoItem({ item, tag }: { item: ToDoItemType, tag?: string }) { //只�
 
             const { code, message, result } = await patchToDoItemAPI({ id: id, content: e.target.value })
             if (code === -1) {
-                toast.error(message)
+                messageApi.error(message)
                 console.error(result)
                 // 修改失败，复原旧值
                 e.target.defaultValue = content_
@@ -60,7 +58,7 @@ function ToDoItem({ item, tag }: { item: ToDoItemType, tag?: string }) { //只�
 
         const { code, message, result } = await patchToDoItemAPI({ id: id, done: done })
         if (code === -1) {
-            toast.error(message)
+            messageApi.error(message)
             console.error(result)
             // 回滚check状态
             e.target.checked = !done //todo 可能无效，后续用状态
@@ -94,7 +92,7 @@ function ToDoItem({ item, tag }: { item: ToDoItemType, tag?: string }) { //只�
 
         const { code, message, result } = await deleteToDoItemAPI({ id, permanent })
         if (code === -1) {
-            toast.error(message)
+            messageApi.error(message)
             console.error(result)
             return
         }
@@ -138,18 +136,6 @@ function ToDoItem({ item, tag }: { item: ToDoItemType, tag?: string }) { //只�
 
     return (
         <>
-            <ToastContainer position="top-center"
-                autoClose={2000}
-                hideProgressBar
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-                theme="colored"
-                transition={Bounce}
-            />
             {
                 visible &&
                 <Dropdown menu={{ items, onClick: handleContextMenuClick }} trigger={['contextMenu']}>

@@ -2,8 +2,10 @@ import { getToDoListsAPI } from "@/apis/layout";
 import { getToDoItemsAPI } from "@/apis/toDo";
 
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { toast } from "react-toastify";
 import { AppDispatch } from "..";
+import { message } from "antd";
+
+const [messageApi] = message.useMessage()
 
 interface ToDoList {
     id: number,
@@ -69,7 +71,7 @@ const fetchGetToDoLists = () => {
             dispatch(setToDoLists(res.result))
             dispatch(setLoadingToDoLists(false))
         } catch (error) {
-            toast.error('获取列表失败，请稍后重试')
+            messageApi.error('获取列表失败，请稍后重试')
             console.error('Error: ', error);
         }
     }
@@ -100,7 +102,7 @@ const fetchGetToDoItems = (list: any) => {
             dispatch(setToDoItems(res.result))
             dispatch(setLoadingToDoItems(false))
         } catch (error) {
-            toast.error('获取当前列表待办项失败，请稍后重试')
+            messageApi.error('获取当前列表待办项失败，请稍后重试')
             console.error('Error: ', error);
         }
     }

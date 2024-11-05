@@ -1,4 +1,4 @@
-import { Dropdown, Flex, MenuProps, TreeDataNode } from "antd"
+import { Dropdown, Flex, MenuProps, message, TreeDataNode } from "antd"
 import SlipEditor from "./components/SlipEditor";
 import { fetchGetCards, fetchGetTags } from "@/store/modules/slipBoxStore";
 import { Key, useEffect, useState } from "react";
@@ -9,7 +9,6 @@ import RightSider from "./components/RightSider";
 import SearchBar from "./components/SearchBar";
 import _ from "lodash";
 import { deleteTagAPI, getTagAPI, createCardAPI, deleteCardAPI } from "@/apis/slipBox";
-import { Bounce, toast, ToastContainer } from "react-toastify";
 import usePathItems from "./hooks/usePathItems";
 import showDeleteConfirm from "./functions/showDeleteConfirm";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
@@ -19,6 +18,9 @@ import { ItemType } from "antd/es/breadcrumb/Breadcrumb";
 import { MenuInfo } from "rc-menu/lib/interface";
 
 function SlipBox() {
+
+    const [messageApi] = message.useMessage()
+
     const dispatch = useAppDispatch()
     const { pathItems, buildPathItems } = usePathItems()
     useEffect(() => {
@@ -42,7 +44,7 @@ function SlipBox() {
         // 创建卡片
         const { code, message, result } = await createCardAPI({ contentWithText, contentWithHtml })
         if (code === -1) {
-            toast.error(message)
+            messageApi.error(message)
             console.error(result);
             return
         }
@@ -125,7 +127,7 @@ function SlipBox() {
                 dispatch(setCards(uniqAllCard))
     
             }).catch(error => {
-                toast.error('操作失败，请稍后重试')
+                messageApi.error('操作失败，请稍后重试')
                 console.error('Error: ', error);
             })
     
@@ -134,7 +136,7 @@ function SlipBox() {
             buildPathItems(tagName)
     
         }).catch(error => {
-            toast.error('操作失败，请稍后重试')
+            messageApi.error('操作失败，请稍后重试')
             console.error('Error: ', error);
         }) */
     }
@@ -145,7 +147,7 @@ function SlipBox() {
 
         const { code, message, result } = await deleteCardAPI({ id, tagIds })
         if (code === -1) {
-            toast.error(message)
+            messageApi.error(message)
             console.error(result)
             return
         }
@@ -240,7 +242,7 @@ function SlipBox() {
         const { code, message, result } = await deleteTagAPI({ id: tagId, tagName })
 
         if (code === -1) {
-            toast.error(message)
+            messageApi.error(message)
             console.error(result);
             return
         }
@@ -256,7 +258,7 @@ function SlipBox() {
         const { code, message, result } = await deleteTagAPI({ id: tagId, tagName, overCards: true })
 
         if (code === -1) {
-            toast.error(message)
+            messageApi.error(message)
             console.error(result);
             return
         }
@@ -408,18 +410,6 @@ function SlipBox() {
 
     return (
         <>
-            <ToastContainer position="top-center"
-                autoClose={2000}
-                hideProgressBar
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-                theme="colored"
-                transition={Bounce}
-            />
             <Flex gap={20} justify="center">
                 <Flex vertical={true} style={{ width: '600px' }} justify={'flex-start'} align={'center'}>
                     <Flex justify={'space-between'} style={{ width: '100%' }}>

@@ -1,14 +1,15 @@
 import { useParams } from "react-router-dom"
 import ToDoItem from "./components/ToDoItem"
 import { useEffect, useState } from "react"
-import { Card, Input, Affix } from "antd"
+import { Card, Input, Affix, message } from "antd"
 import { PlusOutlined } from "@ant-design/icons"
 import { postToDoItemAPI } from "@/apis/toDo"
-import { Bounce, ToastContainer, toast } from "react-toastify"
 import { useAppDispatch, useAppSelector } from "@/store/hooks"
 import { fetchGetToDoItems, setLoadingToDoItems } from "@/store/modules/toDoStore"
 
 function ToDo() {
+
+    const [messageApi] = message.useMessage()
 
     const systemList = [
         { id: 'all', name: '全部' },
@@ -69,7 +70,7 @@ function ToDo() {
             // 提交到数据库
             const { code, message, result } = await postToDoItemAPI({ content: inputValue, star: star, listId: listId, listName: listName })
             if (code === -1) {
-                toast.error(message)
+                messageApi.error(message)
                 console.error(result)
                 return
             }
@@ -88,18 +89,6 @@ function ToDo() {
 
     return (
         <>
-            <ToastContainer position="top-center"
-                autoClose={2000}
-                hideProgressBar
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-                theme="colored"
-                transition={Bounce}
-            />
             <Card title={listName ? listName : sysListName} bordered={false}>
                 {/* 渲染to-do项组件 */}
                 {/* 条件渲染：在智能列表时加上tag属性（给列表名） */}
