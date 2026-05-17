@@ -1,0 +1,8 @@
+{
+  "name": "mind-land",
+  "version": "1.0.0",
+  "description": "Personal knowledge management app — slip-box note system, todo lists, diary, mind maps",
+  "skills": [
+    "./skills/"
+  ]
+}

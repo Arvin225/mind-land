@@ -1,0 +1,52 @@
+{
+  "schema_version": "sprint-contract.v1",
+  "generated_at": "2026-05-17T12:27:01Z",
+  "source": {
+    "plans_file": "Plans.md",
+    "task_id": "1.1"
+  },
+  "task": {
+    "id": "1.1",
+    "title": "修复 slipbox/service.go 中 21 处未检查的 GORM 事务调用 — 补充错误返回触发回滚",
+    "definition_of_done": "所有 GORM 事务内调用错误均被检查并返回，事务失败时正确回滚",
+    "depends_on": [],
+    "status_at_generation": "cc:TODO"
+  },
+  "contract": {
+    "checks": [
+      {
+        "id": "dod-primary",
+        "source": "Plans.md.DoD",
+        "description": "所有 GORM 事务内调用错误均被检查并返回，事务失败时正确回滚"
+      }
+    ],
+    "non_goals": [],
+    "runtime_validation": [],
+    "browser_validation": [],
+    "risk_flags": [],
+    "tdd_required": false,
+    "test_framework": "none",
+    "test_todo_list": [],
+    "skip_tdd_reason": null
+  },
+  "advisor": {
+    "enabled": true,
+    "mode": "on-demand",
+    "max_consults": 3,
+    "retry_threshold": 2,
+    "pre_escalation_consult": true,
+    "triggers": [],
+    "model_policy": {
+      "claude_default": "opus",
+      "codex_default": "gpt-5.4"
+    }
+  },
+  "review": {
+    "status": "draft",
+    "reviewer_profile": "static",
+    "max_iterations": 3,
+    "reviewer_notes": [],
+    "gaps": [],
+    "followups": []
+  }
+}
