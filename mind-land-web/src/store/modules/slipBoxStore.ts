@@ -1,23 +1,7 @@
 import { getCardsAPI, getTagsAPI } from "@/apis/slipBox";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { AppDispatch } from "..";
-
-interface Card {
-    id: number,
-    content: string,
-    builtOrDelTime: string,
-    statistics: { builtTime: string, updateTime: string, words: number },
-    tags: number[],
-    del: boolean
-}
-interface Tag {
-    id: number,
-    tagName: string,
-    parent: number,
-    children: number[],
-    cardCount: number,
-    cards: number[]
-}
+import type { Card, Tag } from "@/pages/SlipBox/interfaces";
 
 export interface SlipBoxState {
     cards: Card[],
@@ -52,10 +36,8 @@ const slipBoxStore = createSlice({
     }
 })
 
-// 解构出actionCreater
 const { setCards, setLoadingCards, setTags, setLoadingTags } = slipBoxStore.actions
 
-// 异步获取cards
 function fetchGetCards(getBy: { del: boolean } | { tagId: number }) {
     return async (dispatch: AppDispatch) => {
         try {
@@ -71,7 +53,6 @@ function fetchGetCards(getBy: { del: boolean } | { tagId: number }) {
     }
 }
 
-// 异步获取tags
 function fetchGetTags() {
     return async (dispatch: AppDispatch) => {
         try {
@@ -91,8 +72,6 @@ function fetchGetTags() {
     }
 }
 
-// 导出actionCreater
 export { setCards, fetchGetCards, setLoadingCards, setTags, fetchGetTags, setLoadingTags }
 
-// 默认导出reducer
 export default slipBoxStore.reducer

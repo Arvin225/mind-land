@@ -36,7 +36,7 @@ function ToDo() {
     const toDoItems = useAppSelector(state => state.toDo.toDoItems)
     const toDoLists = useAppSelector(state => state.toDo.toDoLists)
 
-    let listName: string | undefined, sysListName: string | undefined, star: boolean, listId: number | undefined
+    let listName: string | undefined, sysListName: string | undefined, star = false, listId: number | undefined
 
     // 尝试从自定义列表中查找（list 是数字ID字符串）
     const numericId = parseInt(list, 10)

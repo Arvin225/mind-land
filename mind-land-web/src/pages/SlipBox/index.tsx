@@ -74,9 +74,11 @@ function SlipBox() {
                 dispatch(fetchGetCards({ del: false }));
             } else {
                 const res = await getTagAPI(currentTagId)
-                const currentTagName = res.result.tagName
-                result?.tags.find(tag => tag.tagName.startsWith(currentTagName))
-                    && dispatch(fetchGetCards({ tagId: currentTagId }))
+                const currentTagName = res.result?.tagName
+                if (currentTagName) {
+                    result?.tags.find(tag => tag.tagName.startsWith(currentTagName))
+                        && dispatch(fetchGetCards({ tagId: currentTagId }))
+                }
             }
             editor.commands.clearContent();
         } catch (err) {

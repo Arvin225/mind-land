@@ -1,2 +1,7 @@
 {"file":"/root/mind-land/Plans.md","action":"Edit","timestamp":"2026-05-17T12:24:30Z","important":true}
 {"file":"src/pages/ToDo/index.tsx","action":"Edit","timestamp":"2026-05-17T12:44:19Z","important":false}
+{"file":"src/apis/slipBox.ts","action":"Write","timestamp":"2026-05-17T13:21:18Z","important":false}
+{"file":"src/apis/toDo.ts","action":"Write","timestamp":"2026-05-17T13:21:19Z","important":false}
+{"file":"src/apis/layout.ts","action":"Write","timestamp":"2026-05-17T13:21:19Z","important":false}
+{"file":"src/components/ToastProvider.tsx","action":"Edit","timestamp":"2026-05-17T13:21:29Z","important":false}
+{"file":"src/pages/SlipBox/index.tsx","action":"Edit","timestamp":"2026-05-17T13:22:04Z","important":false}

@@ -1,5 +1,5 @@
 import { Star } from "lucide-react"
-import { useState, useRef } from "react"
+import { useState, useRef, useEffect } from "react"
 import { deleteToDoItemAPI, patchToDoItemAPI } from "@/apis/toDo"
 import { ToDoItem as ToDoItemType } from "../../interfaces";
 import { useToast } from "@/components/ToastProvider"
@@ -20,6 +20,9 @@ function ToDoItem({ item, tag }: { item: ToDoItemType, tag?: string }) {
     }
 
     const contentRef = useRef(content)
+    useEffect(() => {
+        contentRef.current = content
+    }, [content])
     const handleBlur = async (e: React.FocusEvent<HTMLInputElement>) => {
         if (e.target.value !== contentRef.current) {
             const { code, message, result } = await patchToDoItemAPI({ id: id, content: e.target.value })

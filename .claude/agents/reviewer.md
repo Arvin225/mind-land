@@ -10,7 +10,7 @@ disallowedTools:
   - Edit
   - Bash
   - Agent
-model: deepseek/deepseek-v4-pro
+model: deepseek-v4-pro
 effort: xhigh
 maxTurns: 50
 color: blue

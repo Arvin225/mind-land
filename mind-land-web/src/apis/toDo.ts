@@ -1,3 +1,4 @@
+import type { ToDoItem } from "@/pages/ToDo/interfaces";
 import request from "@/utils/request";
 import { Response } from "./interfaces/Response";
 
@@ -7,9 +8,9 @@ interface GetToDoItemsBy {
     done?: boolean,
     del?: boolean
 }
-// 获取toDo列表
+
 export function getToDoItemsAPI(getBy: GetToDoItemsBy) {
-    return request.get<any, Response>('/to-do/items', { params: { del: false, ...getBy } })
+    return request.get<any, Response<ToDoItem[]>>('/to-do/items', { params: { del: false, ...getBy } })
 }
 
 interface PostToDoItem {
@@ -20,12 +21,11 @@ interface PostToDoItem {
     listId?: string,
     listName?: string
 }
-// 新增toDo项
-export function postToDoItemAPI(toDoItem: PostToDoItem): Promise<Response> {
-    return request.post<any, Response>('/to-do/items', { done: false, star: false, del: false, ...toDoItem })
+
+export function postToDoItemAPI(toDoItem: PostToDoItem): Promise<Response<ToDoItem>> {
+    return request.post<any, Response<ToDoItem>>('/to-do/items', { done: false, star: false, del: false, ...toDoItem })
 }
 
-// 删除toDo项
 export function deleteToDoItemAPI(deleteItemDto: { id: number, permanent?: boolean }): Promise<Response> {
     return request.delete<any, Response>('/to-do/items', { data: deleteItemDto })
 }
@@ -39,18 +39,11 @@ interface PatchToDoItem {
     listId?: number,
     listName?: string
 }
-// 修改toDo项（删除、编辑内容、修改状态、修改分组）
-export function patchToDoItemAPI(toDoItem: PatchToDoItem): Promise<Response> {
-    return request.patch<any, Response>('/to-do/items', toDoItem)
-}
-/* 
-// todo 后端实现通过列表id删除toDo项
-export function patchToDoItemByListIdAPI(listId: string) {
-    return request.patch(`/to-do/items/${listId}`, { del: true })
-} */
 
-// 获取toDo项
+export function patchToDoItemAPI(toDoItem: PatchToDoItem): Promise<Response<ToDoItem>> {
+    return request.patch<any, Response<ToDoItem>>('/to-do/items', toDoItem)
+}
+
 export function getToDoItemAPI(id: number) {
-    return request.get<any, Response>(`/to-do/items/${id}`)
+    return request.get<any, Response<ToDoItem>>(`/to-do/items/${id}`)
 }
-

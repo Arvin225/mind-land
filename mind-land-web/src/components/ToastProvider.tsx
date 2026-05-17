@@ -90,7 +90,7 @@ export const ToastProvider: React.FC<{ children: React.ReactNode }> = ({ childre
 };
 
 let _externalToast: ToastContextValue | null = null;
-export function setExternalToast(t: ToastContextValue) {
+export function setExternalToast(t: ToastContextValue | null) {
   _externalToast = t;
 }
 export function toastSuccess(msg: string, dur?: number) { _externalToast?.success(msg, dur); }

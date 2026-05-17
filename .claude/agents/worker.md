@@ -10,7 +10,7 @@ tools:
   - Glob
 disallowedTools:
   - Agent
-model: deepseek/deepseek-v4-flash
+model: deepseek-v4-flash
 effort: medium
 maxTurns: 100
 color: yellow
