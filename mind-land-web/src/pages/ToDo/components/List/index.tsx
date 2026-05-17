@@ -12,33 +12,45 @@ function List({ item: { id, name } }: { item: { id: number, name: string } }) {
     const [open, setOpen] = useState(false)
     const [deleteOpen, setDeleteOpen] = useState(false)
     const [editName, setEditName] = useState(name)
+    const [saving, setSaving] = useState(false)
+    const [deleting, setDeleting] = useState(false)
 
     const location = useLocation()
     const navigate = useNavigate()
 
     const saveEdit = async () => {
         if (editName.trim() && editName !== name) {
-            const { code, message, result } = await patchToDoListAPI({ id, name: editName })
+            setSaving(true)
+            try {
+                const { code, message, result } = await patchToDoListAPI({ id, name: editName })
+                if (code === -1) {
+                    toast.error(message)
+                    console.error(result)
+                    return
+                }
+                dispatch(fetchGetToDoLists())
+            } finally {
+                setSaving(false)
+            }
+        }
+        setOpen(false)
+    }
+
+    const deleteList = async () => {
+        setDeleting(true)
+        try {
+            const { code, message, result } = await deleteToDoListAPI(id)
             if (code === -1) {
                 toast.error(message)
                 console.error(result)
                 return
             }
             dispatch(fetchGetToDoLists())
-        }
-        setOpen(false)
-    }
-
-    const deleteList = async () => {
-        const { code, message, result } = await deleteToDoListAPI(id)
-        if (code === -1) {
-            toast.error(message)
-            console.error(result)
-            return
-        }
-        dispatch(fetchGetToDoLists())
-        if (location.pathname.substring(6) === id + '') {
-            navigate('/todo/all')
+            if (location.pathname.substring(6) === id + '') {
+                navigate('/todo/all')
+            }
+        } finally {
+            setDeleting(false)
         }
     }
 
@@ -83,7 +95,7 @@ function List({ item: { id, name } }: { item: { id: number, name: string } }) {
                         />
                         <div className="flex justify-end gap-2">
                             <button onClick={() => setOpen(false)} className="px-3 py-1.5 rounded-lg text-xs text-[--foreground]/55 hover:bg-[--hover] transition-colors cursor-pointer">取消</button>
-                            <button onClick={saveEdit} className="px-3 py-1.5 rounded-lg text-xs bg-[#D4A574]/15 text-[#D4A574] hover:bg-[#D4A574]/25 transition-colors cursor-pointer">保存</button>
+                            <button onClick={saveEdit} disabled={saving} className="px-3 py-1.5 rounded-lg text-xs bg-[#D4A574]/15 text-[#D4A574] hover:bg-[#D4A574]/25 transition-colors cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed">{saving ? '保存中...' : '保存'}</button>
                         </div>
                     </div>
                 </div>
@@ -95,7 +107,7 @@ function List({ item: { id, name } }: { item: { id: number, name: string } }) {
                         <p className="text-[--foreground]/55 text-sm mb-4">删除列表 "{name}"？该列表下所有任务也将被删除。</p>
                         <div className="flex justify-end gap-2">
                             <button onClick={() => setDeleteOpen(false)} className="px-3 py-1.5 rounded-lg text-xs text-[--foreground]/55 hover:bg-[--hover] transition-colors cursor-pointer">取消</button>
-                            <button onClick={handleConfirmDelete} className="px-3 py-1.5 rounded-lg text-xs bg-red-400/15 text-red-400 hover:bg-red-400/25 transition-colors cursor-pointer">删除</button>
+                            <button onClick={handleConfirmDelete} disabled={deleting} className="px-3 py-1.5 rounded-lg text-xs bg-red-400/15 text-red-400 hover:bg-red-400/25 transition-colors cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed">{deleting ? '删除中...' : '删除'}</button>
                         </div>
                     </div>
                 </div>

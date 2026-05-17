@@ -40,6 +40,7 @@ function InlineEditor({
     onSubmit: (content: string) => void
     onCancel: () => void
 }) {
+    const [inlineSubmitting, setInlineSubmitting] = useState(false)
     const onSubmitRef = useRef(onSubmit);
     onSubmitRef.current = onSubmit;
 
@@ -69,6 +70,15 @@ function InlineEditor({
         document.addEventListener('keydown', handleKeyDown)
         return () => document.removeEventListener('keydown', handleKeyDown)
     }, [editor])
+
+    const handleSubmit = async () => {
+        setInlineSubmitting(true)
+        try {
+            await onSubmit(editor.getHTML())
+        } finally {
+            setInlineSubmitting(false)
+        }
+    }
 
     if (!editor) return null
 
@@ -148,10 +158,11 @@ function InlineEditor({
                         取消
                     </button>
                     <button
-                        onClick={() => onSubmit(editor.getHTML())}
-                        className="px-4 py-1.5 rounded-xl bg-[#D4A574]/15 text-[#D4A574] text-sm hover:bg-[#D4A574]/25 transition-colors whitespace-nowrap"
+                        onClick={handleSubmit}
+                        disabled={inlineSubmitting}
+                        className="px-4 py-1.5 rounded-xl bg-[#D4A574]/15 text-[#D4A574] text-sm hover:bg-[#D4A574]/25 transition-colors whitespace-nowrap disabled:opacity-40 disabled:cursor-not-allowed"
                     >
-                        提交
+                        {inlineSubmitting ? '提交中...' : '提交'}
                     </button>
                 </div>
             </div>
