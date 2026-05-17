@@ -18,9 +18,10 @@ import {
 
 interface TiptapEditorProps {
     inputSubmit: (editor: Editor | null) => void
+    submitting?: boolean
 }
 
-function TiptapEditor({ inputSubmit }: TiptapEditorProps) {
+function TiptapEditor({ inputSubmit, submitting }: TiptapEditorProps) {
     const inputSubmitRef = useRef(inputSubmit);
     inputSubmitRef.current = inputSubmit;
 
@@ -140,7 +141,12 @@ function TiptapEditor({ inputSubmit }: TiptapEditorProps) {
                         onClick={() => {
                             const url = window.prompt('输入图片 URL')
                             if (url) {
-                                editor.chain().focus().setImage({ src: url }).run()
+                                const trimmed = url.trim()
+                                if (!/^https?:\/\//.test(trimmed)) {
+                                    alert('仅支持 http/https 协议的图片 URL')
+                                    return
+                                }
+                                editor.chain().focus().setImage({ src: trimmed }).run()
                             }
                         }}
                         active={editor.isActive('image')}
@@ -150,7 +156,8 @@ function TiptapEditor({ inputSubmit }: TiptapEditorProps) {
                 </div>
                 <button
                     onClick={() => inputSubmit(editor)}
-                    className="px-4 py-1.5 rounded-xl bg-[#D4A574]/15 text-[#D4A574] text-sm hover:bg-[#D4A574]/25 transition-colors whitespace-nowrap"
+                    disabled={submitting}
+                    className="px-4 py-1.5 rounded-xl bg-[#D4A574]/15 text-[#D4A574] text-sm hover:bg-[#D4A574]/25 transition-colors whitespace-nowrap disabled:opacity-40 disabled:cursor-not-allowed"
                 >
                     提交
                 </button>

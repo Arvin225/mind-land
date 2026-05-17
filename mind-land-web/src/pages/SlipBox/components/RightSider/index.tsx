@@ -10,23 +10,46 @@ export interface TreeNode {
     selectable?: boolean
 }
 
-function TreeItem({ node, level, selectedKey, onSelect }: { 
-    node: TreeNode, 
-    level: number, 
+function TreeItem({ node, level, selectedKey, onSelect }: {
+    node: TreeNode,
+    level: number,
     selectedKey: Key,
-    onSelect: (keys: Key[]) => void 
+    onSelect: (keys: Key[]) => void
 }) {
     const [expanded, setExpanded] = useState(true)
     const hasChildren = node.children && node.children.length > 0
     const isSelected = node.key === selectedKey
 
+    const handleKeyDown = (e: React.KeyboardEvent) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault()
+            if (node.selectable !== false) {
+                onSelect([node.key])
+            }
+            if (hasChildren) {
+                setExpanded(!expanded)
+            }
+        }
+        if (e.key === 'ArrowRight' && hasChildren && !expanded) {
+            e.preventDefault()
+            setExpanded(true)
+        }
+        if (e.key === 'ArrowLeft' && hasChildren && expanded) {
+            e.preventDefault()
+            setExpanded(false)
+        }
+    }
+
     return (
-        <div>
+        <div role="treeitem" aria-expanded={hasChildren ? expanded : undefined} aria-selected={isSelected}>
             <div
                 className={`flex items-center gap-1 px-2 py-1.5 rounded-lg cursor-pointer transition-colors ${
                     isSelected ? 'bg-[rgba(212,165,116,0.12)] text-[#D4A574]' : 'hover:bg-[--hover] text-[--foreground]/55'
                 } ${level === 0 ? 'text-xs font-medium' : 'text-xs'}`}
                 style={{ paddingLeft: `${8 + level * 12}px` }}
+                tabIndex={0}
+                role="treeitem"
+                onKeyDown={handleKeyDown}
                 onClick={() => {
                     if (node.selectable !== false) {
                         onSelect([node.key])
@@ -67,7 +90,7 @@ function RightSider({ treeData, onSelect, selectedKey }: { treeData: TreeNode[],
     ]
 
     return (
-        <aside className="h-full w-full liquid-glass-panel rounded-xl py-3 px-2 scrollbar-auto-hide overflow-auto">
+        <aside className="h-full w-full liquid-glass-panel rounded-xl py-3 px-2 scrollbar-auto-hide overflow-auto" role="tree">
             {rootNodes.map(node => (
                 <TreeItem
                     key={node.key}

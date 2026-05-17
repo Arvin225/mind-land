@@ -59,8 +59,10 @@ function ToDo() {
     const currentTitle = sysListName || listName || '待办'
 
     const [inputValue, setInputValue] = useState('')
+    const [adding, setAdding] = useState(false)
     const addToDo = async () => {
         if (!inputValue.trim()) return
+        setAdding(true)
         try {
             const { code, message, result } = await postToDoItemAPI({ content: inputValue, star: star, listId: listId?.toString(), listName: listName })
             if (code === -1) {
@@ -72,6 +74,8 @@ function ToDo() {
             setInputValue('')
         } catch (err) {
             toast.error('网络错误，请稍后重试')
+        } finally {
+            setAdding(false)
         }
     }
 
@@ -89,9 +93,16 @@ function ToDo() {
                 )}
             </div>
             <div className="flex-1 overflow-auto space-y-1 pb-4">
-                {sysListName
-                    ? toDoItems.map(item => <ToDoItem item={item} tag={item.listName} key={item.id} />)
-                    : toDoItems.map(item => <ToDoItem item={item} key={item.id} />)}
+                {toDoItems.length === 0 ? (
+                    <div className="text-center py-16 text-[--foreground]/35">
+                        <p className="text-lg mb-2">暂无任务</p>
+                        <p className="text-sm">在下方输入框添加你的第一个待办任务</p>
+                    </div>
+                ) : (
+                    sysListName
+                        ? toDoItems.map(item => <ToDoItem item={item} tag={item.listName} key={item.id} />)
+                        : toDoItems.map(item => <ToDoItem item={item} key={item.id} />)
+                )}
             </div>
 
             <div className="sticky bottom-0 pt-2">
@@ -102,7 +113,8 @@ function ToDo() {
                         value={inputValue}
                         onChange={e => setInputValue(e.target.value)}
                         placeholder="添加任务…"
-                        className="flex-1 bg-transparent text-sm text-[--foreground] placeholder:text-[--foreground]/30 outline-none"
+                        disabled={adding}
+                        className="flex-1 bg-transparent text-sm text-[--foreground] placeholder:text-[--foreground]/30 outline-none disabled:opacity-40"
                         onKeyDown={e => { if (e.key === 'Enter') addToDo() }}
                     />
                 </div>

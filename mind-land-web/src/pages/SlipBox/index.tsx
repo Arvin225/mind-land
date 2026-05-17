@@ -9,7 +9,7 @@ import SearchBar from "./components/SearchBar";
 import _ from "lodash";
 import { getTagAPI, createCardAPI, deleteCardAPI, patchCardAPI } from "@/apis/slipBox";
 import usePathItems from "./hooks/usePathItems";
-// TODO: 标签右键菜单功能待实现
+import showDeleteConfirm from "./functions/showDeleteConfirm";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import type { Editor as TiptapEditor } from '@tiptap/react';
 import { Tag } from "./interfaces";
@@ -22,6 +22,7 @@ function SlipBox() {
     const toast = useToast()
     const dispatch = useAppDispatch()
     const { pathItems, buildPathItems } = usePathItems()
+    const [submitting, setSubmitting] = useState(false)
     
     useEffect(() => {
         dispatch(fetchGetCards({ del: false }))
@@ -60,6 +61,7 @@ function SlipBox() {
         if (!contentWithText) return
         const contentWithHtml = editor.getHTML()
 
+        setSubmitting(true)
         try {
             const { code, message, result } = await createCardAPI({ contentWithText, contentWithHtml })
             if (code === -1) {
@@ -83,6 +85,8 @@ function SlipBox() {
             editor.commands.clearContent();
         } catch (err) {
             toast.error('网络错误，请稍后重试')
+        } finally {
+            setSubmitting(false)
         }
     }
 
@@ -133,7 +137,11 @@ function SlipBox() {
     const onCardMenuClick = (item: MenuItem, id: number, tagIds: number[]) => {
         switch (item.key) {
             case 'delete':
-                handleCardDelete(id, tagIds)
+                showDeleteConfirm({
+                    title: '删除卡片',
+                    content: '删除后卡片将移至回收站，可在回收站中恢复。',
+                    onOk: () => handleCardDelete(id, tagIds)
+                })
                 break;
             default:
                 break;
@@ -214,7 +222,7 @@ function SlipBox() {
                 {/* 编辑器 + 卡片列表 */}
                 <div className="flex-1 flex flex-col min-h-0">
                     <div className="mb-4">
-                        <SlipEditor inputSubmit={inputSubmit} />
+                        <SlipEditor inputSubmit={inputSubmit} submitting={submitting} />
                     </div>
                     <div className="flex-1 overflow-auto scrollbar-auto-hide">
                         <CardList cards={cards} onCardMenuClick={onCardMenuClick} onCardUpdate={handleCardUpdate} />

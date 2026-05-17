@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { X, User, Sliders, Bell, Mail, Link2 } from 'lucide-react';
 import Preferences from './components/Preferences';
 
@@ -37,6 +37,34 @@ interface SettingsProps {
 
 function Settings({ open, onClose }: SettingsProps) {
   const [activeKey, setActiveKey] = useState('preferences');
+  const modalRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!open) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        onClose();
+        return;
+      }
+      if (e.key === 'Tab' && modalRef.current) {
+        const focusable = modalRef.current.querySelectorAll<HTMLElement>(
+          'button, input, [tabindex]:not([tabindex="-1"])'
+        );
+        if (focusable.length === 0) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    };
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [open, onClose]);
 
   if (!open) return null;
 
@@ -66,7 +94,7 @@ function Settings({ open, onClose }: SettingsProps) {
       />
 
       {/* 弹窗内容 */}
-      <div className="relative z-10 w-[900px] h-[600px] max-w-[90vw] max-h-[90vh] bg-[--surface] rounded-2xl border border-[--glass-border] shadow-2xl flex overflow-hidden">
+      <div ref={modalRef} className="relative z-10 w-[900px] h-[600px] max-w-[90vw] max-h-[90vh] bg-[--surface] rounded-2xl border border-[--glass-border] shadow-2xl flex overflow-hidden">
         {/* 左侧菜单 */}
         <aside className="w-[240px] min-w-[240px] flex flex-col border-r border-[--border]">
           <div className="flex items-center justify-between px-4 h-14 border-b border-[--border]">

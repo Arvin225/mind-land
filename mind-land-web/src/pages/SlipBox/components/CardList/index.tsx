@@ -248,6 +248,12 @@ function CardList({ cards, onCardMenuClick, onCardUpdate }: CardListProps) {
 
     return (
         <div className="w-full space-y-2">
+            {cards.length === 0 && (
+                <div className="text-center py-16 text-[--foreground]/35">
+                    <p className="text-lg mb-2">暂无卡片</p>
+                    <p className="text-sm">在上方编辑器中创建你的第一张卡片笔记</p>
+                </div>
+            )}
             {cards.map(item => (
                 <div
                     key={item.id}

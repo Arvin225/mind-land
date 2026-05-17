@@ -9,14 +9,20 @@ function ToDoItem({ item, tag }: { item: ToDoItemType, tag?: string }) {
     const { id, content, done, star, del } = item
 
     const [star_, setStar_] = useState(star)
+    const [starUpdating, setStarUpdating] = useState(false)
     const handleStarClick = async () => {
-        const { code, message, result } = await patchToDoItemAPI({ id: id, star: !star_ })
-        if (code === -1) {
-            toast.error(message)
-            console.error(result)
-            return
+        setStarUpdating(true)
+        try {
+            const { code, message, result } = await patchToDoItemAPI({ id: id, star: !star_ })
+            if (code === -1) {
+                toast.error(message)
+                console.error(result)
+                return
+            }
+            setStar_(!star_)
+        } finally {
+            setStarUpdating(false)
         }
-        setStar_(!star_)
     }
 
     const contentRef = useRef(content)
@@ -88,6 +94,7 @@ function ToDoItem({ item, tag }: { item: ToDoItemType, tag?: string }) {
                 defaultChecked={done}
                 onChange={handleCheck}
                 disabled={disabled}
+                aria-label={done ? '标记为未完成' : '标记为已完成'}
             />
             <input
                 type="text"
@@ -102,7 +109,7 @@ function ToDoItem({ item, tag }: { item: ToDoItemType, tag?: string }) {
                         {tag}
                     </span>
                 )}
-                <button onClick={handleStarClick} className="p-1 rounded-md hover:bg-[--hover] transition-colors">
+                <button onClick={handleStarClick} disabled={starUpdating} aria-label={star_ ? '取消星标' : '添加星标'} className="p-1 rounded-md hover:bg-[--hover] transition-colors disabled:opacity-40">
                     <Star className={`w-4 h-4 ${star_ ? 'text-[#D4A574] fill-[#D4A574]' : 'text-[--foreground]/30'}`} />
                 </button>
             </div>
