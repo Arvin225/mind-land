@@ -9,5 +9,6 @@ export interface ToDoItem {
     star: boolean,
     del: boolean,
     listId: number,
-    listName: string
+    listName: string,
+    sortOrder: number
 }

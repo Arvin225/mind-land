@@ -1,5 +1,5 @@
 import { getToDoListsAPI } from "@/apis/layout";
-import { getToDoItemsAPI } from "@/apis/toDo";
+import { getToDoItemsAPI, patchToDoItemAPI } from "@/apis/toDo";
 
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { AppDispatch } from "..";
@@ -92,5 +92,14 @@ const fetchGetToDoItems = (list: 'all' | 'star' | 'done' | 'bin' | number) => {
 
 
 export { setToDoLists, fetchGetToDoLists, setLoadingToDoLists, setToDoItems, fetchGetToDoItems, setLoadingToDoItems }
+
+export const reorderToDoItems = (items: ToDoItem[]) => {
+    return async (dispatch: AppDispatch) => {
+        dispatch(setToDoItems(items))
+        await Promise.all(items.map(item =>
+            patchToDoItemAPI({ id: item.id, sortOrder: item.sortOrder })
+        ))
+    }
+}
 
 export default toDoStore.reducer

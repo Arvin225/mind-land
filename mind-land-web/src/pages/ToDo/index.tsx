@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 import { Plus } from "lucide-react"
 import { postToDoItemAPI } from "@/apis/toDo"
 import { useAppDispatch, useAppSelector } from "@/store/hooks"
-import { fetchGetToDoItems, setLoadingToDoItems } from "@/store/modules/toDoStore"
+import { fetchGetToDoItems, setLoadingToDoItems, reorderToDoItems } from "@/store/modules/toDoStore"
 import { useToast } from "@/components/ToastProvider"
 
 function ToDo() {
@@ -60,6 +60,58 @@ function ToDo() {
 
     const [inputValue, setInputValue] = useState('')
     const [adding, setAdding] = useState(false)
+
+    const [draggedId, setDraggedId] = useState<number | null>(null)
+    const [dropTargetIdx, setDropTargetIdx] = useState<number | null>(null)
+
+    const handleDragStart = (id: number) => {
+        setDraggedId(id)
+    }
+
+    const handleDragOver = (e: React.DragEvent, index: number) => {
+        e.preventDefault()
+        e.dataTransfer.dropEffect = 'move'
+        setDropTargetIdx(index)
+    }
+
+    const handleDragLeave = () => {
+        setDropTargetIdx(null)
+    }
+
+    const handleDrop = (e: React.DragEvent, targetIndex: number) => {
+        e.preventDefault()
+        const data = e.dataTransfer.getData('text/plain')
+        const draggedItemId = parseInt(data, 10)
+        if (isNaN(draggedItemId)) {
+            setDraggedId(null)
+            setDropTargetIdx(null)
+            return
+        }
+
+        const fromIdx = toDoItems.findIndex(item => item.id === draggedItemId)
+        if (fromIdx === -1) {
+            setDraggedId(null)
+            setDropTargetIdx(null)
+            return
+        }
+
+        const insertAt = fromIdx < targetIndex ? targetIndex - 1 : targetIndex
+        if (insertAt === fromIdx) {
+            setDraggedId(null)
+            setDropTargetIdx(null)
+            return
+        }
+
+        const newItems = [...toDoItems]
+        const [moved] = newItems.splice(fromIdx, 1)
+        newItems.splice(insertAt, 0, moved)
+
+        const reordered = newItems.map((item, i) => ({ ...item, sortOrder: i }))
+        dispatch(reorderToDoItems(reordered))
+
+        setDraggedId(null)
+        setDropTargetIdx(null)
+    }
     const addToDo = async () => {
         if (!inputValue.trim()) return
         setAdding(true)
@@ -99,9 +151,24 @@ function ToDo() {
                         <p className="text-sm">{star ? '点击任务旁的星标图标即可收藏' : '在下方输入框添加你的第一个待办任务'}</p>
                     </div>
                 ) : (
-                    sysListName
-                        ? toDoItems.map(item => <ToDoItem item={item} tag={item.listName} key={item.id} />)
-                        : toDoItems.map(item => <ToDoItem item={item} key={item.id} />)
+                    <div className="space-y-1">
+                        {toDoItems.map((item, index) => (
+                            <div
+                                key={item.id}
+                                onDragOver={(e) => handleDragOver(e, index)}
+                                onDragLeave={handleDragLeave}
+                                onDrop={(e) => handleDrop(e, index)}
+                                className={`${dropTargetIdx === index ? 'border-t-2 border-[#D4A574]' : 'border-t-2 border-transparent'} -mt-px transition-colors`}
+                            >
+                                <ToDoItem
+                                    item={item}
+                                    tag={sysListName ? item.listName : undefined}
+                                    isDragging={draggedId === item.id}
+                                    onDragStart={handleDragStart}
+                                />
+                            </div>
+                        ))}
+                    </div>
                 )}
             </div>
 

@@ -37,7 +37,8 @@ interface PatchToDoItem {
     star?: boolean,
     del?: boolean,
     listId?: number,
-    listName?: string
+    listName?: string,
+    sortOrder?: number
 }
 
 export function patchToDoItemAPI(toDoItem: PatchToDoItem): Promise<Response<ToDoItem>> {

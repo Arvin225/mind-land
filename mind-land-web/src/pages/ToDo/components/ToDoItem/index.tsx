@@ -1,10 +1,10 @@
-import { Star } from "lucide-react"
+import { Star, GripVertical } from "lucide-react"
 import { useState, useRef, useEffect } from "react"
 import { deleteToDoItemAPI, patchToDoItemAPI } from "@/apis/toDo"
 import { ToDoItem as ToDoItemType } from "../../interfaces";
 import { useToast } from "@/components/ToastProvider"
 
-function ToDoItem({ item, tag }: { item: ToDoItemType, tag?: string }) {
+function ToDoItem({ item, tag, isDragging, onDragStart }: { item: ToDoItemType, tag?: string, isDragging?: boolean, onDragStart?: (id: number) => void }) {
     const toast = useToast()
     const { id, content, done, star, del } = item
 
@@ -81,13 +81,37 @@ function ToDoItem({ item, tag }: { item: ToDoItemType, tag?: string }) {
         }
     }
 
+    const handleDragStart = (e: React.DragEvent) => {
+        if (!(e.target as HTMLElement).closest('[data-drag-handle]')) {
+            e.preventDefault()
+            return
+        }
+        e.dataTransfer.effectAllowed = 'move'
+        e.dataTransfer.setData('text/plain', String(id))
+        onDragStart?.(id)
+    }
+
     if (!visible) return null
 
     return (
         <div
             onContextMenu={handleContextMenu}
-            className="liquid-glass-panel rounded-xl px-4 py-3 flex items-center gap-3 group cursor-pointer"
+            onDragStart={handleDragStart}
+            draggable={!del}
+            className={`liquid-glass-panel rounded-xl px-4 py-3 flex items-center gap-3 group cursor-pointer
+                ${isDragging ? 'opacity-50' : ''}
+                ${del ? '' : 'cursor-default'}`}
         >
+            {!del && (
+                <button
+                    data-drag-handle
+                    className="p-1 rounded-md hover:bg-[--hover] transition-colors cursor-grab active:cursor-grabbing opacity-0 group-hover:opacity-100 text-[--foreground]/30 hover:text-[--foreground]/60 shrink-0"
+                    aria-label="拖动排序"
+                    tabIndex={-1}
+                >
+                    <GripVertical className="w-4 h-4" />
+                </button>
+            )}
             <input
                 type="checkbox"
                 className="w-4 h-4 accent-[#D4A574] cursor-pointer"
