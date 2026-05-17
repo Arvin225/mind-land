@@ -1,0 +1,7 @@
+{
+  "timestamp": "2026-05-17T12:49:11Z",
+  "changed_file": "/root/mind-land/mind-land-web/src/pages/Container/index.tsx",
+  "test_command": "go test ./...",
+  "related_test": "",
+  "recommendation": "テストの実行を推奨します"
+}
