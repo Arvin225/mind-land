@@ -2,12 +2,21 @@ import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
 type Theme = 'system' | 'light' | 'dark';
+export type FontSize = 'small' | 'medium' | 'large';
 
 interface ThemeState {
   theme: Theme;
   setTheme: (theme: Theme) => void;
   resolvedTheme: 'light' | 'dark';
+  fontSize: FontSize;
+  setFontSize: (size: FontSize) => void;
 }
+
+const FONT_SIZE_MAP: Record<FontSize, string> = {
+  small: '14px',
+  medium: '16px',
+  large: '18px',
+};
 
 function getResolvedTheme(theme: Theme): 'light' | 'dark' {
   if (theme === 'system') {
@@ -21,10 +30,15 @@ export const useThemeStore = create<ThemeState>()(
     (set) => ({
       theme: 'system',
       resolvedTheme: 'dark',
+      fontSize: 'medium',
       setTheme: (theme: Theme) => {
         const resolved = getResolvedTheme(theme);
         set({ theme, resolvedTheme: resolved });
         applyTheme(resolved);
+      },
+      setFontSize: (fontSize: FontSize) => {
+        set({ fontSize });
+        applyFontSize(fontSize);
       },
     }),
     {
@@ -34,6 +48,7 @@ export const useThemeStore = create<ThemeState>()(
           const resolved = getResolvedTheme(state.theme);
           state.resolvedTheme = resolved;
           applyTheme(resolved);
+          applyFontSize(state.fontSize);
         }
       },
     }
@@ -47,6 +62,10 @@ function applyTheme(theme: 'light' | 'dark') {
   } else {
     root.classList.remove('dark');
   }
+}
+
+function applyFontSize(size: FontSize) {
+  document.documentElement.style.fontSize = FONT_SIZE_MAP[size];
 }
 
 let _mediaQueryCleanup: (() => void) | null = null;

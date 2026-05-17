@@ -1,5 +1,6 @@
 import { Monitor, Sun, Moon } from 'lucide-react';
 import { useThemeStore } from '@/store/modules/themeStore';
+import type { FontSize } from '@/store/modules/themeStore';
 import CustomSelect from './CustomSelect';
 
 type ThemeOption = {
@@ -14,8 +15,14 @@ const themeOptions: ThemeOption[] = [
   { key: 'dark', label: '深色', icon: Moon },
 ];
 
+const fontSizeOptions = [
+  { value: 'small' as FontSize, label: '小' },
+  { value: 'medium' as FontSize, label: '中' },
+  { value: 'large' as FontSize, label: '大' },
+];
+
 function Preferences() {
-  const { theme, setTheme } = useThemeStore();
+  const { theme, setTheme, fontSize, setFontSize } = useThemeStore();
 
   return (
     <div>
@@ -36,6 +43,17 @@ function Preferences() {
               value={theme}
               options={themeOptions.map((o) => ({ value: o.key, label: o.label }))}
               onChange={(value) => setTheme(value as 'system' | 'light' | 'dark')}
+            />
+          </div>
+          <div className="flex items-center justify-between py-2">
+            <div>
+              <div className="text-[--foreground] text-sm mb-1">字号</div>
+              <div className="text-[--foreground]/50 text-xs">调整页面文字大小</div>
+            </div>
+            <CustomSelect
+              value={fontSize}
+              options={fontSizeOptions}
+              onChange={(value) => setFontSize(value as FontSize)}
             />
           </div>
         </div>

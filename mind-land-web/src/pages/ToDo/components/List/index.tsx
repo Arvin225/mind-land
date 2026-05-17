@@ -1,12 +1,12 @@
 import { deleteToDoListAPI, patchToDoListAPI } from "@/apis/layout"
 import { fetchGetToDoLists } from "@/store/modules/toDoStore"
-import { useState } from "react"
+import { useState, useEffect, useRef } from "react"
 import { useLocation, useNavigate } from "react-router-dom"
 import { useAppDispatch } from "@/store/hooks"
 import { useToast } from "@/components/ToastProvider"
-import { Trash2 } from "lucide-react"
+import { Trash2, Pencil } from "lucide-react"
 
-function List({ item: { id, name } }: { item: { id: number, name: string } }) {
+function List({ item: { id, name }, onNavigate }: { item: { id: number, name: string }, onNavigate?: () => void }) {
     const toast = useToast()
     const dispatch = useAppDispatch()
     const [open, setOpen] = useState(false)
@@ -14,6 +14,8 @@ function List({ item: { id, name } }: { item: { id: number, name: string } }) {
     const [editName, setEditName] = useState(name)
     const [saving, setSaving] = useState(false)
     const [deleting, setDeleting] = useState(false)
+    const [contextMenu, setContextMenu] = useState<{ x: number, y: number } | null>(null)
+    const contextRef = useRef<HTMLDivElement>(null)
 
     const location = useLocation()
     const navigate = useNavigate()
@@ -54,7 +56,12 @@ function List({ item: { id, name } }: { item: { id: number, name: string } }) {
         }
     }
 
-    const handleDoubleClick = () => {
+    const handleClick = () => {
+        onNavigate?.()
+    }
+
+    const handleDoubleClick = (e: React.MouseEvent) => {
+        e.stopPropagation()
         setEditName(name)
         setOpen(true)
     }
@@ -64,15 +71,43 @@ function List({ item: { id, name } }: { item: { id: number, name: string } }) {
         setDeleteOpen(true)
     }
 
+    const handleContextMenu = (e: React.MouseEvent) => {
+        e.preventDefault()
+        e.stopPropagation()
+        setContextMenu({ x: e.clientX, y: e.clientY })
+    }
+
+    const handleContextRename = () => {
+        setContextMenu(null)
+        setEditName(name)
+        setOpen(true)
+    }
+
+    const handleContextDelete = () => {
+        setContextMenu(null)
+        setDeleteOpen(true)
+    }
+
     const handleConfirmDelete = async () => {
         await deleteList()
         setDeleteOpen(false)
     }
 
+    useEffect(() => {
+        if (!contextMenu) return
+        const close = (e: MouseEvent) => {
+            if (contextRef.current && !contextRef.current.contains(e.target as Node)) {
+                setContextMenu(null)
+            }
+        }
+        document.addEventListener('mousedown', close)
+        return () => document.removeEventListener('mousedown', close)
+    }, [contextMenu])
+
     return (
         <>
-            <div className="flex items-center gap-2 w-full group">
-                <div onDoubleClick={handleDoubleClick} className="truncate flex-1 cursor-pointer">{name}</div>
+            <div className="flex items-center gap-2 w-full group" onContextMenu={handleContextMenu}>
+                <div onClick={handleClick} onDoubleClick={handleDoubleClick} className="truncate flex-1 cursor-pointer">{name}</div>
                 <button
                     onClick={handleDeleteClick}
                     className="opacity-0 group-hover:opacity-100 transition-opacity duration-200 p-1 rounded hover:bg-[--hover] text-[--foreground]/40 hover:text-red-400 shrink-0"
@@ -81,6 +116,29 @@ function List({ item: { id, name } }: { item: { id: number, name: string } }) {
                     <Trash2 className="w-3 h-3" />
                 </button>
             </div>
+
+            {contextMenu && (
+                <div
+                    ref={contextRef}
+                    className="fixed z-50 w-36 rounded-xl border border-[--glass-border] bg-[--surface] shadow-xl overflow-hidden"
+                    style={{ left: contextMenu.x, top: contextMenu.y }}
+                >
+                    <button
+                        onClick={handleContextRename}
+                        className="w-full flex items-center gap-2 px-3 py-2 text-xs text-[--foreground]/80 hover:bg-[--hover] transition-colors cursor-pointer"
+                    >
+                        <Pencil className="w-3 h-3" />
+                        重命名
+                    </button>
+                    <button
+                        onClick={handleContextDelete}
+                        className="w-full flex items-center gap-2 px-3 py-2 text-xs text-red-400 hover:bg-[--hover] transition-colors cursor-pointer"
+                    >
+                        <Trash2 className="w-3 h-3" />
+                        删除
+                    </button>
+                </div>
+            )}
             {open && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm" onClick={() => setOpen(false)}>
                     <div className="liquid-glass-strong rounded-2xl p-6 w-80" onClick={e => e.stopPropagation()}>

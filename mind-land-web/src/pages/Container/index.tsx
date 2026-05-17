@@ -256,15 +256,14 @@ function Container() {
                                                         return (
                                                             <div
                                                                 key={key}
-                                                                onClick={() => handleTodoSubNav(key)}
                                                                 className={[
-                                                                    'w-full text-left px-3 py-1.5 rounded-lg text-xs transition-all duration-200 cursor-pointer flex items-center gap-2',
+                                                                    'w-full text-left px-3 py-1.5 rounded-lg text-xs transition-all duration-200 flex items-center gap-2',
                                                                     isSubActive
                                                                         ? 'text-[#D4A574] bg-[rgba(212,165,116,0.08)]'
                                                                         : 'text-[--foreground]/40 hover:text-[--foreground]/70 hover:bg-[--hover]',
                                                                 ].join(' ')}
                                                             >
-                                                                <ListItem item={item} />
+                                                                <ListItem item={item} onNavigate={() => handleTodoSubNav(key)} />
                                                             </div>
                                                         );
                                                     })}
