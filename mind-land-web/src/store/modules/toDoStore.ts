@@ -2,7 +2,7 @@ import { getToDoListsAPI } from "@/apis/layout";
 import { getToDoItemsAPI, patchToDoItemAPI } from "@/apis/toDo";
 
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { AppDispatch } from "..";
+import { AppDispatch, RootState } from "..";
 import type { ToDoList, ToDoItem } from "@/pages/ToDo/interfaces";
 
 export interface ToDoState {
@@ -94,11 +94,17 @@ const fetchGetToDoItems = (list: 'all' | 'star' | 'done' | 'bin' | number) => {
 export { setToDoLists, fetchGetToDoLists, setLoadingToDoLists, setToDoItems, fetchGetToDoItems, setLoadingToDoItems }
 
 export const reorderToDoItems = (items: ToDoItem[]) => {
-    return async (dispatch: AppDispatch) => {
+    return async (dispatch: AppDispatch, getState: () => RootState) => {
+        const prevItems = getState().toDo.toDoItems
         dispatch(setToDoItems(items))
-        await Promise.all(items.map(item =>
-            patchToDoItemAPI({ id: item.id, sortOrder: item.sortOrder })
-        ))
+        try {
+            await Promise.all(items.map(item =>
+                patchToDoItemAPI({ id: item.id, sortOrder: item.sortOrder })
+            ))
+        } catch (error) {
+            dispatch(setToDoItems(prevItems))
+            console.error('排序保存失败，已回滚: ', error)
+        }
     }
 }
 

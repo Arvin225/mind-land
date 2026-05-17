@@ -31,14 +31,19 @@ function ToDoItem({ item, tag, isDragging, onDragStart }: { item: ToDoItemType, 
     }, [content])
     const handleBlur = async (e: React.FocusEvent<HTMLInputElement>) => {
         if (e.target.value !== contentRef.current) {
-            const { code, message, result } = await patchToDoItemAPI({ id: id, content: e.target.value })
-            if (code === -1) {
-                toast.error(message)
-                console.error(result)
+            try {
+                const { code, message, result } = await patchToDoItemAPI({ id: id, content: e.target.value })
+                if (code === -1) {
+                    toast.error(message)
+                    console.error(result)
+                    e.target.value = contentRef.current
+                    return
+                }
+                contentRef.current = e.target.value
+            } catch (err) {
+                toast.error('网络错误，请稍后重试')
                 e.target.value = contentRef.current
-                return
             }
-            contentRef.current = e.target.value
         }
     }
 
@@ -46,14 +51,19 @@ function ToDoItem({ item, tag, isDragging, onDragStart }: { item: ToDoItemType, 
     const [visible, setVisible] = useState<boolean>(done ? done : !done)
     async function checkItem(_checked: boolean, done: boolean) {
         setDisabled(true)
-        const { code, message, result } = await patchToDoItemAPI({ id: id, done: done })
-        if (code === -1) {
-            toast.error(message)
-            console.error(result)
+        try {
+            const { code, message, result } = await patchToDoItemAPI({ id: id, done: done })
+            if (code === -1) {
+                toast.error(message)
+                console.error(result)
+                return
+            }
+            setVisible(!visible)
+        } catch (err) {
+            toast.error('网络错误，请稍后重试')
+        } finally {
             setDisabled(false)
-            return
         }
-        setVisible(!visible)
     }
 
     const handleCheck = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -65,13 +75,17 @@ function ToDoItem({ item, tag, isDragging, onDragStart }: { item: ToDoItemType, 
     }
 
     const deleteItem = async (permanent?: boolean) => {
-        const { code, message, result } = await deleteToDoItemAPI({ id, permanent })
-        if (code === -1) {
-            toast.error(message)
-            console.error(result)
-            return
+        try {
+            const { code, message, result } = await deleteToDoItemAPI({ id, permanent })
+            if (code === -1) {
+                toast.error(message)
+                console.error(result)
+                return
+            }
+            setVisible(false)
+        } catch (err) {
+            toast.error('网络错误，请稍后重试')
         }
-        setVisible(false)
     }
 
     const handleContextMenu = (e: React.MouseEvent) => {

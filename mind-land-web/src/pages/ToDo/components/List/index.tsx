@@ -121,7 +121,10 @@ function List({ item: { id, name }, onNavigate }: { item: { id: number, name: st
                 <div
                     ref={contextRef}
                     className="fixed z-50 w-36 rounded-xl border border-[--glass-border] bg-[--surface] shadow-xl overflow-hidden"
-                    style={{ left: contextMenu.x, top: contextMenu.y }}
+                    style={{
+                        left: Math.min(contextMenu.x, window.innerWidth - 144),
+                        top: Math.min(contextMenu.y, window.innerHeight - 80),
+                    }}
                 >
                     <button
                         onClick={handleContextRename}
