@@ -176,7 +176,9 @@ function CardList({ cards, onCardMenuClick, onCardUpdate }: CardListProps) {
     const [activeMenu, setActiveMenu] = useState<number | null>(null)
     const [menuPosition, setMenuPosition] = useState<MenuPosition>({ top: null, bottom: null, left: 0 })
     const [editingCardId, setEditingCardId] = useState<number | null>(null)
-    
+    const [toastMessage, setToastMessage] = useState<string | null>(null)
+    const [detailCard, setDetailCard] = useState<MyCard | null>(null)
+
     // 监听滚动和窗口变化，关闭菜单
     useEffect(() => {
         const handleClose = () => setActiveMenu(null)
@@ -187,52 +189,45 @@ function CardList({ cards, onCardMenuClick, onCardUpdate }: CardListProps) {
             window.removeEventListener('resize', handleClose)
         }
     }, [])
-    
-    const handleMenuOpen = useCallback((id: number, e: React.MouseEvent<HTMLButtonElement>) => {
-        const buttonRect = e.currentTarget.getBoundingClientRect()
+
+    const positionMenu = useCallback((x: number, y: number) => {
         const viewportHeight = window.innerHeight
         const viewportWidth = window.innerWidth
-        const buttonCenterY = buttonRect.top + buttonRect.height / 2
-        
-        // 菜单宽度
         const menuWidth = 176
-        
-        // 默认：菜单右边缘对齐按钮右边缘
-        let left = buttonRect.right - menuWidth
-        // 如果太靠左，则改为左边缘对齐按钮左边缘
+
+        let left = x - menuWidth + 20
         if (left < 8) {
-            left = buttonRect.left
+            left = x - 8
         }
-        // 如果太靠右，则限制在视口内
         if (left + menuWidth > viewportWidth - 8) {
             left = viewportWidth - menuWidth - 8
         }
-        
-        // 判断按钮在屏幕上半部还是下半部
-        const isInLowerHalf = buttonCenterY > viewportHeight / 2
-        
+
+        const isInLowerHalf = y > viewportHeight / 2
         if (isInLowerHalf) {
-            // 按钮在下半部，菜单向上弹出
-            setMenuPosition({
-                top: null,
-                bottom: viewportHeight - buttonRect.top + MENU_MARGIN,
-                left
-            })
+            setMenuPosition({ top: null, bottom: viewportHeight - y, left })
         } else {
-            // 按钮在上半部，菜单向下弹出
-            setMenuPosition({
-                top: buttonRect.bottom + MENU_MARGIN,
-                bottom: null,
-                left
-            })
+            setMenuPosition({ top: y, bottom: null, left })
         }
-        setActiveMenu(id)
     }, [])
+
+    const handleMenuOpen = useCallback((id: number, e: React.MouseEvent<HTMLButtonElement>) => {
+        const buttonRect = e.currentTarget.getBoundingClientRect()
+        positionMenu(buttonRect.right, buttonRect.top + buttonRect.height / 2)
+        setActiveMenu(id)
+    }, [positionMenu])
+
+    const handleContextMenu = useCallback((id: number, e: React.MouseEvent<HTMLDivElement>) => {
+        e.preventDefault()
+        positionMenu(e.clientX, e.clientY)
+        setActiveMenu(id)
+    }, [positionMenu])
 
     const cardMenuItems: MenuItem[] = [
         { key: 'edit', label: '编辑' },
         { key: 'pin', label: '置顶' },
         { key: 'detail', label: '查看详情' },
+        { key: 'copy', label: '复制内容' },
         { key: 'comment', label: '批注' },
         { key: 'delete', label: '删除' },
     ]
@@ -241,6 +236,14 @@ function CardList({ cards, onCardMenuClick, onCardUpdate }: CardListProps) {
         setActiveMenu(null)
         if (menuItem.key === 'edit') {
             setEditingCardId(card.id)
+        } else if (menuItem.key === 'copy') {
+            const text = new DOMParser().parseFromString(card.content, 'text/html').body.textContent || ''
+            navigator.clipboard.writeText(text).then(() => {
+                setToastMessage('已复制到剪贴板')
+                setTimeout(() => setToastMessage(null), 2000)
+            })
+        } else if (menuItem.key === 'detail') {
+            setDetailCard(card)
         } else {
             onCardMenuClick(menuItem, card.id, card.tags)
         }
@@ -272,6 +275,7 @@ function CardList({ cards, onCardMenuClick, onCardUpdate }: CardListProps) {
                     key={item.id}
                     className={editingCardId === item.id ? '' : 'liquid-glass-panel rounded-xl p-4 relative group'}
                     onDoubleClick={() => editingCardId !== item.id && handleDoubleClick(item)}
+                    onContextMenu={(e) => { if (editingCardId !== item.id) handleContextMenu(item.id, e) }}
                 >
                     {editingCardId === item.id ? (
                         <InlineEditor
@@ -307,14 +311,14 @@ function CardList({ cards, onCardMenuClick, onCardUpdate }: CardListProps) {
             {activeMenu !== null && createPortal(
                 <>
                     {/* 点击背景关闭 */}
-                    <div 
-                        className="fixed inset-0 z-[100]" 
-                        onClick={() => setActiveMenu(null)} 
+                    <div
+                        className="fixed inset-0 z-[100]"
+                        onClick={() => setActiveMenu(null)}
                     />
                     {/* 菜单内容 */}
-                    <div 
+                    <div
                         className="fixed z-[101] w-44 liquid-glass-strong rounded-xl py-2 shadow-xl overflow-auto scrollbar-auto-hide"
-                        style={{ 
+                        style={{
                             ...(menuPosition.top !== null ? { top: menuPosition.top } : {}),
                             ...(menuPosition.bottom !== null ? { bottom: menuPosition.bottom } : {}),
                             left: menuPosition.left,
@@ -352,6 +356,38 @@ function CardList({ cards, onCardMenuClick, onCardUpdate }: CardListProps) {
                         })()}
                     </div>
                 </>,
+                document.body
+            )}
+
+            {/* Toast 通知 */}
+            {toastMessage && createPortal(
+                <div className="fixed top-6 left-1/2 -translate-x-1/2 z-[200] px-4 py-2 rounded-xl bg-[--foreground]/10 backdrop-blur-md text-sm text-[--foreground]/80 shadow-lg transition-all duration-300">
+                    {toastMessage}
+                </div>,
+                document.body
+            )}
+
+            {/* 查看详情弹窗 */}
+            {detailCard && createPortal(
+                <div className="fixed inset-0 z-[200] flex items-center justify-center bg-black/40 backdrop-blur-sm" onClick={() => setDetailCard(null)}>
+                    <div className="liquid-glass-strong rounded-2xl p-6 w-[500px] max-w-[90vw] max-h-[80vh] overflow-auto" onClick={e => e.stopPropagation()}>
+                        <div className="flex items-center justify-between mb-4">
+                            <h3 className="text-[--foreground] font-medium">卡片详情</h3>
+                            <button onClick={() => setDetailCard(null)} className="p-1 rounded-lg hover:bg-[--hover] text-[--foreground]/40 hover:text-[--foreground]/70 transition-colors">
+                                <MoreHorizontal className="w-4 h-4 rotate-45" />
+                            </button>
+                        </div>
+                        <div
+                            className="text-sm text-[--foreground]/90 leading-relaxed card-content mb-4"
+                            dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(detailCard.content) }}
+                        />
+                        <div className="border-t border-[--border] pt-3 space-y-1">
+                            <div className="text-xs text-[--foreground]/50">字数：{detailCard.statistics.words}</div>
+                            <div className="text-xs text-[--foreground]/50">创建：{detailCard.statistics.builtTime}</div>
+                            <div className="text-xs text-[--foreground]/50">更新：{detailCard.statistics.updateTime}</div>
+                        </div>
+                    </div>
+                </div>,
                 document.body
             )}
         </div>

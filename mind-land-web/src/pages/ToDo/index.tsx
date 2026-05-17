@@ -96,7 +96,7 @@ function ToDo() {
                 {toDoItems.length === 0 ? (
                     <div className="text-center py-16 text-[--foreground]/35">
                         <p className="text-lg mb-2">暂无任务</p>
-                        <p className="text-sm">在下方输入框添加你的第一个待办任务</p>
+                        <p className="text-sm">{star ? '点击任务旁的星标图标即可收藏' : '在下方输入框添加你的第一个待办任务'}</p>
                     </div>
                 ) : (
                     sysListName

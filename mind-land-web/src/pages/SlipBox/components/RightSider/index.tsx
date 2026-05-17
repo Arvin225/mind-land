@@ -1,4 +1,4 @@
-import { ChevronRight, Hash } from "lucide-react"
+import { ChevronDown, ChevronRight, Hash } from "lucide-react"
 import { Key, ReactNode, useState } from "react"
 
 export interface TreeNode {
@@ -78,7 +78,7 @@ function TreeItem({ node, level, selectedKey, onSelect }: {
                 }}
             >
                 {hasChildren && (
-                    <ChevronRight className={`w-3 h-3 transition-transform ${expanded ? 'rotate-90' : ''}`} />
+                    expanded ? <ChevronDown className="w-3.5 h-3.5 shrink-0" /> : <ChevronRight className="w-3.5 h-3.5 shrink-0" />
                 )}
                 {!hasChildren && node.key === '0' && <Hash className="w-3 h-3" />}
                 {!hasChildren && node.key !== '0' && <span className="w-3" />}

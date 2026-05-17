@@ -91,7 +91,7 @@ function ToDoItem({ item, tag }: { item: ToDoItemType, tag?: string }) {
             <input
                 type="checkbox"
                 className="w-4 h-4 accent-[#D4A574] cursor-pointer"
-                defaultChecked={done}
+                checked={done}
                 onChange={handleCheck}
                 disabled={disabled}
                 aria-label={done ? '标记为未完成' : '标记为已完成'}
