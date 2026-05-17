@@ -93,13 +93,37 @@ function Settings({ open, onClose }: SettingsProps) {
       case 'preferences':
         return <Preferences />;
       case 'account':
-        return <div className="text-[--foreground]/60">帐号设置</div>;
+        return (
+          <div className="flex flex-col items-center justify-center text-center py-16">
+            <User className="w-12 h-12 text-[--foreground]/20 mb-4" />
+            <h3 className="text-lg font-medium text-[--foreground]/70 mb-2">帐号</h3>
+            <p className="text-sm text-[--foreground]/40">即将推出</p>
+          </div>
+        );
       case 'notifications':
-        return <div className="text-[--foreground]/60">通知设置</div>;
+        return (
+          <div className="flex flex-col items-center justify-center text-center py-16">
+            <Bell className="w-12 h-12 text-[--foreground]/20 mb-4" />
+            <h3 className="text-lg font-medium text-[--foreground]/70 mb-2">通知</h3>
+            <p className="text-sm text-[--foreground]/40">即将推出</p>
+          </div>
+        );
       case 'email-calendar':
-        return <div className="text-[--foreground]/60">邮箱和日历设置</div>;
+        return (
+          <div className="flex flex-col items-center justify-center text-center py-16">
+            <Mail className="w-12 h-12 text-[--foreground]/20 mb-4" />
+            <h3 className="text-lg font-medium text-[--foreground]/70 mb-2">邮箱和日历</h3>
+            <p className="text-sm text-[--foreground]/40">即将推出</p>
+          </div>
+        );
       case 'connections':
-        return <div className="text-[--foreground]/60">连接设置</div>;
+        return (
+          <div className="flex flex-col items-center justify-center text-center py-16">
+            <Link2 className="w-12 h-12 text-[--foreground]/20 mb-4" />
+            <h3 className="text-lg font-medium text-[--foreground]/70 mb-2">连接</h3>
+            <p className="text-sm text-[--foreground]/40">即将推出</p>
+          </div>
+        );
       default:
         return <Preferences />;
     }
