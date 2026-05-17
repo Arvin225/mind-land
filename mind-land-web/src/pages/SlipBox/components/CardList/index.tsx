@@ -1,5 +1,5 @@
 import { MoreHorizontal, Bold, Underline as UnderlineIcon, Highlighter, List, ListOrdered, Hash } from "lucide-react"
-import { useState, useCallback, useEffect } from "react"
+import { useState, useCallback, useEffect, useRef } from "react"
 import { createPortal } from "react-dom"
 import DOMPurify from "dompurify"
 import { Card as MyCard } from "../../interfaces"
@@ -31,15 +31,18 @@ const MENU_MAX_HEIGHT = 320
 const MENU_MARGIN = 8
 
 // 内联编辑器组件
-function InlineEditor({ 
-    content, 
-    onSubmit, 
-    onCancel 
-}: { 
+function InlineEditor({
+    content,
+    onSubmit,
+    onCancel
+}: {
     content: string
     onSubmit: (content: string) => void
-    onCancel: () => void 
+    onCancel: () => void
 }) {
+    const onSubmitRef = useRef(onSubmit);
+    onSubmitRef.current = onSubmit;
+
     const editor = useEditor({
         extensions: [
             StarterKit,
@@ -60,12 +63,12 @@ function InlineEditor({
         const handleKeyDown = (e: KeyboardEvent) => {
             if (e.ctrlKey && e.key === 'Enter' && editor) {
                 e.preventDefault()
-                onSubmit(editor.getHTML())
+                onSubmitRef.current(editor.getHTML())
             }
         }
         document.addEventListener('keydown', handleKeyDown)
         return () => document.removeEventListener('keydown', handleKeyDown)
-    }, [editor, onSubmit])
+    }, [editor])
 
     if (!editor) return null
 

@@ -61,14 +61,18 @@ function ToDo() {
     const [inputValue, setInputValue] = useState('')
     const addToDo = async () => {
         if (!inputValue.trim()) return
-        const { code, message, result } = await postToDoItemAPI({ content: inputValue, star: star, listId: listId?.toString(), listName: listName })
-        if (code === -1) {
-            toast.error(message)
-            console.error(result)
-            return
+        try {
+            const { code, message, result } = await postToDoItemAPI({ content: inputValue, star: star, listId: listId?.toString(), listName: listName })
+            if (code === -1) {
+                toast.error(message)
+                console.error(result)
+                return
+            }
+            dispatch(fetchGetToDoItems(resolveListParam(list)))
+            setInputValue('')
+        } catch (err) {
+            toast.error('网络错误，请稍后重试')
         }
-        dispatch(fetchGetToDoItems(resolveListParam(list)))
-        setInputValue('')
     }
 
     if (loading) {

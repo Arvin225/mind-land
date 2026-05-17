@@ -5,7 +5,11 @@
       "Bash(grep -v 'Error$')",
       "Bash(go run *)",
       "Bash(curl -s http://localhost:3100/slip-box/cards)",
-      "Bash(curl -s http://localhost:3000)"
+      "Bash(curl -s http://localhost:3000)",
+      "Bash(rm -rf /root/mind-land/mind-land-server/.git /root/mind-land/mind-land-web/.git)",
+      "Bash(git rm *)",
+      "Bash(git add *)",
+      "Bash(git commit *)"
     ]
   }
 }

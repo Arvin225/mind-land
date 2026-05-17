@@ -47,10 +47,12 @@ export const ToastProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   };
 
   useEffect(() => {
+    setExternalToast(value);
     return () => {
+      setExternalToast(null);
       Object.values(timersRef.current).forEach(t => window.clearTimeout(t));
     };
-  }, []);
+  }, [value]);
 
   const iconMap = {
     success: '\u2713',

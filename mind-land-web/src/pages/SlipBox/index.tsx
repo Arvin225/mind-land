@@ -35,19 +35,23 @@ function SlipBox() {
 
     // 更新卡片内容
     const handleCardUpdate = async (id: number, content: string) => {
-        const { code, message } = await patchCardAPI({ id, content })
-        if (code === -1) {
-            toast.error(message)
-            return
+        try {
+            const { code, message } = await patchCardAPI({ id, content })
+            if (code === -1) {
+                toast.error(message)
+                return
+            }
+            // 刷新当前标签的卡片列表
+            const currentTagId = Number(_.last(pathItems)?.href)
+            if (!currentTagId) {
+                dispatch(fetchGetCards({ del: false }))
+            } else {
+                dispatch(fetchGetCards({ tagId: currentTagId }))
+            }
+            toast.success('卡片已更新')
+        } catch (err) {
+            toast.error('网络错误，请稍后重试')
         }
-        // 刷新当前标签的卡片列表
-        const currentTagId = Number(_.last(pathItems)?.href)
-        if (!currentTagId) {
-            dispatch(fetchGetCards({ del: false }))
-        } else {
-            dispatch(fetchGetCards({ tagId: currentTagId }))
-        }
-        toast.success('卡片已更新')
     }
 
     const inputSubmit = async (editor: TiptapEditor | null) => {
@@ -56,24 +60,28 @@ function SlipBox() {
         if (!contentWithText) return
         const contentWithHtml = editor.getHTML()
 
-        const { code, message, result } = await createCardAPI({ contentWithText, contentWithHtml })
-        if (code === -1) {
-            toast.error(message)
-            console.error(result);
-            return
-        }
+        try {
+            const { code, message, result } = await createCardAPI({ contentWithText, contentWithHtml })
+            if (code === -1) {
+                toast.error(message)
+                console.error(result);
+                return
+            }
 
-        dispatch(fetchGetTags());
-        const currentTagId = Number(_.last(pathItems)?.href)
-        if (!currentTagId) {
-            dispatch(fetchGetCards({ del: false }));
-        } else {
-            const res = await getTagAPI(currentTagId)
-            const currentTagName = res.result.tagName
-            result?.tags.find(tag => tag.tagName.startsWith(currentTagName))
-                && dispatch(fetchGetCards({ tagId: currentTagId }))
+            dispatch(fetchGetTags());
+            const currentTagId = Number(_.last(pathItems)?.href)
+            if (!currentTagId) {
+                dispatch(fetchGetCards({ del: false }));
+            } else {
+                const res = await getTagAPI(currentTagId)
+                const currentTagName = res.result.tagName
+                result?.tags.find(tag => tag.tagName.startsWith(currentTagName))
+                    && dispatch(fetchGetCards({ tagId: currentTagId }))
+            }
+            editor.commands.clearContent();
+        } catch (err) {
+            toast.error('网络错误，请稍后重试')
         }
-        editor.commands.clearContent();
     }
 
     const [selectedKey, setSelectedKey] = useState<Key>(0)
@@ -95,25 +103,29 @@ function SlipBox() {
     }
 
     async function handleCardDelete(id: number, tagIds: number[]) {
-        const { code, message, result } = await deleteCardAPI({ id, tagIds })
-        if (code === -1) {
-            toast.error(message)
-            console.error(result)
-            return
-        }
+        try {
+            const { code, message, result } = await deleteCardAPI({ id, tagIds })
+            if (code === -1) {
+                toast.error(message)
+                console.error(result)
+                return
+            }
 
-        let currentTagId = Number(_.last(pathItems)?.href)
-        const deletedTagIds = result?.deletedTagIds || []
-        if (currentTagId && deletedTagIds.includes(currentTagId)) {
-            setSelectedKey(0)
-            dispatch(fetchGetCards({ del: false }))
-        } else {
-            currentTagId
-                ? dispatch(fetchGetCards({ tagId: currentTagId }))
-                : dispatch(fetchGetCards({ del: false }))
-        }
+            let currentTagId = Number(_.last(pathItems)?.href)
+            const deletedTagIds = result?.deletedTagIds || []
+            if (currentTagId && deletedTagIds.includes(currentTagId)) {
+                setSelectedKey(0)
+                dispatch(fetchGetCards({ del: false }))
+            } else {
+                currentTagId
+                    ? dispatch(fetchGetCards({ tagId: currentTagId }))
+                    : dispatch(fetchGetCards({ del: false }))
+            }
 
-        deletedTagIds.length && dispatch(fetchGetTags())
+            deletedTagIds.length && dispatch(fetchGetTags())
+        } catch (err) {
+            toast.error('网络错误，请稍后重试')
+        }
     }
 
     const onCardMenuClick = (item: MenuItem, id: number, tagIds: number[]) => {

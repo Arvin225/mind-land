@@ -4,3 +4,8 @@
 {"file":"mind-land-server/todo/handler.go","action":"Edit","timestamp":"2026-05-17T12:29:46Z","important":false}
 {"file":"mind-land-server/todo/service.go","action":"Edit","timestamp":"2026-05-17T12:30:04Z","important":false}
 {"file":"mind-land-server/slipbox/service.go","action":"Edit","timestamp":"2026-05-17T12:31:04Z","important":false}
+{"file":"mind-land-web/src/pages/SlipBox/index.tsx","action":"Edit","timestamp":"2026-05-17T13:09:22Z","important":false}
+{"file":"mind-land-web/src/pages/ToDo/index.tsx","action":"Edit","timestamp":"2026-05-17T13:10:15Z","important":false}
+{"file":"mind-land-web/src/components/ToastProvider.tsx","action":"Edit","timestamp":"2026-05-17T13:10:44Z","important":false}
+{"file":"mind-land-web/src/pages/SlipBox/components/SlipEditor/TiptapEditor.tsx","action":"Edit","timestamp":"2026-05-17T13:11:15Z","important":false}
+{"file":"mind-land-web/src/pages/SlipBox/components/CardList/index.tsx","action":"Edit","timestamp":"2026-05-17T13:11:49Z","important":false}

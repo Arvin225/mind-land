@@ -4,7 +4,7 @@ import { Underline } from '@tiptap/extension-underline'
 import { Highlight } from '@tiptap/extension-highlight'
 import { Placeholder } from '@tiptap/extension-placeholder'
 import { Image } from '@tiptap/extension-image'
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { TagHighlight } from './TagHighlight'
 import {
     Bold,
@@ -21,6 +21,9 @@ interface TiptapEditorProps {
 }
 
 function TiptapEditor({ inputSubmit }: TiptapEditorProps) {
+    const inputSubmitRef = useRef(inputSubmit);
+    inputSubmitRef.current = inputSubmit;
+
     const editor = useEditor({
         extensions: [
             StarterKit,
@@ -47,12 +50,12 @@ function TiptapEditor({ inputSubmit }: TiptapEditorProps) {
         const handleKeyDown = (e: KeyboardEvent) => {
             if (e.ctrlKey && e.key === 'Enter' && editor) {
                 e.preventDefault()
-                inputSubmit(editor)
+                inputSubmitRef.current(editor)
             }
         }
         document.addEventListener('keydown', handleKeyDown)
         return () => document.removeEventListener('keydown', handleKeyDown)
-    }, [editor, inputSubmit])
+    }, [editor])
 
     // 确保编辑器销毁时清理
     useEffect(() => {
