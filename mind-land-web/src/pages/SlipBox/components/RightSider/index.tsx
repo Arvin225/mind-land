@@ -38,17 +38,35 @@ function TreeItem({ node, level, selectedKey, onSelect }: {
             e.preventDefault()
             setExpanded(false)
         }
+        if (e.key === 'ArrowDown') {
+            e.preventDefault()
+            const items = document.querySelectorAll<HTMLElement>('[role="treeitem"]')
+            const currentIndex = Array.from(items).indexOf(e.currentTarget as HTMLElement)
+            if (currentIndex < items.length - 1) {
+                items[currentIndex + 1].focus()
+            }
+        }
+        if (e.key === 'ArrowUp') {
+            e.preventDefault()
+            const items = document.querySelectorAll<HTMLElement>('[role="treeitem"]')
+            const currentIndex = Array.from(items).indexOf(e.currentTarget as HTMLElement)
+            if (currentIndex > 0) {
+                items[currentIndex - 1].focus()
+            }
+        }
     }
 
     return (
-        <div role="treeitem" aria-expanded={hasChildren ? expanded : undefined} aria-selected={isSelected}>
+        <div>
             <div
+                role="treeitem"
+                aria-expanded={hasChildren ? expanded : undefined}
+                aria-selected={isSelected}
                 className={`flex items-center gap-1 px-2 py-1.5 rounded-lg cursor-pointer transition-colors ${
                     isSelected ? 'bg-[rgba(212,165,116,0.12)] text-[#D4A574]' : 'hover:bg-[--hover] text-[--foreground]/55'
                 } ${level === 0 ? 'text-xs font-medium' : 'text-xs'}`}
                 style={{ paddingLeft: `${8 + level * 12}px` }}
                 tabIndex={0}
-                role="treeitem"
                 onKeyDown={handleKeyDown}
                 onClick={() => {
                     if (node.selectable !== false) {
@@ -67,7 +85,7 @@ function TreeItem({ node, level, selectedKey, onSelect }: {
                 <span className="truncate">{node.title}</span>
             </div>
             {hasChildren && expanded && (
-                <div>
+                <div role="group">
                     {node.children!.map(child => (
                         <TreeItem
                             key={child.key}
@@ -90,7 +108,7 @@ function RightSider({ treeData, onSelect, selectedKey }: { treeData: TreeNode[],
     ]
 
     return (
-        <aside className="h-full w-full liquid-glass-panel rounded-xl py-3 px-2 scrollbar-auto-hide overflow-auto" role="tree">
+        <aside className="h-full w-full liquid-glass-panel rounded-xl py-3 px-2 scrollbar-auto-hide overflow-auto" role="tree" aria-label="标签导航">
             {rootNodes.map(node => (
                 <TreeItem
                     key={node.key}

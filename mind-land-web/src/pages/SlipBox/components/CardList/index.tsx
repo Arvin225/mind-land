@@ -96,6 +96,8 @@ function InlineEditor({
         <button
             onClick={onClick}
             title={title}
+            aria-label={title}
+            aria-pressed={active}
             className={`p-1.5 rounded-md transition-all duration-200 ${
                 active
                     ? 'bg-[#D4A574]/15 text-[#D4A574]'
@@ -284,6 +286,8 @@ function CardList({ cards, onCardMenuClick, onCardUpdate }: CardListProps) {
                                 <div className="relative">
                                     <button
                                         onClick={(e) => activeMenu === item.id ? setActiveMenu(null) : handleMenuOpen(item.id, e)}
+                                        aria-label="卡片菜单"
+                                        aria-haspopup="true"
                                         className="p-1 rounded-lg hover:bg-[--hover] text-[--foreground]/40 hover:text-[--foreground]/70 transition-colors"
                                     >
                                         <MoreHorizontal className="w-4 h-4" />

@@ -341,6 +341,7 @@ function Container() {
                         </button>
                         <button
                             onClick={() => setSettingsOpen(true)}
+                            aria-label="设置"
                             className="p-2 rounded-lg text-[--foreground]/40 hover:text-[--foreground]/80 hover:bg-[--hover] transition-all duration-200 cursor-pointer"
                         >
                             <Settings className="w-[18px] h-[18px]" />

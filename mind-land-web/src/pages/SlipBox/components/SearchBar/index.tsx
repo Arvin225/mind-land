@@ -15,6 +15,7 @@ function SearchBar({ onSearch }: { onSearch?: (value: string) => void }) {
             <Search className="absolute left-3 w-4 h-4 text-[--foreground]/40" />
             <input
                 type="text"
+                aria-label="搜索"
                 placeholder="Ctrl+K"
                 value={value}
                 onChange={e => setValue(e.target.value)}
@@ -24,6 +25,7 @@ function SearchBar({ onSearch }: { onSearch?: (value: string) => void }) {
             {value && (
                 <button
                     onClick={() => setValue('')}
+                    aria-label="清除搜索"
                     className="absolute right-3 text-[--foreground]/40 hover:text-[--foreground]/70 text-xs"
                 >
                     ×

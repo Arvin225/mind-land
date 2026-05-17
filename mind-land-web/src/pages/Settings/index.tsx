@@ -41,6 +41,19 @@ function Settings({ open, onClose }: SettingsProps) {
 
   useEffect(() => {
     if (!open) return;
+
+    // Focus first focusable element when modal opens
+    const focusTimer = setTimeout(() => {
+      if (modalRef.current) {
+        const focusable = modalRef.current.querySelectorAll<HTMLElement>(
+          'button, input, [tabindex]:not([tabindex="-1"])'
+        );
+        if (focusable.length > 0) {
+          focusable[0].focus();
+        }
+      }
+    }, 0);
+
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         onClose();
@@ -53,17 +66,24 @@ function Settings({ open, onClose }: SettingsProps) {
         if (focusable.length === 0) return;
         const first = focusable[0];
         const last = focusable[focusable.length - 1];
-        if (e.shiftKey && document.activeElement === first) {
-          e.preventDefault();
-          last.focus();
-        } else if (!e.shiftKey && document.activeElement === last) {
-          e.preventDefault();
-          first.focus();
+        if (e.shiftKey) {
+          if (document.activeElement === first || !modalRef.current.contains(document.activeElement)) {
+            e.preventDefault();
+            last.focus();
+          }
+        } else {
+          if (document.activeElement === last || !modalRef.current.contains(document.activeElement)) {
+            e.preventDefault();
+            first.focus();
+          }
         }
       }
     };
     document.addEventListener('keydown', handleKeyDown);
-    return () => document.removeEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+      clearTimeout(focusTimer);
+    };
   }, [open, onClose]);
 
   if (!open) return null;
@@ -94,13 +114,14 @@ function Settings({ open, onClose }: SettingsProps) {
       />
 
       {/* 弹窗内容 */}
-      <div ref={modalRef} className="relative z-10 w-[900px] h-[600px] max-w-[90vw] max-h-[90vh] bg-[--surface] rounded-2xl border border-[--glass-border] shadow-2xl flex overflow-hidden">
+      <div ref={modalRef} role="dialog" aria-modal="true" aria-label="设置" className="relative z-10 w-[900px] h-[600px] max-w-[90vw] max-h-[90vh] bg-[--surface] rounded-2xl border border-[--glass-border] shadow-2xl flex overflow-hidden">
         {/* 左侧菜单 */}
         <aside className="w-[240px] min-w-[240px] flex flex-col border-r border-[--border]">
           <div className="flex items-center justify-between px-4 h-14 border-b border-[--border]">
             <span className="text-[--foreground] font-medium">设置</span>
             <button
               onClick={onClose}
+              aria-label="关闭设置"
               className="p-1.5 rounded-lg text-[--foreground]/40 hover:text-[--foreground]/80 hover:bg-[--hover] transition-all duration-200 cursor-pointer"
             >
               <X className="w-4 h-4" />

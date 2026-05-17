@@ -53,6 +53,9 @@ function Preferences() {
             <div className="text-[--foreground]/50 text-xs">适用于对话、评论和其他输入字段。按 Cmd/Ctrl + Enter 键发送。</div>
           </div>
           <button
+            role="switch"
+            aria-checked={false}
+            aria-label="使用 Enter 键开始新的一行"
             className="relative w-11 h-6 bg-[--glass-highlight] rounded-full transition-colors cursor-pointer"
           >
             <span className="absolute left-1 top-1 w-4 h-4 bg-[--foreground]/60 rounded-full transition-transform" />

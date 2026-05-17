@@ -83,6 +83,8 @@ function TiptapEditor({ inputSubmit, submitting }: TiptapEditorProps) {
         <button
             onClick={onClick}
             title={title}
+            aria-label={title}
+            aria-pressed={active}
             className={`p-1.5 rounded-md transition-all duration-200 ${
                 active
                     ? 'bg-[#D4A574]/15 text-[#D4A574]'

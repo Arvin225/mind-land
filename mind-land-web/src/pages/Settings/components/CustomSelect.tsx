@@ -31,6 +31,8 @@ function CustomSelect({ value, options, onChange }: CustomSelectProps) {
     <div ref={containerRef} className="relative">
       <button
         onClick={() => setOpen(!open)}
+        aria-haspopup="listbox"
+        aria-expanded={open}
         className="appearance-none bg-[--input] border border-[--glass-border] text-[--foreground] text-sm rounded-lg px-4 py-2 pr-10 min-w-[140px] cursor-pointer hover:bg-[--glass-highlight] transition-colors focus:outline-none focus:border-[rgba(212,165,116,0.4)] flex items-center justify-between"
       >
         <span>{selectedLabel}</span>
@@ -40,10 +42,12 @@ function CustomSelect({ value, options, onChange }: CustomSelectProps) {
       </button>
 
       {open && (
-        <div className="absolute top-full right-0 mt-1 w-full bg-[--surface-elevated] border border-[--border] rounded-lg shadow-xl py-1 z-50">
+        <div role="listbox" className="absolute top-full right-0 mt-1 w-full bg-[--surface-elevated] border border-[--border] rounded-lg shadow-xl py-1 z-50">
           {options.map((option) => (
             <button
               key={option.value}
+              role="option"
+              aria-selected={value === option.value}
               onClick={() => {
                 onChange(option.value);
                 setOpen(false);
