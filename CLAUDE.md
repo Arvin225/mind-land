@@ -7,7 +7,7 @@ Monorepo with two independent subprojects:
 | Subproject | Path | Type | Port |
 |---|---|---|---|
 | mind-land-web | `mind-land-web/` | React 19 SPA | 3000 (dev) |
-| mind-land-server | `mind-land-sever/` | Spring Boot 3.4 REST API | 8080 |
+| mind-land-server | `mind-land-server/` | Go + Gin REST API | 3100 |
 
 ## mind-land-web — Frontend
 
