@@ -1,0 +1,53 @@
+- generic [ref=e4]:
+  - complementary [ref=e5]:
+    - generic [ref=e7]:
+      - generic [ref=e8]:
+        - img [ref=e9]
+        - generic [ref=e11]: Mind Land
+      - navigation [ref=e12]:
+        - button "Home" [ref=e15] [cursor=pointer]:
+          - img [ref=e17]
+          - generic [ref=e20]: Home
+        - generic [ref=e21]:
+          - button "待办" [active] [ref=e23] [cursor=pointer]:
+            - img [ref=e24]
+            - generic [ref=e27]: 待办
+          - button "稿纸" [ref=e29] [cursor=pointer]:
+            - img [ref=e30]
+            - generic [ref=e33]: 稿纸
+          - button "脑图" [ref=e35] [cursor=pointer]:
+            - img [ref=e36]
+            - generic [ref=e40]: 脑图
+        - generic [ref=e41]:
+          - button "卡片笔记" [ref=e43] [cursor=pointer]:
+            - img [ref=e44]
+            - generic [ref=e48]: 卡片笔记
+          - button "日记" [ref=e50] [cursor=pointer]:
+            - img [ref=e51]
+            - generic [ref=e53]: 日记
+          - button "大纲笔记" [ref=e55] [cursor=pointer]:
+            - img [ref=e56]
+            - generic [ref=e59]: 大纲笔记
+        - button "剪藏" [ref=e62] [cursor=pointer]:
+          - img [ref=e63]
+          - generic [ref=e69]: 剪藏
+      - button "展开" [ref=e71] [cursor=pointer]:
+        - img [ref=e72]
+  - main [ref=e74]:
+    - generic [ref=e75]:
+      - heading "待办" [level=1] [ref=e98]
+      - generic [ref=e77]:
+        - button "搜索" [ref=e78] [cursor=pointer]:
+          - img [ref=e79]
+        - button "新建" [ref=e82] [cursor=pointer]:
+          - img [ref=e83]
+        - button "设置" [ref=e84] [cursor=pointer]:
+          - img [ref=e85]
+    - generic [ref=e99]:
+      - heading "全部" [level=2] [ref=e101]
+      - generic [ref=e103]:
+        - paragraph [ref=e104]: 暂无任务
+        - paragraph [ref=e105]: 在下方输入框添加你的第一个待办任务
+      - generic [ref=e107]:
+        - img [ref=e108]
+        - textbox "添加任务…" [ref=e109]

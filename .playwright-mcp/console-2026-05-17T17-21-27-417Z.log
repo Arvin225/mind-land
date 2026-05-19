@@ -1,0 +1,6 @@
+[  134819ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_TIMED_OUT @ https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap:0
+[  134829ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=d88ec3bd:20102
+[  147265ms] [ERROR] WebSocket connection to 'ws://localhost:3000/?token=SL5tTFigThKq' failed:  @ http://localhost:3000/@vite/client:801
+[  147266ms] [LOG] [vite] server connection lost. Polling for restart... @ http://localhost:3000/@vite/client:963
+[  147391ms] [ERROR] WebSocket connection to 'ws://localhost:3000/' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/@vite/client:1034
+[  148394ms] [ERROR] WebSocket connection to 'ws://localhost:3000/' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/@vite/client:1034

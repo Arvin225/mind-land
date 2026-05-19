@@ -50,6 +50,7 @@ function SlipBox() {
                 dispatch(fetchGetCards({ tagId: currentTagId }))
             }
             toast.success('卡片已更新')
+            dispatch(fetchGetTags())
         } catch (err) {
             toast.error('网络错误，请稍后重试')
         }
@@ -158,9 +159,11 @@ function SlipBox() {
     function buildTagTree(tag: Tag_, tagTrees: TreeNode[]): TreeNode {
         if (tag.treeBuildAccomplished) {
             const tempTreeIndex = tagTrees.findIndex(tree => tree.key === tag.id)
-            const tempTree = tagTrees[tempTreeIndex]
-            tagTrees.splice(tempTreeIndex, 1)
-            return tempTree
+            if (tempTreeIndex >= 0) {
+                const tempTree = tagTrees[tempTreeIndex]
+                tagTrees.splice(tempTreeIndex, 1)
+                return tempTree
+            }
         }
 
         const children = tag.children || []

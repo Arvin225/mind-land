@@ -1,0 +1,8 @@
+[   64589ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_TIMED_OUT @ https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap:0
+[   64665ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=d88ec3bd:20102
+[   64738ms] [WARNING] No routes matched location "/to-do/list"  @ http://localhost:3000/node_modules/.vite/deps/react-router-dom.js?v=d88ec3bd:647
+[   64739ms] [WARNING] No routes matched location "/to-do/list"  @ http://localhost:3000/node_modules/.vite/deps/react-router-dom.js?v=d88ec3bd:647
+[   64742ms] [ERROR] Error handled by React Router default ErrorBoundary: ErrorResponseImpl @ http://localhost:3000/node_modules/.vite/deps/react-router-dom.js?v=d88ec3bd:6327
+[   64743ms] [ERROR] Error handled by React Router default ErrorBoundary: ErrorResponseImpl @ http://localhost:3000/node_modules/.vite/deps/react-router-dom.js?v=d88ec3bd:6327
+[  134219ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_TIMED_OUT @ https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap:0
+[  134224ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=d88ec3bd:20102

@@ -53,7 +53,7 @@ func (s *Service) CreateItem(item Item) (*Item, error) {
 
 func (s *Service) GetItems(conds map[string]interface{}) ([]Item, error) {
 	var items []Item
-	err := s.db.Where(conds).Find(&items).Error
+	err := s.db.Where(conds).Order("sort_order ASC, id ASC").Find(&items).Error
 	return items, err
 }
 
@@ -73,6 +73,9 @@ func (s *Service) PatchItem(id uint, raw map[string]interface{}) error {
 	}
 	if v, ok := raw["list_name"]; ok {
 		updates["list_name"] = v
+	}
+	if v, ok := raw["sortOrder"]; ok {
+		updates["sort_order"] = v
 	}
 	if len(updates) == 0 {
 		return nil

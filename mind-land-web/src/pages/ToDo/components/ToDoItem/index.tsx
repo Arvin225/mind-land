@@ -101,7 +101,11 @@ function ToDoItem({ item, tag, isDragging, onDragStart }: { item: ToDoItemType, 
             return
         }
         e.dataTransfer.effectAllowed = 'move'
-        e.dataTransfer.setData('text/plain', String(id))
+        try {
+            e.dataTransfer.setData('text/plain', String(id))
+        } catch {
+            // headless 环境可能不支持 DataTransfer，onDragStart 仍会通过 ref 传递 ID
+        }
         onDragStart?.(id)
     }
 

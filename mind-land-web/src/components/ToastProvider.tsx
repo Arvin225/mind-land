@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useCallback, useRef, useEffect } from 'react';
+import React, { createContext, useContext, useState, useCallback, useRef, useEffect, useMemo } from 'react';
 
 interface Toast {
   id: string;
@@ -39,12 +39,12 @@ export const ToastProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     timersRef.current[id] = window.setTimeout(() => remove(id), duration);
   }, [remove]);
 
-  const value: ToastContextValue = {
+  const value: ToastContextValue = useMemo(() => ({
     success: (msg, dur) => add(msg, 'success', dur),
     error: (msg, dur) => add(msg, 'error', dur),
     info: (msg, dur) => add(msg, 'info', dur),
     warning: (msg, dur) => add(msg, 'warning', dur),
-  };
+  }), [add]);
 
   useEffect(() => {
     setExternalToast(value);

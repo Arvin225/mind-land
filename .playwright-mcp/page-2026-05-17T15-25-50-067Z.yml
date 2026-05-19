@@ -1,0 +1,89 @@
+- generic [ref=e4]:
+  - complementary [ref=e5]:
+    - generic [ref=e7]:
+      - generic [ref=e8]:
+        - img [ref=e9]
+        - generic [ref=e11]: Mind Land
+      - navigation [ref=e12]:
+        - button "Home" [ref=e15] [cursor=pointer]:
+          - img [ref=e17]
+          - generic [ref=e20]: Home
+        - generic [ref=e21]:
+          - button "待办" [ref=e23] [cursor=pointer]:
+            - img [ref=e24]
+            - generic [ref=e27]: 待办
+          - button "稿纸" [ref=e29] [cursor=pointer]:
+            - img [ref=e30]
+            - generic [ref=e33]: 稿纸
+          - button "脑图" [ref=e35] [cursor=pointer]:
+            - img [ref=e36]
+            - generic [ref=e40]: 脑图
+        - generic [ref=e41]:
+          - button "卡片笔记" [active] [ref=e43] [cursor=pointer]:
+            - img [ref=e44]
+            - generic [ref=e48]: 卡片笔记
+          - button "日记" [ref=e50] [cursor=pointer]:
+            - img [ref=e51]
+            - generic [ref=e53]: 日记
+          - button "大纲笔记" [ref=e55] [cursor=pointer]:
+            - img [ref=e56]
+            - generic [ref=e59]: 大纲笔记
+        - button "剪藏" [ref=e62] [cursor=pointer]:
+          - img [ref=e63]
+          - generic [ref=e69]: 剪藏
+      - button "展开" [ref=e71] [cursor=pointer]:
+        - img [ref=e72]
+  - main [ref=e74]:
+    - generic [ref=e75]:
+      - heading "卡片笔记" [level=1] [ref=e111]
+      - generic [ref=e77]:
+        - button "搜索" [ref=e78] [cursor=pointer]:
+          - img [ref=e79]
+        - button "新建" [ref=e82] [cursor=pointer]:
+          - img [ref=e83]
+        - button "设置" [ref=e84] [cursor=pointer]:
+          - img [ref=e85]
+    - generic [ref=e112]:
+      - generic [ref=e113]:
+        - generic [ref=e114]:
+          - generic [ref=e115]:
+            - navigation [ref=e116]:
+              - button "全部卡片" [ref=e118] [cursor=pointer]
+            - button "排序" [ref=e120]:
+              - img [ref=e121]
+          - generic [ref=e124]:
+            - img [ref=e125]
+            - textbox "搜索" [ref=e128]:
+              - /placeholder: Ctrl+K
+        - generic [ref=e129]:
+          - generic [ref=e131]:
+            - paragraph [ref=e134]: 现在的想法是...
+            - generic [ref=e135]:
+              - generic [ref=e136]:
+                - button "标签" [ref=e137]:
+                  - img [ref=e138]
+                - button "粗体" [ref=e142]:
+                  - img [ref=e143]
+                - button "下划线" [ref=e145]:
+                  - img [ref=e146]
+                - button "高亮" [ref=e148]:
+                  - img [ref=e149]
+                - button "无序列表" [ref=e153]:
+                  - img [ref=e154]
+                - button "有序列表" [ref=e155]:
+                  - img [ref=e156]
+                - button "插入图片" [ref=e160]:
+                  - img [ref=e161]
+              - button "提交" [ref=e165]
+          - generic [ref=e168]:
+            - generic [ref=e169]:
+              - generic [ref=e170]: 创建于 2026-05-17 14:47
+              - button "卡片菜单" [ref=e172]:
+                - img [ref=e173]
+            - paragraph [ref=e178]: Test card content for testing
+      - tree "标签导航" [ref=e181]:
+        - treeitem "全部卡片" [selected] [ref=e183] [cursor=pointer]:
+          - generic [ref=e184]: 全部卡片
+        - treeitem "全部标签" [ref=e186] [cursor=pointer]:
+          - img [ref=e187]
+          - generic [ref=e190]: 全部标签

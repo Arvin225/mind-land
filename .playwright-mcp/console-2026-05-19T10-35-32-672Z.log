@@ -1,0 +1,5 @@
+[     246ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=d88ec3bd:20102
+[     312ms] [WARNING] No routes matched location "/slip-box"  @ http://localhost:3000/node_modules/.vite/deps/react-router-dom.js?v=d88ec3bd:647
+[     313ms] [WARNING] No routes matched location "/slip-box"  @ http://localhost:3000/node_modules/.vite/deps/react-router-dom.js?v=d88ec3bd:647
+[     316ms] [ERROR] Error handled by React Router default ErrorBoundary: ErrorResponseImpl @ http://localhost:3000/node_modules/.vite/deps/react-router-dom.js?v=d88ec3bd:6327
+[     316ms] [ERROR] Error handled by React Router default ErrorBoundary: ErrorResponseImpl @ http://localhost:3000/node_modules/.vite/deps/react-router-dom.js?v=d88ec3bd:6327

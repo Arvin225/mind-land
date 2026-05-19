@@ -43,7 +43,12 @@ function fetchGetCards(getBy: { del: boolean } | { tagId: number }) {
         try {
             const res = await getCardsAPI(getBy)
             if (res.code === 0 && res.result) {
-                dispatch(setCards(res.result))
+                const normalizedCards = (res.result as Card[]).map(c => ({
+                    ...c,
+                    statistics: typeof c.statistics === "string" ? JSON.parse(c.statistics) : c.statistics,
+                    tags: typeof c.tags === "string" ? JSON.parse(c.tags) : c.tags
+                }))
+                dispatch(setCards(normalizedCards))
             }
         } catch (error) {
             console.error('获取卡片失败: ', error);

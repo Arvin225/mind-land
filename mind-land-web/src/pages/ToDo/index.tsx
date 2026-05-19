@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom"
 import ToDoItem from "./components/ToDoItem"
-import { useEffect, useState } from "react"
+import { useEffect, useState, useRef } from "react"
 import { Plus } from "lucide-react"
 import { postToDoItemAPI } from "@/apis/toDo"
 import { useAppDispatch, useAppSelector } from "@/store/hooks"
@@ -63,8 +63,10 @@ function ToDo() {
 
     const [draggedId, setDraggedId] = useState<number | null>(null)
     const [dropTargetIdx, setDropTargetIdx] = useState<number | null>(null)
+    const dragItemRef = useRef<number | null>(null)
 
     const handleDragStart = (id: number) => {
+        dragItemRef.current = id
         setDraggedId(id)
     }
 
@@ -78,11 +80,27 @@ function ToDo() {
         setDropTargetIdx(null)
     }
 
+    const handleKeyReorder = (index: number) => (e: React.KeyboardEvent) => {
+        if (e.altKey && e.key === 'ArrowUp' && index > 0) {
+            e.preventDefault()
+            const newItems = [...toDoItems]
+            ;[newItems[index - 1], newItems[index]] = [newItems[index], newItems[index - 1]]
+            const reordered = newItems.map((item, i) => ({ ...item, sortOrder: i }))
+            dispatch(reorderToDoItems(reordered))
+        } else if (e.altKey && e.key === 'ArrowDown' && index < toDoItems.length - 1) {
+            e.preventDefault()
+            const newItems = [...toDoItems]
+            ;[newItems[index + 1], newItems[index]] = [newItems[index], newItems[index + 1]]
+            const reordered = newItems.map((item, i) => ({ ...item, sortOrder: i }))
+            dispatch(reorderToDoItems(reordered))
+        }
+    }
+
     const handleDrop = (e: React.DragEvent, targetIndex: number) => {
         e.preventDefault()
-        const data = e.dataTransfer.getData('text/plain')
-        const draggedItemId = parseInt(data, 10)
-        if (isNaN(draggedItemId)) {
+        const draggedItemId = dragItemRef.current ?? (parseInt(e.dataTransfer.getData("text/plain"), 10) || null)
+        if (draggedItemId === null || isNaN(draggedItemId)) {
+            dragItemRef.current = null
             setDraggedId(null)
             setDropTargetIdx(null)
             return
@@ -90,6 +108,7 @@ function ToDo() {
 
         const fromIdx = toDoItems.findIndex(item => item.id === draggedItemId)
         if (fromIdx === -1) {
+            dragItemRef.current = null
             setDraggedId(null)
             setDropTargetIdx(null)
             return
@@ -97,6 +116,7 @@ function ToDo() {
 
         const insertAt = fromIdx < targetIndex ? targetIndex - 1 : targetIndex
         if (insertAt === fromIdx) {
+            dragItemRef.current = null
             setDraggedId(null)
             setDropTargetIdx(null)
             return
@@ -109,6 +129,7 @@ function ToDo() {
         const reordered = newItems.map((item, i) => ({ ...item, sortOrder: i }))
         dispatch(reorderToDoItems(reordered))
 
+        dragItemRef.current = null
         setDraggedId(null)
         setDropTargetIdx(null)
     }
@@ -155,6 +176,9 @@ function ToDo() {
                         {toDoItems.map((item, index) => (
                             <div
                                 key={item.id}
+                                tabIndex={0}
+                                onKeyDown={handleKeyReorder(index)}
+                                aria-label="Alt+↑↓ 排序"
                                 onDragOver={(e) => handleDragOver(e, index)}
                                 onDragLeave={handleDragLeave}
                                 onDrop={(e) => handleDrop(e, index)}

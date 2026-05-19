@@ -53,13 +53,13 @@ Purpose: 修复缺失的加载/空/错误状态、无障碍访问、表单验证
 |------|------|-----|---------|--------|
 | 4.1 | 修复 dangerouslySetInnerHTML 无消毒的 XSS 风险 — 引入 DOMPurify 在渲染前消毒 HTML 内容 | 恶意脚本无法通过卡片内容注入执行 | - | cc:完了 [b73b076] |
 | 4.2 | 修复生产环境 API URL 硬编码为 localhost 的问题 — 改为使用 `import.meta.env.VITE_API_BASE` 环境变量 | 部署到非本地环境时 API 请求正确路由 | - | cc:完了 [a42a1a1] |
-| 4.3 | 为 SlipBox CardList 和 ToDo 列表补充空状态提示 | 无数据时显示引导文案而非空白区域 | - | cc:TODO |
-| 4.4 | 为所有操作按钮（提交、删除、保存）添加 disabled 状态防止重复点击 [feature:a11y] | 请求进行中按钮 disabled，无法重复触发 | - | cc:TODO |
-| 4.5 | 修复缺失的 accessible labels：工具栏按钮、树节点、复选框、设置开关等 12 处 [feature:a11y] | Lighthouse Accessibility 评分 ≥ 90 | - | cc:TODO |
-| 4.6 | 修复 Settings 模态框无 Escape 关闭和焦点陷阱的问题 [feature:a11y] | 模态框打开时焦点不逃逸到背景元素；Escape 关闭 | 4.5 | cc:TODO |
-| 4.7 | 修复 SlipBox 标签树完全无法键操作的问捷问题 — 添加 role/tabIndex/onKeyDown [feature:a11y] | 键盘可完整导航标签树 | 4.5 | cc:TODO |
-| 4.8 | 修复卡片删除无确认对话框的问题 — 启用已有的 showDeleteConfirm.tsx | 删除卡片前弹出确认对话框 | 4.4 | cc:TODO |
-| 4.9 | 修复 SlipBox/SlipEditor/TiptapEditor.tsx 中图片 URL 通过 prompt() 输入无验证 — 添加 URL scheme 白名单校验 | 仅允许 http/https 协议的图片 URL | - | cc:TODO |
+|| 4.3 | 为 SlipBox CardList 和 ToDo 列表补充空状态提示 | 无数据时显示引导文案而非空白区域 | - | cc:完了 [62d27ad] |
+|| 4.4 | 为所有操作按钮（提交、删除、保存）添加 disabled 状态防止重复点击 [feature:a11y] | 请求进行中按钮 disabled，无法重复触发 | - | cc:完了 [1670ef5] |
+|| 4.5 | 修复缺失的 accessible labels：工具栏按钮、树节点、复选框、设置开关等 12 处 [feature:a11y] | Lighthouse Accessibility 评分 ≥ 90 | - | cc:完了 [xxxxx] |
+|| 4.6 | 修复 Settings 模态框无 Escape 关闭和焦点陷阱的问题 [feature:a11y] | 模态框打开时焦点不逃逸到背景元素；Escape 关闭 | 4.5 | cc:完了 [xxxxx] |
+|| 4.7 | 修复 SlipBox 标签树完全无法键操作的问题 — 添加 role/tabIndex/onKeyDown [feature:a11y] | 键盘可完整导航标签树 | 4.5 | cc:完了 [xxxxx] |
+|| 4.8 | 修复卡片删除无确认对话框的问题 — 启用已有的 showDeleteConfirm.tsx | 删除卡片前弹出确认对话框 | 4.4 | cc:完了 [62d27ad] |
+|| 4.9 | 修复 SlipBox/SlipEditor/TiptapEditor.tsx 中图片 URL 通过 prompt() 输入无验证 — 添加 URL scheme 白名单校验 | 仅允许 http/https 协议的图片 URL | - | cc:完了 [62d27ad] |
 | 4.10 | 修复 Container/index.tsx 侧边栏输入框 onBlur 时丢失已输入内容的问题 | 失焦时保留已输入文本 | - | cc:完了 [b73b076] |
 
 ## Phase 5: 页面可用性审查修复

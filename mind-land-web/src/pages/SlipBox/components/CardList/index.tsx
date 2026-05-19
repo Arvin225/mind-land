@@ -28,7 +28,6 @@ interface MenuPosition {
 }
 
 const MENU_MAX_HEIGHT = 320
-const MENU_MARGIN = 8
 
 // 内联编辑器组件
 function InlineEditor({
@@ -172,6 +171,14 @@ function InlineEditor({
     )
 }
 
+const tagHighlightRegex = /#[一-龥a-zA-Z0-9_\/-]+/g
+
+function highlightTags(html: string): string {
+    return html.replace(tagHighlightRegex, match =>
+        `<span class="tag-highlight">${match}</span>`
+    )
+}
+
 function CardList({ cards, onCardMenuClick, onCardUpdate }: CardListProps) {
     const [activeMenu, setActiveMenu] = useState<number | null>(null)
     const [menuPosition, setMenuPosition] = useState<MenuPosition>({ top: null, bottom: null, left: 0 })
@@ -298,9 +305,9 @@ function CardList({ cards, onCardMenuClick, onCardUpdate }: CardListProps) {
                                     </button>
                                 </div>
                             </div>
-                            <div 
+                            <div
                                 className="text-sm text-[--foreground]/90 leading-relaxed card-content cursor-text"
-                                dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(item.content) }}
+                                dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(highlightTags(item.content)) }}
                             />
                         </>
                     )}
@@ -379,7 +386,7 @@ function CardList({ cards, onCardMenuClick, onCardUpdate }: CardListProps) {
                         </div>
                         <div
                             className="text-sm text-[--foreground]/90 leading-relaxed card-content mb-4"
-                            dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(detailCard.content) }}
+                            dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(highlightTags(detailCard.content)) }}
                         />
                         <div className="border-t border-[--border] pt-3 space-y-1">
                             <div className="text-xs text-[--foreground]/50">字数：{detailCard.statistics.words}</div>

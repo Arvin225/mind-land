@@ -2,13 +2,13 @@ import { Extension } from '@tiptap/core'
 import { Plugin, PluginKey } from '@tiptap/pm/state'
 import { Decoration, DecorationSet } from '@tiptap/pm/view'
 
-const tagRegex = /#[\u4e00-\u9fa5a-zA-Z0-9_]+/g
+const tagRegex = /#[\u4e00-\u9fa5a-zA-Z0-9_\/-]+/g
 
 function findTags(doc: any): DecorationSet {
     const decorations: Decoration[] = []
 
     doc.descendants((node: any, pos: number) => {
-        if (!node.isText) return false
+        if (!node.isText) return true
 
         const text = node.text || ''
         let match: RegExpExecArray | null

@@ -1,23 +1,45 @@
 package slipbox
 
-import "time"
+import (
+	"encoding/json"
+	"time"
+)
 
 type Card struct {
-	ID            uint   `gorm:"primarykey" json:"id"`
-	Content       string `gorm:"type:text" json:"content"`
+	ID             uint   `gorm:"primarykey" json:"id"`
+	Content        string `gorm:"type:text" json:"content"`
 	BuiltOrDelTime string `json:"builtOrDelTime"`
-	Statistics    string `gorm:"type:text" json:"statistics"`
-	Tags          string `gorm:"type:text" json:"tags"`
-	Del           bool   `json:"del"`
+	Statistics     string `gorm:"type:text" json:"statistics"`
+	Tags           string `gorm:"type:text" json:"tags"`
+	Del            bool   `json:"del"`
 }
 
 type Tag struct {
 	ID        uint   `gorm:"primarykey" json:"id"`
 	TagName   string `gorm:"uniqueIndex" json:"tagName"`
 	Parent    uint   `json:"parent"`
-	Children  string `gorm:"type:text" json:"children"`
+	Children  string `gorm:"type:text" json:"-"`
 	CardCount int    `json:"cardCount"`
-	Cards     string `gorm:"type:text" json:"cards"`
+	Cards     string `gorm:"type:text" json:"-"`
+}
+
+func (t Tag) MarshalJSON() ([]byte, error) {
+	var children []uint
+	if t.Children != "" {
+		json.Unmarshal([]byte(t.Children), &children)
+	}
+	var cards []uint
+	if t.Cards != "" {
+		json.Unmarshal([]byte(t.Cards), &cards)
+	}
+	return json.Marshal(map[string]interface{}{
+		"id":        t.ID,
+		"tagName":   t.TagName,
+		"parent":    t.Parent,
+		"children":  children,
+		"cardCount": t.CardCount,
+		"cards":     cards,
+	})
 }
 
 type CardStatistics struct {
