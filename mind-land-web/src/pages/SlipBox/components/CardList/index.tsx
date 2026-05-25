@@ -100,7 +100,7 @@ function InlineEditor({
             className={`p-1.5 rounded-md transition-all duration-200 ${
                 active
                     ? 'bg-[#D4A574]/15 text-[#D4A574]'
-                    : 'text-[--foreground]/50 hover:text-[--foreground]/80 hover:bg-hover'
+                    : 'text-[--foreground]/50 hover:text-foreground/80 hover:bg-hover'
             }`}
         >
             <Icon className="w-4 h-4" />
@@ -154,7 +154,7 @@ function InlineEditor({
                 <div className="flex items-center gap-2">
                     <button
                         onClick={onCancel}
-                        className="px-3 py-1.5 rounded-xl text-sm text-[--foreground]/60 hover:text-[--foreground]/90 hover:bg-hover transition-colors whitespace-nowrap"
+                        className="px-3 py-1.5 rounded-xl text-sm text-[--foreground]/60 hover:text-foreground/90 hover:bg-hover transition-colors whitespace-nowrap"
                     >
                         取消
                     </button>
@@ -299,7 +299,7 @@ function CardList({ cards, onCardMenuClick, onCardUpdate }: CardListProps) {
                                         onClick={(e) => activeMenu === item.id ? setActiveMenu(null) : handleMenuOpen(item.id, e)}
                                         aria-label="卡片菜单"
                                         aria-haspopup="true"
-                                        className="p-1 rounded-lg hover:bg-hover text-[--foreground]/40 hover:text-[--foreground]/70 transition-colors"
+                                        className="p-1 rounded-lg hover:bg-hover text-[--foreground]/40 hover:text-foreground/70 transition-colors"
                                     >
                                         <MoreHorizontal className="w-4 h-4" />
                                     </button>
@@ -380,7 +380,7 @@ function CardList({ cards, onCardMenuClick, onCardUpdate }: CardListProps) {
                     <div className="liquid-glass-strong rounded-2xl p-6 w-[500px] max-w-[90vw] max-h-[80vh] overflow-auto" onClick={e => e.stopPropagation()}>
                         <div className="flex items-center justify-between mb-4">
                             <h3 className="text-[--foreground] font-medium">卡片详情</h3>
-                            <button onClick={() => setDetailCard(null)} className="p-1 rounded-lg hover:bg-hover text-[--foreground]/40 hover:text-[--foreground]/70 transition-colors">
+                            <button onClick={() => setDetailCard(null)} className="p-1 rounded-lg hover:bg-hover text-[--foreground]/40 hover:text-foreground/70 transition-colors">
                                 <MoreHorizontal className="w-4 h-4 rotate-45" />
                             </button>
                         </div>

@@ -129,7 +129,7 @@ function ToDoItem({ item, tag, isDragging, onDragStart }: { item: ToDoItemType, 
             {!del && (
                 <button
                     data-drag-handle
-                    className="p-1 rounded-md hover:bg-hover transition-colors cursor-grab active:cursor-grabbing opacity-0 group-hover:opacity-100 text-[--foreground]/30 hover:text-[--foreground]/60 shrink-0"
+                    className="p-1 rounded-md hover:bg-hover transition-colors cursor-grab active:cursor-grabbing opacity-0 group-hover:opacity-100 text-[--foreground]/30 hover:text-foreground/60 shrink-0"
                     aria-label="拖动排序"
                     tabIndex={-1}
                 >

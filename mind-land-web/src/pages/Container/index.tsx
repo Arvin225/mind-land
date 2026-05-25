@@ -193,7 +193,7 @@ function Container() {
                                                     'w-full flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all duration-300 relative group cursor-pointer',
                                                     isTopActive
                                                         ? 'text-[#D4A574]'
-                                                        : 'text-[--foreground]/55 hover:text-[--foreground] hover:bg-hover',
+                                                        : 'text-[--foreground]/55 hover:text-foreground hover:bg-hover',
                                                 ].join(' ')}
                                             >
                                                 {/* Active glow */}
@@ -238,7 +238,7 @@ function Container() {
                                                                     'w-full text-left px-3 py-1.5 rounded-lg text-xs transition-all duration-200 cursor-pointer flex items-center gap-2',
                                                                     isSubActive
                                                                         ? 'text-[#D4A574] bg-[rgba(212,165,116,0.08)]'
-                                                                        : 'text-[--foreground]/40 hover:text-[--foreground]/70 hover:bg-hover',
+                                                                        : 'text-[--foreground]/40 hover:text-foreground/70 hover:bg-hover',
                                                                 ].join(' ')}
                                                             >
                                                                 <Icon className="w-3 h-3 shrink-0" />
@@ -260,7 +260,7 @@ function Container() {
                                                                     'w-full text-left px-3 py-1.5 rounded-lg text-xs transition-all duration-200 flex items-center gap-2',
                                                                     isSubActive
                                                                         ? 'text-[#D4A574] bg-[rgba(212,165,116,0.08)]'
-                                                                        : 'text-[--foreground]/40 hover:text-[--foreground]/70 hover:bg-hover',
+                                                                        : 'text-[--foreground]/40 hover:text-foreground/70 hover:bg-hover',
                                                                 ].join(' ')}
                                                             >
                                                                 <ListItem item={item} onNavigate={() => handleTodoSubNav(key)} />
@@ -299,7 +299,7 @@ function Container() {
                                 setPinned(newPinned);
                                 setExpanded(newPinned);
                             }}
-                            className="w-full h-10 flex items-center justify-center rounded-xl text-[--foreground]/35 hover:text-[--foreground]/70 hover:bg-hover transition-all duration-300 cursor-pointer"
+                            className="w-full h-10 flex items-center justify-center rounded-xl text-[--foreground]/35 hover:text-foreground/70 hover:bg-hover transition-all duration-300 cursor-pointer"
                             title={pinned ? '收起' : '展开'}
                         >
                             {pinned ? (
@@ -322,7 +322,7 @@ function Container() {
                     <div className="flex items-center gap-2">
                         <button
                             onClick={() => setSearchOpen(!searchOpen)}
-                            className="p-2 rounded-lg text-[--foreground]/40 hover:text-[--foreground]/80 hover:bg-hover transition-all duration-200 cursor-pointer"
+                            className="p-2 rounded-lg text-[--foreground]/40 hover:text-foreground/80 hover:bg-hover transition-all duration-200 cursor-pointer"
                             title="搜索"
                         >
                             <Search className="w-[18px] h-[18px]" />
@@ -333,7 +333,7 @@ function Container() {
                                 else if (topKey === 'slipbox') navigate('/slipbox')
                                 else navigate('/slipbox')
                             }}
-                            className="p-2 rounded-lg text-[--foreground]/40 hover:text-[--foreground]/80 hover:bg-hover transition-all duration-200 cursor-pointer"
+                            className="p-2 rounded-lg text-[--foreground]/40 hover:text-foreground/80 hover:bg-hover transition-all duration-200 cursor-pointer"
                             title="新建"
                         >
                             <Plus className="w-[18px] h-[18px]" />
@@ -341,7 +341,7 @@ function Container() {
                         <button
                             onClick={() => setSettingsOpen(true)}
                             aria-label="设置"
-                            className="p-2 rounded-lg text-[--foreground]/40 hover:text-[--foreground]/80 hover:bg-hover transition-all duration-200 cursor-pointer"
+                            className="p-2 rounded-lg text-[--foreground]/40 hover:text-foreground/80 hover:bg-hover transition-all duration-200 cursor-pointer"
                         >
                             <Settings className="w-[18px] h-[18px]" />
                         </button>
