@@ -111,7 +111,7 @@ function List({ item: { id, name }, onNavigate }: { item: { id: number, name: st
                 <div onClick={handleClick} onDoubleClick={handleDoubleClick} className="truncate flex-1 cursor-pointer">{name}</div>
                 <button
                     onClick={handleDeleteClick}
-                    className="opacity-0 group-hover:opacity-100 transition-all duration-200 p-1 rounded hover:bg-[--hover] text-[--foreground]/40 hover:text-red-400 shrink-0"
+                    className="opacity-0 group-hover:opacity-100 transition-all duration-200 p-1 rounded hover:bg-hover text-[--foreground]/40 hover:text-red-400 shrink-0"
                     title="删除列表"
                 >
                     <Trash2 className="w-3 h-3" />
@@ -129,14 +129,14 @@ function List({ item: { id, name }, onNavigate }: { item: { id: number, name: st
                 >
                     <button
                         onClick={handleContextRename}
-                        className="w-full flex items-center gap-2 px-3 py-2 text-xs text-[--foreground]/80 hover:bg-[--hover] transition-colors cursor-pointer"
+                        className="w-full flex items-center gap-2 px-3 py-2 text-xs text-[--foreground]/80 hover:bg-hover transition-colors cursor-pointer"
                     >
                         <Pencil className="w-3 h-3" />
                         重命名
                     </button>
                     <button
                         onClick={handleContextDelete}
-                        className="w-full flex items-center gap-2 px-3 py-2 text-xs text-red-400 hover:bg-[--hover] transition-colors cursor-pointer"
+                        className="w-full flex items-center gap-2 px-3 py-2 text-xs text-red-400 hover:bg-hover transition-colors cursor-pointer"
                     >
                         <Trash2 className="w-3 h-3" />
                         删除
@@ -156,7 +156,7 @@ function List({ item: { id, name }, onNavigate }: { item: { id: number, name: st
                             onKeyDown={e => { if (e.key === 'Enter') saveEdit() }}
                         />
                         <div className="flex justify-end gap-2">
-                            <button onClick={() => setOpen(false)} className="px-3 py-1.5 rounded-lg text-xs text-[--foreground]/55 hover:bg-[--hover] transition-colors cursor-pointer">取消</button>
+                            <button onClick={() => setOpen(false)} className="px-3 py-1.5 rounded-lg text-xs text-[--foreground]/55 hover:bg-hover transition-colors cursor-pointer">取消</button>
                             <button onClick={saveEdit} disabled={saving} className="px-3 py-1.5 rounded-lg text-xs bg-[#D4A574]/15 text-[#D4A574] hover:bg-[#D4A574]/25 transition-colors cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed">{saving ? '保存中...' : '保存'}</button>
                         </div>
                     </div>
@@ -168,7 +168,7 @@ function List({ item: { id, name }, onNavigate }: { item: { id: number, name: st
                         <h3 className="text-[--foreground] font-medium mb-2">删除列表</h3>
                         <p className="text-[--foreground]/55 text-sm mb-4">删除列表 "{name}"？该列表下所有任务也将被删除。</p>
                         <div className="flex justify-end gap-2">
-                            <button onClick={() => setDeleteOpen(false)} className="px-3 py-1.5 rounded-lg text-xs text-[--foreground]/55 hover:bg-[--hover] transition-colors cursor-pointer">取消</button>
+                            <button onClick={() => setDeleteOpen(false)} className="px-3 py-1.5 rounded-lg text-xs text-[--foreground]/55 hover:bg-hover transition-colors cursor-pointer">取消</button>
                             <button onClick={handleConfirmDelete} disabled={deleting} className="px-3 py-1.5 rounded-lg text-xs bg-red-400/15 text-red-400 hover:bg-red-400/25 transition-colors cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed">{deleting ? '删除中...' : '删除'}</button>
                         </div>
                     </div>

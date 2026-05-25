@@ -127,7 +127,7 @@ function ImageUploadDialog({ open, onClose, onConfirm }: ImageUploadDialogProps)
                     <h3 className="text-[--foreground] font-medium">插入图片</h3>
                     <button
                         onClick={handleClose}
-                        className="p-1 rounded-lg hover:bg-[--hover] text-[--foreground]/40 hover:text-[--foreground]/70 transition-colors"
+                        className="p-1 rounded-lg hover:bg-hover text-[--foreground]/40 hover:text-[--foreground]/70 transition-colors"
                     >
                         <X className="w-4 h-4" />
                     </button>
@@ -142,7 +142,7 @@ function ImageUploadDialog({ open, onClose, onConfirm }: ImageUploadDialogProps)
                             className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm transition-colors ${
                                 activeTab === tab.key
                                     ? 'bg-[#D4A574]/15 text-[#D4A574]'
-                                    : 'text-[--foreground]/50 hover:text-[--foreground]/70 hover:bg-[--hover]'
+                                    : 'text-[--foreground]/50 hover:text-[--foreground]/70 hover:bg-hover'
                             }`}
                         >
                             <tab.icon className="w-3.5 h-3.5" />

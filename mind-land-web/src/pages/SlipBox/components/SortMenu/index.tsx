@@ -29,7 +29,7 @@ function SortMenu({ onSelect }: { onSelect?: (key: string) => void }) {
                 onClick={() => setOpen(!open)}
                 aria-label="排序"
                 aria-expanded={open}
-                className="p-1.5 rounded-lg hover:bg-[--hover] text-[--foreground]/50 hover:text-[--foreground]/80 transition-colors"
+                className="p-1.5 rounded-lg hover:bg-hover text-[--foreground]/50 hover:text-[--foreground]/80 transition-colors"
             >
                 <ChevronDown className="w-4 h-4" />
             </button>
@@ -41,7 +41,7 @@ function SortMenu({ onSelect }: { onSelect?: (key: string) => void }) {
                             <button
                                 key={option.key}
                                 onClick={() => handleSelect(option.key)}
-                                className={`w-full px-3 py-2 text-left text-xs transition-colors hover:bg-[--hover] ${
+                                className={`w-full px-3 py-2 text-left text-xs transition-colors hover:bg-hover ${
                                     selected === option.key ? 'text-[#D4A574]' : 'text-[--foreground]/70'
                                 }`}
                             >

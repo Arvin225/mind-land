@@ -63,7 +63,7 @@ function TreeItem({ node, level, selectedKey, onSelect }: {
                 aria-expanded={hasChildren ? expanded : undefined}
                 aria-selected={isSelected}
                 className={`flex items-center gap-1 px-2 py-1.5 rounded-lg cursor-pointer transition-colors ${
-                    isSelected ? 'bg-[rgba(212,165,116,0.12)] text-[#D4A574]' : 'hover:bg-[--hover] text-[--foreground]/55'
+                    isSelected ? 'bg-[rgba(212,165,116,0.12)] text-[#D4A574]' : 'hover:bg-hover text-[--foreground]/55'
                 } ${level === 0 ? 'text-xs font-medium' : 'text-xs'}`}
                 style={{ paddingLeft: `${8 + level * 12}px` }}
                 tabIndex={0}

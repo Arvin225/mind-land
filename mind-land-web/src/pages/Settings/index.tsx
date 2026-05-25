@@ -146,7 +146,7 @@ function Settings({ open, onClose }: SettingsProps) {
             <button
               onClick={onClose}
               aria-label="关闭设置"
-              className="p-1.5 rounded-lg text-[--foreground]/40 hover:text-[--foreground]/80 hover:bg-[--hover] transition-all duration-200 cursor-pointer"
+              className="p-1.5 rounded-lg text-[--foreground]/40 hover:text-[--foreground]/80 hover:bg-hover transition-all duration-200 cursor-pointer"
             >
               <X className="w-4 h-4" />
             </button>
@@ -171,7 +171,7 @@ function Settings({ open, onClose }: SettingsProps) {
                       'w-full flex items-center gap-3 px-4 py-2 text-sm transition-all duration-200 cursor-pointer',
                       isActive
                         ? 'text-[#D4A574] bg-[rgba(212,165,116,0.08)]'
-                        : 'text-[--foreground]/60 hover:text-[--foreground]/90 hover:bg-[--hover]',
+                        : 'text-[--foreground]/60 hover:text-[--foreground]/90 hover:bg-hover',
                     ].join(' ')}
                   >
                     <Icon className="w-4 h-4" />

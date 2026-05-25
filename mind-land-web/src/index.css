@@ -32,6 +32,7 @@
   /* Functional */
   --color-border: var(--border);
   --color-input: var(--input);
+  --color-hover: var(--hover);
   --color-ring: #D4A574;
   --color-destructive: #E47571;
 
