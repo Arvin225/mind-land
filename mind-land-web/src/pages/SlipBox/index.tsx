@@ -1,5 +1,5 @@
 import SlipEditor from "./components/SlipEditor";
-import { fetchGetCards, fetchGetTags } from "@/store/modules/slipBoxStore";
+import { fetchGetCards, fetchGetTags, setSortBy, setSortOrder } from "@/store/modules/slipBoxStore";
 import { Key, useEffect, useState } from "react";
 import CardList from "./components/CardList";
 import PathBar from "./components/PathBar";
@@ -21,18 +21,50 @@ type MenuItem = { label: string; key: string }
 function SlipBox() {
     const toast = useToast()
     const dispatch = useAppDispatch()
-    const { pathItems, buildPathItems } = usePathItems()
+    const [selectedKey, setSelectedKey] = useState<Key>(0)
     const [submitting, setSubmitting] = useState(false)
-    
+
     useEffect(() => {
         dispatch(fetchGetCards({ del: false }))
         dispatch(fetchGetTags())
     }, [])
-    
+
     const loadingCards = useAppSelector(state => state.slipBox.loadingCards)
     const loadingTags = useAppSelector(state => state.slipBox.loadingTags)
     const cards = useAppSelector(state => state.slipBox.cards)
     const tags = useAppSelector(state => state.slipBox.tags)
+
+    const { pathItems, buildPathItems } = usePathItems(tags, navigateToTag)
+
+    function navigateToTag(tagId: number) {
+        setSelectedKey(tagId || 0)
+        if (!tagId) {
+            dispatch(fetchGetCards({ del: false }))
+            buildPathItems(null)
+            return
+        }
+        dispatch(fetchGetCards({ tagId }))
+        const tag = tags.find(t => t.id === tagId)
+        buildPathItems(tagId, tag?.tagName)
+    }
+
+    const handleTagSelected = async (keys: Key[]) => {
+        navigateToTag(Number(keys[0]))
+    }
+
+    const handleSortChange = (key: string) => {
+        const [prefix, order] = key.split('-')
+        const sortBy = prefix === 'c' ? 'createdAt' : 'updatedAt'
+        dispatch(setSortBy(sortBy))
+        dispatch(setSortOrder(order === 'asc' ? 'asc' : 'desc'))
+
+        const currentTagId = Number(selectedKey)
+        if (currentTagId) {
+            dispatch(fetchGetCards({ tagId: currentTagId }))
+        } else {
+            dispatch(fetchGetCards({ del: false }))
+        }
+    }
 
     // 更新卡片内容
     const handleCardUpdate = async (id: number, content: string) => {
@@ -43,16 +75,17 @@ function SlipBox() {
                 return
             }
             // 刷新当前标签的卡片列表
-            const currentTagId = Number(_.last(pathItems)?.href)
-            if (!currentTagId) {
-                dispatch(fetchGetCards({ del: false }))
-            } else {
+            const currentTagId = Number(selectedKey)
+            if (currentTagId) {
                 dispatch(fetchGetCards({ tagId: currentTagId }))
+            } else {
+                dispatch(fetchGetCards({ del: false }))
             }
             toast.success('卡片已更新')
             dispatch(fetchGetTags())
         } catch (err) {
-            toast.error('网络错误，请稍后重试')
+            const msg = (err as any)?.response?.data?.message || '网络错误，请稍后重试'
+            toast.error(msg)
         }
     }
 
@@ -72,7 +105,7 @@ function SlipBox() {
             }
 
             dispatch(fetchGetTags());
-            const currentTagId = Number(_.last(pathItems)?.href)
+            const currentTagId = Number(selectedKey)
             if (!currentTagId) {
                 dispatch(fetchGetCards({ del: false }));
             } else {
@@ -85,28 +118,11 @@ function SlipBox() {
             }
             editor.commands.clearContent();
         } catch (err) {
-            toast.error('网络错误，请稍后重试')
+            const msg = (err as any)?.response?.data?.message || '网络错误，请稍后重试'
+            toast.error(msg)
         } finally {
             setSubmitting(false)
         }
-    }
-
-    const [selectedKey, setSelectedKey] = useState<Key>(0)
-    
-    const handleTagSelected = async (keys: Key[]) => {
-        const key = keys[0]
-        setSelectedKey(key)
-        const tagId = Number(key)
-
-        if (!tagId) {
-            dispatch(fetchGetCards({ del: false }))
-            buildPathItems(null)
-            return
-        }
-
-        dispatch(fetchGetCards({ tagId }))
-        const tag = tags.find(tag => tag.id === tagId)
-        buildPathItems(tagId, tag?.tagName)
     }
 
     async function handleCardDelete(id: number, tagIds: number[]) {
@@ -118,7 +134,7 @@ function SlipBox() {
                 return
             }
 
-            let currentTagId = Number(_.last(pathItems)?.href)
+            let currentTagId = Number(selectedKey)
             const deletedTagIds = result?.deletedTagIds || []
             if (currentTagId && deletedTagIds.includes(currentTagId)) {
                 setSelectedKey(0)
@@ -130,8 +146,10 @@ function SlipBox() {
             }
 
             deletedTagIds.length && dispatch(fetchGetTags())
+            toast.success('卡片已删除')
         } catch (err) {
-            toast.error('网络错误，请稍后重试')
+            const msg = (err as any)?.response?.data?.message || '网络错误，请稍后重试'
+            toast.error(msg)
         }
     }
 
@@ -216,7 +234,7 @@ function SlipBox() {
                 <div className="flex justify-between items-center mb-4">
                     <div className="flex items-center gap-2 max-w-[60%]">
                         <PathBar pathItems={pathItems} />
-                        <SortMenu />
+                        <SortMenu onSelect={handleSortChange} />
                     </div>
                     <div className="flex items-center gap-3">
                         <SearchBar />
@@ -232,7 +250,7 @@ function SlipBox() {
                     </div>
                 </div>
             </div>
-            
+
             {/* 右侧标签栏 - 与编辑器顶部对齐，与卡片区域等高 */}
             <div className="w-[260px] flex flex-col pt-[56px]">
                 <div className="flex-1 min-h-0">

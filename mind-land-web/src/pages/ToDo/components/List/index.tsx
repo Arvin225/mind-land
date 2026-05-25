@@ -51,6 +51,7 @@ function List({ item: { id, name }, onNavigate }: { item: { id: number, name: st
             if (location.pathname.substring(6) === id + '') {
                 navigate('/todo/all')
             }
+            toast.success('列表已删除')
         } finally {
             setDeleting(false)
         }
@@ -110,7 +111,7 @@ function List({ item: { id, name }, onNavigate }: { item: { id: number, name: st
                 <div onClick={handleClick} onDoubleClick={handleDoubleClick} className="truncate flex-1 cursor-pointer">{name}</div>
                 <button
                     onClick={handleDeleteClick}
-                    className="opacity-0 group-hover:opacity-100 transition-opacity duration-200 p-1 rounded hover:bg-[--hover] text-[--foreground]/40 hover:text-red-400 shrink-0"
+                    className="opacity-0 group-hover:opacity-100 transition-all duration-200 p-1 rounded hover:bg-[--hover] text-[--foreground]/40 hover:text-red-400 shrink-0"
                     title="删除列表"
                 >
                     <Trash2 className="w-3 h-3" />

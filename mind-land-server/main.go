@@ -10,6 +10,7 @@ import (
 
 	"mind-land-server/slipbox"
 	"mind-land-server/todo"
+	"mind-land-server/upload"
 )
 
 func main() {
@@ -25,10 +26,10 @@ func main() {
 	r := gin.Default()
 
 	r.Use(cors.New(cors.Config{
-		AllowOrigins:     []string{"http://localhost:3000", "http://localhost:3100"},
+		AllowAllOrigins:  true,
 		AllowMethods:     []string{"GET", "HEAD", "PUT", "PATCH", "POST", "DELETE", "OPTIONS"},
-		AllowHeaders:     []string{"Origin", "Content-Type", "Accept"},
-		AllowCredentials: true,
+		AllowHeaders:     []string{"Origin", "Content-Type", "Accept", "Authorization"},
+		AllowCredentials: false,
 	}))
 
 	api := r.Group("/api")
@@ -64,7 +65,13 @@ func main() {
 			td.PATCH("/items", todoH.PatchItem)
 			td.DELETE("/items", todoH.DeleteItem)
 		}
+
+		// Upload
+		api.POST("/upload", upload.HandleUpload)
 	}
+
+	// Serve uploaded files
+	r.Static("/uploads", "./uploads")
 
 	// Serve static files from frontend build
 	r.Static("/assets", "../mind-land-web/dist/assets")

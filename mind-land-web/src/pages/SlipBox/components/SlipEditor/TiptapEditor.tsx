@@ -4,8 +4,9 @@ import { Underline } from '@tiptap/extension-underline'
 import { Highlight } from '@tiptap/extension-highlight'
 import { Placeholder } from '@tiptap/extension-placeholder'
 import { Image } from '@tiptap/extension-image'
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { TagHighlight } from './TagHighlight'
+import ImageUploadDialog from '../ImageUploadDialog'
 import {
     Bold,
     Underline as UnderlineIcon,
@@ -22,6 +23,7 @@ interface TiptapEditorProps {
 }
 
 function TiptapEditor({ inputSubmit, submitting }: TiptapEditorProps) {
+    const [imageDialogOpen, setImageDialogOpen] = useState(false)
     const inputSubmitRef = useRef(inputSubmit);
     inputSubmitRef.current = inputSubmit;
 
@@ -140,17 +142,7 @@ function TiptapEditor({ inputSubmit, submitting }: TiptapEditorProps) {
                     />
                     <div className="w-px h-4 bg-[rgba(255,255,232,0.1)] mx-1" />
                     <ToolbarButton
-                        onClick={() => {
-                            const url = window.prompt('输入图片 URL')
-                            if (url) {
-                                const trimmed = url.trim()
-                                if (!/^https?:\/\//.test(trimmed)) {
-                                    alert('仅支持 http/https 协议的图片 URL')
-                                    return
-                                }
-                                editor.chain().focus().setImage({ src: trimmed }).run()
-                            }
-                        }}
+                        onClick={() => setImageDialogOpen(true)}
                         active={editor.isActive('image')}
                         icon={ImageIcon}
                         title="插入图片"
@@ -164,6 +156,13 @@ function TiptapEditor({ inputSubmit, submitting }: TiptapEditorProps) {
                     提交
                 </button>
             </div>
+            <ImageUploadDialog
+                open={imageDialogOpen}
+                onClose={() => setImageDialogOpen(false)}
+                onConfirm={(url) => {
+                    editor.chain().focus().setImage({ src: url }).run()
+                }}
+            />
         </div>
     )
 }

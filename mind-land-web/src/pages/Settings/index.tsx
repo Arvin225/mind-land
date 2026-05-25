@@ -138,7 +138,7 @@ function Settings({ open, onClose }: SettingsProps) {
       />
 
       {/* 弹窗内容 */}
-      <div ref={modalRef} role="dialog" aria-modal="true" aria-label="设置" className="relative z-10 w-[900px] h-[600px] max-w-[90vw] max-h-[90vh] bg-[--surface] rounded-2xl border border-[--glass-border] shadow-2xl flex overflow-hidden">
+      <div ref={modalRef} role="dialog" aria-modal="true" aria-label="设置" className="relative z-10 w-[900px] h-[600px] max-w-[90vw] max-h-[90vh] bg-surface rounded-2xl border border-[--glass-border] shadow-2xl flex overflow-hidden">
         {/* 左侧菜单 */}
         <aside className="w-[240px] min-w-[240px] flex flex-col border-r border-[--border]">
           <div className="flex items-center justify-between px-4 h-14 border-b border-[--border]">
@@ -185,7 +185,7 @@ function Settings({ open, onClose }: SettingsProps) {
       </aside>
 
         {/* 右侧内容区域 */}
-        <main className="flex-1 overflow-y-auto bg-[--background]">
+        <main className="flex-1 overflow-y-auto bg-background">
           <div className="max-w-[720px] mx-auto py-8 px-6">
             {renderContent()}
           </div>

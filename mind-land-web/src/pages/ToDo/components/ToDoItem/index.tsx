@@ -3,6 +3,7 @@ import { useState, useRef, useEffect } from "react"
 import { deleteToDoItemAPI, patchToDoItemAPI } from "@/apis/toDo"
 import { ToDoItem as ToDoItemType } from "../../interfaces";
 import { useToast } from "@/components/ToastProvider"
+import { showConfirm } from "@/lib/confirm"
 
 function ToDoItem({ item, tag, isDragging, onDragStart }: { item: ToDoItemType, tag?: string, isDragging?: boolean, onDragStart?: (id: number) => void }) {
     const toast = useToast()
@@ -83,14 +84,19 @@ function ToDoItem({ item, tag, isDragging, onDragStart }: { item: ToDoItemType, 
                 return
             }
             setVisible(false)
+            toast.success('任务已删除')
         } catch (err) {
             toast.error('网络错误，请稍后重试')
         }
     }
 
-    const handleContextMenu = (e: React.MouseEvent) => {
+    const handleContextMenu = async (e: React.MouseEvent) => {
         e.preventDefault()
-        if (confirm('确定删除此任务？')) {
+        const confirmed = await showConfirm({
+            title: '删除任务',
+            description: '确定删除此任务？',
+        })
+        if (confirmed) {
             deleteItem(del ? true : undefined)
         }
     }

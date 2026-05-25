@@ -61,7 +61,7 @@
   --glass: rgba(0, 0, 0, 0.03);
   --glass-border: rgba(0, 0, 0, 0.08);
   --glass-highlight: rgba(0, 0, 0, 0.04);
-  --hover: rgba(0, 0, 0, 0.10);
+  --hover: rgba(0, 0, 0, 0.16);
 
   --border: rgba(0, 0, 0, 0.1);
   --input: rgba(0, 0, 0, 0.06);
@@ -81,7 +81,7 @@
   --glass: rgba(255, 255, 255, 0.04);
   --glass-border: rgba(255, 255, 232, 0.08);
   --glass-highlight: rgba(255, 255, 255, 0.06);
-  --hover: rgba(255, 255, 255, 0.12);
+  --hover: rgba(255, 255, 255, 0.18);
 
   --border: rgba(255, 255, 232, 0.08);
   --input: rgba(255, 255, 255, 0.06);

@@ -3,6 +3,7 @@ package slipbox
 import (
 	"encoding/json"
 	"regexp"
+	"sort"
 	"strings"
 	"time"
 
@@ -20,13 +21,17 @@ func NewService(db *gorm.DB) *Service {
 
 // ---- Card queries ----
 
-func (s *Service) GetAllCards(del bool) ([]Card, error) {
+func (s *Service) GetAllCards(del bool, sortBy, order string) ([]Card, error) {
 	var cards []Card
 	err := s.db.Where("del = ?", del).Find(&cards).Error
-	return cards, err
+	if err != nil {
+		return nil, err
+	}
+	sortCards(cards, sortBy, order)
+	return cards, nil
 }
 
-func (s *Service) GetCardsByTagID(tagID uint) ([]Card, error) {
+func (s *Service) GetCardsByTagID(tagID uint, sortBy, order string) ([]Card, error) {
 	cardIDs, err := s.collectCardIDsByTagAndOffspring(tagID)
 	if err != nil {
 		return nil, err
@@ -36,7 +41,11 @@ func (s *Service) GetCardsByTagID(tagID uint) ([]Card, error) {
 	}
 	var cards []Card
 	err = s.db.Find(&cards, cardIDs).Error
-	return cards, err
+	if err != nil {
+		return nil, err
+	}
+	sortCards(cards, sortBy, order)
+	return cards, nil
 }
 
 func (s *Service) GetCard(id uint) (*Card, error) {
@@ -841,6 +850,34 @@ func (s *Service) recalcCardCountUpward(tx *gorm.DB, tagID uint) error {
 	}
 
 	return nil
+}
+
+// ---- Sorting ----
+
+func sortCards(cards []Card, sortBy, order string) {
+	if sortBy == "" {
+		return
+	}
+	sort.SliceStable(cards, func(i, j int) bool {
+		var si, sj CardStatistics
+		json.Unmarshal([]byte(cards[i].Statistics), &si)
+		json.Unmarshal([]byte(cards[j].Statistics), &sj)
+
+		var a, b string
+		switch sortBy {
+		case "createdAt":
+			a, b = si.BuiltTime, sj.BuiltTime
+		case "updatedAt":
+			a, b = si.UpdateTime, sj.UpdateTime
+		default:
+			return false
+		}
+
+		if order == "desc" {
+			return a > b
+		}
+		return a < b
+	})
 }
 
 // ---- Utility helpers ----

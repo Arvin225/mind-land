@@ -42,7 +42,7 @@ function CustomSelect({ value, options, onChange }: CustomSelectProps) {
       </button>
 
       {open && (
-        <div role="listbox" className="absolute top-full right-0 mt-1 w-full bg-[--surface-elevated] border border-[--border] rounded-lg shadow-xl py-1 z-50">
+        <div role="listbox" className="absolute top-full right-0 mt-1 w-full bg-surface-elevated border border-[--border] rounded-lg shadow-xl py-1 z-50">
           {options.map((option) => (
             <button
               key={option.value}

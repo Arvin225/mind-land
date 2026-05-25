@@ -2,7 +2,7 @@ import { Card, Tag } from "@/pages/SlipBox/interfaces";
 import request from "@/utils/request";
 import { Response } from "./interfaces/Response";
 
-export function getCardsAPI(getBy: { del: boolean } | { tagId: number }) {
+export function getCardsAPI(getBy: { del?: boolean; tagId?: number; sort?: string; order?: string }) {
     return request.get<any, Response<Card[]>>('slip-box/cards', { params: getBy })
 }
 
@@ -35,7 +35,7 @@ export function patchTagAPI(tag: { id: number, tagName?: string, parent?: number
 }
 
 export function patchCardAPI(card: { id: number, content: string }) {
-    return request.put<any, Response<Card>>(`slip-box/cards/${card.id}`, card)
+    return request.put<any, Response<{ card: Card }>>(`slip-box/cards/${card.id}`, card)
 }
 
 interface deleteTagDto {

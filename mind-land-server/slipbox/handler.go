@@ -22,6 +22,8 @@ func NewHandler(svc *Service) *Handler {
 func (h *Handler) GetCards(c *gin.Context) {
 	delStr := c.Query("del")
 	tagIDStr := c.Query("tagId")
+	sortBy := c.Query("sort")
+	order := c.Query("order")
 
 	if tagIDStr != "" {
 		tagID, err := strconv.ParseUint(tagIDStr, 10, 64)
@@ -29,7 +31,7 @@ func (h *Handler) GetCards(c *gin.Context) {
 			common.Error(c, http.StatusBadRequest, "invalid tagId")
 			return
 		}
-		cards, err := h.svc.GetCardsByTagID(uint(tagID))
+		cards, err := h.svc.GetCardsByTagID(uint(tagID), sortBy, order)
 		if err != nil {
 			common.Error(c, http.StatusInternalServerError, err.Error())
 			return
@@ -39,7 +41,7 @@ func (h *Handler) GetCards(c *gin.Context) {
 	}
 
 	del := delStr == "true"
-	cards, err := h.svc.GetAllCards(del)
+	cards, err := h.svc.GetAllCards(del, sortBy, order)
 	if err != nil {
 		common.Error(c, http.StatusInternalServerError, err.Error())
 		return
