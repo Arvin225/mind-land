@@ -119,7 +119,7 @@ function ImageUploadDialog({ open, onClose, onConfirm }: ImageUploadDialogProps)
             onClick={handleClose}
         >
             <div
-                className="liquid-glass-strong rounded-2xl w-[480px] max-w-[90vw] overflow-hidden"
+                className="elevated-card rounded-2xl w-[480px] max-w-[90vw] overflow-hidden"
                 onClick={e => e.stopPropagation()}
             >
                 {/* 头部 */}

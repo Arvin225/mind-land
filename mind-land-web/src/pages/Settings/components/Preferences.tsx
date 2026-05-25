@@ -74,7 +74,7 @@ function Preferences() {
             role="switch"
             aria-checked={false}
             aria-label="使用 Enter 键开始新的一行"
-            className="relative w-11 h-6 bg-[--glass-highlight] rounded-full transition-colors cursor-pointer"
+            className="relative w-11 h-6 bg-[--hover] rounded-full transition-colors cursor-pointer"
           >
             <span className="absolute left-1 top-1 w-4 h-4 bg-[--foreground]/60 rounded-full transition-transform" />
           </button>

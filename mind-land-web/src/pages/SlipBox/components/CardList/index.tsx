@@ -108,7 +108,7 @@ function InlineEditor({
     )
 
     return (
-        <div className="liquid-glass-panel rounded-xl overflow-hidden">
+        <div className="surface-panel rounded-xl overflow-hidden">
             <EditorContent editor={editor} />
             <div className="flex items-center justify-between px-3 py-2">
                 <div className="flex items-center gap-1">
@@ -280,7 +280,7 @@ function CardList({ cards, onCardMenuClick, onCardUpdate }: CardListProps) {
             {cards.map(item => (
                 <div
                     key={item.id}
-                    className={editingCardId === item.id ? '' : 'liquid-glass-panel rounded-xl p-4 relative group'}
+                    className={editingCardId === item.id ? '' : 'surface-panel rounded-xl p-4 relative group'}
                     onDoubleClick={() => editingCardId !== item.id && handleDoubleClick(item)}
                     onContextMenu={(e) => { if (editingCardId !== item.id) handleContextMenu(item.id, e) }}
                 >
@@ -324,7 +324,7 @@ function CardList({ cards, onCardMenuClick, onCardUpdate }: CardListProps) {
                     />
                     {/* 菜单内容 */}
                     <div
-                        className="fixed z-[101] w-44 liquid-glass-strong rounded-xl py-2 shadow-xl overflow-auto scrollbar-auto-hide"
+                        className="fixed z-[101] w-44 elevated-card rounded-xl py-2 shadow-xl overflow-auto scrollbar-auto-hide"
                         style={{
                             ...(menuPosition.top !== null ? { top: menuPosition.top } : {}),
                             ...(menuPosition.bottom !== null ? { bottom: menuPosition.bottom } : {}),
@@ -377,7 +377,7 @@ function CardList({ cards, onCardMenuClick, onCardUpdate }: CardListProps) {
             {/* 查看详情弹窗 */}
             {detailCard && createPortal(
                 <div className="fixed inset-0 z-[200] flex items-center justify-center bg-black/40 backdrop-blur-sm" onClick={() => setDetailCard(null)}>
-                    <div className="liquid-glass-strong rounded-2xl p-6 w-[500px] max-w-[90vw] max-h-[80vh] overflow-auto" onClick={e => e.stopPropagation()}>
+                    <div className="elevated-card rounded-2xl p-6 w-[500px] max-w-[90vw] max-h-[80vh] overflow-auto" onClick={e => e.stopPropagation()}>
                         <div className="flex items-center justify-between mb-4">
                             <h3 className="text-[--foreground] font-medium">卡片详情</h3>
                             <button onClick={() => setDetailCard(null)} className="p-1 rounded-lg hover:bg-hover text-[--foreground]/40 hover:text-foreground/70 transition-colors">

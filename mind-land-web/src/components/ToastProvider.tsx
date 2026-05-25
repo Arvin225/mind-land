@@ -75,7 +75,7 @@ export const ToastProvider: React.FC<{ children: React.ReactNode }> = ({ childre
         {toasts.map((toast, i) => (
           <div
             key={toast.id}
-            className="liquid-glass-strong px-4 py-2.5 rounded-xl flex items-center gap-2.5 pointer-events-auto animate-toast-in"
+            className="elevated-card px-4 py-2.5 rounded-xl flex items-center gap-2.5 pointer-events-auto animate-toast-in"
             style={{ animationDelay: `${i * 60}ms` }}
           >
             <span style={{ color: colorMap[toast.type], fontSize: 14, fontWeight: 600 }}>

@@ -121,7 +121,7 @@ function List({ item: { id, name }, onNavigate }: { item: { id: number, name: st
             {contextMenu && (
                 <div
                     ref={contextRef}
-                    className="fixed z-50 w-36 rounded-xl border border-[--glass-border] bg-[--surface] shadow-xl overflow-hidden"
+                    className="fixed z-50 w-36 rounded-xl border border-[--border] bg-[--surface] shadow-xl overflow-hidden"
                     style={{
                         left: Math.min(contextMenu.x, window.innerWidth - 144),
                         top: Math.min(contextMenu.y, window.innerHeight - 80),
@@ -145,13 +145,13 @@ function List({ item: { id, name }, onNavigate }: { item: { id: number, name: st
             )}
             {open && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm" onClick={() => setOpen(false)}>
-                    <div className="liquid-glass-strong rounded-2xl p-6 w-80" onClick={e => e.stopPropagation()}>
+                    <div className="elevated-card rounded-2xl p-6 w-80" onClick={e => e.stopPropagation()}>
                         <h3 className="text-[--foreground] font-medium mb-4">编辑列表</h3>
                         <input
                             type="text"
                             value={editName}
                             onChange={e => setEditName(e.target.value)}
-                            className="w-full px-3 py-2 rounded-lg bg-[--input] text-[--foreground] text-sm border border-[--glass-border] outline-none focus:border-[#D4A574]/50 mb-4"
+                            className="w-full px-3 py-2 rounded-lg bg-[--input] text-[--foreground] text-sm border border-[--border] outline-none focus:border-[#D4A574]/50 mb-4"
                             autoFocus
                             onKeyDown={e => { if (e.key === 'Enter') saveEdit() }}
                         />
@@ -164,7 +164,7 @@ function List({ item: { id, name }, onNavigate }: { item: { id: number, name: st
             )}
             {deleteOpen && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm" onClick={() => setDeleteOpen(false)}>
-                    <div className="liquid-glass-strong rounded-2xl p-6 w-80" onClick={e => e.stopPropagation()}>
+                    <div className="elevated-card rounded-2xl p-6 w-80" onClick={e => e.stopPropagation()}>
                         <h3 className="text-[--foreground] font-medium mb-2">删除列表</h3>
                         <p className="text-[--foreground]/55 text-sm mb-4">删除列表 "{name}"？该列表下所有任务也将被删除。</p>
                         <div className="flex justify-end gap-2">

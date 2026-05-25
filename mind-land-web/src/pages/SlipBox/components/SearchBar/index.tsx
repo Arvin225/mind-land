@@ -20,7 +20,7 @@ function SearchBar({ onSearch }: { onSearch?: (value: string) => void }) {
                 value={value}
                 onChange={e => setValue(e.target.value)}
                 onKeyDown={handleKeyDown}
-                className="w-[218px] pl-9 pr-8 py-2 rounded-xl bg-[--input] text-sm text-[--foreground] placeholder:text-[--foreground]/30 border border-[--glass-border] outline-none focus:border-[#D4A574]/50 transition-colors"
+                className="w-[218px] pl-9 pr-8 py-2 rounded-xl bg-[--input] text-sm text-[--foreground] placeholder:text-[--foreground]/30 border border-[--border] outline-none focus:border-[#D4A574]/50 transition-colors"
             />
             {value && (
                 <button

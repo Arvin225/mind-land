@@ -98,7 +98,7 @@ function TiptapEditor({ inputSubmit, submitting }: TiptapEditorProps) {
     )
 
     return (
-        <div className="liquid-glass-panel rounded-xl overflow-hidden">
+        <div className="surface-panel rounded-xl overflow-hidden">
             <EditorContent editor={editor} />
             <div className="flex items-center justify-between px-3 py-2">
                 <div className="flex items-center gap-1">

@@ -108,7 +108,7 @@ function RightSider({ treeData, onSelect, selectedKey }: { treeData: TreeNode[],
     ]
 
     return (
-        <aside className="h-full w-full liquid-glass-panel rounded-xl py-3 px-2 scrollbar-auto-hide overflow-auto" role="tree" aria-label="标签导航">
+        <aside className="h-full w-full surface-panel rounded-xl py-3 px-2 scrollbar-auto-hide overflow-auto" role="tree" aria-label="标签导航">
             {rootNodes.map(node => (
                 <TreeItem
                     key={node.key}

@@ -36,7 +36,7 @@ function SortMenu({ onSelect }: { onSelect?: (key: string) => void }) {
             {open && (
                 <>
                     <div className="fixed inset-0 z-40" onClick={() => setOpen(false)} />
-                    <div className="absolute right-0 top-full mt-1 z-50 w-36 liquid-glass-strong rounded-xl py-2 shadow-xl">
+                    <div className="absolute right-0 top-full mt-1 z-50 w-36 elevated-card rounded-xl py-2 shadow-xl">
                         {sortOptions.map(option => (
                             <button
                                 key={option.key}

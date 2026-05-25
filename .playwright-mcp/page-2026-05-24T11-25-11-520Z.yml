@@ -1,0 +1,185 @@
+- generic:
+  - generic:
+    - generic:
+      - generic:
+        - complementary:
+          - generic:
+            - generic:
+              - img
+              - generic: Mind Land
+            - navigation:
+              - generic:
+                - generic:
+                  - button:
+                    - img
+                    - generic: Home
+              - generic:
+                - generic:
+                  - button:
+                    - img
+                    - generic: 待办
+                - generic:
+                  - button:
+                    - img
+                    - generic: 稿纸
+                - generic:
+                  - button:
+                    - img
+                    - generic: 脑图
+              - generic:
+                - generic:
+                  - button:
+                    - img
+                    - generic: 卡片笔记
+                - generic:
+                  - button:
+                    - img
+                    - generic: 日记
+                - generic:
+                  - button:
+                    - img
+                    - generic: 大纲笔记
+              - generic:
+                - generic:
+                  - button:
+                    - img
+                    - generic: 剪藏
+            - generic:
+              - button:
+                - img
+        - main:
+          - generic:
+            - heading [level=1]: 卡片笔记
+            - generic:
+              - button:
+                - img
+              - button:
+                - img
+              - button:
+                - img
+          - generic:
+            - generic:
+              - generic:
+                - generic:
+                  - generic:
+                    - generic:
+                      - navigation:
+                        - generic:
+                          - button [disabled]: 全部卡片
+                      - generic:
+                        - button:
+                          - img
+                    - generic:
+                      - generic:
+                        - img
+                        - textbox:
+                          - /placeholder: Ctrl+K
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - paragraph: 现在的想法是...
+                        - generic:
+                          - generic:
+                            - button:
+                              - img
+                            - button:
+                              - img
+                            - button:
+                              - img
+                            - button:
+                              - img
+                            - button:
+                              - img
+                            - button:
+                              - img
+                            - button:
+                              - img
+                          - button: 提交
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: 创建于 2026-05-19 08:55
+                            - generic:
+                              - button:
+                                - img
+                          - generic:
+                            - paragraph: "aksdlfa #asdas/zxcsdv"
+                        - generic:
+                          - generic:
+                            - generic: 创建于 2026-05-19 09:58
+                            - generic:
+                              - button:
+                                - img
+                          - generic:
+                            - paragraph: "#testTag/subTag"
+                        - generic:
+                          - generic:
+                            - generic: 创建于 2026-05-24 11:24
+                            - generic:
+                              - button:
+                                - img
+                          - generic:
+                            - paragraph: Updated card - edit test passed!
+                - generic:
+                  - generic:
+                    - tree:
+                      - generic:
+                        - treeitem [selected]:
+                          - generic: 全部卡片
+                      - generic:
+                        - treeitem [expanded]:
+                          - img
+                          - generic: 全部标签
+                        - group:
+                          - generic:
+                            - treeitem [expanded]:
+                              - img
+                              - generic:
+                                - generic:
+                                  - generic: asdas
+                                  - generic: "1"
+                            - group:
+                              - generic:
+                                - treeitem:
+                                  - generic:
+                                    - generic:
+                                      - generic: zxcsdv
+                                      - generic: "1"
+                          - generic:
+                            - treeitem [expanded]:
+                              - img
+                              - generic:
+                                - generic:
+                                  - generic: testTag
+                                  - generic: "1"
+                            - group:
+                              - generic:
+                                - treeitem:
+                                  - generic:
+                                    - generic:
+                                      - generic: subTag
+                                      - generic: "1"
+                          - generic:
+                            - treeitem [expanded]:
+                              - img
+                              - generic:
+                                - generic:
+                                  - generic: test
+                                  - generic: "1"
+                            - group:
+                              - generic:
+                                - treeitem:
+                                  - generic:
+                                    - generic:
+                                      - generic: review
+                                      - generic: "1"
+  - alertdialog "删除卡片" [ref=e462]:
+    - generic [ref=e463]:
+      - heading "删除卡片" [level=2] [ref=e464]
+      - paragraph [ref=e465]: 删除后卡片将移至回收站，可在回收站中恢复。 确定删除？
+    - generic [ref=e466]:
+      - button "取消" [active] [ref=e467]
+      - button "确定" [ref=e468]

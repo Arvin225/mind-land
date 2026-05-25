@@ -164,7 +164,7 @@ function Container() {
                 }}
             >
                 {/* Glass background */}
-                <div className="absolute inset-0 liquid-glass" />
+                <div className="absolute inset-0 surface-card" />
 
                 <div className="relative flex flex-col h-full py-4">
                     {/* Logo area */}

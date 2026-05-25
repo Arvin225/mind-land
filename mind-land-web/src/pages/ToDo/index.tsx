@@ -197,7 +197,7 @@ function ToDo() {
             </div>
 
             <div className="sticky bottom-0 pt-2">
-                <div className="liquid-glass-panel rounded-xl px-4 py-3 flex items-center gap-3">
+                <div className="surface-panel rounded-xl px-4 py-3 flex items-center gap-3">
                     <Plus className="w-4 h-4 text-[--foreground]/40 shrink-0" />
                     <input
                         type="text"

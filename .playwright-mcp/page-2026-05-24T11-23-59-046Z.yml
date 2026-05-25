@@ -1,0 +1,120 @@
+- generic [ref=e4]:
+  - complementary [ref=e5]:
+    - generic [ref=e7]:
+      - generic [ref=e8]:
+        - img [ref=e9]
+        - generic [ref=e11]: Mind Land
+      - navigation [ref=e12]:
+        - button "Home" [ref=e15] [cursor=pointer]:
+          - img [ref=e17]
+          - generic [ref=e20]: Home
+        - generic [ref=e21]:
+          - button "待办" [ref=e23] [cursor=pointer]:
+            - img [ref=e24]
+            - generic [ref=e27]: 待办
+          - button "稿纸" [ref=e29] [cursor=pointer]:
+            - img [ref=e30]
+            - generic [ref=e33]: 稿纸
+          - button "脑图" [ref=e35] [cursor=pointer]:
+            - img [ref=e36]
+            - generic [ref=e40]: 脑图
+        - generic [ref=e41]:
+          - button "卡片笔记" [active] [ref=e43] [cursor=pointer]:
+            - img [ref=e44]
+            - generic [ref=e48]: 卡片笔记
+          - button "日记" [ref=e50] [cursor=pointer]:
+            - img [ref=e51]
+            - generic [ref=e53]: 日记
+          - button "大纲笔记" [ref=e55] [cursor=pointer]:
+            - img [ref=e56]
+            - generic [ref=e59]: 大纲笔记
+        - button "剪藏" [ref=e62] [cursor=pointer]:
+          - img [ref=e63]
+          - generic [ref=e69]: 剪藏
+      - button "展开" [ref=e71] [cursor=pointer]:
+        - img [ref=e72]
+  - main [ref=e74]:
+    - generic [ref=e75]:
+      - heading "卡片笔记" [level=1] [ref=e183]
+      - generic [ref=e77]:
+        - button "搜索" [ref=e78] [cursor=pointer]:
+          - img [ref=e79]
+        - button "新建" [ref=e82] [cursor=pointer]:
+          - img [ref=e83]
+        - button "设置" [ref=e84] [cursor=pointer]:
+          - img [ref=e85]
+    - generic [ref=e184]:
+      - generic [ref=e185]:
+        - generic [ref=e186]:
+          - generic [ref=e187]:
+            - navigation [ref=e188]:
+              - button "全部卡片" [disabled] [ref=e190] [cursor=pointer]
+            - button "排序" [ref=e192]:
+              - img [ref=e193]
+          - generic [ref=e196]:
+            - img [ref=e197]
+            - textbox "搜索" [ref=e200]:
+              - /placeholder: Ctrl+K
+        - generic [ref=e201]:
+          - generic [ref=e203]:
+            - paragraph [ref=e206]: 现在的想法是...
+            - generic [ref=e207]:
+              - generic [ref=e208]:
+                - button "标签" [ref=e209]:
+                  - img [ref=e210]
+                - button "粗体" [ref=e214]:
+                  - img [ref=e215]
+                - button "下划线" [ref=e217]:
+                  - img [ref=e218]
+                - button "高亮" [ref=e220]:
+                  - img [ref=e221]
+                - button "无序列表" [ref=e225]:
+                  - img [ref=e226]
+                - button "有序列表" [ref=e227]:
+                  - img [ref=e228]
+                - button "插入图片" [ref=e232]:
+                  - img [ref=e233]
+              - button "提交" [ref=e237]
+          - generic [ref=e239]:
+            - generic [ref=e240]:
+              - generic [ref=e241]:
+                - generic [ref=e242]: 创建于 2026-05-19 08:55
+                - button "卡片菜单" [ref=e244]:
+                  - img [ref=e245]
+              - paragraph [ref=e250]: "aksdlfa #asdas/zxcsdv"
+            - generic [ref=e251]:
+              - generic [ref=e252]:
+                - generic [ref=e253]: 创建于 2026-05-19 09:58
+                - button "卡片菜单" [ref=e255]:
+                  - img [ref=e256]
+              - paragraph [ref=e261]: "#testTag/subTag"
+      - tree "标签导航" [ref=e264]:
+        - treeitem "全部卡片" [selected] [ref=e266] [cursor=pointer]:
+          - generic [ref=e267]: 全部卡片
+        - generic [ref=e268]:
+          - treeitem "全部标签" [expanded] [ref=e269] [cursor=pointer]:
+            - img [ref=e270]
+            - generic [ref=e272]: 全部标签
+          - group [ref=e273]:
+            - generic [ref=e274]:
+              - treeitem "asdas 1" [expanded] [ref=e275] [cursor=pointer]:
+                - img [ref=e276]
+                - generic [ref=e279]:
+                  - generic [ref=e280]: asdas
+                  - generic [ref=e281]: "1"
+              - group [ref=e282]:
+                - treeitem "zxcsdv 1" [ref=e284] [cursor=pointer]:
+                  - generic [ref=e286]:
+                    - generic [ref=e287]: zxcsdv
+                    - generic [ref=e288]: "1"
+            - generic [ref=e289]:
+              - treeitem "testTag 1" [expanded] [ref=e290] [cursor=pointer]:
+                - img [ref=e291]
+                - generic [ref=e294]:
+                  - generic [ref=e295]: testTag
+                  - generic [ref=e296]: "1"
+              - group [ref=e297]:
+                - treeitem "subTag 1" [ref=e299] [cursor=pointer]:
+                  - generic [ref=e301]:
+                    - generic [ref=e302]: subTag
+                    - generic [ref=e303]: "1"

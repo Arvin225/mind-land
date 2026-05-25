@@ -122,7 +122,7 @@ function ToDoItem({ item, tag, isDragging, onDragStart }: { item: ToDoItemType, 
             onContextMenu={handleContextMenu}
             onDragStart={handleDragStart}
             draggable={!del}
-            className={`liquid-glass-panel rounded-xl px-4 py-3 flex items-center gap-3 group cursor-pointer
+            className={`surface-panel rounded-xl px-4 py-3 flex items-center gap-3 group cursor-pointer
                 ${isDragging ? 'opacity-50' : ''}
                 ${del ? '' : 'cursor-default'}`}
         >

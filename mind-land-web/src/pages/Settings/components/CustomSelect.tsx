@@ -33,7 +33,7 @@ function CustomSelect({ value, options, onChange }: CustomSelectProps) {
         onClick={() => setOpen(!open)}
         aria-haspopup="listbox"
         aria-expanded={open}
-        className="appearance-none bg-[--input] border border-[--glass-border] text-[--foreground] text-sm rounded-lg px-4 py-2 pr-10 min-w-[140px] cursor-pointer hover:bg-glass-highlight transition-colors focus:outline-none focus:border-[rgba(212,165,116,0.4)] flex items-center justify-between"
+        className="appearance-none bg-[--input] border border-[--border] text-[--foreground] text-sm rounded-lg px-4 py-2 pr-10 min-w-[140px] cursor-pointer hover:bg-hover transition-colors focus:outline-none focus:border-[rgba(212,165,116,0.4)] flex items-center justify-between"
       >
         <span>{selectedLabel}</span>
         <ChevronDown
@@ -55,7 +55,7 @@ function CustomSelect({ value, options, onChange }: CustomSelectProps) {
               className={`w-full text-left px-4 py-2 text-sm transition-colors cursor-pointer ${
                 value === option.value
                   ? 'text-[#D4A574] bg-[rgba(212,165,116,0.08)]'
-                  : 'text-[--foreground]/80 hover:bg-glass'
+                  : 'text-[--foreground]/80 hover:bg-hover'
               }`}
             >
               {option.label}
