@@ -10,7 +10,7 @@ const Draft = lazy(() => import("@/pages/Draft"))
 const MindMap = lazy(() => import("@/pages/MindMap"))
 const SlipBox = lazy(() => import("@/pages/SlipBox"))
 const MarkList = lazy(() => import("@/pages/MarkList"))
-const Diary = lazy(() => import("@/pages/Diary"))
+import Diary from "@/pages/Diary"
 const Note = lazy(() => import("@/pages/Note"))
 
 const router = createBrowserRouter([
@@ -52,7 +52,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "/diary",
-                element: (<Suspense fallback={'加载中'}><Diary /></Suspense>)
+                element: <Diary />
             },
             {
                 path: "/note",

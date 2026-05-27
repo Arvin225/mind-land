@@ -8,6 +8,7 @@ import (
 	"github.com/glebarez/sqlite"
 	"gorm.io/gorm"
 
+	"mind-land-server/diary"
 	"mind-land-server/slipbox"
 	"mind-land-server/todo"
 	"mind-land-server/upload"
@@ -19,7 +20,7 @@ func main() {
 		panic("failed to connect database: " + err.Error())
 	}
 
-	if err := db.AutoMigrate(&slipbox.Card{}, &slipbox.Tag{}, &todo.List{}, &todo.Item{}); err != nil {
+	if err := db.AutoMigrate(&slipbox.Card{}, &slipbox.Tag{}, &todo.List{}, &todo.Item{}, &diary.DiaryEntry{}); err != nil {
 		panic("failed to auto migrate: " + err.Error())
 	}
 
@@ -68,6 +69,19 @@ func main() {
 
 		// Upload
 		api.POST("/upload", upload.HandleUpload)
+
+		// Diary
+		diarySvc := diary.NewService(db)
+		diaryH := diary.NewHandler(diarySvc)
+
+		dr := api.Group("/diary")
+		{
+			dr.GET("/entries", diaryH.GetEntries)
+			dr.GET("/entries/:id", diaryH.GetEntry)
+			dr.POST("/entries", diaryH.CreateEntry)
+			dr.PUT("/entries/:id", diaryH.UpdateEntry)
+			dr.DELETE("/entries/:id", diaryH.DeleteEntry)
+		}
 	}
 
 	// Serve uploaded files
