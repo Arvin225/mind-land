@@ -1,7 +1,8 @@
 import { useState, useRef, useCallback } from 'react'
 import { createPortal } from 'react-dom'
-import { Upload, Link, X, Image as ImageIcon, FileImage, Loader2 } from 'lucide-react'
+import { Upload, Link, X, FileImage, Loader2 } from 'lucide-react'
 import { uploadImage } from '@/apis/upload'
+import { toastError } from '@/components/ToastProvider'
 
 interface ImageUploadDialogProps {
     open: boolean
@@ -37,11 +38,11 @@ function ImageUploadDialog({ open, onClose, onConfirm }: ImageUploadDialogProps)
     const checkFileType = (file: File): boolean => {
         const allowedTypes = ['image/png', 'image/jpeg', 'image/gif', 'image/webp']
         if (!allowedTypes.includes(file.type)) {
-            alert('仅支持 PNG/JPEG/GIF/WebP 格式的图片')
+            toastError('仅支持 PNG/JPEG/GIF/WebP 格式的图片')
             return false
         }
         if (file.size > 10 * 1024 * 1024) {
-            alert('文件大小不能超过 10MB')
+            toastError('文件大小不能超过 10MB')
             return false
         }
         return true
@@ -86,10 +87,10 @@ function ImageUploadDialog({ open, onClose, onConfirm }: ImageUploadDialogProps)
                 onConfirm(res.result.url)
                 handleClose()
             } else {
-                alert(res.message || '上传失败')
+                toastError(res.message || '上传失败')
             }
         } catch (err) {
-            alert('上传失败，请检查网络连接')
+            toastError('上传失败，请检查网络连接')
         } finally {
             setUploading(false)
         }
@@ -99,7 +100,7 @@ function ImageUploadDialog({ open, onClose, onConfirm }: ImageUploadDialogProps)
         const trimmed = urlInput.trim()
         if (!trimmed) return
         if (!/^https?:\/\//.test(trimmed)) {
-            alert('仅支持 http/https 协议的图片 URL')
+            toastError('仅支持 http/https 协议的图片 URL')
             return
         }
         onConfirm(trimmed)

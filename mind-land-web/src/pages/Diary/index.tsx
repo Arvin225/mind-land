@@ -7,7 +7,7 @@ import { fetchEntries, createEntry } from "@/store/modules/diaryStore";
 
 export default function Diary() {
   const dispatch = useDispatch<AppDispatch>();
-  const { selectedId } = useSelector((s: RootState) => s.diary);
+  useSelector((s: RootState) => s.diary);
 
   useEffect(() => {
     dispatch(fetchEntries());

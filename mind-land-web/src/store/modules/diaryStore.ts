@@ -118,7 +118,7 @@ export function fetchEntries() {
 
 export function fetchMoreEntries() {
   return async (dispatch: AppDispatch, getState: () => any) => {
-    const { page, entries } = getState().diary;
+    const { page } = getState().diary;
     const nextPage = page + 1;
     try {
       const res = await getEntriesAPI(nextPage, 20);

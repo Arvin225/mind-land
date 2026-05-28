@@ -2,7 +2,6 @@ import { useCallback, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState, AppDispatch } from "@/store";
 import {
-  selectEntry,
   fetchMoreEntries,
   setSelectedEntry,
   setSelectedId,
@@ -13,7 +12,7 @@ import { SquarePen } from "lucide-react";
 
 export default function DiaryList({ onNew }: { onNew: () => void }) {
   const dispatch = useDispatch<AppDispatch>();
-  const { entries, loading, selectedId, hasMore, page } = useSelector(
+  const { entries, loading, selectedId, hasMore } = useSelector(
     (s: RootState) => s.diary
   );
 

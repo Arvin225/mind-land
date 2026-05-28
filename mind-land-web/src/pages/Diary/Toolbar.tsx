@@ -6,14 +6,7 @@ import {
   Bold, Italic, Underline, Strikethrough,
   List, ListOrdered, Image as ImageIcon,
 } from "lucide-react";
-import { useCallback } from "react";
-
-export default function Toolbar({ editor }: { editor: Editor }) {
-  const addImage = useCallback(() => {
-    const url = prompt("输入图片链接（或使用上传功能）");
-    if (url) editor.chain().focus().setImage({ src: url }).run();
-  }, [editor]);
-
+export default function Toolbar({ editor, onImageClick }: { editor: Editor; onImageClick: () => void }) {
   const btnClass = (active: boolean) =>
     `p-1.5 rounded text-sm transition-colors ${
       active
@@ -74,7 +67,7 @@ export default function Toolbar({ editor }: { editor: Editor }) {
       <span className="w-px h-4 bg-[--border] mx-1" />
 
       <div className="flex items-center gap-0.5">
-        <button onClick={addImage} className={btnClass(false)} title="插入图片"><ImageIcon size={14} /></button>
+        <button onClick={onImageClick} className={btnClass(false)} title="插入图片"><ImageIcon size={14} /></button>
       </div>
     </div>
   );

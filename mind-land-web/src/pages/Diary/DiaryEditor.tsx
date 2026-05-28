@@ -4,7 +4,6 @@ import {
   setEditMode,
   updateEntry,
   deleteEntry,
-  selectEntry,
 } from "@/store/modules/diaryStore";
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
@@ -17,6 +16,8 @@ import ImageExt from "@tiptap/extension-image";
 import { Trash2 } from "lucide-react";
 import { useCallback, useEffect, useState, useMemo } from "react";
 import Toolbar from "./Toolbar";
+import ImageUploadDialog from "@/pages/SlipBox/components/ImageUploadDialog";
+import { showConfirm } from "@/lib/confirm";
 
 function stripHtml(html: string): string {
   const div = document.createElement("div");
@@ -33,6 +34,7 @@ export default function DiaryEditor() {
   );
 
   const [saveStatus, setSaveStatus] = useState<"saved" | "saving" | "">("");
+  const [imageDialogOpen, setImageDialogOpen] = useState(false);
 
   const editor = useEditor({
     extensions: [
@@ -49,7 +51,7 @@ export default function DiaryEditor() {
     ],
     content: selectedEntry?.content || "",
     editable: editMode,
-    onUpdate: ({ editor: ed }) => {
+    onUpdate: () => {
       if (!selectedId) return;
       setSaveStatus("saving");
     },
@@ -90,9 +92,14 @@ export default function DiaryEditor() {
     dispatch(setEditMode(!editMode));
   }, [editMode, dispatch]);
 
-  const handleDelete = useCallback(() => {
+  const handleDelete = useCallback(async () => {
     if (!selectedId) return;
-    if (!confirm("确定删除这篇日记？")) return;
+    const ok = await showConfirm({
+      title: "删除日记",
+      description: "确定删除这篇日记？删除后不可恢复。",
+      confirmText: "删除",
+    });
+    if (!ok) return;
     dispatch(deleteEntry(selectedId));
   }, [selectedId, dispatch]);
 
@@ -273,13 +280,13 @@ export default function DiaryEditor() {
       <div className="flex items-center justify-between px-3 py-2 border-b border-[--border] shrink-0">
         <div className="flex items-center gap-3 relative">
           <span
-            className="text-xs text-[--foreground]/50 cursor-pointer hover:text-[--foreground] transition-colors select-none"
+            className="text-xs text-[--foreground]/50 cursor-pointer hover:text-[--foreground] transition-colors select-none ml-1"
             onClick={() => {
               if (showPicker) setShowPicker(false);
               else openPicker();
             }}
           >
-            ⏰ {displayDate} ▼
+            {displayDate}
           </span>
           {showPicker && (
             <div
@@ -488,7 +495,12 @@ export default function DiaryEditor() {
         </div>
       </div>
 
-      {editMode && editor && <Toolbar editor={editor} />}
+      {editMode && editor && <Toolbar editor={editor} onImageClick={() => setImageDialogOpen(true)} />}
+      <ImageUploadDialog
+        open={imageDialogOpen}
+        onClose={() => setImageDialogOpen(false)}
+        onConfirm={(url) => editor?.chain().focus().setImage({ src: url }).run()}
+      />
 
       <div className="flex-1 overflow-y-auto px-4 py-3">
         {editMode ? (
