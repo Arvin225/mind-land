@@ -17,8 +17,8 @@ export default function Toolbar({ editor }: { editor: Editor }) {
   const btnClass = (active: boolean) =>
     `p-1.5 rounded text-sm transition-colors ${
       active
-        ? "bg-[--foreground]/10 text-[--foreground]"
-        : "text-[--foreground]/50 hover:text-[--foreground] hover:bg-hover"
+        ? "bg-accent/10 text-accent"
+        : "text-[--foreground]/50 hover:text-[--foreground] hover:bg-accent/10"
     }`;
 
   return (

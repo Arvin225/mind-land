@@ -341,7 +341,7 @@ function CardList({ cards, onCardMenuClick, onCardUpdate }: CardListProps) {
                                         <button
                                             key={menuItem.key}
                                             onClick={() => handleMenuClick(menuItem, card)}
-                                            className={`w-full px-4 py-2 text-left text-sm transition-colors hover:bg-hover ${
+                                            className={`w-full px-4 py-2 rounded-lg text-left text-sm transition-colors hover:bg-hover ${
                                                 menuItem.key === 'delete' ? 'text-[#e47571]' : 'text-[--foreground]/70'
                                             }`}
                                         >

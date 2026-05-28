@@ -15,7 +15,7 @@ import Color from "@tiptap/extension-color";
 import TextAlign from "@tiptap/extension-text-align";
 import ImageExt from "@tiptap/extension-image";
 import { Trash2 } from "lucide-react";
-import { useCallback, useEffect, useState, useRef } from "react";
+import { useCallback, useEffect, useState, useMemo } from "react";
 import Toolbar from "./Toolbar";
 
 function stripHtml(html: string): string {
@@ -97,6 +97,7 @@ export default function DiaryEditor() {
   }, [selectedId, dispatch]);
 
   const [showPicker, setShowPicker] = useState(false);
+  const [showCalendar, setShowCalendar] = useState(false);
   const [overrideDate, setOverrideDate] = useState<string | null>(null);
 
   const baseDate = overrideDate
@@ -136,7 +137,87 @@ export default function DiaryEditor() {
     setShowPicker(true);
   }, [baseDate]);
 
-  const closePicker = useCallback(() => setShowPicker(false), []);
+  // Calendar state
+  const [viewMonth, setViewMonth] = useState(() => {
+    const d = baseDate;
+    return new Date(d.getFullYear(), d.getMonth(), 1);
+  });
+
+  // Reset viewMonth when picker opens
+  useEffect(() => {
+    if (showPicker) {
+      const d = baseDate;
+      setViewMonth(new Date(d.getFullYear(), d.getMonth(), 1));
+    }
+  }, [showPicker, baseDate]);
+
+  // Calendar grid generator
+  const calendarDays = useMemo(() => {
+    const year = viewMonth.getFullYear();
+    const month = viewMonth.getMonth();
+    const firstDay = new Date(year, month, 1).getDay(); // 0=Sun
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+    const daysInPrevMonth = new Date(year, month, 0).getDate();
+
+    const days: Array<{
+      day: number;
+      month: "prev" | "current" | "next";
+      dateStr: string;
+    }> = [];
+
+    // Previous month padding
+    for (let i = firstDay - 1; i >= 0; i--) {
+      const d = daysInPrevMonth - i;
+      const prevYear = month === 0 ? year - 1 : year;
+      const prevMonth = month === 0 ? 11 : month - 1;
+      days.push({
+        day: d,
+        month: "prev",
+        dateStr: `${prevYear}-${String(prevMonth + 1).padStart(2, "0")}-${String(d).padStart(2, "0")}`,
+      });
+    }
+
+    // Current month
+    for (let d = 1; d <= daysInMonth; d++) {
+      days.push({
+        day: d,
+        month: "current",
+        dateStr: `${year}-${String(month + 1).padStart(2, "0")}-${String(d).padStart(2, "0")}`,
+      });
+    }
+
+    // Next month padding (fill to 42 cells = 6 rows)
+    const remaining = 42 - days.length;
+    for (let d = 1; d <= remaining; d++) {
+      const nextYear = month === 11 ? year + 1 : year;
+      const nextMonth = month === 11 ? 0 : month + 1;
+      days.push({
+        day: d,
+        month: "next",
+        dateStr: `${nextYear}-${String(nextMonth + 1).padStart(2, "0")}-${String(d).padStart(2, "0")}`,
+      });
+    }
+
+    return days;
+  }, [viewMonth]);
+
+  const isToday = (dateStr: string) => {
+    const now = new Date();
+    const today = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;
+    return dateStr === today;
+  };
+
+  const closePicker = useCallback(() => {
+    setShowPicker(false);
+    setShowCalendar(false);
+  }, []);
+
+  const selectDate = (dateStr: string) => {
+    setDraft((prev) => ({ ...prev, date: dateStr }));
+    setShowCalendar(false);
+  };
+
+  const isSelected = (dateStr: string) => dateStr === draft.date;
 
   const applyPicker = useCallback(() => {
     const { date, hour, minute } = draft;
@@ -160,18 +241,18 @@ export default function DiaryEditor() {
     });
   }, []);
 
-  // Close picker on outside click
+  // Close calendar on outside click
   useEffect(() => {
-    if (!showPicker) return;
+    if (!showCalendar) return;
     const handler = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
-      if (!target.closest(".date-picker-popover")) {
-        setShowPicker(false);
+      if (!target.closest(".calendar-popover") && !target.closest(".date-input-trigger")) {
+        setShowCalendar(false);
       }
     };
     document.addEventListener("mousedown", handler);
     return () => document.removeEventListener("mousedown", handler);
-  }, [showPicker]);
+  }, [showCalendar]);
 
   const wordCount = editor
     ? stripHtml(editor.getHTML()).length
@@ -202,26 +283,111 @@ export default function DiaryEditor() {
           </span>
           {showPicker && (
             <div
-              className="date-picker-popover absolute top-7 left-0 z-50 bg-[--background]/100 border border-[--border] rounded-lg shadow-lg p-3 w-[260px] flex flex-col gap-2.5"
+              className="date-picker-popover absolute top-7 left-0 z-50 bg-surface border border-[--border] rounded-lg shadow-lg p-3 w-[280px] flex flex-col gap-2.5"
             >
               <div>
                 <label className="block text-[11px] text-[--foreground]/40 mb-1 tracking-wide">
                   日期
                 </label>
-                <div className="flex items-center gap-2">
-                  <input
-                    type="text"
-                    value={draft.date}
-                    onChange={(e) => setDraft({ ...draft, date: e.target.value })}
-                    placeholder="YYYY-MM-DD"
-                    className="flex-1 text-xs bg-[--background] border border-[--border] rounded px-2 py-1 text-[--foreground] focus:outline-none focus:ring-1 focus:ring-[--accent]"
-                  />
-                  <button
-                    onClick={setToday}
-                    className="text-[11px] px-2 py-1 rounded bg-[--foreground]/5 hover:bg-[--foreground]/10 text-[--foreground]/50 hover:text-[--foreground] transition-colors"
-                  >
-                    今天
-                  </button>
+                <div className="relative mb-2">
+                  <div className="flex items-center gap-2">
+                    <input
+                      type="text"
+                      value={draft.date}
+                      readOnly
+                      onClick={() => setShowCalendar(!showCalendar)}
+                      className="date-input-trigger flex-1 text-xs bg-[--background] border border-[--border] rounded px-2 py-1 text-[--foreground] focus:outline-none cursor-pointer"
+                    />
+                    <button
+                      onClick={setToday}
+                      className="text-[11px] px-2 py-1 rounded bg-accent/5 hover:bg-accent/10 text-[--foreground]/50 hover:text-[--foreground] transition-colors"
+                    >
+                      今天
+                    </button>
+                  </div>
+
+                  {showCalendar && (
+                    <div className="calendar-popover absolute top-full left-0 z-50 mt-1 bg-surface border border-[--border] rounded-md p-2 shadow-lg w-full">
+                      {/* Year / Month nav */}
+                      <div className="flex items-center justify-between mb-2">
+                        <div className="flex items-center gap-1">
+                          <button
+                            onClick={() => setViewMonth((prev) => new Date(prev.getFullYear() - 1, prev.getMonth(), 1))}
+                            className="p-0.5 rounded hover:bg-accent/10 text-[--foreground]/40 hover:text-[--foreground] transition-colors"
+                          >
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M15 18l-6-6 6-6"/></svg>
+                          </button>
+                          <span className="text-xs text-[--foreground]/70 min-w-[52px] text-center">
+                            {viewMonth.getFullYear()}年
+                          </span>
+                          <button
+                            onClick={() => setViewMonth((prev) => new Date(prev.getFullYear() + 1, prev.getMonth(), 1))}
+                            className="p-0.5 rounded hover:bg-accent/10 text-[--foreground]/40 hover:text-[--foreground] transition-colors"
+                          >
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M9 18l6-6-6-6"/></svg>
+                          </button>
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <button
+                            onClick={() => setViewMonth((prev) => new Date(prev.getFullYear(), prev.getMonth() - 1, 1))}
+                            className="p-0.5 rounded hover:bg-accent/10 text-[--foreground]/40 hover:text-[--foreground] transition-colors"
+                          >
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M15 18l-6-6 6-6"/></svg>
+                          </button>
+                          <span className="text-xs text-[--foreground]/70 min-w-[40px] text-center">
+                            {viewMonth.getMonth() + 1}月
+                          </span>
+                          <button
+                            onClick={() => setViewMonth((prev) => new Date(prev.getFullYear(), prev.getMonth() + 1, 1))}
+                            className="p-0.5 rounded hover:bg-accent/10 text-[--foreground]/40 hover:text-[--foreground] transition-colors"
+                          >
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M9 18l6-6-6-6"/></svg>
+                          </button>
+                        </div>
+                      </div>
+
+                      {/* Week headers */}
+                      <div className="grid grid-cols-7 mb-1">
+                        {['日', '一', '二', '三', '四', '五', '六'].map((d) => (
+                          <div key={d} className="text-[10px] text-[--foreground]/30 text-center py-0.5">
+                            {d}
+                          </div>
+                        ))}
+                      </div>
+
+                      {/* Date grid */}
+                      <div className="grid grid-cols-7 gap-0.5">
+                        {calendarDays.map((item, idx) => {
+                          const today = isToday(item.dateStr);
+                          const selected = isSelected(item.dateStr);
+                          const isCurrentMonth = item.month === 'current';
+                          return (
+                            <button
+                              key={idx}
+                              onClick={() => selectDate(item.dateStr)}
+                              className={`
+                                relative h-7 text-[11px] rounded transition-colors
+                                ${selected
+                                  ? 'bg-accent text-white'
+                                  : today
+                                    ? 'text-[--accent] font-medium'
+                                    : isCurrentMonth
+                                      ? 'text-[--foreground]/70 hover:bg-accent/10'
+                                      : 'text-[--foreground]/20 hover:bg-accent/5'
+                                }
+                              `}
+                            >
+                              {today && !selected ? (
+                                <span className="text-[10px]">今</span>
+                              ) : (
+                                item.day
+                              )}
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
               <div>
@@ -263,7 +429,7 @@ export default function DiaryEditor() {
               <div className="flex items-center justify-end gap-2 mt-0.5">
                 <button
                   onClick={closePicker}
-                  className="text-[11px] px-3 py-1.5 rounded bg-[--foreground]/5 hover:bg-[--foreground]/20 text-[--foreground]/50 hover:text-[--foreground] transition-all duration-150 hover:scale-[1.02]"
+                  className="text-[11px] px-3 py-1.5 rounded bg-accent/5 hover:bg-accent/15 text-[--foreground]/50 hover:text-[--foreground] transition-all duration-150 hover:scale-[1.02]"
                 >
                   取消
                 </button>
@@ -294,18 +460,23 @@ export default function DiaryEditor() {
         <div className="flex items-center gap-2">
           <button
             onClick={handleToggleEdit}
-            className={`relative w-16 h-7 rounded-full transition-colors duration-200 ${
+            className={`relative w-16 h-7 rounded-full transition-colors duration-200 overflow-hidden ${
               editMode
                 ? "bg-accent"
-                : "bg-[--foreground]/10"
+                : "bg-accent/15"
             }`}
             title={editMode ? "切换到阅读模式" : "切换到编辑模式"}
           >
             <span
-              className={`absolute top-0.5 left-0.5 w-6 h-6 rounded-full bg-white shadow transition-transform duration-200 ${
+              className={`absolute top-0.5 left-0.5 w-6 h-6 rounded-full bg-white shadow transition-transform duration-200 z-10 ${
                 editMode ? "translate-x-[34px]" : "translate-x-0"
               }`}
             />
+            <span className={`absolute inset-0 flex items-center text-[11px] font-medium ${
+              editMode ? "justify-start pl-2 text-white" : "justify-end pr-2 text-accent"
+            }`}>
+              {editMode ? "编辑" : "阅读"}
+            </span>
           </button>
           <button
             onClick={handleDelete}

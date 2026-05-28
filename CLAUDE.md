@@ -68,6 +68,46 @@ src/
 - **Styling:** Tailwind CSS 4 with `@tailwindcss/vite` plugin, `@/` path alias
 - **Editor:** TipTap (ProseMirror) with extensions: highlight, placeholder, task-list, underline
 
+### Background Colors — CRITICAL (Tailwind v4)
+
+**NEVER use `bg-[--background]` or `bg-[--foreground]` arbitrary values** for popovers, dropdowns, modals, or any absolute/fixed-position elements. CSS variable resolution via arbitrary value syntax is unreliable in Tailwind v4's JIT compiler.
+
+Instead, use the registered theme tokens:
+
+| ❌ Wrong | ✅ Correct |
+|---|---|
+| `bg-[--background]` | `bg-surface` (solid white/dark surface) |
+| `bg-[--foreground]` | `bg-foreground` |
+| `text-[--background]/50` | `text-background/50` |
+
+Available utility classes (from `@theme inline` in `index.css`):
+- `bg-background`, `bg-foreground`, `bg-surface`, `bg-surface-elevated`
+- `text-text-primary`, `text-text-secondary`, `text-text-muted`
+- `border-border`
+- Pre-built combo: `surface-card` (bg + border + shadow), `surface-panel`
+
+**Rule of thumb:** Always use `bg-surface` (not `bg-background`) for UI overlays — it guarantees an opaque, non-transparent background.
+
+### Hover & Selection Conventions
+
+**All interactive elements with hover/selection backgrounds MUST have `rounded-lg`.** This applies to:
+- Sidebar navigation items
+- Dropdown menu items (context menus, sort menus, select options)
+- List/card items with `hover:bg-hover`
+- Tab buttons, action buttons in toolbars
+
+Standard patterns:
+```tsx
+// Sidebar / list item
+className="px-3 py-2 rounded-lg hover:bg-hover transition-colors"
+
+// Menu item (in dropdown)
+className="w-full px-4 py-2 rounded-lg hover:bg-hover transition-colors"
+
+// Active/selected state
+className="bg-accent/10 text-accent"
+```
+
 ### Vite Proxy
 
 Dev server proxies `/api/*` → `http://localhost:3100/*` (strips `/api` prefix). Production expects backend on `:3100`.

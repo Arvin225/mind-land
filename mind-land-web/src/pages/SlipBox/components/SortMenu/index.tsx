@@ -41,7 +41,7 @@ function SortMenu({ onSelect }: { onSelect?: (key: string) => void }) {
                             <button
                                 key={option.key}
                                 onClick={() => handleSelect(option.key)}
-                                className={`w-full px-3 py-2 text-left text-xs transition-colors hover:bg-hover ${
+                                className={`w-full px-3 py-2 rounded-lg text-left text-xs transition-colors hover:bg-hover ${
                                     selected === option.key ? 'text-[#D4A574]' : 'text-[--foreground]/70'
                                 }`}
                             >

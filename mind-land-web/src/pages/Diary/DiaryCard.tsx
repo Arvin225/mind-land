@@ -23,8 +23,8 @@ export default function DiaryCard({ entry, date, selected, onClick }: DiaryCardP
     <div
       onClick={onClick}
       className={`
-        flex items-stretch gap-0 py-3 px-4 cursor-pointer select-none
-        transition-colors duration-150
+        flex items-stretch gap-0 py-4 px-4 rounded-lg cursor-pointer select-none
+        transition-colors duration-150 mx-4
         ${selected ? "bg-hover" : "hover:bg-hover"}
       `}
     >
@@ -42,9 +42,9 @@ export default function DiaryCard({ entry, date, selected, onClick }: DiaryCardP
         <span>{yi}</span>
       </div>
 
-      <div className="flex-1 min-w-0 flex items-center pl-2">
-        <p className="text-sm text-[--foreground]/70 leading-relaxed line-clamp-2">
-          {summary || "(空内容)"}
+      <div className="flex-1 min-w-0 flex items-start pl-4 pr-4">
+        <p className="text-sm text-[--foreground]/70 leading-relaxed whitespace-pre-wrap line-clamp-2">
+          {summary || ""}
         </p>
       </div>
     </div>

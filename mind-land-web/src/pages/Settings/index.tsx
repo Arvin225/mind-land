@@ -168,7 +168,7 @@ function Settings({ open, onClose }: SettingsProps) {
                     key={item.key}
                     onClick={() => setActiveKey(item.key)}
                     className={[
-                      'w-full flex items-center gap-3 px-4 py-2 text-sm transition-all duration-200 cursor-pointer',
+                      'w-full flex items-center gap-3 px-4 py-2 rounded-lg text-sm transition-all duration-200 cursor-pointer',
                       isActive
                         ? 'text-[#D4A574] bg-[rgba(212,165,116,0.08)]'
                         : 'text-[--foreground]/60 hover:text-foreground/90 hover:bg-hover',

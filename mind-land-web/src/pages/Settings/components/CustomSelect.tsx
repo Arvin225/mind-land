@@ -52,7 +52,7 @@ function CustomSelect({ value, options, onChange }: CustomSelectProps) {
                 onChange(option.value);
                 setOpen(false);
               }}
-              className={`w-full text-left px-4 py-2 text-sm transition-colors cursor-pointer ${
+              className={`w-full text-left px-4 py-2 rounded-lg text-sm transition-colors cursor-pointer ${
                 value === option.value
                   ? 'text-[#D4A574] bg-[rgba(212,165,116,0.08)]'
                   : 'text-[--foreground]/80 hover:bg-hover'

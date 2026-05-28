@@ -26,7 +26,7 @@ export function toWeekday(d: Date): [string, string] {
 }
 
 export function toDay(d: Date): string {
-  return `${d.getDate()}日`;
+  return `${d.getDate()}`;
 }
 
 export function toTime(d: Date): string {
