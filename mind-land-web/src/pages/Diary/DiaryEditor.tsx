@@ -36,6 +36,9 @@ export default function DiaryEditor() {
   const [saveStatus, setSaveStatus] = useState<"saved" | "saving" | "">("");
   const [imageDialogOpen, setImageDialogOpen] = useState(false);
 
+  // 回收站条目强制只读（必须在 useEditor 和 useEffect 之前，避免 TDZ）
+  const isTrashEntry = selectedEntry?.del === true;
+
   const editor = useEditor({
     extensions: [
       StarterKit,
@@ -52,21 +55,21 @@ export default function DiaryEditor() {
     content: selectedEntry?.content || "",
     editable: editMode,
     onUpdate: () => {
-      if (!selectedId) return;
+      if (!selectedId || isTrashEntry) return;
       setSaveStatus("saving");
     },
   });
 
-  // debounced auto-save
+  // debounced auto-save (skip for trash entries — read-only)
   useEffect(() => {
-    if (saveStatus !== "saving" || !editor || !selectedId) return;
+    if (saveStatus !== "saving" || !editor || !selectedId || isTrashEntry) return;
     const timer = setTimeout(() => {
       const html = editor.getHTML();
       dispatch(updateEntry(selectedId, html));
       setSaveStatus("saved");
     }, AUTO_SAVE_DELAY);
     return () => clearTimeout(timer);
-  }, [saveStatus, editor, selectedId, dispatch]);
+  }, [saveStatus, editor, selectedId, dispatch, isTrashEntry]);
 
   // reset save status when switching entries
   useEffect(() => {
@@ -88,6 +91,12 @@ export default function DiaryEditor() {
     }
   }, [editMode, editor]);
 
+  useEffect(() => {
+    if (isTrashEntry && editMode) {
+      dispatch(setEditMode(false));
+    }
+  }, [isTrashEntry, editMode, dispatch]);
+
   const handleToggleEdit = useCallback(() => {
     dispatch(setEditMode(!editMode));
   }, [editMode, dispatch]);
@@ -96,7 +105,7 @@ export default function DiaryEditor() {
     if (!selectedId) return;
     const ok = await showConfirm({
       title: "删除日记",
-      description: "确定删除这篇日记？删除后不可恢复。",
+      description: "确定删除这篇日记？删除后可在回收站恢复。",
       confirmText: "删除",
     });
     if (!ok) return;
@@ -280,7 +289,7 @@ export default function DiaryEditor() {
       <div className="flex items-center justify-between px-3 py-2 border-b border-[--border] shrink-0">
         <div className="flex items-center gap-3 relative">
           <span
-            className="text-xs text-[--foreground]/50 cursor-pointer hover:text-[--foreground] transition-colors select-none ml-1"
+            className="text-xs text-[--foreground]/50 cursor-pointer hover:text-[--foreground] hover:bg-hover rounded-lg px-1.5 py-0.5 -ml-0.5 transition-colors select-none"
             onClick={() => {
               if (showPicker) setShowPicker(false);
               else openPicker();
@@ -465,33 +474,37 @@ export default function DiaryEditor() {
           )}
         </div>
         <div className="flex items-center gap-2">
-          <button
-            onClick={handleToggleEdit}
-            className={`relative w-16 h-7 rounded-full transition-colors duration-200 overflow-hidden ${
-              editMode
-                ? "bg-accent"
-                : "bg-accent/15"
-            }`}
-            title={editMode ? "切换到阅读模式" : "切换到编辑模式"}
-          >
-            <span
-              className={`absolute top-0.5 left-0.5 w-6 h-6 rounded-full bg-white shadow transition-transform duration-200 z-10 ${
-                editMode ? "translate-x-[34px]" : "translate-x-0"
-              }`}
-            />
-            <span className={`absolute inset-0 flex items-center text-[11px] font-medium ${
-              editMode ? "justify-start pl-2 text-white" : "justify-end pr-2 text-accent"
-            }`}>
-              {editMode ? "编辑" : "阅读"}
-            </span>
-          </button>
-          <button
-            onClick={handleDelete}
-            className="p-1 rounded hover:bg-[--hover] text-[--foreground]/30 hover:text-red-500 transition-colors"
-            title="删除"
-          >
-            <Trash2 size={14} />
-          </button>
+          {!selectedEntry.del && (
+            <>
+              <button
+                onClick={handleToggleEdit}
+                className={`relative w-16 h-7 rounded-full transition-colors duration-200 overflow-hidden ${
+                  editMode
+                    ? "bg-accent"
+                    : "bg-accent/15"
+                }`}
+                title={editMode ? "切换到阅读模式" : "切换到编辑模式"}
+              >
+                <span
+                  className={`absolute top-0.5 left-0.5 w-6 h-6 rounded-full bg-white shadow transition-transform duration-200 z-10 ${
+                    editMode ? "translate-x-[34px]" : "translate-x-0"
+                  }`}
+                />
+                <span className={`absolute inset-0 flex items-center text-[11px] font-medium ${
+                  editMode ? "justify-start pl-2 text-white" : "justify-end pr-2 text-accent"
+                }`}>
+                  {editMode ? "编辑" : "阅读"}
+                </span>
+              </button>
+              <button
+                onClick={handleDelete}
+                className="p-1 rounded hover:bg-[--hover] text-[--foreground]/30 hover:text-red-500 transition-colors"
+                title="删除"
+              >
+                <Trash2 size={14} />
+              </button>
+            </>
+          )}
         </div>
       </div>
 
