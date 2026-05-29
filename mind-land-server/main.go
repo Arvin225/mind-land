@@ -76,8 +76,15 @@ func main() {
 
 		dr := api.Group("/diary")
 		{
+			// GET /entries — 内部按 ?trash=true 分发到 GetTrashEntries 或 GetEntries
 			dr.GET("/entries", diaryH.GetEntries)
 			dr.GET("/entries/:id", diaryH.GetEntry)
+
+			// 字面量路由必须在参数化路由之前 (否则 trash 被 :id 匹配)
+			dr.DELETE("/entries/trash", diaryH.EmptyTrash)
+
+			dr.PATCH("/entries/:id/restore", diaryH.RestoreEntry)
+			dr.DELETE("/entries/:id/permanent", diaryH.PermanentDelete)
 			dr.POST("/entries", diaryH.CreateEntry)
 			dr.PUT("/entries/:id", diaryH.UpdateEntry)
 			dr.DELETE("/entries/:id", diaryH.DeleteEntry)

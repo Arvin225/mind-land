@@ -5,6 +5,7 @@ interface DiaryCardProps {
   date: Date;
   selected: boolean;
   onClick: () => void;
+  onContextMenu?: (e: React.MouseEvent) => void;
 }
 
 function stripHtml(html: string): string {
@@ -13,7 +14,7 @@ function stripHtml(html: string): string {
   return div.textContent || div.innerText || "";
 }
 
-export default function DiaryCard({ entry, date, selected, onClick }: DiaryCardProps) {
+export default function DiaryCard({ entry, date, selected, onClick, onContextMenu }: DiaryCardProps) {
   const summary = stripHtml(entry.content).slice(0, 100);
   const day = toDay(date);
   const time = toTime(date);
@@ -22,6 +23,7 @@ export default function DiaryCard({ entry, date, selected, onClick }: DiaryCardP
   return (
     <div
       onClick={onClick}
+      onContextMenu={onContextMenu}
       className={`
         flex items-stretch gap-0 py-4 px-4 rounded-lg cursor-pointer select-none
         transition-colors duration-150 mx-4

@@ -7,6 +7,10 @@ import {
   createEntryAPI,
   updateEntryAPI,
   deleteEntryAPI,
+  getTrashEntriesAPI,
+  restoreEntryAPI,
+  permanentDeleteAPI,
+  emptyTrashAPI,
 } from "@/apis/diary";
 
 export interface DiaryState {
@@ -18,6 +22,11 @@ export interface DiaryState {
   page: number;
   total: number;
   hasMore: boolean;
+  trashMode: boolean;
+  trashEntries: DiaryEntry[];
+  trashPage: number;
+  trashTotal: number;
+  trashHasMore: boolean;
 }
 
 const initialState: DiaryState = {
@@ -29,6 +38,11 @@ const initialState: DiaryState = {
   page: 1,
   total: 0,
   hasMore: true,
+  trashMode: false,
+  trashEntries: [],
+  trashPage: 1,
+  trashTotal: 0,
+  trashHasMore: true,
 };
 
 const diaryStore = createSlice({
@@ -81,6 +95,43 @@ const diaryStore = createSlice({
         state.selectedEntry = action.payload;
       }
     },
+    setTrashEntries(state, action: PayloadAction<DiaryEntry[]>) {
+      state.trashEntries = action.payload;
+    },
+    appendTrashEntries(state, action: PayloadAction<DiaryEntry[]>) {
+      state.trashEntries = [...state.trashEntries, ...action.payload];
+    },
+    setTrashPage(state, action: PayloadAction<number>) {
+      state.trashPage = action.payload;
+      state.trashHasMore = state.trashEntries.length < state.trashTotal;
+    },
+    setTrashTotal(state, action: PayloadAction<number>) {
+      state.trashTotal = action.payload;
+      state.trashHasMore = state.trashEntries.length < action.payload;
+    },
+    removeTrashEntry(state, action: PayloadAction<number>) {
+      state.trashEntries = state.trashEntries.filter((e) => e.id !== action.payload);
+      if (state.selectedId === action.payload) {
+        state.selectedId = null;
+        state.selectedEntry = null;
+      }
+    },
+    setTrashMode(state, action: PayloadAction<boolean>) {
+      state.trashMode = action.payload;
+      if (action.payload) {
+        state.selectedId = null;
+        state.selectedEntry = null;
+        state.editMode = false;
+      }
+    },
+    clearTrash(state) {
+      state.trashEntries = [];
+      state.trashPage = 1;
+      state.trashTotal = 0;
+      state.trashHasMore = true;
+      state.selectedId = null;
+      state.selectedEntry = null;
+    },
   },
 });
 
@@ -96,6 +147,13 @@ export const {
   removeEntry,
   prependEntry,
   updateEntryInList,
+  setTrashEntries,
+  appendTrashEntries,
+  setTrashPage,
+  setTrashTotal,
+  removeTrashEntry,
+  setTrashMode,
+  clearTrash,
 } = diaryStore.actions;
 
 export function fetchEntries() {
@@ -185,6 +243,81 @@ export function deleteEntry(id: number) {
       }
     } catch (e) {
       console.error("删除日记失败", e);
+    }
+  };
+}
+
+export function fetchTrashEntries() {
+  return async (dispatch: AppDispatch) => {
+    dispatch(setLoading(true));
+    try {
+      const res = await getTrashEntriesAPI(1, 20);
+      if (res.code === 0 && res.result) {
+        dispatch(setTrashEntries(res.result.entries));
+        dispatch(setTrashTotal(res.result.total));
+        dispatch(setTrashPage(1));
+      }
+    } catch (e) {
+      console.error("获取回收站列表失败", e);
+    } finally {
+      dispatch(setLoading(false));
+    }
+  };
+}
+
+export function fetchMoreTrashEntries() {
+  return async (dispatch: AppDispatch, getState: () => any) => {
+    const { trashPage } = getState().diary;
+    const nextPage = trashPage + 1;
+    try {
+      const res = await getTrashEntriesAPI(nextPage, 20);
+      if (res.code === 0 && res.result) {
+        dispatch(appendTrashEntries(res.result.entries));
+        dispatch(setTrashTotal(res.result.total));
+        dispatch(setTrashPage(nextPage));
+      }
+    } catch (e) {
+      console.error("加载更多回收站条目失败", e);
+    }
+  };
+}
+
+export function restoreEntry(id: number) {
+  return async (dispatch: AppDispatch) => {
+    try {
+      const res = await restoreEntryAPI(id);
+      if (res.code === 0) {
+        dispatch(removeTrashEntry(id));
+        dispatch(fetchEntries());
+      }
+    } catch (e) {
+      console.error("恢复日记失败", e);
+    }
+  };
+}
+
+export function permanentDeleteEntry(id: number) {
+  return async (dispatch: AppDispatch) => {
+    try {
+      const res = await permanentDeleteAPI(id);
+      if (res.code === 0) {
+        dispatch(removeTrashEntry(id));
+      }
+    } catch (e) {
+      console.error("永久删除失败", e);
+    }
+  };
+}
+
+export function emptyTrash() {
+  return async (dispatch: AppDispatch) => {
+    try {
+      const res = await emptyTrashAPI();
+      if (res.code === 0) {
+        dispatch(clearTrash());
+      }
+    } catch (e) {
+      console.error("清空回收站失败", e);
     }
   };
 }

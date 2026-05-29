@@ -35,3 +35,19 @@ export function updateEntryAPI(id: number, content: string) {
 export function deleteEntryAPI(id: number) {
     return request.delete<any, Response<null>>(`diary/entries/${id}`)
 }
+
+export function getTrashEntriesAPI(page = 1, size = 20) {
+    return request.get<any, Response<PaginatedEntries>>('diary/entries', { params: { page, size, trash: true } })
+}
+
+export function restoreEntryAPI(id: number) {
+    return request.patch<any, Response<null>>(`diary/entries/${id}/restore`)
+}
+
+export function permanentDeleteAPI(id: number) {
+    return request.delete<any, Response<null>>(`diary/entries/${id}/permanent`)
+}
+
+export function emptyTrashAPI() {
+    return request.delete<any, Response<null>>('diary/entries/trash')
+}

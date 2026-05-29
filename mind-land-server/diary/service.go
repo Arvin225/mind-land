@@ -83,3 +83,46 @@ func (s *Service) UpdateEntry(id uint, content string) (*DiaryEntry, error) {
 func (s *Service) DeleteEntry(id uint) error {
 	return s.db.Model(&DiaryEntry{}).Where("id = ?", id).Update("del", true).Error
 }
+
+func (s *Service) GetTrashEntries(page, size int) (*PaginatedResult, error) {
+	if page < 1 {
+		page = 1
+	}
+	if size <= 0 {
+		size = DefaultPageSize
+	}
+
+	var total int64
+	if err := s.db.Model(&DiaryEntry{}).Where("del = ?", true).Count(&total).Error; err != nil {
+		return nil, err
+	}
+
+	var entries []DiaryEntry
+	offset := (page - 1) * size
+	if err := s.db.Where("del = ?", true).
+		Order("created_at DESC").
+		Offset(offset).
+		Limit(size).
+		Find(&entries).Error; err != nil {
+		return nil, err
+	}
+
+	return &PaginatedResult{
+		Entries: entries,
+		Total:   total,
+		Page:    page,
+		Size:    size,
+	}, nil
+}
+
+func (s *Service) RestoreEntry(id uint) error {
+	return s.db.Model(&DiaryEntry{}).Where("id = ?", id).Update("del", false).Error
+}
+
+func (s *Service) PermanentDelete(id uint) error {
+	return s.db.Delete(&DiaryEntry{}, id).Error
+}
+
+func (s *Service) EmptyTrash() error {
+	return s.db.Where("del = ?", true).Delete(&DiaryEntry{}).Error
+}
