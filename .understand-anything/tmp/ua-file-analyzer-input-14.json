@@ -1,0 +1,28 @@
+{
+  "projectRoot": "/root/mind-land",
+  "batchFiles": [
+    {
+      "path": "mind-land-web/public/index.html",
+      "language": "html",
+      "sizeLines": 43,
+      "fileCategory": "markup"
+    },
+    {
+      "path": "mind-land-web/public/manifest.json",
+      "language": "json",
+      "sizeLines": 25,
+      "fileCategory": "config"
+    },
+    {
+      "path": "mind-land-web/public/robots.txt",
+      "language": "txt",
+      "sizeLines": 3,
+      "fileCategory": "docs"
+    }
+  ],
+  "batchImportData": {
+    "mind-land-web/public/index.html": [],
+    "mind-land-web/public/manifest.json": [],
+    "mind-land-web/public/robots.txt": []
+  }
+}

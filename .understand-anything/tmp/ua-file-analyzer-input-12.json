@@ -1,0 +1,35 @@
+{
+  "projectRoot": "/root/mind-land",
+  "batchFiles": [
+    {
+      "path": "mind-land-server/README.md",
+      "language": "markdown",
+      "sizeLines": 84,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "mind-land-server/go.mod",
+      "language": "mod",
+      "sizeLines": 52,
+      "fileCategory": "config"
+    },
+    {
+      "path": "mind-land-server/go.sum",
+      "language": "sum",
+      "sizeLines": 118,
+      "fileCategory": "config"
+    },
+    {
+      "path": "mind-land-server/package.json",
+      "language": "json",
+      "sizeLines": 8,
+      "fileCategory": "config"
+    }
+  ],
+  "batchImportData": {
+    "mind-land-server/README.md": [],
+    "mind-land-server/go.mod": [],
+    "mind-land-server/go.sum": [],
+    "mind-land-server/package.json": []
+  }
+}

@@ -1,0 +1,450 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 8,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": "mind-land-web/src/App.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 19,
+      "nonEmptyLines": 17,
+      "functions": [
+        {
+          "name": "App",
+          "startLine": 7,
+          "endLine": 17,
+          "params": []
+        }
+      ],
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "mind-land-web/src/index.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 13,
+      "nonEmptyLines": 11,
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "mind-land-web/src/pages/Settings/components/CustomSelect.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 70,
+      "nonEmptyLines": 63,
+      "functions": [
+        {
+          "name": "CustomSelect",
+          "startLine": 15,
+          "endLine": 68,
+          "params": [
+            "{ value, options, onChange }"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "CustomSelect",
+          "callee": "useState",
+          "lineNumber": 16
+        },
+        {
+          "caller": "CustomSelect",
+          "callee": "useRef",
+          "lineNumber": 17
+        },
+        {
+          "caller": "CustomSelect",
+          "callee": "options.find",
+          "lineNumber": 18
+        },
+        {
+          "caller": "CustomSelect",
+          "callee": "useEffect",
+          "lineNumber": 20
+        },
+        {
+          "caller": "handleClickOutside",
+          "callee": "containerRef.current.contains",
+          "lineNumber": 22
+        },
+        {
+          "caller": "handleClickOutside",
+          "callee": "setOpen",
+          "lineNumber": 23
+        },
+        {
+          "caller": "CustomSelect",
+          "callee": "document.addEventListener",
+          "lineNumber": 26
+        },
+        {
+          "caller": "CustomSelect",
+          "callee": "document.removeEventListener",
+          "lineNumber": 27
+        },
+        {
+          "caller": "CustomSelect",
+          "callee": "setOpen",
+          "lineNumber": 33
+        },
+        {
+          "caller": "CustomSelect",
+          "callee": "options.map",
+          "lineNumber": 46
+        },
+        {
+          "caller": "CustomSelect",
+          "callee": "onChange",
+          "lineNumber": 52
+        },
+        {
+          "caller": "CustomSelect",
+          "callee": "setOpen",
+          "lineNumber": 53
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "mind-land-web/src/pages/Settings/components/Preferences.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 111,
+      "nonEmptyLines": 97,
+      "functions": [
+        {
+          "name": "Preferences",
+          "startLine": 24,
+          "endLine": 109,
+          "params": []
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "Preferences",
+          "callee": "useThemeStore",
+          "lineNumber": 25
+        },
+        {
+          "caller": "Preferences",
+          "callee": "themeOptions.map",
+          "lineNumber": 44
+        },
+        {
+          "caller": "Preferences",
+          "callee": "setTheme",
+          "lineNumber": 45
+        },
+        {
+          "caller": "Preferences",
+          "callee": "setFontSize",
+          "lineNumber": 56
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "mind-land-web/src/pages/Settings/index.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 198,
+      "nonEmptyLines": 183,
+      "functions": [
+        {
+          "name": "Settings",
+          "startLine": 38,
+          "endLine": 196,
+          "params": [
+            "{ open, onClose }"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "Settings",
+          "callee": "useState",
+          "lineNumber": 39
+        },
+        {
+          "caller": "Settings",
+          "callee": "useRef",
+          "lineNumber": 40
+        },
+        {
+          "caller": "Settings",
+          "callee": "useEffect",
+          "lineNumber": 42
+        },
+        {
+          "caller": "Settings",
+          "callee": "setTimeout",
+          "lineNumber": 46
+        },
+        {
+          "caller": "Settings",
+          "callee": "modalRef.current.querySelectorAll",
+          "lineNumber": 48
+        },
+        {
+          "caller": "Settings",
+          "callee": "focusable[0].focus",
+          "lineNumber": 52
+        },
+        {
+          "caller": "handleKeyDown",
+          "callee": "onClose",
+          "lineNumber": 59
+        },
+        {
+          "caller": "handleKeyDown",
+          "callee": "modalRef.current.querySelectorAll",
+          "lineNumber": 63
+        },
+        {
+          "caller": "handleKeyDown",
+          "callee": "modalRef.current.contains",
+          "lineNumber": 70
+        },
+        {
+          "caller": "handleKeyDown",
+          "callee": "e.preventDefault",
+          "lineNumber": 71
+        },
+        {
+          "caller": "handleKeyDown",
+          "callee": "last.focus",
+          "lineNumber": 72
+        },
+        {
+          "caller": "handleKeyDown",
+          "callee": "modalRef.current.contains",
+          "lineNumber": 75
+        },
+        {
+          "caller": "handleKeyDown",
+          "callee": "e.preventDefault",
+          "lineNumber": 76
+        },
+        {
+          "caller": "handleKeyDown",
+          "callee": "first.focus",
+          "lineNumber": 77
+        },
+        {
+          "caller": "Settings",
+          "callee": "document.addEventListener",
+          "lineNumber": 82
+        },
+        {
+          "caller": "Settings",
+          "callee": "document.removeEventListener",
+          "lineNumber": 84
+        },
+        {
+          "caller": "Settings",
+          "callee": "clearTimeout",
+          "lineNumber": 85
+        },
+        {
+          "caller": "Settings",
+          "callee": "menuGroups.map",
+          "lineNumber": 156
+        },
+        {
+          "caller": "Settings",
+          "callee": "group.items.map",
+          "lineNumber": 163
+        },
+        {
+          "caller": "Settings",
+          "callee": "setActiveKey",
+          "lineNumber": 169
+        },
+        {
+          "caller": "Settings",
+          "callee": "[\n                      'w-full flex items-center gap-3 px-4 py-2 text-sm transition-all duration-200 cursor-pointer',\n                      isActive\n                        ? 'text-[#D4A574] bg-[rgba(212,165,116,0.08)]'\n                        : 'text-[--foreground]/60 hover:text-foreground/90 hover:bg-hover',\n                    ].join",
+          "lineNumber": 170
+        },
+        {
+          "caller": "Settings",
+          "callee": "renderContent",
+          "lineNumber": 190
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "mind-land-web/src/router/index.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 65,
+      "nonEmptyLines": 61,
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "mind-land-web/src/store/index.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 18,
+      "nonEmptyLines": 15,
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "mind-land-web/src/store/modules/themeStore.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 93,
+      "nonEmptyLines": 83,
+      "functions": [
+        {
+          "name": "getResolvedTheme",
+          "startLine": 21,
+          "endLine": 26,
+          "params": [
+            "theme"
+          ]
+        },
+        {
+          "name": "applyTheme",
+          "startLine": 58,
+          "endLine": 65,
+          "params": [
+            "theme"
+          ]
+        },
+        {
+          "name": "applyFontSize",
+          "startLine": 67,
+          "endLine": 69,
+          "params": [
+            "size"
+          ]
+        },
+        {
+          "name": "initThemeListener",
+          "startLine": 73,
+          "endLine": 86,
+          "params": []
+        },
+        {
+          "name": "cleanupThemeListener",
+          "startLine": 88,
+          "endLine": 93,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "useThemeStore",
+          "line": 28,
+          "isDefault": false
+        },
+        {
+          "name": "initThemeListener",
+          "line": 73,
+          "isDefault": false
+        },
+        {
+          "name": "cleanupThemeListener",
+          "line": 88,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "getResolvedTheme",
+          "callee": "window.matchMedia",
+          "lineNumber": 23
+        },
+        {
+          "caller": "applyTheme",
+          "callee": "root.classList.add",
+          "lineNumber": 61
+        },
+        {
+          "caller": "applyTheme",
+          "callee": "root.classList.remove",
+          "lineNumber": 63
+        },
+        {
+          "caller": "initThemeListener",
+          "callee": "window.matchMedia",
+          "lineNumber": 75
+        },
+        {
+          "caller": "handler",
+          "callee": "useThemeStore.getState",
+          "lineNumber": 77
+        },
+        {
+          "caller": "handler",
+          "callee": "useThemeStore.setState",
+          "lineNumber": 80
+        },
+        {
+          "caller": "handler",
+          "callee": "applyTheme",
+          "lineNumber": 81
+        },
+        {
+          "caller": "initThemeListener",
+          "callee": "mediaQuery.addEventListener",
+          "lineNumber": 84
+        },
+        {
+          "caller": "initThemeListener",
+          "callee": "mediaQuery.removeEventListener",
+          "lineNumber": 85
+        },
+        {
+          "caller": "cleanupThemeListener",
+          "callee": "_mediaQueryCleanup",
+          "lineNumber": 90
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 3,
+        "functionCount": 5,
+        "classCount": 0
+      }
+    }
+  ]
+}

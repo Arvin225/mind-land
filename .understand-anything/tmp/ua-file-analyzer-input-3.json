@@ -1,0 +1,84 @@
+{
+  "projectRoot": "/root/mind-land",
+  "batchFiles": [
+    {
+      "path": "mind-land-server/common/response.go",
+      "language": "go",
+      "sizeLines": 40,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mind-land-server/main.go",
+      "language": "go",
+      "sizeLines": 94,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mind-land-server/slipbox/handler.go",
+      "language": "go",
+      "sizeLines": 176,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mind-land-server/slipbox/model.go",
+      "language": "go",
+      "sizeLines": 58,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mind-land-server/slipbox/service.go",
+      "language": "go",
+      "sizeLines": 910,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mind-land-server/todo/handler.go",
+      "language": "go",
+      "sizeLines": 179,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mind-land-server/todo/model.go",
+      "language": "go",
+      "sizeLines": 17,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mind-land-server/todo/service.go",
+      "language": "go",
+      "sizeLines": 95,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mind-land-server/upload/handler.go",
+      "language": "go",
+      "sizeLines": 85,
+      "fileCategory": "code"
+    }
+  ],
+  "batchImportData": {
+    "mind-land-server/common/response.go": [],
+    "mind-land-server/main.go": [
+      "mind-land-server/slipbox/handler.go",
+      "mind-land-server/slipbox/model.go",
+      "mind-land-server/slipbox/service.go",
+      "mind-land-server/todo/handler.go",
+      "mind-land-server/todo/model.go",
+      "mind-land-server/todo/service.go",
+      "mind-land-server/upload/handler.go"
+    ],
+    "mind-land-server/slipbox/handler.go": [
+      "mind-land-server/common/response.go"
+    ],
+    "mind-land-server/slipbox/model.go": [],
+    "mind-land-server/slipbox/service.go": [],
+    "mind-land-server/todo/handler.go": [
+      "mind-land-server/common/response.go"
+    ],
+    "mind-land-server/todo/model.go": [],
+    "mind-land-server/todo/service.go": [],
+    "mind-land-server/upload/handler.go": [
+      "mind-land-server/common/response.go"
+    ]
+  }
+}

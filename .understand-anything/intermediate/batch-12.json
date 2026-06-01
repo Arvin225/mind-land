@@ -1,0 +1,70 @@
+{
+  "nodes": [
+    {
+      "id": "file:mind-land-server/README.md",
+      "type": "file",
+      "name": "README.md",
+      "filePath": "mind-land-server/README.md",
+      "summary": "mind-land-server 后端服务的项目文档，概述了 Go + Gin + GORM + SQLite 技术栈、快速启动命令、项目目录结构（main.go、slipbox/、todo/ 子包）、完整的 SlipBox 和 ToDo API 路由表、生产部署方式（编译为单一二进制并内嵌前端静态文件）以及 MIT 协议信息。",
+      "tags": ["documentation", "readme", "backend", "go", "api-reference"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:mind-land-server/go.mod",
+      "type": "file",
+      "name": "go.mod",
+      "filePath": "mind-land-server/go.mod",
+      "summary": "Go 模块定义文件，模块名为 mind-land-server，使用 Go 1.26.2。声明了五个直接依赖：gin-gonic/gin（HTTP 路由）、gin-contrib/cors（跨域中间件）、glebarez/sqlite（纯 Go SQLite 驱动）、gorm.io/gorm（ORM 框架）、golang.org/x/net（网络库），以及约 30 个间接依赖。",
+      "tags": ["go-module", "dependency", "config", "backend"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:mind-land-server/go.sum",
+      "type": "file",
+      "name": "go.sum",
+      "filePath": "mind-land-server/go.sum",
+      "summary": "Go 依赖锁文件，记录了 go.mod 中所有直接和间接依赖的模块版本哈希值，用于确保可重复构建。包含 gin、gorm、sqlite、sonic、quic-go 等库的校验和。",
+      "tags": ["go-module", "checksum", "lock-file", "config"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:mind-land-server/package.json",
+      "type": "file",
+      "name": "package.json",
+      "filePath": "mind-land-server/package.json",
+      "summary": "存放在服务器目录的 Node.js 配置文件，声明了 dompurify（HTML 净化库）作为运行时依赖，以及 @types/dompurify 作为类型定义开发依赖，用于在服务端进行 HTML 消毒处理。",
+      "tags": ["config", "npm", "dompurify", "sanitization"],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:mind-land-server/go.mod",
+      "target": "file:mind-land-server/go.sum",
+      "type": "locked-by",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-server/go.mod",
+      "target": "file:mind-land-server/README.md",
+      "type": "described-by",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:mind-land-server/README.md",
+      "target": "file:mind-land-server/go.mod",
+      "type": "references",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:mind-land-server/go.mod",
+      "target": "file:mind-land-server/package.json",
+      "type": "co-located",
+      "direction": "undirected",
+      "weight": 0.5
+    }
+  ]
+}

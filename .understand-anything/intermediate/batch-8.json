@@ -1,0 +1,349 @@
+{
+  "nodes": [
+    {
+      "id": ".playwright-mcp/page-2026-05-17T15-54-46-909Z.yml",
+      "type": "file",
+      "title": "Playwright 页面快照 - 卡片笔记页面（含编辑器与测试卡片）",
+      "description": "Playwright MCP 浏览器自动化快照，记录了 Mind Land 卡片笔记页面。导航栏「卡片笔记」高亮，左侧标签导航树含「全部卡片」和「全部标签」。顶部有搜索/新建/设置按钮，编辑器区域含格式工具栏（标签、粗体、下划线、高亮、无序列表、有序列表、插入图片）和提交按钮。下方展示一张卡片「Test card content for testing」。",
+      "tags": ["Playwright", "页面快照", "卡片笔记", "编辑器", "测试数据"],
+      "metrics": {
+        "totalLines": 89,
+        "nonEmptyLines": 89,
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 1
+      }
+    },
+    {
+      "id": ".playwright-mcp/page-2026-05-17T15-57-21-719Z.yml",
+      "type": "file",
+      "title": "Playwright 页面快照 - 待办页面（含任务数据）",
+      "description": "Playwright MCP 浏览器自动化快照，记录了 Mind Land 待办页面。导航栏「待办」高亮，主内容区显示「全部」列表标题和数量标记 (2)，列表中有两个待办任务「Test A」和「Test B」（均属于 QA Test List），每项含拖动排序按钮、完成复选框和星标按钮。底部有任务添加输入框。",
+      "tags": ["Playwright", "页面快照", "待办", "任务列表", "QA 测试"],
+      "metrics": {
+        "totalLines": 71,
+        "nonEmptyLines": 71,
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 1
+      }
+    },
+    {
+      "id": ".playwright-mcp/page-2026-05-17T16-04-46-926Z.yml",
+      "type": "file",
+      "title": "Playwright 页面快照 - 空快照",
+      "description": "Playwright MCP 浏览器自动化生成的空白页面快照，仅 1 行且无有效内容，可能对应页面加载未完成或导航出错的状态。",
+      "tags": ["Playwright", "页面快照", "空快照", "浏览器自动化"],
+      "metrics": {
+        "totalLines": 1,
+        "nonEmptyLines": 0,
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 0
+      }
+    },
+    {
+      "id": ".playwright-mcp/page-2026-05-17T16-05-39-165Z.yml",
+      "type": "file",
+      "title": "Playwright 页面快照 - 待办页面（含具体任务内容）",
+      "description": "Playwright MCP 浏览器自动化快照，记录了 Mind Land 待办页面。导航栏「待办」高亮，主内容区显示「全部」列表和数量标记 (2)，两个待办任务「Test A」和「Test B」均归属于「QA Test List」。每项任务提供拖动排序按钮、完成复选框、编辑输入框和星标按钮，底部有任务添加输入框。",
+      "tags": ["Playwright", "页面快照", "待办", "任务列表", "QA Test List"],
+      "metrics": {
+        "totalLines": 71,
+        "nonEmptyLines": 71,
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 1
+      }
+    },
+    {
+      "id": ".playwright-mcp/page-2026-05-17T16-13-31-872Z.yml",
+      "type": "file",
+      "title": "Playwright 页面快照 - 空快照",
+      "description": "Playwright MCP 浏览器自动化生成的空白页面快照，仅 1 行且无有效内容，可能对应页面加载未完成或导航出错的状态。",
+      "tags": ["Playwright", "页面快照", "空快照", "浏览器自动化"],
+      "metrics": {
+        "totalLines": 1,
+        "nonEmptyLines": 0,
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 0
+      }
+    },
+    {
+      "id": ".playwright-mcp/page-2026-05-17T16-14-57-741Z.yml",
+      "type": "file",
+      "title": "Playwright 页面快照 - 初始加载",
+      "description": "Playwright MCP 浏览器自动化生成的简约页面快照，仅包含 'Mind Land' 品牌文字节点，对应页面初始加载阶段，应用壳层尚未完成渲染。",
+      "tags": ["Playwright", "页面快照", "初始加载", "Mind Land"],
+      "metrics": {
+        "totalLines": 1,
+        "nonEmptyLines": 1,
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 1
+      }
+    },
+    {
+      "id": ".playwright-mcp/page-2026-05-17T16-15-04-512Z.yml",
+      "type": "file",
+      "title": "Playwright 页面快照 - 待办页面（任务数据加载完成）",
+      "description": "Playwright MCP 浏览器自动化快照，记录了 Mind Land 待办页面。导航栏「待办」高亮，侧边栏处于展开状态（待办列表含「待办」和「QA Test List」入口），主内容区显示两个待办任务「Test B」和「Test A」，均归属于 QA Test List。每项含拖动排序、完成复选框、内容输入框和星标按钮，底部有任务添加输入框。",
+      "tags": ["Playwright", "页面快照", "待办", "任务列表", "QA Test List"],
+      "metrics": {
+        "totalLines": 71,
+        "nonEmptyLines": 71,
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 1
+      }
+    },
+    {
+      "id": ".playwright-mcp/page-2026-05-17T16-16-27-803Z.yml",
+      "type": "file",
+      "title": "Playwright 页面快照 - 首页（加载中）",
+      "description": "Playwright MCP 浏览器自动化快照，记录了 Mind Land 首页的加载状态。页面骨架已渲染（顶部导航栏、搜索/新建/设置按钮可见），但主内容区仅显示「加载中」字样，页面数据尚未加载完成。",
+      "tags": ["Playwright", "页面快照", "首页", "加载中", "骨架屏"],
+      "metrics": {
+        "totalLines": 46,
+        "nonEmptyLines": 46,
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 1
+      }
+    },
+    {
+      "id": ".playwright-mcp/page-2026-05-17T16-20-17-264Z.yml",
+      "type": "file",
+      "title": "Playwright 页面快照 - 初始加载",
+      "description": "Playwright MCP 浏览器自动化生成的简约页面快照，仅包含 'Mind Land' 品牌文字节点，对应页面初始加载阶段，应用壳层尚未完成渲染。",
+      "tags": ["Playwright", "页面快照", "初始加载", "Mind Land"],
+      "metrics": {
+        "totalLines": 1,
+        "nonEmptyLines": 1,
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 1
+      }
+    },
+    {
+      "id": ".playwright-mcp/page-2026-05-17T16-26-10-859Z.yml",
+      "type": "file",
+      "title": "Playwright 页面快照 - 初始加载（图片元素）",
+      "description": "Playwright MCP 浏览器自动化生成的简约页面快照，仅包含一个 img 元素节点，对应页面加载早期阶段，仅渲染了图片元素。",
+      "tags": ["Playwright", "页面快照", "初始加载", "图片"],
+      "metrics": {
+        "totalLines": 1,
+        "nonEmptyLines": 1,
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 1
+      }
+    },
+    {
+      "id": ".playwright-mcp/page-2026-05-17T16-58-02-385Z.yml",
+      "type": "file",
+      "title": "Playwright 页面快照 - 初始加载",
+      "description": "Playwright MCP 浏览器自动化生成的简约页面快照，仅包含 'Mind Land' 品牌文字节点，对应页面初始加载阶段，应用壳层尚未完成渲染。",
+      "tags": ["Playwright", "页面快照", "初始加载", "Mind Land"],
+      "metrics": {
+        "totalLines": 1,
+        "nonEmptyLines": 1,
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 1
+      }
+    },
+    {
+      "id": ".playwright-mcp/page-2026-05-17T17-02-49-128Z.yml",
+      "type": "file",
+      "title": "Playwright 页面快照 - 初始加载",
+      "description": "Playwright MCP 浏览器自动化生成的简约页面快照，仅包含 'Mind Land' 品牌文字节点，对应页面初始加载阶段，应用壳层尚未完成渲染。",
+      "tags": ["Playwright", "页面快照", "初始加载", "Mind Land"],
+      "metrics": {
+        "totalLines": 1,
+        "nonEmptyLines": 1,
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 1
+      }
+    },
+    {
+      "id": ".playwright-mcp/page-2026-05-17T17-14-21-742Z.yml",
+      "type": "file",
+      "title": "Playwright 页面快照 - 空快照",
+      "description": "Playwright MCP 浏览器自动化生成的空白页面快照，仅 1 行且无有效内容，可能对应页面加载未完成或导航出错的状态。",
+      "tags": ["Playwright", "页面快照", "空快照", "浏览器自动化"],
+      "metrics": {
+        "totalLines": 1,
+        "nonEmptyLines": 0,
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 0
+      }
+    },
+    {
+      "id": ".playwright-mcp/page-2026-05-17T17-23-12-015Z.yml",
+      "type": "file",
+      "title": "Playwright 页面快照 - 空快照",
+      "description": "Playwright MCP 浏览器自动化生成的空白页面快照，仅 1 行且无有效内容，可能对应页面加载未完成或导航出错的状态。",
+      "tags": ["Playwright", "页面快照", "空快照", "浏览器自动化"],
+      "metrics": {
+        "totalLines": 1,
+        "nonEmptyLines": 0,
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 0
+      }
+    },
+    {
+      "id": ".playwright-mcp/page-2026-05-17T17-23-33-516Z.yml",
+      "type": "file",
+      "title": "Playwright 页面快照 - 空快照",
+      "description": "Playwright MCP 浏览器自动化生成的空白页面快照，仅 1 行且无有效内容，可能对应页面加载未完成或导航出错的状态。",
+      "tags": ["Playwright", "页面快照", "空快照", "浏览器自动化"],
+      "metrics": {
+        "totalLines": 1,
+        "nonEmptyLines": 0,
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 0
+      }
+    },
+    {
+      "id": ".playwright-mcp/page-2026-05-19T08-15-17-920Z.yml",
+      "type": "file",
+      "title": "Playwright 页面快照 - 空快照",
+      "description": "Playwright MCP 浏览器自动化生成的空白页面快照，仅 1 行且无有效内容，可能对应页面加载未完成或导航出错的状态。",
+      "tags": ["Playwright", "页面快照", "空快照", "浏览器自动化"],
+      "metrics": {
+        "totalLines": 1,
+        "nonEmptyLines": 0,
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 0
+      }
+    },
+    {
+      "id": ".playwright-mcp/page-2026-05-19T08-16-14-549Z.yml",
+      "type": "file",
+      "title": "Playwright 页面快照 - 初始加载",
+      "description": "Playwright MCP 浏览器自动化生成的简约页面快照，仅包含 'Mind Land' 品牌文字节点，对应页面初始加载阶段，应用壳层尚未完成渲染。",
+      "tags": ["Playwright", "页面快照", "初始加载", "Mind Land"],
+      "metrics": {
+        "totalLines": 1,
+        "nonEmptyLines": 1,
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 1
+      }
+    },
+    {
+      "id": ".playwright-mcp/page-2026-05-19T08-18-17-363Z.yml",
+      "type": "file",
+      "title": "Playwright 页面快照 - 卡片笔记页面（加载中）",
+      "description": "Playwright MCP 浏览器自动化快照，记录了 Mind Land 卡片笔记页面的加载状态。页面骨架已渲染（顶部导航栏、搜索/新建/设置按钮可见），但主内容区仅显示「加载中」字样，卡片数据尚未加载完成。",
+      "tags": ["Playwright", "页面快照", "卡片笔记", "加载中", "骨架屏"],
+      "metrics": {
+        "totalLines": 46,
+        "nonEmptyLines": 46,
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 1
+      }
+    },
+    {
+      "id": ".playwright-mcp/page-2026-05-19T08-18-28-154Z.yml",
+      "type": "file",
+      "title": "Playwright 页面快照 - 卡片笔记页面（含编辑器与空状态）",
+      "description": "Playwright MCP 浏览器自动化快照，记录了 Mind Land 卡片笔记页面。导航栏「卡片笔记」高亮，左侧标签导航树含「全部卡片」（已选）和「全部标签」。编辑器区域含占位文案「现在的想法是...」和完整格式工具栏（标签、粗体、下划线、高亮、列表、插入图片、提交按钮），下方显示空状态提示「暂无卡片」和「在上方编辑器中创建你的第一张卡片笔记」。",
+      "tags": ["Playwright", "页面快照", "卡片笔记", "编辑器", "空状态"],
+      "metrics": {
+        "totalLines": 86,
+        "nonEmptyLines": 86,
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 1
+      }
+    },
+    {
+      "id": ".playwright-mcp/page-2026-05-19T08-34-57-878Z.yml",
+      "type": "file",
+      "title": "Playwright 页面快照 - 首页（加载完成）",
+      "description": "Playwright MCP 浏览器自动化快照，记录了 Mind Land 首页完整加载后的状态。顶部导航栏（Home、待办、稿纸、脑图、卡片笔记、日记、大纲笔记、剪藏）和搜索/新建/设置按钮可见。主内容区显示首页标题和描述文字「个人知识管理仪表板。在这里查看最近的笔记、待办事项和活动概览。」，底部显示「Coming soon」标示首页功能尚未实现。",
+      "tags": ["Playwright", "页面快照", "首页", "加载完成", "Coming soon"],
+      "metrics": {
+        "totalLines": 50,
+        "nonEmptyLines": 50,
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 1
+      }
+    }
+  ],
+  "edges": [],
+  "filesAnalyzed": [
+    ".playwright-mcp/page-2026-05-17T15-54-46-909Z.yml",
+    ".playwright-mcp/page-2026-05-17T15-57-21-719Z.yml",
+    ".playwright-mcp/page-2026-05-17T16-04-46-926Z.yml",
+    ".playwright-mcp/page-2026-05-17T16-05-39-165Z.yml",
+    ".playwright-mcp/page-2026-05-17T16-13-31-872Z.yml",
+    ".playwright-mcp/page-2026-05-17T16-14-57-741Z.yml",
+    ".playwright-mcp/page-2026-05-17T16-15-04-512Z.yml",
+    ".playwright-mcp/page-2026-05-17T16-16-27-803Z.yml",
+    ".playwright-mcp/page-2026-05-17T16-20-17-264Z.yml",
+    ".playwright-mcp/page-2026-05-17T16-26-10-859Z.yml",
+    ".playwright-mcp/page-2026-05-17T16-58-02-385Z.yml",
+    ".playwright-mcp/page-2026-05-17T17-02-49-128Z.yml",
+    ".playwright-mcp/page-2026-05-17T17-14-21-742Z.yml",
+    ".playwright-mcp/page-2026-05-17T17-23-12-015Z.yml",
+    ".playwright-mcp/page-2026-05-17T17-23-33-516Z.yml",
+    ".playwright-mcp/page-2026-05-19T08-15-17-920Z.yml",
+    ".playwright-mcp/page-2026-05-19T08-16-14-549Z.yml",
+    ".playwright-mcp/page-2026-05-19T08-18-17-363Z.yml",
+    ".playwright-mcp/page-2026-05-19T08-18-28-154Z.yml",
+    ".playwright-mcp/page-2026-05-19T08-34-57-878Z.yml"
+  ],
+  "filesSkipped": [],
+  "importEdgesEmitted": 0
+}

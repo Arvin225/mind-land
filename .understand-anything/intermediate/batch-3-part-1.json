@@ -1,0 +1,1436 @@
+{
+  "nodes": [
+    {
+      "id": "file:mind-land-server/common/response.go",
+      "type": "file",
+      "name": "response.go",
+      "filePath": "mind-land-server/common/response.go",
+      "summary": "定义统一的 JSON 响应结构体（ResponseBody、ErrorResult）以及 Success 和 Error 两个辅助函数，给所有 HTTP handler 使用。",
+      "tags": ["response-format", "utility", "api-handler"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:mind-land-server/common/response.go:ResponseBody",
+      "type": "class",
+      "name": "ResponseBody",
+      "filePath": "mind-land-server/common/response.go",
+      "lineRange": [10, 14],
+      "summary": "通用成功响应体，包含 Code、Message 和 Result 三个字段。",
+      "tags": ["response-format", "json-serialization"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:mind-land-server/common/response.go:ErrorResult",
+      "type": "class",
+      "name": "ErrorResult",
+      "filePath": "mind-land-server/common/response.go",
+      "lineRange": [16, 20],
+      "summary": "错误详情结构体，包含 Status、Path 和 Timestamp 字段，用于标准化错误响应。",
+      "tags": ["response-format", "error-handling"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mind-land-server/common/response.go:Success",
+      "type": "function",
+      "name": "Success",
+      "filePath": "mind-land-server/common/response.go",
+      "lineRange": [22, 28],
+      "summary": "发送 HTTP 200 成功响应，内部包装为 ResponseBody 格式。",
+      "tags": ["response-format", "helper"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mind-land-server/common/response.go:Error",
+      "type": "function",
+      "name": "Error",
+      "filePath": "mind-land-server/common/response.go",
+      "lineRange": [30, 40],
+      "summary": "发送错误响应，自动记录请求路径和时间戳到 ErrorResult 中。",
+      "tags": ["response-format", "error-handling"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:mind-land-server/main.go",
+      "type": "file",
+      "name": "main.go",
+      "filePath": "mind-land-server/main.go",
+      "summary": "Go 后端入口点，初始化 SQLite 数据库（GORM 自动迁移），注册 Gin 路由（SlipBox、Todo、Upload 模块），配置 CORS 和静态文件服务，监听 3100 端口。",
+      "tags": ["entry-point", "api-server", "gin", "gorm"],
+      "complexity": "moderate",
+      "languageNotes": "Go 惯例中 main.go 是程序入口，GORM AutoMigrate 自动建表，无需手动管理 DDL。"
+    },
+    {
+      "id": "function:mind-land-server/main.go:main",
+      "type": "function",
+      "name": "main",
+      "filePath": "mind-land-server/main.go",
+      "lineRange": [16, 94],
+      "summary": "程序主函数：初始化 SQLite 数据库、执行 GORM 自动迁移、创建路由器、注册 CORS 中间件、配置各模块路由和静态文件服务、最后启动 HTTP 服务器。",
+      "tags": ["entry-point", "bootstrap", "router-setup"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:mind-land-server/slipbox/handler.go",
+      "type": "file",
+      "name": "handler.go",
+      "filePath": "mind-land-server/slipbox/handler.go",
+      "summary": "SlipBox 模块的 HTTP 处理器层，提供卡片和标签的 CRUD API，使用统一响应格式调用 common.Success/common.Error。",
+      "tags": ["api-handler", "crud", "gin"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:mind-land-server/slipbox/handler.go:Handler",
+      "type": "class",
+      "name": "Handler",
+      "filePath": "mind-land-server/slipbox/handler.go",
+      "lineRange": [14, 16],
+      "summary": "SlipBox HTTP handler 结构体，持有 Service 实例，通过 Gin 上下文处理请求。",
+      "tags": ["api-handler", "gin", "dependency-injection"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mind-land-server/slipbox/handler.go:NewHandler",
+      "type": "function",
+      "name": "NewHandler",
+      "filePath": "mind-land-server/slipbox/handler.go",
+      "lineRange": [18, 20],
+      "summary": "Handler 构造函数，接收 Service 并返回新的 Handler 实例。",
+      "tags": ["constructor", "dependency-injection"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mind-land-server/slipbox/handler.go:GetCards",
+      "type": "function",
+      "name": "GetCards",
+      "filePath": "mind-land-server/slipbox/handler.go",
+      "lineRange": [22, 50],
+      "summary": "查询卡片列表，支持按标签 ID 过滤、排序和分页参数解析。",
+      "tags": ["api-handler", "query", "pagination"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:mind-land-server/slipbox/handler.go:GetCard",
+      "type": "function",
+      "name": "GetCard",
+      "filePath": "mind-land-server/slipbox/handler.go",
+      "lineRange": [52, 64],
+      "summary": "根据 ID 查询单张卡片详情。",
+      "tags": ["api-handler", "query"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mind-land-server/slipbox/handler.go:GetAllTags",
+      "type": "function",
+      "name": "GetAllTags",
+      "filePath": "mind-land-server/slipbox/handler.go",
+      "lineRange": [66, 73],
+      "summary": "获取所有标签列表。",
+      "tags": ["api-handler", "query"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mind-land-server/slipbox/handler.go:GetTag",
+      "type": "function",
+      "name": "GetTag",
+      "filePath": "mind-land-server/slipbox/handler.go",
+      "lineRange": [75, 87],
+      "summary": "根据 ID 查询单个标签详情。",
+      "tags": ["api-handler", "query"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mind-land-server/slipbox/handler.go:CreateCard",
+      "type": "function",
+      "name": "CreateCard",
+      "filePath": "mind-land-server/slipbox/handler.go",
+      "lineRange": [89, 105],
+      "summary": "创建新卡片，解析请求体 JSON 后调用 Service 层进行持久化。",
+      "tags": ["api-handler", "create"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mind-land-server/slipbox/handler.go:UpdateCard",
+      "type": "function",
+      "name": "UpdateCard",
+      "filePath": "mind-land-server/slipbox/handler.go",
+      "lineRange": [107, 133],
+      "summary": "更新指定卡片内容，支持部分字段更新，处理 ErrRecordNotFound 错误。",
+      "tags": ["api-handler", "update"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:mind-land-server/slipbox/handler.go:DeleteCard",
+      "type": "function",
+      "name": "DeleteCard",
+      "filePath": "mind-land-server/slipbox/handler.go",
+      "lineRange": [135, 159],
+      "summary": "删除卡片，先软删除再执行物理删除（两步操作），更新关联标签引用。",
+      "tags": ["api-handler", "delete"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:mind-land-server/slipbox/handler.go:DeleteTag",
+      "type": "function",
+      "name": "DeleteTag",
+      "filePath": "mind-land-server/slipbox/handler.go",
+      "lineRange": [161, 176],
+      "summary": "删除标签，根据 OverCards 字段决定是仅删除标签还是级联删除关联卡片。",
+      "tags": ["api-handler", "delete", "cascade"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:mind-land-server/slipbox/model.go",
+      "type": "file",
+      "name": "model.go",
+      "filePath": "mind-land-server/slipbox/model.go",
+      "summary": "SlipBox 模块的数据模型定义，包含 Card、Tag 和 CardStatistics 结构体，以及 JSON 序列化定制。",
+      "tags": ["data-model", "gorm", "json-serialization"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:mind-land-server/slipbox/model.go:Card",
+      "type": "class",
+      "name": "Card",
+      "filePath": "mind-land-server/slipbox/model.go",
+      "lineRange": [8, 15],
+      "summary": "卡片模型，包含 ID、Content（HTML）、BuiltOrDelTime 时间戳、Statistics 统计信息、Tags 标签关联和 Del 软删除标记。",
+      "tags": ["data-model", "gorm", "entity"],
+      "complexity": "simple",
+      "languageNotes": "Tags 字段使用 JSON 序列化存储标签 ID 数组，是 GORM 中存储关联关系的常见模式。"
+    },
+    {
+      "id": "class:mind-land-server/slipbox/model.go:Tag",
+      "type": "class",
+      "name": "Tag",
+      "filePath": "mind-land-server/slipbox/model.go",
+      "lineRange": [17, 24],
+      "summary": "标签模型，支持父子层级（Parent/Children），CardCount 统计关联卡片数，自定义 MarshalJSON 处理循环引用。",
+      "tags": ["data-model", "gorm", "tree-structure"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mind-land-server/slipbox/model.go:MarshalJSON",
+      "type": "function",
+      "name": "MarshalJSON",
+      "filePath": "mind-land-server/slipbox/model.go",
+      "lineRange": [26, 43],
+      "summary": "Tag 的自定义 JSON 序列化方法，在序列化时预加载 Children 中的 CardCount，优化前端展示。",
+      "tags": ["json-serialization", "custom-marshal"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:mind-land-server/slipbox/model.go:CardStatistics",
+      "type": "class",
+      "name": "CardStatistics",
+      "filePath": "mind-land-server/slipbox/model.go",
+      "lineRange": [45, 49],
+      "summary": "卡片统计信息，记录 BuiltTime 创建时间、UpdateTime 更新时间和 Words 字数统计。",
+      "tags": ["data-model", "statistics"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mind-land-server/slipbox/model.go:NewCardStatistics",
+      "type": "function",
+      "name": "NewCardStatistics",
+      "filePath": "mind-land-server/slipbox/model.go",
+      "lineRange": [51, 58],
+      "summary": "CardStatistics 构造函数，基于单词数计算并初始化创建和更新时间。",
+      "tags": ["constructor", "statistics"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:mind-land-server/slipbox/service.go",
+      "type": "file",
+      "name": "service.go",
+      "filePath": "mind-land-server/slipbox/service.go",
+      "summary": "SlipBox 模块的核心业务逻辑层（910 行），管理卡片和标签的 CRUD、标签解析/保存/删除级联、卡片计数维护、HTML 清理与排序等复杂功能。",
+      "tags": ["service-layer", "business-logic", "gorm", "tag-management"],
+      "complexity": "complex",
+      "languageNotes": "GORM Transaction 确保标签和卡片操作的数据一致性；递归 collectTagAndDescendants/collectCardIDsByTagAndOffspring 处理标签树的级联操作。"
+    },
+    {
+      "id": "class:mind-land-server/slipbox/service.go:Service",
+      "type": "class",
+      "name": "Service",
+      "filePath": "mind-land-server/slipbox/service.go",
+      "lineRange": [14, 16],
+      "summary": "SlipBox 服务层结构体，封装所有数据库操作，持有 GORM DB 实例。",
+      "tags": ["service-layer", "gorm", "data-access"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:mind-land-server/slipbox/service.go:NewService",
+      "type": "function",
+      "name": "NewService",
+      "filePath": "mind-land-server/slipbox/service.go",
+      "lineRange": [18, 20],
+      "summary": "Service 构造函数，接收 GORM DB 实例。",
+      "tags": ["constructor", "dependency-injection"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mind-land-server/slipbox/service.go:GetAllCards",
+      "type": "function",
+      "name": "GetAllCards",
+      "filePath": "mind-land-server/slipbox/service.go",
+      "lineRange": [24, 32],
+      "summary": "查询所有卡片，支持根据软删除状态、排序字段和排序顺序过滤。",
+      "tags": ["query", "gorm"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mind-land-server/slipbox/service.go:GetCardsByTagID",
+      "type": "function",
+      "name": "GetCardsByTagID",
+      "filePath": "mind-land-server/slipbox/service.go",
+      "lineRange": [34, 49],
+      "summary": "根据标签 ID 查询关联卡片（含子标签的卡片），支持排序。",
+      "tags": ["query", "gorm", "tree-traversal"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mind-land-server/slipbox/service.go:GetCard",
+      "type": "function",
+      "name": "GetCard",
+      "filePath": "mind-land-server/slipbox/service.go",
+      "lineRange": [51, 58],
+      "summary": "根据 ID 查询单张卡片。",
+      "tags": ["query", "gorm"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mind-land-server/slipbox/service.go:GetAllTags",
+      "type": "function",
+      "name": "GetAllTags",
+      "filePath": "mind-land-server/slipbox/service.go",
+      "lineRange": [62, 66],
+      "summary": "获取所有标签记录。",
+      "tags": ["query", "gorm"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mind-land-server/slipbox/service.go:GetTag",
+      "type": "function",
+      "name": "GetTag",
+      "filePath": "mind-land-server/slipbox/service.go",
+      "lineRange": [68, 75],
+      "summary": "根据 ID 查询单个标签。",
+      "tags": ["query", "gorm"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mind-land-server/slipbox/service.go:UpdateCard",
+      "type": "function",
+      "name": "UpdateCard",
+      "filePath": "mind-land-server/slipbox/service.go",
+      "lineRange": [100, 125],
+      "summary": "更新卡片内容，解析 JSON 统计字段并持久化。",
+      "tags": ["update", "gorm", "json-handling"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mind-land-server/slipbox/service.go:CreateCard",
+      "type": "function",
+      "name": "CreateCard",
+      "filePath": "mind-land-server/slipbox/service.go",
+      "lineRange": [127, 196],
+      "summary": "创建卡片，在事务中解析 HTML 内容中的标签名、保存标签关联、初始化统计信息并持久化。",
+      "tags": ["create", "gorm", "transaction", "tag-parsing"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:mind-land-server/slipbox/service.go:RemoveCard",
+      "type": "function",
+      "name": "RemoveCard",
+      "filePath": "mind-land-server/slipbox/service.go",
+      "lineRange": [206, 250],
+      "summary": "软删除卡片，在事务中将卡片标记为已删除并更新关联标签的基数计数。",
+      "tags": ["delete", "soft-delete", "gorm", "transaction"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:mind-land-server/slipbox/service.go:DeleteCard",
+      "type": "function",
+      "name": "DeleteCard",
+      "filePath": "mind-land-server/slipbox/service.go",
+      "lineRange": [256, 260],
+      "summary": "物理删除卡片记录。",
+      "tags": ["delete", "gorm", "hard-delete"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mind-land-server/slipbox/service.go:DeleteTag",
+      "type": "function",
+      "name": "DeleteTag",
+      "filePath": "mind-land-server/slipbox/service.go",
+      "lineRange": [270, 276],
+      "summary": "标签删除调度函数，根据 OverCards 参数调用 deleteTagOverCards 或 deleteTagOnly。",
+      "tags": ["delete", "gorm", "dispatch"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mind-land-server/slipbox/service.go:deleteTagOnly",
+      "type": "function",
+      "name": "deleteTagOnly",
+      "filePath": "mind-land-server/slipbox/service.go",
+      "lineRange": [278, 358],
+      "summary": "仅删除标签（不删卡片），从事务中移除标签引用、清理标签树结构、更新父标签的子标签列表。",
+      "tags": ["delete", "gorm", "transaction", "tree-maintenance"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:mind-land-server/slipbox/service.go:deleteTagOverCards",
+      "type": "function",
+      "name": "deleteTagOverCards",
+      "filePath": "mind-land-server/slipbox/service.go",
+      "lineRange": [360, 511],
+      "summary": "级联删除标签及其关联的所有卡片，处理标签树中各层级的基数递减和悬挂标签清理。",
+      "tags": ["delete", "cascade", "gorm", "transaction"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:mind-land-server/slipbox/service.go:parseTagNames",
+      "type": "function",
+      "name": "parseTagNames",
+      "filePath": "mind-land-server/slipbox/service.go",
+      "lineRange": [515, 538],
+      "summary": "从 HTML 内容中解析出 #标签名，支持逗号/空格分隔和 HTML 标签剥离。",
+      "tags": ["parser", "tag-extraction", "html"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:mind-land-server/slipbox/service.go:splitByTags",
+      "type": "function",
+      "name": "splitByTags",
+      "filePath": "mind-land-server/slipbox/service.go",
+      "lineRange": [540, 550],
+      "summary": "按标签名分割字符串，返回片段数组。",
+      "tags": ["utility", "string-processing"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mind-land-server/slipbox/service.go:stripHTML",
+      "type": "function",
+      "name": "stripHTML",
+      "filePath": "mind-land-server/slipbox/service.go",
+      "lineRange": [552, 566],
+      "summary": "使用 Go HTML tokenizer 剥离 HTML 标签，返回纯文本内容。",
+      "tags": ["utility", "html-processing", "tokenizer"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mind-land-server/slipbox/service.go:saveTags",
+      "type": "function",
+      "name": "saveTags",
+      "filePath": "mind-land-server/slipbox/service.go",
+      "lineRange": [569, 668],
+      "summary": "在事务中批量保存标签，处理新建/已有标签、标签层级关系维护和关联关系更新（100 行核心逻辑）。",
+      "tags": ["gorm", "transaction", "tag-management", "upsert"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:mind-land-server/slipbox/service.go:collectCardIDsByTagAndOffspring",
+      "type": "function",
+      "name": "collectCardIDsByTagAndOffspring",
+      "filePath": "mind-land-server/slipbox/service.go",
+      "lineRange": [670, 695],
+      "summary": "递归收集指定标签及其所有后代标签关联的卡片 ID 列表。",
+      "tags": ["tree-traversal", "recursive", "gorm"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:mind-land-server/slipbox/service.go:collectTagAndDescendants",
+      "type": "function",
+      "name": "collectTagAndDescendants",
+      "filePath": "mind-land-server/slipbox/service.go",
+      "lineRange": [697, 719],
+      "summary": "递归收集指定标签及其所有后代标签的 ID 列表。",
+      "tags": ["tree-traversal", "recursive", "gorm"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:mind-land-server/slipbox/service.go:decreaseCardCountWithStop",
+      "type": "function",
+      "name": "decreaseCardCountWithStop",
+      "filePath": "mind-land-server/slipbox/service.go",
+      "lineRange": [725, 790],
+      "summary": "向上递归递减标签树中各层级的卡片计数，直到遇到终止标签，处理已被删除的标签节点。",
+      "tags": ["tree-traversal", "recursive", "gorm", "transaction"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:mind-land-server/slipbox/service.go:recalcCardCountUpward",
+      "type": "function",
+      "name": "recalcCardCountUpward",
+      "filePath": "mind-land-server/slipbox/service.go",
+      "lineRange": [792, 853],
+      "summary": "从指定标签向上递归重建卡片计数，清理无子标签的悬挂节点。",
+      "tags": ["tree-traversal", "recursive", "gorm", "reconciliation"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:mind-land-server/slipbox/service.go:sortCards",
+      "type": "function",
+      "name": "sortCards",
+      "filePath": "mind-land-server/slipbox/service.go",
+      "lineRange": [857, 881],
+      "summary": "按指定字段和顺序对卡片列表进行稳定排序（支持 BuiltOrDelTime、UpdateTime 等字段）。",
+      "tags": ["utility", "sorting", "json-handling"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:mind-land-server/slipbox/service.go:CreateCardReq",
+      "type": "class",
+      "name": "CreateCardReq",
+      "filePath": "mind-land-server/slipbox/service.go",
+      "lineRange": [79, 82],
+      "summary": "创建卡片的请求结构体，包含纯文本和 HTML 两种内容格式。",
+      "tags": ["data-transfer-object", "request"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:mind-land-server/slipbox/service.go:CreateCardResp",
+      "type": "class",
+      "name": "CreateCardResp",
+      "filePath": "mind-land-server/slipbox/service.go",
+      "lineRange": [84, 87],
+      "summary": "创建卡片的响应结构体，包含卡片的 Tag 关联信息。",
+      "tags": ["data-transfer-object", "response"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:mind-land-server/slipbox/service.go:UpdateCardReq",
+      "type": "class",
+      "name": "UpdateCardReq",
+      "filePath": "mind-land-server/slipbox/service.go",
+      "lineRange": [91, 94],
+      "summary": "更新卡片请求结构体。",
+      "tags": ["data-transfer-object", "request"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:mind-land-server/slipbox/service.go:UpdateCardResp",
+      "type": "class",
+      "name": "UpdateCardResp",
+      "filePath": "mind-land-server/slipbox/service.go",
+      "lineRange": [96, 98],
+      "summary": "更新卡片响应结构体。",
+      "tags": ["data-transfer-object", "response"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:mind-land-server/slipbox/service.go:DeleteCardReq",
+      "type": "class",
+      "name": "DeleteCardReq",
+      "filePath": "mind-land-server/slipbox/service.go",
+      "lineRange": [200, 204],
+      "summary": "软删除卡片请求结构体，包含 ID、标签 ID 列表和是否永久删除标记。",
+      "tags": ["data-transfer-object", "request", "soft-delete"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:mind-land-server/slipbox/service.go:DeleteCardResp",
+      "type": "class",
+      "name": "DeleteCardResp",
+      "filePath": "mind-land-server/slipbox/service.go",
+      "lineRange": [252, 254],
+      "summary": "删除卡片响应结构体，返回被删除的标签 ID 列表。",
+      "tags": ["data-transfer-object", "response"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:mind-land-server/slipbox/service.go:DeleteTagReq",
+      "type": "class",
+      "name": "DeleteTagReq",
+      "filePath": "mind-land-server/slipbox/service.go",
+      "lineRange": [264, 268],
+      "summary": "删除标签请求结构体，包含 ID、标签名和是否级联删除关联卡片的标记。",
+      "tags": ["data-transfer-object", "request", "cascade"],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:mind-land-server/common/response.go",
+      "target": "class:mind-land-server/common/response.go:ResponseBody",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-server/common/response.go",
+      "target": "class:mind-land-server/common/response.go:ErrorResult",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-server/common/response.go",
+      "target": "function:mind-land-server/common/response.go:Success",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-server/common/response.go",
+      "target": "function:mind-land-server/common/response.go:Error",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-server/common/response.go",
+      "target": "class:mind-land-server/common/response.go:ResponseBody",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mind-land-server/common/response.go",
+      "target": "class:mind-land-server/common/response.go:ErrorResult",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mind-land-server/common/response.go",
+      "target": "function:mind-land-server/common/response.go:Success",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mind-land-server/common/response.go",
+      "target": "function:mind-land-server/common/response.go:Error",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mind-land-server/main.go",
+      "target": "function:mind-land-server/main.go:main",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-server/main.go",
+      "target": "file:mind-land-server/slipbox/handler.go",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:mind-land-server/main.go",
+      "target": "file:mind-land-server/slipbox/model.go",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:mind-land-server/main.go",
+      "target": "file:mind-land-server/slipbox/service.go",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:mind-land-server/main.go",
+      "target": "file:mind-land-server/todo/handler.go",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:mind-land-server/main.go",
+      "target": "file:mind-land-server/todo/model.go",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:mind-land-server/main.go",
+      "target": "file:mind-land-server/todo/service.go",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:mind-land-server/main.go",
+      "target": "file:mind-land-server/upload/handler.go",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:mind-land-server/slipbox/handler.go",
+      "target": "file:mind-land-server/common/response.go",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:mind-land-server/slipbox/handler.go",
+      "target": "class:mind-land-server/slipbox/handler.go:Handler",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-server/slipbox/handler.go",
+      "target": "function:mind-land-server/slipbox/handler.go:NewHandler",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-server/slipbox/handler.go",
+      "target": "function:mind-land-server/slipbox/handler.go:GetCards",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-server/slipbox/handler.go",
+      "target": "function:mind-land-server/slipbox/handler.go:GetCard",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-server/slipbox/handler.go",
+      "target": "function:mind-land-server/slipbox/handler.go:GetAllTags",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-server/slipbox/handler.go",
+      "target": "function:mind-land-server/slipbox/handler.go:GetTag",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-server/slipbox/handler.go",
+      "target": "function:mind-land-server/slipbox/handler.go:CreateCard",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-server/slipbox/handler.go",
+      "target": "function:mind-land-server/slipbox/handler.go:UpdateCard",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-server/slipbox/handler.go",
+      "target": "function:mind-land-server/slipbox/handler.go:DeleteCard",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-server/slipbox/handler.go",
+      "target": "function:mind-land-server/slipbox/handler.go:DeleteTag",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-server/slipbox/handler.go",
+      "target": "class:mind-land-server/slipbox/handler.go:Handler",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mind-land-server/slipbox/handler.go",
+      "target": "function:mind-land-server/slipbox/handler.go:NewHandler",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mind-land-server/slipbox/handler.go",
+      "target": "function:mind-land-server/slipbox/handler.go:GetCards",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mind-land-server/slipbox/handler.go",
+      "target": "function:mind-land-server/slipbox/handler.go:GetCard",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mind-land-server/slipbox/handler.go",
+      "target": "function:mind-land-server/slipbox/handler.go:GetAllTags",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mind-land-server/slipbox/handler.go",
+      "target": "function:mind-land-server/slipbox/handler.go:GetTag",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mind-land-server/slipbox/handler.go",
+      "target": "function:mind-land-server/slipbox/handler.go:CreateCard",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mind-land-server/slipbox/handler.go",
+      "target": "function:mind-land-server/slipbox/handler.go:UpdateCard",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mind-land-server/slipbox/handler.go",
+      "target": "function:mind-land-server/slipbox/handler.go:DeleteCard",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mind-land-server/slipbox/handler.go",
+      "target": "function:mind-land-server/slipbox/handler.go:DeleteTag",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mind-land-server/slipbox/model.go",
+      "target": "class:mind-land-server/slipbox/model.go:Card",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-server/slipbox/model.go",
+      "target": "class:mind-land-server/slipbox/model.go:Tag",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-server/slipbox/model.go",
+      "target": "function:mind-land-server/slipbox/model.go:MarshalJSON",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-server/slipbox/model.go",
+      "target": "class:mind-land-server/slipbox/model.go:CardStatistics",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-server/slipbox/model.go",
+      "target": "function:mind-land-server/slipbox/model.go:NewCardStatistics",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-server/slipbox/model.go",
+      "target": "class:mind-land-server/slipbox/model.go:Card",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mind-land-server/slipbox/model.go",
+      "target": "class:mind-land-server/slipbox/model.go:Tag",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mind-land-server/slipbox/model.go",
+      "target": "function:mind-land-server/slipbox/model.go:MarshalJSON",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mind-land-server/slipbox/model.go",
+      "target": "class:mind-land-server/slipbox/model.go:CardStatistics",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mind-land-server/slipbox/model.go",
+      "target": "function:mind-land-server/slipbox/model.go:NewCardStatistics",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mind-land-server/slipbox/service.go",
+      "target": "class:mind-land-server/slipbox/service.go:Service",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-server/slipbox/service.go",
+      "target": "function:mind-land-server/slipbox/service.go:NewService",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-server/slipbox/service.go",
+      "target": "function:mind-land-server/slipbox/service.go:GetAllCards",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-server/slipbox/service.go",
+      "target": "function:mind-land-server/slipbox/service.go:GetCardsByTagID",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-server/slipbox/service.go",
+      "target": "function:mind-land-server/slipbox/service.go:GetCard",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-server/slipbox/service.go",
+      "target": "function:mind-land-server/slipbox/service.go:GetAllTags",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-server/slipbox/service.go",
+      "target": "function:mind-land-server/slipbox/service.go:GetTag",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-server/slipbox/service.go",
+      "target": "function:mind-land-server/slipbox/service.go:UpdateCard",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-server/slipbox/service.go",
+      "target": "function:mind-land-server/slipbox/service.go:CreateCard",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-server/slipbox/service.go",
+      "target": "function:mind-land-server/slipbox/service.go:RemoveCard",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-server/slipbox/service.go",
+      "target": "function:mind-land-server/slipbox/service.go:DeleteCard",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-server/slipbox/service.go",
+      "target": "function:mind-land-server/slipbox/service.go:DeleteTag",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-server/slipbox/service.go",
+      "target": "function:mind-land-server/slipbox/service.go:deleteTagOnly",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-server/slipbox/service.go",
+      "target": "function:mind-land-server/slipbox/service.go:deleteTagOverCards",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-server/slipbox/service.go",
+      "target": "function:mind-land-server/slipbox/service.go:parseTagNames",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-server/slipbox/service.go",
+      "target": "function:mind-land-server/slipbox/service.go:splitByTags",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-server/slipbox/service.go",
+      "target": "function:mind-land-server/slipbox/service.go:stripHTML",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-server/slipbox/service.go",
+      "target": "function:mind-land-server/slipbox/service.go:saveTags",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-server/slipbox/service.go",
+      "target": "function:mind-land-server/slipbox/service.go:collectCardIDsByTagAndOffspring",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-server/slipbox/service.go",
+      "target": "function:mind-land-server/slipbox/service.go:collectTagAndDescendants",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-server/slipbox/service.go",
+      "target": "function:mind-land-server/slipbox/service.go:decreaseCardCountWithStop",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-server/slipbox/service.go",
+      "target": "function:mind-land-server/slipbox/service.go:recalcCardCountUpward",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-server/slipbox/service.go",
+      "target": "function:mind-land-server/slipbox/service.go:sortCards",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-server/slipbox/service.go",
+      "target": "class:mind-land-server/slipbox/service.go:CreateCardReq",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-server/slipbox/service.go",
+      "target": "class:mind-land-server/slipbox/service.go:CreateCardResp",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-server/slipbox/service.go",
+      "target": "class:mind-land-server/slipbox/service.go:UpdateCardReq",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-server/slipbox/service.go",
+      "target": "class:mind-land-server/slipbox/service.go:UpdateCardResp",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-server/slipbox/service.go",
+      "target": "class:mind-land-server/slipbox/service.go:DeleteCardReq",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-server/slipbox/service.go",
+      "target": "class:mind-land-server/slipbox/service.go:DeleteCardResp",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-server/slipbox/service.go",
+      "target": "class:mind-land-server/slipbox/service.go:DeleteTagReq",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-server/slipbox/service.go",
+      "target": "class:mind-land-server/slipbox/service.go:Service",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mind-land-server/slipbox/service.go",
+      "target": "function:mind-land-server/slipbox/service.go:NewService",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mind-land-server/slipbox/service.go",
+      "target": "function:mind-land-server/slipbox/service.go:GetAllCards",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mind-land-server/slipbox/service.go",
+      "target": "function:mind-land-server/slipbox/service.go:GetCardsByTagID",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mind-land-server/slipbox/service.go",
+      "target": "function:mind-land-server/slipbox/service.go:GetCard",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mind-land-server/slipbox/service.go",
+      "target": "function:mind-land-server/slipbox/service.go:GetAllTags",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mind-land-server/slipbox/service.go",
+      "target": "function:mind-land-server/slipbox/service.go:GetTag",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mind-land-server/slipbox/service.go",
+      "target": "function:mind-land-server/slipbox/service.go:UpdateCard",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mind-land-server/slipbox/service.go",
+      "target": "function:mind-land-server/slipbox/service.go:CreateCard",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mind-land-server/slipbox/service.go",
+      "target": "function:mind-land-server/slipbox/service.go:DeleteCard",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mind-land-server/slipbox/service.go",
+      "target": "function:mind-land-server/slipbox/service.go:DeleteTag",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mind-land-server/slipbox/service.go",
+      "target": "function:mind-land-server/slipbox/service.go:RemoveCard",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mind-land-server/slipbox/service.go",
+      "target": "class:mind-land-server/slipbox/service.go:CreateCardReq",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mind-land-server/slipbox/service.go",
+      "target": "class:mind-land-server/slipbox/service.go:CreateCardResp",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mind-land-server/slipbox/service.go",
+      "target": "class:mind-land-server/slipbox/service.go:UpdateCardReq",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mind-land-server/slipbox/service.go",
+      "target": "class:mind-land-server/slipbox/service.go:UpdateCardResp",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mind-land-server/slipbox/service.go",
+      "target": "class:mind-land-server/slipbox/service.go:DeleteCardReq",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mind-land-server/slipbox/service.go",
+      "target": "class:mind-land-server/slipbox/service.go:DeleteCardResp",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mind-land-server/slipbox/service.go",
+      "target": "class:mind-land-server/slipbox/service.go:DeleteTagReq",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:mind-land-server/main.go:main",
+      "target": "function:mind-land-server/slipbox/service.go:NewService",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:mind-land-server/main.go:main",
+      "target": "function:mind-land-server/slipbox/handler.go:NewHandler",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:mind-land-server/slipbox/handler.go:GetCards",
+      "target": "function:mind-land-server/common/response.go:Success",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:mind-land-server/slipbox/handler.go:GetCards",
+      "target": "function:mind-land-server/common/response.go:Error",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:mind-land-server/slipbox/handler.go:GetCards",
+      "target": "function:mind-land-server/slipbox/service.go:GetCardsByTagID",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:mind-land-server/slipbox/handler.go:GetCards",
+      "target": "function:mind-land-server/slipbox/service.go:GetAllCards",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:mind-land-server/slipbox/handler.go:GetCard",
+      "target": "function:mind-land-server/common/response.go:Success",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:mind-land-server/slipbox/handler.go:GetCard",
+      "target": "function:mind-land-server/common/response.go:Error",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:mind-land-server/slipbox/handler.go:GetCard",
+      "target": "function:mind-land-server/slipbox/service.go:GetCard",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:mind-land-server/slipbox/handler.go:GetAllTags",
+      "target": "function:mind-land-server/common/response.go:Success",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:mind-land-server/slipbox/handler.go:GetAllTags",
+      "target": "function:mind-land-server/common/response.go:Error",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:mind-land-server/slipbox/handler.go:GetAllTags",
+      "target": "function:mind-land-server/slipbox/service.go:GetAllTags",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:mind-land-server/slipbox/handler.go:GetTag",
+      "target": "function:mind-land-server/common/response.go:Success",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:mind-land-server/slipbox/handler.go:GetTag",
+      "target": "function:mind-land-server/common/response.go:Error",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:mind-land-server/slipbox/handler.go:GetTag",
+      "target": "function:mind-land-server/slipbox/service.go:GetTag",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:mind-land-server/slipbox/handler.go:CreateCard",
+      "target": "function:mind-land-server/common/response.go:Success",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:mind-land-server/slipbox/handler.go:CreateCard",
+      "target": "function:mind-land-server/common/response.go:Error",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:mind-land-server/slipbox/handler.go:CreateCard",
+      "target": "function:mind-land-server/slipbox/service.go:CreateCard",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:mind-land-server/slipbox/handler.go:UpdateCard",
+      "target": "function:mind-land-server/common/response.go:Success",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:mind-land-server/slipbox/handler.go:UpdateCard",
+      "target": "function:mind-land-server/common/response.go:Error",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:mind-land-server/slipbox/handler.go:UpdateCard",
+      "target": "function:mind-land-server/slipbox/service.go:UpdateCard",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:mind-land-server/slipbox/handler.go:DeleteCard",
+      "target": "function:mind-land-server/common/response.go:Success",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:mind-land-server/slipbox/handler.go:DeleteCard",
+      "target": "function:mind-land-server/common/response.go:Error",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:mind-land-server/slipbox/handler.go:DeleteCard",
+      "target": "function:mind-land-server/slipbox/service.go:DeleteCard",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:mind-land-server/slipbox/handler.go:DeleteCard",
+      "target": "function:mind-land-server/slipbox/service.go:RemoveCard",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:mind-land-server/slipbox/handler.go:DeleteTag",
+      "target": "function:mind-land-server/common/response.go:Success",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:mind-land-server/slipbox/handler.go:DeleteTag",
+      "target": "function:mind-land-server/common/response.go:Error",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:mind-land-server/slipbox/handler.go:DeleteTag",
+      "target": "function:mind-land-server/slipbox/service.go:DeleteTag",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:mind-land-server/main.go:main",
+      "target": "function:mind-land-server/todo/service.go:NewService",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:mind-land-server/main.go:main",
+      "target": "function:mind-land-server/todo/handler.go:NewHandler",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ]
+}

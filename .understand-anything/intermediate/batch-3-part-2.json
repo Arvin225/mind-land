@@ -1,0 +1,790 @@
+{
+  "nodes": [
+    {
+      "id": "file:mind-land-server/todo/handler.go",
+      "type": "file",
+      "name": "handler.go",
+      "filePath": "mind-land-server/todo/handler.go",
+      "summary": "Todo 模块的 HTTP 处理器层，提供清单和任务的 CRUD API，包含列表增删改查和任务增删改查，使用统一响应格式。",
+      "tags": ["api-handler", "crud", "gin"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:mind-land-server/todo/handler.go:Handler",
+      "type": "class",
+      "name": "Handler",
+      "filePath": "mind-land-server/todo/handler.go",
+      "lineRange": [12, 14],
+      "summary": "Todo HTTP handler 结构体，持有 Service 实例，通过 Gin 上下文处理请求。",
+      "tags": ["api-handler", "gin", "dependency-injection"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mind-land-server/todo/handler.go:NewHandler",
+      "type": "function",
+      "name": "NewHandler",
+      "filePath": "mind-land-server/todo/handler.go",
+      "lineRange": [16, 18],
+      "summary": "Handler 构造函数，接收 Service 并返回新的 Handler 实例。",
+      "tags": ["constructor", "dependency-injection"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mind-land-server/todo/handler.go:CreateList",
+      "type": "function",
+      "name": "CreateList",
+      "filePath": "mind-land-server/todo/handler.go",
+      "lineRange": [20, 38],
+      "summary": "创建新清单，解析请求体并调用 Service 层持久化。",
+      "tags": ["api-handler", "create", "todo-list"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mind-land-server/todo/handler.go:GetLists",
+      "type": "function",
+      "name": "GetLists",
+      "filePath": "mind-land-server/todo/handler.go",
+      "lineRange": [40, 47],
+      "summary": "获取所有清单列表。",
+      "tags": ["api-handler", "query", "todo-list"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mind-land-server/todo/handler.go:PatchList",
+      "type": "function",
+      "name": "PatchList",
+      "filePath": "mind-land-server/todo/handler.go",
+      "lineRange": [49, 71],
+      "summary": "更新清单名称，包含请求验证和错误处理。",
+      "tags": ["api-handler", "update", "todo-list"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:mind-land-server/todo/handler.go:DeleteList",
+      "type": "function",
+      "name": "DeleteList",
+      "filePath": "mind-land-server/todo/handler.go",
+      "lineRange": [73, 84],
+      "summary": "根据 ID 删除清单。",
+      "tags": ["api-handler", "delete", "todo-list"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mind-land-server/todo/handler.go:CreateItem",
+      "type": "function",
+      "name": "CreateItem",
+      "filePath": "mind-land-server/todo/handler.go",
+      "lineRange": [86, 106],
+      "summary": "创建新任务，解析请求体并调用 Service 层持久化。",
+      "tags": ["api-handler", "create", "todo-item"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mind-land-server/todo/handler.go:GetItems",
+      "type": "function",
+      "name": "GetItems",
+      "filePath": "mind-land-server/todo/handler.go",
+      "lineRange": [108, 140],
+      "summary": "查询任务列表，解析查询参数（清单 ID、排序等），支持复杂过滤条件。",
+      "tags": ["api-handler", "query", "todo-item", "filtering"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:mind-land-server/todo/handler.go:PatchItem",
+      "type": "function",
+      "name": "PatchItem",
+      "filePath": "mind-land-server/todo/handler.go",
+      "lineRange": [142, 158],
+      "summary": "更新任务状态或内容。",
+      "tags": ["api-handler", "update", "todo-item"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mind-land-server/todo/handler.go:DeleteItem",
+      "type": "function",
+      "name": "DeleteItem",
+      "filePath": "mind-land-server/todo/handler.go",
+      "lineRange": [160, 179],
+      "summary": "删除指定任务。",
+      "tags": ["api-handler", "delete", "todo-item"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:mind-land-server/todo/model.go",
+      "type": "file",
+      "name": "model.go",
+      "filePath": "mind-land-server/todo/model.go",
+      "summary": "Todo 模块的数据模型定义，包含 List（清单）和 Item（任务）两个 GORM 结构体。",
+      "tags": ["data-model", "gorm", "entity"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:mind-land-server/todo/model.go:List",
+      "type": "class",
+      "name": "List",
+      "filePath": "mind-land-server/todo/model.go",
+      "lineRange": [3, 6],
+      "summary": "清单模型，包含 ID 和 Name 字段。",
+      "tags": ["data-model", "gorm", "entity"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:mind-land-server/todo/model.go:Item",
+      "type": "class",
+      "name": "Item",
+      "filePath": "mind-land-server/todo/model.go",
+      "lineRange": [8, 17],
+      "summary": "任务模型，包含 ID、Content、Done/Star/Del 状态标记、ListID 关联、ListName 冗余字段和 SortOrder 排序字段。",
+      "tags": ["data-model", "gorm", "entity"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:mind-land-server/todo/service.go",
+      "type": "file",
+      "name": "service.go",
+      "filePath": "mind-land-server/todo/service.go",
+      "summary": "Todo 模块的业务逻辑层，提供清单和任务的增删改查操作，包含 GORM 事务处理和软删除/物理删除支持。",
+      "tags": ["service-layer", "business-logic", "gorm", "crud"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:mind-land-server/todo/service.go:Service",
+      "type": "class",
+      "name": "Service",
+      "filePath": "mind-land-server/todo/service.go",
+      "lineRange": [7, 9],
+      "summary": "Todo 服务层结构体，封装所有数据库操作，持有 GORM DB 实例。",
+      "tags": ["service-layer", "gorm", "data-access"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mind-land-server/todo/service.go:NewService",
+      "type": "function",
+      "name": "NewService",
+      "filePath": "mind-land-server/todo/service.go",
+      "lineRange": [11, 13],
+      "summary": "Service 构造函数，接收 GORM DB 实例。",
+      "tags": ["constructor", "dependency-injection"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mind-land-server/todo/service.go:CreateList",
+      "type": "function",
+      "name": "CreateList",
+      "filePath": "mind-land-server/todo/service.go",
+      "lineRange": [15, 19],
+      "summary": "创建新清单并持久化。",
+      "tags": ["create", "gorm", "todo-list"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mind-land-server/todo/service.go:GetAllLists",
+      "type": "function",
+      "name": "GetAllLists",
+      "filePath": "mind-land-server/todo/service.go",
+      "lineRange": [21, 25],
+      "summary": "查询所有清单。",
+      "tags": ["query", "gorm", "todo-list"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mind-land-server/todo/service.go:ModifyListName",
+      "type": "function",
+      "name": "ModifyListName",
+      "filePath": "mind-land-server/todo/service.go",
+      "lineRange": [27, 34],
+      "summary": "在事务中修改清单名称，同时更新该清单下所有任务的冗余 ListName 字段。",
+      "tags": ["update", "gorm", "transaction"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mind-land-server/todo/service.go:DeleteList",
+      "type": "function",
+      "name": "DeleteList",
+      "filePath": "mind-land-server/todo/service.go",
+      "lineRange": [36, 47],
+      "summary": "在事务中删除清单及其所有关联任务。",
+      "tags": ["delete", "gorm", "transaction", "cascade"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:mind-land-server/todo/service.go:CreateItem",
+      "type": "function",
+      "name": "CreateItem",
+      "filePath": "mind-land-server/todo/service.go",
+      "lineRange": [49, 52],
+      "summary": "创建新任务并持久化。",
+      "tags": ["create", "gorm", "todo-item"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mind-land-server/todo/service.go:GetItems",
+      "type": "function",
+      "name": "GetItems",
+      "filePath": "mind-land-server/todo/service.go",
+      "lineRange": [54, 58],
+      "summary": "根据条件查询任务列表，按 sort_order 和 id 排序。",
+      "tags": ["query", "gorm", "todo-item"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mind-land-server/todo/service.go:PatchItem",
+      "type": "function",
+      "name": "PatchItem",
+      "filePath": "mind-land-server/todo/service.go",
+      "lineRange": [60, 84],
+      "summary": "更新任务字段（支持部分更新），使用 map 处理动态字段。",
+      "tags": ["update", "gorm", "partial-update"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:mind-land-server/todo/service.go:DeleteItem",
+      "type": "function",
+      "name": "DeleteItem",
+      "filePath": "mind-land-server/todo/service.go",
+      "lineRange": [86, 95],
+      "summary": "删除任务，支持物理删除和软删除两种模式。",
+      "tags": ["delete", "gorm", "soft-delete"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:mind-land-server/upload/handler.go",
+      "type": "file",
+      "name": "handler.go",
+      "filePath": "mind-land-server/upload/handler.go",
+      "summary": "文件上传处理器，支持图片类型验证、文件大小限制（10MB）、UUID 重命名存储，上传到 uploads 目录。",
+      "tags": ["api-handler", "file-upload", "image"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:mind-land-server/upload/handler.go:HandleUpload",
+      "type": "function",
+      "name": "HandleUpload",
+      "filePath": "mind-land-server/upload/handler.go",
+      "lineRange": [29, 85],
+      "summary": "处理图片上传请求，验证文件类型（仅允许图片 MIME）、限制大小、生成 UUID 文件名、保存至 uploads 目录并返回路径。",
+      "tags": ["api-handler", "file-upload", "image", "validation"],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:mind-land-server/todo/handler.go",
+      "target": "class:mind-land-server/todo/handler.go:Handler",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-server/todo/handler.go",
+      "target": "function:mind-land-server/todo/handler.go:NewHandler",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-server/todo/handler.go",
+      "target": "function:mind-land-server/todo/handler.go:CreateList",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-server/todo/handler.go",
+      "target": "function:mind-land-server/todo/handler.go:GetLists",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-server/todo/handler.go",
+      "target": "function:mind-land-server/todo/handler.go:PatchList",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-server/todo/handler.go",
+      "target": "function:mind-land-server/todo/handler.go:DeleteList",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-server/todo/handler.go",
+      "target": "function:mind-land-server/todo/handler.go:CreateItem",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-server/todo/handler.go",
+      "target": "function:mind-land-server/todo/handler.go:GetItems",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-server/todo/handler.go",
+      "target": "function:mind-land-server/todo/handler.go:PatchItem",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-server/todo/handler.go",
+      "target": "function:mind-land-server/todo/handler.go:DeleteItem",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-server/todo/handler.go",
+      "target": "class:mind-land-server/todo/handler.go:Handler",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mind-land-server/todo/handler.go",
+      "target": "function:mind-land-server/todo/handler.go:NewHandler",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mind-land-server/todo/handler.go",
+      "target": "function:mind-land-server/todo/handler.go:CreateList",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mind-land-server/todo/handler.go",
+      "target": "function:mind-land-server/todo/handler.go:GetLists",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mind-land-server/todo/handler.go",
+      "target": "function:mind-land-server/todo/handler.go:PatchList",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mind-land-server/todo/handler.go",
+      "target": "function:mind-land-server/todo/handler.go:DeleteList",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mind-land-server/todo/handler.go",
+      "target": "function:mind-land-server/todo/handler.go:CreateItem",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mind-land-server/todo/handler.go",
+      "target": "function:mind-land-server/todo/handler.go:GetItems",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mind-land-server/todo/handler.go",
+      "target": "function:mind-land-server/todo/handler.go:PatchItem",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mind-land-server/todo/handler.go",
+      "target": "function:mind-land-server/todo/handler.go:DeleteItem",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mind-land-server/todo/handler.go",
+      "target": "file:mind-land-server/common/response.go",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:mind-land-server/todo/model.go",
+      "target": "class:mind-land-server/todo/model.go:List",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-server/todo/model.go",
+      "target": "class:mind-land-server/todo/model.go:Item",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-server/todo/model.go",
+      "target": "class:mind-land-server/todo/model.go:List",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mind-land-server/todo/model.go",
+      "target": "class:mind-land-server/todo/model.go:Item",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mind-land-server/todo/service.go",
+      "target": "class:mind-land-server/todo/service.go:Service",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-server/todo/service.go",
+      "target": "function:mind-land-server/todo/service.go:NewService",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-server/todo/service.go",
+      "target": "function:mind-land-server/todo/service.go:CreateList",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-server/todo/service.go",
+      "target": "function:mind-land-server/todo/service.go:GetAllLists",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-server/todo/service.go",
+      "target": "function:mind-land-server/todo/service.go:ModifyListName",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-server/todo/service.go",
+      "target": "function:mind-land-server/todo/service.go:DeleteList",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-server/todo/service.go",
+      "target": "function:mind-land-server/todo/service.go:CreateItem",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-server/todo/service.go",
+      "target": "function:mind-land-server/todo/service.go:GetItems",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-server/todo/service.go",
+      "target": "function:mind-land-server/todo/service.go:PatchItem",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-server/todo/service.go",
+      "target": "function:mind-land-server/todo/service.go:DeleteItem",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-server/todo/service.go",
+      "target": "class:mind-land-server/todo/service.go:Service",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mind-land-server/todo/service.go",
+      "target": "function:mind-land-server/todo/service.go:NewService",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mind-land-server/todo/service.go",
+      "target": "function:mind-land-server/todo/service.go:CreateList",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mind-land-server/todo/service.go",
+      "target": "function:mind-land-server/todo/service.go:GetAllLists",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mind-land-server/todo/service.go",
+      "target": "function:mind-land-server/todo/service.go:ModifyListName",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mind-land-server/todo/service.go",
+      "target": "function:mind-land-server/todo/service.go:DeleteList",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mind-land-server/todo/service.go",
+      "target": "function:mind-land-server/todo/service.go:CreateItem",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mind-land-server/todo/service.go",
+      "target": "function:mind-land-server/todo/service.go:GetItems",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mind-land-server/todo/service.go",
+      "target": "function:mind-land-server/todo/service.go:PatchItem",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mind-land-server/todo/service.go",
+      "target": "function:mind-land-server/todo/service.go:DeleteItem",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mind-land-server/upload/handler.go",
+      "target": "function:mind-land-server/upload/handler.go:HandleUpload",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-server/upload/handler.go",
+      "target": "function:mind-land-server/upload/handler.go:HandleUpload",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mind-land-server/upload/handler.go",
+      "target": "file:mind-land-server/common/response.go",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "function:mind-land-server/todo/handler.go:CreateList",
+      "target": "function:mind-land-server/common/response.go:Success",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:mind-land-server/todo/handler.go:CreateList",
+      "target": "function:mind-land-server/common/response.go:Error",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:mind-land-server/todo/handler.go:CreateList",
+      "target": "function:mind-land-server/todo/service.go:CreateList",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:mind-land-server/todo/handler.go:GetLists",
+      "target": "function:mind-land-server/common/response.go:Success",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:mind-land-server/todo/handler.go:GetLists",
+      "target": "function:mind-land-server/common/response.go:Error",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:mind-land-server/todo/handler.go:GetLists",
+      "target": "function:mind-land-server/todo/service.go:GetAllLists",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:mind-land-server/todo/handler.go:PatchList",
+      "target": "function:mind-land-server/common/response.go:Success",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:mind-land-server/todo/handler.go:PatchList",
+      "target": "function:mind-land-server/common/response.go:Error",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:mind-land-server/todo/handler.go:PatchList",
+      "target": "function:mind-land-server/todo/service.go:ModifyListName",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:mind-land-server/todo/handler.go:DeleteList",
+      "target": "function:mind-land-server/common/response.go:Success",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:mind-land-server/todo/handler.go:DeleteList",
+      "target": "function:mind-land-server/common/response.go:Error",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:mind-land-server/todo/handler.go:DeleteList",
+      "target": "function:mind-land-server/todo/service.go:DeleteList",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:mind-land-server/todo/handler.go:CreateItem",
+      "target": "function:mind-land-server/common/response.go:Success",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:mind-land-server/todo/handler.go:CreateItem",
+      "target": "function:mind-land-server/common/response.go:Error",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:mind-land-server/todo/handler.go:CreateItem",
+      "target": "function:mind-land-server/todo/service.go:CreateItem",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:mind-land-server/todo/handler.go:GetItems",
+      "target": "function:mind-land-server/common/response.go:Success",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:mind-land-server/todo/handler.go:GetItems",
+      "target": "function:mind-land-server/common/response.go:Error",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:mind-land-server/todo/handler.go:GetItems",
+      "target": "function:mind-land-server/todo/service.go:GetItems",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:mind-land-server/todo/handler.go:PatchItem",
+      "target": "function:mind-land-server/common/response.go:Success",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:mind-land-server/todo/handler.go:PatchItem",
+      "target": "function:mind-land-server/common/response.go:Error",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:mind-land-server/todo/handler.go:PatchItem",
+      "target": "function:mind-land-server/todo/service.go:PatchItem",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:mind-land-server/todo/handler.go:DeleteItem",
+      "target": "function:mind-land-server/common/response.go:Success",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:mind-land-server/todo/handler.go:DeleteItem",
+      "target": "function:mind-land-server/common/response.go:Error",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:mind-land-server/todo/handler.go:DeleteItem",
+      "target": "function:mind-land-server/todo/service.go:DeleteItem",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:mind-land-server/upload/handler.go:HandleUpload",
+      "target": "function:mind-land-server/common/response.go:Success",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:mind-land-server/upload/handler.go:HandleUpload",
+      "target": "function:mind-land-server/common/response.go:Error",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ]
+}

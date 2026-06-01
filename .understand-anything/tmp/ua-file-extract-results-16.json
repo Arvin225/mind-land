@@ -1,0 +1,239 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 8,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": "mind-land-web/src/pages/Note/index.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 17,
+      "nonEmptyLines": 16,
+      "functions": [
+        {
+          "name": "Note",
+          "startLine": 3,
+          "endLine": 16,
+          "params": []
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "mind-land-web/src/vite-env.d.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 1,
+      "nonEmptyLines": 1,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "mind-land-web/tsconfig.node.tsbuildinfo",
+      "language": "tsbuildinfo",
+      "fileCategory": "code",
+      "totalLines": 1,
+      "nonEmptyLines": 1,
+      "metrics": {}
+    },
+    {
+      "path": "mind-land-web/tsconfig.tsbuildinfo",
+      "language": "tsbuildinfo",
+      "fileCategory": "code",
+      "totalLines": 1,
+      "nonEmptyLines": 1,
+      "metrics": {}
+    },
+    {
+      "path": "mind-land-web/vite.config.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 27,
+      "nonEmptyLines": 26,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "plans/fix-batch-b.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 46,
+      "nonEmptyLines": 35,
+      "sections": [
+        {
+          "heading": "Batch B: 删除确认框 + 图片上传修复计划",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "问题3：删除确认框（浏览器原生 confirm → 项目风格 AlertDialog）",
+          "level": 2,
+          "line": 3
+        },
+        {
+          "heading": "根因",
+          "level": 3,
+          "line": 5
+        },
+        {
+          "heading": "涉及文件",
+          "level": 3,
+          "line": 9
+        },
+        {
+          "heading": "修改方案",
+          "level": 3,
+          "line": 15
+        },
+        {
+          "heading": "问题4：图片上传改为本地选择",
+          "level": 2,
+          "line": 23
+        },
+        {
+          "heading": "根因",
+          "level": 3,
+          "line": 25
+        },
+        {
+          "heading": "涉及文件",
+          "level": 3,
+          "line": 29
+        },
+        {
+          "heading": "修改方案",
+          "level": 3,
+          "line": 35
+        },
+        {
+          "heading": "后端",
+          "level": 4,
+          "line": 37
+        },
+        {
+          "heading": "前端",
+          "level": 4,
+          "line": 43
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 11
+      }
+    },
+    {
+      "path": "qa-playwright.mjs",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 131,
+      "nonEmptyLines": 108,
+      "functions": [
+        {
+          "name": "pass",
+          "startLine": 7,
+          "endLine": 7,
+          "params": [
+            "t"
+          ]
+        },
+        {
+          "name": "fail",
+          "startLine": 8,
+          "endLine": 8,
+          "params": [
+            "t"
+          ]
+        },
+        {
+          "name": "test",
+          "startLine": 10,
+          "endLine": 13,
+          "params": [
+            "label",
+            "fn"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "pass",
+          "callee": "REPORT.push",
+          "lineNumber": 7
+        },
+        {
+          "caller": "pass",
+          "callee": "console.log",
+          "lineNumber": 7
+        },
+        {
+          "caller": "fail",
+          "callee": "REPORT.push",
+          "lineNumber": 8
+        },
+        {
+          "caller": "fail",
+          "callee": "console.log",
+          "lineNumber": 8
+        },
+        {
+          "caller": "test",
+          "callee": "fn",
+          "lineNumber": 11
+        },
+        {
+          "caller": "test",
+          "callee": "pass",
+          "lineNumber": 11
+        },
+        {
+          "caller": "test",
+          "callee": "fail",
+          "lineNumber": 12
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 3,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "qa-screenshots/17-before-snapshot.yml",
+      "language": "yaml",
+      "fileCategory": "config",
+      "totalLines": 50,
+      "nonEmptyLines": 50,
+      "sections": [
+        {
+          "heading": "[0]",
+          "level": 1,
+          "line": 1
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 1
+      }
+    }
+  ]
+}

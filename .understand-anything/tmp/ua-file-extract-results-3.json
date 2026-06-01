@@ -1,0 +1,3568 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 9,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": "mind-land-server/common/response.go",
+      "language": "go",
+      "fileCategory": "code",
+      "totalLines": 40,
+      "nonEmptyLines": 34,
+      "functions": [
+        {
+          "name": "Success",
+          "startLine": 22,
+          "endLine": 28,
+          "params": [
+            "c",
+            "data"
+          ]
+        },
+        {
+          "name": "Error",
+          "startLine": 30,
+          "endLine": 40,
+          "params": [
+            "c",
+            "status",
+            "msg"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "ResponseBody",
+          "startLine": 10,
+          "endLine": 14,
+          "methods": [],
+          "properties": [
+            "Code",
+            "Message",
+            "Result"
+          ]
+        },
+        {
+          "name": "ErrorResult",
+          "startLine": 16,
+          "endLine": 20,
+          "methods": [],
+          "properties": [
+            "Status",
+            "Path",
+            "Timestamp"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "ResponseBody",
+          "line": 10,
+          "isDefault": false
+        },
+        {
+          "name": "ErrorResult",
+          "line": 16,
+          "isDefault": false
+        },
+        {
+          "name": "Success",
+          "line": 22,
+          "isDefault": false
+        },
+        {
+          "name": "Error",
+          "line": 30,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "Success",
+          "callee": "c.JSON",
+          "lineNumber": 23
+        },
+        {
+          "caller": "Error",
+          "callee": "c.JSON",
+          "lineNumber": 31
+        },
+        {
+          "caller": "Error",
+          "callee": "time.Now().UTC().Format",
+          "lineNumber": 37
+        },
+        {
+          "caller": "Error",
+          "callee": "time.Now().UTC",
+          "lineNumber": 37
+        },
+        {
+          "caller": "Error",
+          "callee": "time.Now",
+          "lineNumber": 37
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 4,
+        "functionCount": 2,
+        "classCount": 2
+      }
+    },
+    {
+      "path": "mind-land-server/main.go",
+      "language": "go",
+      "fileCategory": "code",
+      "totalLines": 94,
+      "nonEmptyLines": 78,
+      "functions": [
+        {
+          "name": "main",
+          "startLine": 16,
+          "endLine": 94,
+          "params": []
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "main",
+          "callee": "gorm.Open",
+          "lineNumber": 17
+        },
+        {
+          "caller": "main",
+          "callee": "sqlite.Open",
+          "lineNumber": 17
+        },
+        {
+          "caller": "main",
+          "callee": "panic",
+          "lineNumber": 19
+        },
+        {
+          "caller": "main",
+          "callee": "err.Error",
+          "lineNumber": 19
+        },
+        {
+          "caller": "main",
+          "callee": "db.AutoMigrate",
+          "lineNumber": 22
+        },
+        {
+          "caller": "main",
+          "callee": "panic",
+          "lineNumber": 23
+        },
+        {
+          "caller": "main",
+          "callee": "err.Error",
+          "lineNumber": 23
+        },
+        {
+          "caller": "main",
+          "callee": "gin.Default",
+          "lineNumber": 26
+        },
+        {
+          "caller": "main",
+          "callee": "r.Use",
+          "lineNumber": 28
+        },
+        {
+          "caller": "main",
+          "callee": "cors.New",
+          "lineNumber": 28
+        },
+        {
+          "caller": "main",
+          "callee": "r.Group",
+          "lineNumber": 35
+        },
+        {
+          "caller": "main",
+          "callee": "slipbox.NewService",
+          "lineNumber": 38
+        },
+        {
+          "caller": "main",
+          "callee": "slipbox.NewHandler",
+          "lineNumber": 39
+        },
+        {
+          "caller": "main",
+          "callee": "api.Group",
+          "lineNumber": 41
+        },
+        {
+          "caller": "main",
+          "callee": "slip.GET",
+          "lineNumber": 43
+        },
+        {
+          "caller": "main",
+          "callee": "slip.GET",
+          "lineNumber": 44
+        },
+        {
+          "caller": "main",
+          "callee": "slip.GET",
+          "lineNumber": 45
+        },
+        {
+          "caller": "main",
+          "callee": "slip.GET",
+          "lineNumber": 46
+        },
+        {
+          "caller": "main",
+          "callee": "slip.POST",
+          "lineNumber": 47
+        },
+        {
+          "caller": "main",
+          "callee": "slip.PUT",
+          "lineNumber": 48
+        },
+        {
+          "caller": "main",
+          "callee": "slip.DELETE",
+          "lineNumber": 49
+        },
+        {
+          "caller": "main",
+          "callee": "slip.DELETE",
+          "lineNumber": 50
+        },
+        {
+          "caller": "main",
+          "callee": "todo.NewService",
+          "lineNumber": 54
+        },
+        {
+          "caller": "main",
+          "callee": "todo.NewHandler",
+          "lineNumber": 55
+        },
+        {
+          "caller": "main",
+          "callee": "api.Group",
+          "lineNumber": 57
+        },
+        {
+          "caller": "main",
+          "callee": "td.GET",
+          "lineNumber": 59
+        },
+        {
+          "caller": "main",
+          "callee": "td.POST",
+          "lineNumber": 60
+        },
+        {
+          "caller": "main",
+          "callee": "td.PATCH",
+          "lineNumber": 61
+        },
+        {
+          "caller": "main",
+          "callee": "td.DELETE",
+          "lineNumber": 62
+        },
+        {
+          "caller": "main",
+          "callee": "td.GET",
+          "lineNumber": 63
+        },
+        {
+          "caller": "main",
+          "callee": "td.POST",
+          "lineNumber": 64
+        },
+        {
+          "caller": "main",
+          "callee": "td.PATCH",
+          "lineNumber": 65
+        },
+        {
+          "caller": "main",
+          "callee": "td.DELETE",
+          "lineNumber": 66
+        },
+        {
+          "caller": "main",
+          "callee": "api.POST",
+          "lineNumber": 70
+        },
+        {
+          "caller": "main",
+          "callee": "r.Static",
+          "lineNumber": 74
+        },
+        {
+          "caller": "main",
+          "callee": "r.Static",
+          "lineNumber": 77
+        },
+        {
+          "caller": "main",
+          "callee": "r.StaticFile",
+          "lineNumber": 78
+        },
+        {
+          "caller": "main",
+          "callee": "r.StaticFile",
+          "lineNumber": 79
+        },
+        {
+          "caller": "main",
+          "callee": "r.StaticFile",
+          "lineNumber": 80
+        },
+        {
+          "caller": "main",
+          "callee": "r.NoRoute",
+          "lineNumber": 83
+        },
+        {
+          "caller": "main",
+          "callee": "strings.HasPrefix",
+          "lineNumber": 84
+        },
+        {
+          "caller": "main",
+          "callee": "c.JSON",
+          "lineNumber": 85
+        },
+        {
+          "caller": "main",
+          "callee": "c.File",
+          "lineNumber": 88
+        },
+        {
+          "caller": "main",
+          "callee": "r.Run",
+          "lineNumber": 91
+        },
+        {
+          "caller": "main",
+          "callee": "panic",
+          "lineNumber": 92
+        },
+        {
+          "caller": "main",
+          "callee": "err.Error",
+          "lineNumber": 92
+        }
+      ],
+      "metrics": {
+        "importCount": 7,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "mind-land-server/slipbox/handler.go",
+      "language": "go",
+      "fileCategory": "code",
+      "totalLines": 176,
+      "nonEmptyLines": 161,
+      "functions": [
+        {
+          "name": "NewHandler",
+          "startLine": 18,
+          "endLine": 20,
+          "params": [
+            "svc"
+          ]
+        },
+        {
+          "name": "GetCards",
+          "startLine": 22,
+          "endLine": 50,
+          "params": [
+            "c"
+          ]
+        },
+        {
+          "name": "GetCard",
+          "startLine": 52,
+          "endLine": 64,
+          "params": [
+            "c"
+          ]
+        },
+        {
+          "name": "GetAllTags",
+          "startLine": 66,
+          "endLine": 73,
+          "params": [
+            "c"
+          ]
+        },
+        {
+          "name": "GetTag",
+          "startLine": 75,
+          "endLine": 87,
+          "params": [
+            "c"
+          ]
+        },
+        {
+          "name": "CreateCard",
+          "startLine": 89,
+          "endLine": 105,
+          "params": [
+            "c"
+          ]
+        },
+        {
+          "name": "UpdateCard",
+          "startLine": 107,
+          "endLine": 133,
+          "params": [
+            "c"
+          ]
+        },
+        {
+          "name": "DeleteCard",
+          "startLine": 135,
+          "endLine": 159,
+          "params": [
+            "c"
+          ]
+        },
+        {
+          "name": "DeleteTag",
+          "startLine": 161,
+          "endLine": 176,
+          "params": [
+            "c"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "Handler",
+          "startLine": 14,
+          "endLine": 16,
+          "methods": [
+            "GetCards",
+            "GetCard",
+            "GetAllTags",
+            "GetTag",
+            "CreateCard",
+            "UpdateCard",
+            "DeleteCard",
+            "DeleteTag"
+          ],
+          "properties": [
+            "svc"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "Handler",
+          "line": 14,
+          "isDefault": false
+        },
+        {
+          "name": "NewHandler",
+          "line": 18,
+          "isDefault": false
+        },
+        {
+          "name": "GetCards",
+          "line": 22,
+          "isDefault": false
+        },
+        {
+          "name": "GetCard",
+          "line": 52,
+          "isDefault": false
+        },
+        {
+          "name": "GetAllTags",
+          "line": 66,
+          "isDefault": false
+        },
+        {
+          "name": "GetTag",
+          "line": 75,
+          "isDefault": false
+        },
+        {
+          "name": "CreateCard",
+          "line": 89,
+          "isDefault": false
+        },
+        {
+          "name": "UpdateCard",
+          "line": 107,
+          "isDefault": false
+        },
+        {
+          "name": "DeleteCard",
+          "line": 135,
+          "isDefault": false
+        },
+        {
+          "name": "DeleteTag",
+          "line": 161,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "GetCards",
+          "callee": "c.Query",
+          "lineNumber": 23
+        },
+        {
+          "caller": "GetCards",
+          "callee": "c.Query",
+          "lineNumber": 24
+        },
+        {
+          "caller": "GetCards",
+          "callee": "c.Query",
+          "lineNumber": 25
+        },
+        {
+          "caller": "GetCards",
+          "callee": "c.Query",
+          "lineNumber": 26
+        },
+        {
+          "caller": "GetCards",
+          "callee": "strconv.ParseUint",
+          "lineNumber": 29
+        },
+        {
+          "caller": "GetCards",
+          "callee": "common.Error",
+          "lineNumber": 31
+        },
+        {
+          "caller": "GetCards",
+          "callee": "h.svc.GetCardsByTagID",
+          "lineNumber": 34
+        },
+        {
+          "caller": "GetCards",
+          "callee": "uint",
+          "lineNumber": 34
+        },
+        {
+          "caller": "GetCards",
+          "callee": "common.Error",
+          "lineNumber": 36
+        },
+        {
+          "caller": "GetCards",
+          "callee": "err.Error",
+          "lineNumber": 36
+        },
+        {
+          "caller": "GetCards",
+          "callee": "common.Success",
+          "lineNumber": 39
+        },
+        {
+          "caller": "GetCards",
+          "callee": "h.svc.GetAllCards",
+          "lineNumber": 44
+        },
+        {
+          "caller": "GetCards",
+          "callee": "common.Error",
+          "lineNumber": 46
+        },
+        {
+          "caller": "GetCards",
+          "callee": "err.Error",
+          "lineNumber": 46
+        },
+        {
+          "caller": "GetCards",
+          "callee": "common.Success",
+          "lineNumber": 49
+        },
+        {
+          "caller": "GetCard",
+          "callee": "strconv.ParseUint",
+          "lineNumber": 53
+        },
+        {
+          "caller": "GetCard",
+          "callee": "c.Param",
+          "lineNumber": 53
+        },
+        {
+          "caller": "GetCard",
+          "callee": "common.Error",
+          "lineNumber": 55
+        },
+        {
+          "caller": "GetCard",
+          "callee": "h.svc.GetCard",
+          "lineNumber": 58
+        },
+        {
+          "caller": "GetCard",
+          "callee": "uint",
+          "lineNumber": 58
+        },
+        {
+          "caller": "GetCard",
+          "callee": "common.Error",
+          "lineNumber": 60
+        },
+        {
+          "caller": "GetCard",
+          "callee": "common.Success",
+          "lineNumber": 63
+        },
+        {
+          "caller": "GetAllTags",
+          "callee": "h.svc.GetAllTags",
+          "lineNumber": 67
+        },
+        {
+          "caller": "GetAllTags",
+          "callee": "common.Error",
+          "lineNumber": 69
+        },
+        {
+          "caller": "GetAllTags",
+          "callee": "err.Error",
+          "lineNumber": 69
+        },
+        {
+          "caller": "GetAllTags",
+          "callee": "common.Success",
+          "lineNumber": 72
+        },
+        {
+          "caller": "GetTag",
+          "callee": "strconv.ParseUint",
+          "lineNumber": 76
+        },
+        {
+          "caller": "GetTag",
+          "callee": "c.Param",
+          "lineNumber": 76
+        },
+        {
+          "caller": "GetTag",
+          "callee": "common.Error",
+          "lineNumber": 78
+        },
+        {
+          "caller": "GetTag",
+          "callee": "h.svc.GetTag",
+          "lineNumber": 81
+        },
+        {
+          "caller": "GetTag",
+          "callee": "uint",
+          "lineNumber": 81
+        },
+        {
+          "caller": "GetTag",
+          "callee": "common.Error",
+          "lineNumber": 83
+        },
+        {
+          "caller": "GetTag",
+          "callee": "common.Success",
+          "lineNumber": 86
+        },
+        {
+          "caller": "CreateCard",
+          "callee": "c.ShouldBindJSON",
+          "lineNumber": 91
+        },
+        {
+          "caller": "CreateCard",
+          "callee": "common.Error",
+          "lineNumber": 92
+        },
+        {
+          "caller": "CreateCard",
+          "callee": "err.Error",
+          "lineNumber": 92
+        },
+        {
+          "caller": "CreateCard",
+          "callee": "common.Error",
+          "lineNumber": 96
+        },
+        {
+          "caller": "CreateCard",
+          "callee": "h.svc.CreateCard",
+          "lineNumber": 99
+        },
+        {
+          "caller": "CreateCard",
+          "callee": "common.Error",
+          "lineNumber": 101
+        },
+        {
+          "caller": "CreateCard",
+          "callee": "err.Error",
+          "lineNumber": 101
+        },
+        {
+          "caller": "CreateCard",
+          "callee": "common.Success",
+          "lineNumber": 104
+        },
+        {
+          "caller": "UpdateCard",
+          "callee": "strconv.ParseUint",
+          "lineNumber": 108
+        },
+        {
+          "caller": "UpdateCard",
+          "callee": "c.Param",
+          "lineNumber": 108
+        },
+        {
+          "caller": "UpdateCard",
+          "callee": "common.Error",
+          "lineNumber": 110
+        },
+        {
+          "caller": "UpdateCard",
+          "callee": "c.ShouldBindJSON",
+          "lineNumber": 114
+        },
+        {
+          "caller": "UpdateCard",
+          "callee": "common.Error",
+          "lineNumber": 115
+        },
+        {
+          "caller": "UpdateCard",
+          "callee": "err.Error",
+          "lineNumber": 115
+        },
+        {
+          "caller": "UpdateCard",
+          "callee": "common.Error",
+          "lineNumber": 119
+        },
+        {
+          "caller": "UpdateCard",
+          "callee": "uint",
+          "lineNumber": 122
+        },
+        {
+          "caller": "UpdateCard",
+          "callee": "h.svc.UpdateCard",
+          "lineNumber": 123
+        },
+        {
+          "caller": "UpdateCard",
+          "callee": "errors.Is",
+          "lineNumber": 125
+        },
+        {
+          "caller": "UpdateCard",
+          "callee": "common.Error",
+          "lineNumber": 126
+        },
+        {
+          "caller": "UpdateCard",
+          "callee": "common.Error",
+          "lineNumber": 129
+        },
+        {
+          "caller": "UpdateCard",
+          "callee": "err.Error",
+          "lineNumber": 129
+        },
+        {
+          "caller": "UpdateCard",
+          "callee": "common.Success",
+          "lineNumber": 132
+        },
+        {
+          "caller": "DeleteCard",
+          "callee": "c.ShouldBindJSON",
+          "lineNumber": 137
+        },
+        {
+          "caller": "DeleteCard",
+          "callee": "common.Error",
+          "lineNumber": 138
+        },
+        {
+          "caller": "DeleteCard",
+          "callee": "err.Error",
+          "lineNumber": 138
+        },
+        {
+          "caller": "DeleteCard",
+          "callee": "common.Error",
+          "lineNumber": 142
+        },
+        {
+          "caller": "DeleteCard",
+          "callee": "h.svc.DeleteCard",
+          "lineNumber": 146
+        },
+        {
+          "caller": "DeleteCard",
+          "callee": "common.Error",
+          "lineNumber": 147
+        },
+        {
+          "caller": "DeleteCard",
+          "callee": "err.Error",
+          "lineNumber": 147
+        },
+        {
+          "caller": "DeleteCard",
+          "callee": "common.Success",
+          "lineNumber": 150
+        },
+        {
+          "caller": "DeleteCard",
+          "callee": "h.svc.RemoveCard",
+          "lineNumber": 153
+        },
+        {
+          "caller": "DeleteCard",
+          "callee": "common.Error",
+          "lineNumber": 155
+        },
+        {
+          "caller": "DeleteCard",
+          "callee": "err.Error",
+          "lineNumber": 155
+        },
+        {
+          "caller": "DeleteCard",
+          "callee": "common.Success",
+          "lineNumber": 158
+        },
+        {
+          "caller": "DeleteTag",
+          "callee": "c.ShouldBindJSON",
+          "lineNumber": 163
+        },
+        {
+          "caller": "DeleteTag",
+          "callee": "common.Error",
+          "lineNumber": 164
+        },
+        {
+          "caller": "DeleteTag",
+          "callee": "err.Error",
+          "lineNumber": 164
+        },
+        {
+          "caller": "DeleteTag",
+          "callee": "common.Error",
+          "lineNumber": 168
+        },
+        {
+          "caller": "DeleteTag",
+          "callee": "h.svc.DeleteTag",
+          "lineNumber": 171
+        },
+        {
+          "caller": "DeleteTag",
+          "callee": "common.Error",
+          "lineNumber": 172
+        },
+        {
+          "caller": "DeleteTag",
+          "callee": "err.Error",
+          "lineNumber": 172
+        },
+        {
+          "caller": "DeleteTag",
+          "callee": "common.Success",
+          "lineNumber": 175
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 10,
+        "functionCount": 9,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "mind-land-server/slipbox/model.go",
+      "language": "go",
+      "fileCategory": "code",
+      "totalLines": 58,
+      "nonEmptyLines": 52,
+      "functions": [
+        {
+          "name": "MarshalJSON",
+          "startLine": 26,
+          "endLine": 43,
+          "params": []
+        },
+        {
+          "name": "NewCardStatistics",
+          "startLine": 51,
+          "endLine": 58,
+          "params": [
+            "words"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "Card",
+          "startLine": 8,
+          "endLine": 15,
+          "methods": [],
+          "properties": [
+            "ID",
+            "Content",
+            "BuiltOrDelTime",
+            "Statistics",
+            "Tags",
+            "Del"
+          ]
+        },
+        {
+          "name": "Tag",
+          "startLine": 17,
+          "endLine": 24,
+          "methods": [
+            "MarshalJSON"
+          ],
+          "properties": [
+            "ID",
+            "TagName",
+            "Parent",
+            "Children",
+            "CardCount",
+            "Cards"
+          ]
+        },
+        {
+          "name": "CardStatistics",
+          "startLine": 45,
+          "endLine": 49,
+          "methods": [],
+          "properties": [
+            "BuiltTime",
+            "UpdateTime",
+            "Words"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "Card",
+          "line": 8,
+          "isDefault": false
+        },
+        {
+          "name": "Tag",
+          "line": 17,
+          "isDefault": false
+        },
+        {
+          "name": "MarshalJSON",
+          "line": 26,
+          "isDefault": false
+        },
+        {
+          "name": "CardStatistics",
+          "line": 45,
+          "isDefault": false
+        },
+        {
+          "name": "NewCardStatistics",
+          "line": 51,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "MarshalJSON",
+          "callee": "json.Unmarshal",
+          "lineNumber": 29
+        },
+        {
+          "caller": "MarshalJSON",
+          "callee": "json.Unmarshal",
+          "lineNumber": 33
+        },
+        {
+          "caller": "MarshalJSON",
+          "callee": "json.Marshal",
+          "lineNumber": 35
+        },
+        {
+          "caller": "NewCardStatistics",
+          "callee": "time.Now().Format",
+          "lineNumber": 52
+        },
+        {
+          "caller": "NewCardStatistics",
+          "callee": "time.Now",
+          "lineNumber": 52
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 5,
+        "functionCount": 2,
+        "classCount": 3
+      }
+    },
+    {
+      "path": "mind-land-server/slipbox/service.go",
+      "language": "go",
+      "fileCategory": "code",
+      "totalLines": 910,
+      "nonEmptyLines": 794,
+      "functions": [
+        {
+          "name": "NewService",
+          "startLine": 18,
+          "endLine": 20,
+          "params": [
+            "db"
+          ]
+        },
+        {
+          "name": "GetAllCards",
+          "startLine": 24,
+          "endLine": 32,
+          "params": [
+            "del",
+            "sortBy",
+            "order"
+          ]
+        },
+        {
+          "name": "GetCardsByTagID",
+          "startLine": 34,
+          "endLine": 49,
+          "params": [
+            "tagID",
+            "sortBy",
+            "order"
+          ]
+        },
+        {
+          "name": "GetCard",
+          "startLine": 51,
+          "endLine": 58,
+          "params": [
+            "id"
+          ]
+        },
+        {
+          "name": "GetAllTags",
+          "startLine": 62,
+          "endLine": 66,
+          "params": []
+        },
+        {
+          "name": "GetTag",
+          "startLine": 68,
+          "endLine": 75,
+          "params": [
+            "id"
+          ]
+        },
+        {
+          "name": "UpdateCard",
+          "startLine": 100,
+          "endLine": 125,
+          "params": [
+            "req"
+          ]
+        },
+        {
+          "name": "CreateCard",
+          "startLine": 127,
+          "endLine": 196,
+          "params": [
+            "req"
+          ]
+        },
+        {
+          "name": "RemoveCard",
+          "startLine": 206,
+          "endLine": 250,
+          "params": [
+            "req"
+          ]
+        },
+        {
+          "name": "DeleteCard",
+          "startLine": 256,
+          "endLine": 260,
+          "params": [
+            "req"
+          ]
+        },
+        {
+          "name": "DeleteTag",
+          "startLine": 270,
+          "endLine": 276,
+          "params": [
+            "req"
+          ]
+        },
+        {
+          "name": "deleteTagOnly",
+          "startLine": 278,
+          "endLine": 358,
+          "params": [
+            "req"
+          ]
+        },
+        {
+          "name": "deleteTagOverCards",
+          "startLine": 360,
+          "endLine": 511,
+          "params": [
+            "req"
+          ]
+        },
+        {
+          "name": "parseTagNames",
+          "startLine": 515,
+          "endLine": 538,
+          "params": [
+            "htmlContent"
+          ]
+        },
+        {
+          "name": "splitByTags",
+          "startLine": 540,
+          "endLine": 550,
+          "params": [
+            "s",
+            "tags"
+          ]
+        },
+        {
+          "name": "stripHTML",
+          "startLine": 552,
+          "endLine": 566,
+          "params": [
+            "s"
+          ]
+        },
+        {
+          "name": "saveTags",
+          "startLine": 569,
+          "endLine": 668,
+          "params": [
+            "tx",
+            "tagNames"
+          ]
+        },
+        {
+          "name": "collectCardIDsByTagAndOffspring",
+          "startLine": 670,
+          "endLine": 695,
+          "params": [
+            "tagID"
+          ]
+        },
+        {
+          "name": "collectTagAndDescendants",
+          "startLine": 697,
+          "endLine": 719,
+          "params": [
+            "tagID"
+          ]
+        },
+        {
+          "name": "decreaseCardCount",
+          "startLine": 721,
+          "endLine": 723,
+          "params": [
+            "tx",
+            "tagID",
+            "count",
+            "decreasedIDs",
+            "deletedIDs"
+          ]
+        },
+        {
+          "name": "decreaseCardCountWithStop",
+          "startLine": 725,
+          "endLine": 790,
+          "params": [
+            "tx",
+            "tagID",
+            "count",
+            "stopTag",
+            "decreasedIDs",
+            "deletedIDs"
+          ]
+        },
+        {
+          "name": "recalcCardCountUpward",
+          "startLine": 792,
+          "endLine": 853,
+          "params": [
+            "tx",
+            "tagID"
+          ]
+        },
+        {
+          "name": "sortCards",
+          "startLine": 857,
+          "endLine": 881,
+          "params": [
+            "cards",
+            "sortBy",
+            "order"
+          ]
+        },
+        {
+          "name": "containsID",
+          "startLine": 885,
+          "endLine": 892,
+          "params": [
+            "slice",
+            "id"
+          ]
+        },
+        {
+          "name": "removeFromSlice",
+          "startLine": 894,
+          "endLine": 902,
+          "params": [
+            "slice",
+            "id"
+          ]
+        },
+        {
+          "name": "mustJSON",
+          "startLine": 904,
+          "endLine": 910,
+          "params": [
+            "v"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "Service",
+          "startLine": 14,
+          "endLine": 16,
+          "methods": [
+            "GetAllCards",
+            "GetCardsByTagID",
+            "GetCard",
+            "GetAllTags",
+            "GetTag",
+            "UpdateCard",
+            "CreateCard",
+            "RemoveCard",
+            "DeleteCard",
+            "DeleteTag",
+            "deleteTagOnly",
+            "deleteTagOverCards",
+            "parseTagNames",
+            "saveTags",
+            "collectCardIDsByTagAndOffspring",
+            "collectTagAndDescendants",
+            "decreaseCardCount",
+            "decreaseCardCountWithStop",
+            "recalcCardCountUpward"
+          ],
+          "properties": [
+            "db"
+          ]
+        },
+        {
+          "name": "CreateCardReq",
+          "startLine": 79,
+          "endLine": 82,
+          "methods": [],
+          "properties": [
+            "ContentWithText",
+            "ContentWithHtml"
+          ]
+        },
+        {
+          "name": "CreateCardResp",
+          "startLine": 84,
+          "endLine": 87,
+          "methods": [],
+          "properties": [
+            "Card",
+            "Tags"
+          ]
+        },
+        {
+          "name": "UpdateCardReq",
+          "startLine": 91,
+          "endLine": 94,
+          "methods": [],
+          "properties": [
+            "ID",
+            "Content"
+          ]
+        },
+        {
+          "name": "UpdateCardResp",
+          "startLine": 96,
+          "endLine": 98,
+          "methods": [],
+          "properties": [
+            "Card"
+          ]
+        },
+        {
+          "name": "DeleteCardReq",
+          "startLine": 200,
+          "endLine": 204,
+          "methods": [],
+          "properties": [
+            "ID",
+            "TagIDs",
+            "Permanent"
+          ]
+        },
+        {
+          "name": "DeleteCardResp",
+          "startLine": 252,
+          "endLine": 254,
+          "methods": [],
+          "properties": [
+            "DeletedTagIDs"
+          ]
+        },
+        {
+          "name": "DeleteTagReq",
+          "startLine": 264,
+          "endLine": 268,
+          "methods": [],
+          "properties": [
+            "ID",
+            "TagName",
+            "OverCards"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "Service",
+          "line": 14,
+          "isDefault": false
+        },
+        {
+          "name": "NewService",
+          "line": 18,
+          "isDefault": false
+        },
+        {
+          "name": "GetAllCards",
+          "line": 24,
+          "isDefault": false
+        },
+        {
+          "name": "GetCardsByTagID",
+          "line": 34,
+          "isDefault": false
+        },
+        {
+          "name": "GetCard",
+          "line": 51,
+          "isDefault": false
+        },
+        {
+          "name": "GetAllTags",
+          "line": 62,
+          "isDefault": false
+        },
+        {
+          "name": "GetTag",
+          "line": 68,
+          "isDefault": false
+        },
+        {
+          "name": "CreateCardReq",
+          "line": 79,
+          "isDefault": false
+        },
+        {
+          "name": "CreateCardResp",
+          "line": 84,
+          "isDefault": false
+        },
+        {
+          "name": "UpdateCardReq",
+          "line": 91,
+          "isDefault": false
+        },
+        {
+          "name": "UpdateCardResp",
+          "line": 96,
+          "isDefault": false
+        },
+        {
+          "name": "UpdateCard",
+          "line": 100,
+          "isDefault": false
+        },
+        {
+          "name": "CreateCard",
+          "line": 127,
+          "isDefault": false
+        },
+        {
+          "name": "DeleteCardReq",
+          "line": 200,
+          "isDefault": false
+        },
+        {
+          "name": "RemoveCard",
+          "line": 206,
+          "isDefault": false
+        },
+        {
+          "name": "DeleteCardResp",
+          "line": 252,
+          "isDefault": false
+        },
+        {
+          "name": "DeleteCard",
+          "line": 256,
+          "isDefault": false
+        },
+        {
+          "name": "DeleteTagReq",
+          "line": 264,
+          "isDefault": false
+        },
+        {
+          "name": "DeleteTag",
+          "line": 270,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "GetAllCards",
+          "callee": "s.db.Where(\"del = ?\", del).Find",
+          "lineNumber": 26
+        },
+        {
+          "caller": "GetAllCards",
+          "callee": "s.db.Where",
+          "lineNumber": 26
+        },
+        {
+          "caller": "GetAllCards",
+          "callee": "sortCards",
+          "lineNumber": 30
+        },
+        {
+          "caller": "GetCardsByTagID",
+          "callee": "s.collectCardIDsByTagAndOffspring",
+          "lineNumber": 35
+        },
+        {
+          "caller": "GetCardsByTagID",
+          "callee": "len",
+          "lineNumber": 39
+        },
+        {
+          "caller": "GetCardsByTagID",
+          "callee": "s.db.Find",
+          "lineNumber": 43
+        },
+        {
+          "caller": "GetCardsByTagID",
+          "callee": "sortCards",
+          "lineNumber": 47
+        },
+        {
+          "caller": "GetCard",
+          "callee": "s.db.First",
+          "lineNumber": 53
+        },
+        {
+          "caller": "GetAllTags",
+          "callee": "s.db.Find",
+          "lineNumber": 64
+        },
+        {
+          "caller": "GetTag",
+          "callee": "s.db.First",
+          "lineNumber": 70
+        },
+        {
+          "caller": "UpdateCard",
+          "callee": "s.db.First",
+          "lineNumber": 102
+        },
+        {
+          "caller": "UpdateCard",
+          "callee": "json.Unmarshal",
+          "lineNumber": 107
+        },
+        {
+          "caller": "UpdateCard",
+          "callee": "time.Now().Format",
+          "lineNumber": 110
+        },
+        {
+          "caller": "UpdateCard",
+          "callee": "time.Now",
+          "lineNumber": 110
+        },
+        {
+          "caller": "UpdateCard",
+          "callee": "json.Marshal",
+          "lineNumber": 111
+        },
+        {
+          "caller": "UpdateCard",
+          "callee": "string",
+          "lineNumber": 118
+        },
+        {
+          "caller": "UpdateCard",
+          "callee": "s.db.Save",
+          "lineNumber": 120
+        },
+        {
+          "caller": "CreateCard",
+          "callee": "s.parseTagNames",
+          "lineNumber": 129
+        },
+        {
+          "caller": "CreateCard",
+          "callee": "s.db.Transaction",
+          "lineNumber": 132
+        },
+        {
+          "caller": "CreateCard",
+          "callee": "s.saveTags",
+          "lineNumber": 134
+        },
+        {
+          "caller": "CreateCard",
+          "callee": "len",
+          "lineNumber": 140
+        },
+        {
+          "caller": "CreateCard",
+          "callee": "NewCardStatistics",
+          "lineNumber": 141
+        },
+        {
+          "caller": "CreateCard",
+          "callee": "json.Marshal",
+          "lineNumber": 142
+        },
+        {
+          "caller": "CreateCard",
+          "callee": "make",
+          "lineNumber": 146
+        },
+        {
+          "caller": "CreateCard",
+          "callee": "len",
+          "lineNumber": 146
+        },
+        {
+          "caller": "CreateCard",
+          "callee": "json.Marshal",
+          "lineNumber": 150
+        },
+        {
+          "caller": "CreateCard",
+          "callee": "time.Now().Format",
+          "lineNumber": 157
+        },
+        {
+          "caller": "CreateCard",
+          "callee": "time.Now",
+          "lineNumber": 157
+        },
+        {
+          "caller": "CreateCard",
+          "callee": "string",
+          "lineNumber": 158
+        },
+        {
+          "caller": "CreateCard",
+          "callee": "string",
+          "lineNumber": 159
+        },
+        {
+          "caller": "CreateCard",
+          "callee": "tx.Create",
+          "lineNumber": 162
+        },
+        {
+          "caller": "CreateCard",
+          "callee": "json.Unmarshal",
+          "lineNumber": 170
+        },
+        {
+          "caller": "CreateCard",
+          "callee": "append",
+          "lineNumber": 174
+        },
+        {
+          "caller": "CreateCard",
+          "callee": "json.Marshal",
+          "lineNumber": 175
+        },
+        {
+          "caller": "CreateCard",
+          "callee": "tx.Model(&Tag{}).Where(\"id = ?\", t.ID).Update",
+          "lineNumber": 179
+        },
+        {
+          "caller": "CreateCard",
+          "callee": "tx.Model(&Tag{}).Where",
+          "lineNumber": 179
+        },
+        {
+          "caller": "CreateCard",
+          "callee": "tx.Model",
+          "lineNumber": 179
+        },
+        {
+          "caller": "CreateCard",
+          "callee": "string",
+          "lineNumber": 179
+        },
+        {
+          "caller": "CreateCard",
+          "callee": "tx.Model(&Tag{}).Where(\"id = ?\", t.ID).Update",
+          "lineNumber": 186
+        },
+        {
+          "caller": "CreateCard",
+          "callee": "tx.Model(&Tag{}).Where",
+          "lineNumber": 186
+        },
+        {
+          "caller": "CreateCard",
+          "callee": "tx.Model",
+          "lineNumber": 186
+        },
+        {
+          "caller": "CreateCard",
+          "callee": "gorm.Expr",
+          "lineNumber": 186
+        },
+        {
+          "caller": "RemoveCard",
+          "callee": "s.db.Transaction",
+          "lineNumber": 209
+        },
+        {
+          "caller": "RemoveCard",
+          "callee": "tx.Model(&Card{}).Where(\"id = ?\", req.ID).Updates",
+          "lineNumber": 211
+        },
+        {
+          "caller": "RemoveCard",
+          "callee": "tx.Model(&Card{}).Where",
+          "lineNumber": 211
+        },
+        {
+          "caller": "RemoveCard",
+          "callee": "tx.Model",
+          "lineNumber": 211
+        },
+        {
+          "caller": "RemoveCard",
+          "callee": "time.Now().Format",
+          "lineNumber": 213
+        },
+        {
+          "caller": "RemoveCard",
+          "callee": "time.Now",
+          "lineNumber": 213
+        },
+        {
+          "caller": "RemoveCard",
+          "callee": "s.decreaseCardCount",
+          "lineNumber": 220
+        },
+        {
+          "caller": "RemoveCard",
+          "callee": "containsID",
+          "lineNumber": 224
+        },
+        {
+          "caller": "RemoveCard",
+          "callee": "tx.First",
+          "lineNumber": 226
+        },
+        {
+          "caller": "RemoveCard",
+          "callee": "json.Unmarshal",
+          "lineNumber": 233
+        },
+        {
+          "caller": "RemoveCard",
+          "callee": "removeFromSlice",
+          "lineNumber": 236
+        },
+        {
+          "caller": "RemoveCard",
+          "callee": "json.Marshal",
+          "lineNumber": 237
+        },
+        {
+          "caller": "RemoveCard",
+          "callee": "tx.Model(&Tag{}).Where(\"id = ?\", tid).Update",
+          "lineNumber": 241
+        },
+        {
+          "caller": "RemoveCard",
+          "callee": "tx.Model(&Tag{}).Where",
+          "lineNumber": 241
+        },
+        {
+          "caller": "RemoveCard",
+          "callee": "tx.Model",
+          "lineNumber": 241
+        },
+        {
+          "caller": "RemoveCard",
+          "callee": "string",
+          "lineNumber": 241
+        },
+        {
+          "caller": "DeleteCard",
+          "callee": "s.db.Transaction",
+          "lineNumber": 257
+        },
+        {
+          "caller": "DeleteCard",
+          "callee": "tx.Delete",
+          "lineNumber": 258
+        },
+        {
+          "caller": "DeleteTag",
+          "callee": "s.deleteTagOverCards",
+          "lineNumber": 273
+        },
+        {
+          "caller": "DeleteTag",
+          "callee": "s.deleteTagOnly",
+          "lineNumber": 275
+        },
+        {
+          "caller": "deleteTagOnly",
+          "callee": "s.db.Transaction",
+          "lineNumber": 279
+        },
+        {
+          "caller": "deleteTagOnly",
+          "callee": "s.collectTagAndDescendants",
+          "lineNumber": 281
+        },
+        {
+          "caller": "deleteTagOnly",
+          "callee": "len",
+          "lineNumber": 286
+        },
+        {
+          "caller": "deleteTagOnly",
+          "callee": "json.Unmarshal",
+          "lineNumber": 290
+        },
+        {
+          "caller": "deleteTagOnly",
+          "callee": "tx.First",
+          "lineNumber": 296
+        },
+        {
+          "caller": "deleteTagOnly",
+          "callee": "regexp.MustCompile",
+          "lineNumber": 302
+        },
+        {
+          "caller": "deleteTagOnly",
+          "callee": "regexp.QuoteMeta",
+          "lineNumber": 302
+        },
+        {
+          "caller": "deleteTagOnly",
+          "callee": "re.ReplaceAllString",
+          "lineNumber": 303
+        },
+        {
+          "caller": "deleteTagOnly",
+          "callee": "json.Unmarshal",
+          "lineNumber": 306
+        },
+        {
+          "caller": "deleteTagOnly",
+          "callee": "removeFromSlice",
+          "lineNumber": 309
+        },
+        {
+          "caller": "deleteTagOnly",
+          "callee": "json.Marshal",
+          "lineNumber": 311
+        },
+        {
+          "caller": "deleteTagOnly",
+          "callee": "tx.Model(&Card{}).Where(\"id = ?\", cid).Updates",
+          "lineNumber": 315
+        },
+        {
+          "caller": "deleteTagOnly",
+          "callee": "tx.Model(&Card{}).Where",
+          "lineNumber": 315
+        },
+        {
+          "caller": "deleteTagOnly",
+          "callee": "tx.Model",
+          "lineNumber": 315
+        },
+        {
+          "caller": "deleteTagOnly",
+          "callee": "string",
+          "lineNumber": 317
+        },
+        {
+          "caller": "deleteTagOnly",
+          "callee": "tx.Delete",
+          "lineNumber": 323
+        },
+        {
+          "caller": "deleteTagOnly",
+          "callee": "tx.First",
+          "lineNumber": 332
+        },
+        {
+          "caller": "deleteTagOnly",
+          "callee": "json.Unmarshal",
+          "lineNumber": 334
+        },
+        {
+          "caller": "deleteTagOnly",
+          "callee": "removeFromSlice",
+          "lineNumber": 337
+        },
+        {
+          "caller": "deleteTagOnly",
+          "callee": "json.Marshal",
+          "lineNumber": 338
+        },
+        {
+          "caller": "deleteTagOnly",
+          "callee": "tx.Model(&Tag{}).Where(\"id = ?\", parent.ID).Update",
+          "lineNumber": 342
+        },
+        {
+          "caller": "deleteTagOnly",
+          "callee": "tx.Model(&Tag{}).Where",
+          "lineNumber": 342
+        },
+        {
+          "caller": "deleteTagOnly",
+          "callee": "tx.Model",
+          "lineNumber": 342
+        },
+        {
+          "caller": "deleteTagOnly",
+          "callee": "string",
+          "lineNumber": 342
+        },
+        {
+          "caller": "deleteTagOnly",
+          "callee": "s.recalcCardCountUpward",
+          "lineNumber": 351
+        },
+        {
+          "caller": "deleteTagOverCards",
+          "callee": "s.db.Transaction",
+          "lineNumber": 361
+        },
+        {
+          "caller": "deleteTagOverCards",
+          "callee": "s.collectTagAndDescendants",
+          "lineNumber": 362
+        },
+        {
+          "caller": "deleteTagOverCards",
+          "callee": "len",
+          "lineNumber": 375
+        },
+        {
+          "caller": "deleteTagOverCards",
+          "callee": "json.Unmarshal",
+          "lineNumber": 379
+        },
+        {
+          "caller": "deleteTagOverCards",
+          "callee": "tx.First",
+          "lineNumber": 385
+        },
+        {
+          "caller": "deleteTagOverCards",
+          "callee": "json.Unmarshal",
+          "lineNumber": 395
+        },
+        {
+          "caller": "deleteTagOverCards",
+          "callee": "removeFromSlice",
+          "lineNumber": 400
+        },
+        {
+          "caller": "deleteTagOverCards",
+          "callee": "tx.Model(&Card{}).Where(\"id = ?\", cid).Updates",
+          "lineNumber": 404
+        },
+        {
+          "caller": "deleteTagOverCards",
+          "callee": "tx.Model(&Card{}).Where",
+          "lineNumber": 404
+        },
+        {
+          "caller": "deleteTagOverCards",
+          "callee": "tx.Model",
+          "lineNumber": 404
+        },
+        {
+          "caller": "deleteTagOverCards",
+          "callee": "time.Now().Format",
+          "lineNumber": 406
+        },
+        {
+          "caller": "deleteTagOverCards",
+          "callee": "time.Now",
+          "lineNumber": 406
+        },
+        {
+          "caller": "deleteTagOverCards",
+          "callee": "tx.Delete",
+          "lineNumber": 414
+        },
+        {
+          "caller": "deleteTagOverCards",
+          "callee": "tx.First",
+          "lineNumber": 423
+        },
+        {
+          "caller": "deleteTagOverCards",
+          "callee": "json.Unmarshal",
+          "lineNumber": 425
+        },
+        {
+          "caller": "deleteTagOverCards",
+          "callee": "removeFromSlice",
+          "lineNumber": 428
+        },
+        {
+          "caller": "deleteTagOverCards",
+          "callee": "json.Marshal",
+          "lineNumber": 429
+        },
+        {
+          "caller": "deleteTagOverCards",
+          "callee": "tx.Model(&Tag{}).Where(\"id = ?\", parent.ID).Update",
+          "lineNumber": 433
+        },
+        {
+          "caller": "deleteTagOverCards",
+          "callee": "tx.Model(&Tag{}).Where",
+          "lineNumber": 433
+        },
+        {
+          "caller": "deleteTagOverCards",
+          "callee": "tx.Model",
+          "lineNumber": 433
+        },
+        {
+          "caller": "deleteTagOverCards",
+          "callee": "string",
+          "lineNumber": 433
+        },
+        {
+          "caller": "deleteTagOverCards",
+          "callee": "len",
+          "lineNumber": 441
+        },
+        {
+          "caller": "deleteTagOverCards",
+          "callee": "tx.First",
+          "lineNumber": 447
+        },
+        {
+          "caller": "deleteTagOverCards",
+          "callee": "json.Unmarshal",
+          "lineNumber": 454
+        },
+        {
+          "caller": "deleteTagOverCards",
+          "callee": "removeFromSlice",
+          "lineNumber": 457
+        },
+        {
+          "caller": "deleteTagOverCards",
+          "callee": "json.Marshal",
+          "lineNumber": 458
+        },
+        {
+          "caller": "deleteTagOverCards",
+          "callee": "tx.Model(&Tag{}).Where(\"id = ?\", tid).Update",
+          "lineNumber": 462
+        },
+        {
+          "caller": "deleteTagOverCards",
+          "callee": "tx.Model(&Tag{}).Where",
+          "lineNumber": 462
+        },
+        {
+          "caller": "deleteTagOverCards",
+          "callee": "tx.Model",
+          "lineNumber": 462
+        },
+        {
+          "caller": "deleteTagOverCards",
+          "callee": "string",
+          "lineNumber": 462
+        },
+        {
+          "caller": "deleteTagOverCards",
+          "callee": "tx.First",
+          "lineNumber": 470
+        },
+        {
+          "caller": "deleteTagOverCards",
+          "callee": "strings.HasPrefix",
+          "lineNumber": 476
+        },
+        {
+          "caller": "deleteTagOverCards",
+          "callee": "s.decreaseCardCount",
+          "lineNumber": 478
+        },
+        {
+          "caller": "deleteTagOverCards",
+          "callee": "tx.First",
+          "lineNumber": 486
+        },
+        {
+          "caller": "deleteTagOverCards",
+          "callee": "s.decreaseCardCountWithStop",
+          "lineNumber": 494
+        },
+        {
+          "caller": "deleteTagOverCards",
+          "callee": "s.decreaseCardCount",
+          "lineNumber": 504
+        },
+        {
+          "caller": "parseTagNames",
+          "callee": "splitByTags",
+          "lineNumber": 517
+        },
+        {
+          "caller": "parseTagNames",
+          "callee": "append",
+          "lineNumber": 522
+        },
+        {
+          "caller": "parseTagNames",
+          "callee": "stripHTML",
+          "lineNumber": 522
+        },
+        {
+          "caller": "parseTagNames",
+          "callee": "strings.Fields",
+          "lineNumber": 529
+        },
+        {
+          "caller": "parseTagNames",
+          "callee": "strings.HasPrefix",
+          "lineNumber": 531
+        },
+        {
+          "caller": "parseTagNames",
+          "callee": "len",
+          "lineNumber": 531
+        },
+        {
+          "caller": "parseTagNames",
+          "callee": "append",
+          "lineNumber": 533
+        },
+        {
+          "caller": "splitByTags",
+          "callee": "append",
+          "lineNumber": 545
+        },
+        {
+          "caller": "splitByTags",
+          "callee": "strings.Split",
+          "lineNumber": 545
+        },
+        {
+          "caller": "stripHTML",
+          "callee": "html.NewTokenizer",
+          "lineNumber": 553
+        },
+        {
+          "caller": "stripHTML",
+          "callee": "strings.NewReader",
+          "lineNumber": 553
+        },
+        {
+          "caller": "stripHTML",
+          "callee": "z.Next",
+          "lineNumber": 556
+        },
+        {
+          "caller": "stripHTML",
+          "callee": "b.WriteString",
+          "lineNumber": 561
+        },
+        {
+          "caller": "stripHTML",
+          "callee": "strings.TrimSpace",
+          "lineNumber": 561
+        },
+        {
+          "caller": "stripHTML",
+          "callee": "string",
+          "lineNumber": 561
+        },
+        {
+          "caller": "stripHTML",
+          "callee": "z.Text",
+          "lineNumber": 561
+        },
+        {
+          "caller": "stripHTML",
+          "callee": "b.WriteByte",
+          "lineNumber": 562
+        },
+        {
+          "caller": "stripHTML",
+          "callee": "strings.TrimSpace",
+          "lineNumber": 565
+        },
+        {
+          "caller": "stripHTML",
+          "callee": "b.String",
+          "lineNumber": 565
+        },
+        {
+          "caller": "saveTags",
+          "callee": "strings.Split",
+          "lineNumber": 575
+        },
+        {
+          "caller": "saveTags",
+          "callee": "len",
+          "lineNumber": 580
+        },
+        {
+          "caller": "saveTags",
+          "callee": "strings.Join",
+          "lineNumber": 581
+        },
+        {
+          "caller": "saveTags",
+          "callee": "tx.Where(\"tag_name = ?\", currentName).First",
+          "lineNumber": 586
+        },
+        {
+          "caller": "saveTags",
+          "callee": "tx.Where",
+          "lineNumber": 586
+        },
+        {
+          "caller": "saveTags",
+          "callee": "append",
+          "lineNumber": 588
+        },
+        {
+          "caller": "saveTags",
+          "callee": "tx.Where(\"tag_name = ?\", currentName).First",
+          "lineNumber": 596
+        },
+        {
+          "caller": "saveTags",
+          "callee": "tx.Where",
+          "lineNumber": 596
+        },
+        {
+          "caller": "saveTags",
+          "callee": "append",
+          "lineNumber": 601
+        },
+        {
+          "caller": "saveTags",
+          "callee": "append",
+          "lineNumber": 607
+        },
+        {
+          "caller": "saveTags",
+          "callee": "json.Unmarshal",
+          "lineNumber": 614
+        },
+        {
+          "caller": "saveTags",
+          "callee": "containsID",
+          "lineNumber": 617
+        },
+        {
+          "caller": "saveTags",
+          "callee": "append",
+          "lineNumber": 618
+        },
+        {
+          "caller": "saveTags",
+          "callee": "json.Marshal",
+          "lineNumber": 619
+        },
+        {
+          "caller": "saveTags",
+          "callee": "tx.Model(&Tag{}).Where(\"id = ?\", tag.ID).Update",
+          "lineNumber": 623
+        },
+        {
+          "caller": "saveTags",
+          "callee": "tx.Model(&Tag{}).Where",
+          "lineNumber": 623
+        },
+        {
+          "caller": "saveTags",
+          "callee": "tx.Model",
+          "lineNumber": 623
+        },
+        {
+          "caller": "saveTags",
+          "callee": "string",
+          "lineNumber": 623
+        },
+        {
+          "caller": "saveTags",
+          "callee": "tx.Model(&Tag{}).Where(\"id = ?\", cid).Update",
+          "lineNumber": 627
+        },
+        {
+          "caller": "saveTags",
+          "callee": "tx.Model(&Tag{}).Where",
+          "lineNumber": 627
+        },
+        {
+          "caller": "saveTags",
+          "callee": "tx.Model",
+          "lineNumber": 627
+        },
+        {
+          "caller": "saveTags",
+          "callee": "mustJSON",
+          "lineNumber": 643
+        },
+        {
+          "caller": "saveTags",
+          "callee": "tx.Create",
+          "lineNumber": 645
+        },
+        {
+          "caller": "saveTags",
+          "callee": "append",
+          "lineNumber": 650
+        },
+        {
+          "caller": "saveTags",
+          "callee": "tx.Model(&Tag{}).Where(\"id = ?\", cid).Update",
+          "lineNumber": 655
+        },
+        {
+          "caller": "saveTags",
+          "callee": "tx.Model(&Tag{}).Where",
+          "lineNumber": 655
+        },
+        {
+          "caller": "saveTags",
+          "callee": "tx.Model",
+          "lineNumber": 655
+        },
+        {
+          "caller": "saveTags",
+          "callee": "append",
+          "lineNumber": 660
+        },
+        {
+          "caller": "collectCardIDsByTagAndOffspring",
+          "callee": "s.db.First",
+          "lineNumber": 672
+        },
+        {
+          "caller": "collectCardIDsByTagAndOffspring",
+          "callee": "json.Unmarshal",
+          "lineNumber": 677
+        },
+        {
+          "caller": "collectCardIDsByTagAndOffspring",
+          "callee": "json.Unmarshal",
+          "lineNumber": 682
+        },
+        {
+          "caller": "collectCardIDsByTagAndOffspring",
+          "callee": "s.collectCardIDsByTagAndOffspring",
+          "lineNumber": 687
+        },
+        {
+          "caller": "collectCardIDsByTagAndOffspring",
+          "callee": "append",
+          "lineNumber": 691
+        },
+        {
+          "caller": "collectTagAndDescendants",
+          "callee": "s.db.First",
+          "lineNumber": 699
+        },
+        {
+          "caller": "collectTagAndDescendants",
+          "callee": "json.Unmarshal",
+          "lineNumber": 706
+        },
+        {
+          "caller": "collectTagAndDescendants",
+          "callee": "s.collectTagAndDescendants",
+          "lineNumber": 711
+        },
+        {
+          "caller": "collectTagAndDescendants",
+          "callee": "append",
+          "lineNumber": 715
+        },
+        {
+          "caller": "decreaseCardCount",
+          "callee": "s.decreaseCardCountWithStop",
+          "lineNumber": 722
+        },
+        {
+          "caller": "decreaseCardCountWithStop",
+          "callee": "tx.First",
+          "lineNumber": 734
+        },
+        {
+          "caller": "decreaseCardCountWithStop",
+          "callee": "tx.Delete",
+          "lineNumber": 743
+        },
+        {
+          "caller": "decreaseCardCountWithStop",
+          "callee": "append",
+          "lineNumber": 747
+        },
+        {
+          "caller": "decreaseCardCountWithStop",
+          "callee": "json.Unmarshal",
+          "lineNumber": 752
+        },
+        {
+          "caller": "decreaseCardCountWithStop",
+          "callee": "removeFromSlice",
+          "lineNumber": 755
+        },
+        {
+          "caller": "decreaseCardCountWithStop",
+          "callee": "json.Marshal",
+          "lineNumber": 756
+        },
+        {
+          "caller": "decreaseCardCountWithStop",
+          "callee": "tx.Model(&Tag{}).Where(\"id = ?\", stopTag.ID).Update",
+          "lineNumber": 760
+        },
+        {
+          "caller": "decreaseCardCountWithStop",
+          "callee": "tx.Model(&Tag{}).Where",
+          "lineNumber": 760
+        },
+        {
+          "caller": "decreaseCardCountWithStop",
+          "callee": "tx.Model",
+          "lineNumber": 760
+        },
+        {
+          "caller": "decreaseCardCountWithStop",
+          "callee": "string",
+          "lineNumber": 760
+        },
+        {
+          "caller": "decreaseCardCountWithStop",
+          "callee": "s.decreaseCardCountWithStop",
+          "lineNumber": 766
+        },
+        {
+          "caller": "decreaseCardCountWithStop",
+          "callee": "json.Unmarshal",
+          "lineNumber": 771
+        },
+        {
+          "caller": "decreaseCardCountWithStop",
+          "callee": "containsID",
+          "lineNumber": 774
+        },
+        {
+          "caller": "decreaseCardCountWithStop",
+          "callee": "removeFromSlice",
+          "lineNumber": 775
+        },
+        {
+          "caller": "decreaseCardCountWithStop",
+          "callee": "json.Marshal",
+          "lineNumber": 777
+        },
+        {
+          "caller": "decreaseCardCountWithStop",
+          "callee": "tx.Model(&Tag{}).Where(\"id = ?\", tagID).Updates",
+          "lineNumber": 781
+        },
+        {
+          "caller": "decreaseCardCountWithStop",
+          "callee": "tx.Model(&Tag{}).Where",
+          "lineNumber": 781
+        },
+        {
+          "caller": "decreaseCardCountWithStop",
+          "callee": "tx.Model",
+          "lineNumber": 781
+        },
+        {
+          "caller": "decreaseCardCountWithStop",
+          "callee": "string",
+          "lineNumber": 783
+        },
+        {
+          "caller": "decreaseCardCountWithStop",
+          "callee": "s.decreaseCardCountWithStop",
+          "lineNumber": 789
+        },
+        {
+          "caller": "recalcCardCountUpward",
+          "callee": "tx.First",
+          "lineNumber": 798
+        },
+        {
+          "caller": "recalcCardCountUpward",
+          "callee": "json.Unmarshal",
+          "lineNumber": 807
+        },
+        {
+          "caller": "recalcCardCountUpward",
+          "callee": "tx.First",
+          "lineNumber": 813
+        },
+        {
+          "caller": "recalcCardCountUpward",
+          "callee": "tx.Delete",
+          "lineNumber": 824
+        },
+        {
+          "caller": "recalcCardCountUpward",
+          "callee": "tx.First",
+          "lineNumber": 829
+        },
+        {
+          "caller": "recalcCardCountUpward",
+          "callee": "json.Unmarshal",
+          "lineNumber": 831
+        },
+        {
+          "caller": "recalcCardCountUpward",
+          "callee": "removeFromSlice",
+          "lineNumber": 834
+        },
+        {
+          "caller": "recalcCardCountUpward",
+          "callee": "json.Marshal",
+          "lineNumber": 835
+        },
+        {
+          "caller": "recalcCardCountUpward",
+          "callee": "tx.Model(&Tag{}).Where(\"id = ?\", pid).Update",
+          "lineNumber": 839
+        },
+        {
+          "caller": "recalcCardCountUpward",
+          "callee": "tx.Model(&Tag{}).Where",
+          "lineNumber": 839
+        },
+        {
+          "caller": "recalcCardCountUpward",
+          "callee": "tx.Model",
+          "lineNumber": 839
+        },
+        {
+          "caller": "recalcCardCountUpward",
+          "callee": "string",
+          "lineNumber": 839
+        },
+        {
+          "caller": "recalcCardCountUpward",
+          "callee": "s.recalcCardCountUpward",
+          "lineNumber": 843
+        },
+        {
+          "caller": "recalcCardCountUpward",
+          "callee": "tx.Model(&Tag{}).Where(\"id = ?\", tagID).Update",
+          "lineNumber": 846
+        },
+        {
+          "caller": "recalcCardCountUpward",
+          "callee": "tx.Model(&Tag{}).Where",
+          "lineNumber": 846
+        },
+        {
+          "caller": "recalcCardCountUpward",
+          "callee": "tx.Model",
+          "lineNumber": 846
+        },
+        {
+          "caller": "recalcCardCountUpward",
+          "callee": "s.recalcCardCountUpward",
+          "lineNumber": 849
+        },
+        {
+          "caller": "sortCards",
+          "callee": "sort.SliceStable",
+          "lineNumber": 861
+        },
+        {
+          "caller": "sortCards",
+          "callee": "json.Unmarshal",
+          "lineNumber": 863
+        },
+        {
+          "caller": "sortCards",
+          "callee": "json.Unmarshal",
+          "lineNumber": 864
+        },
+        {
+          "caller": "removeFromSlice",
+          "callee": "append",
+          "lineNumber": 898
+        },
+        {
+          "caller": "mustJSON",
+          "callee": "json.Marshal",
+          "lineNumber": 905
+        },
+        {
+          "caller": "mustJSON",
+          "callee": "panic",
+          "lineNumber": 907
+        },
+        {
+          "caller": "mustJSON",
+          "callee": "err.Error",
+          "lineNumber": 907
+        },
+        {
+          "caller": "mustJSON",
+          "callee": "string",
+          "lineNumber": 909
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 19,
+        "functionCount": 26,
+        "classCount": 8
+      }
+    },
+    {
+      "path": "mind-land-server/todo/handler.go",
+      "language": "go",
+      "fileCategory": "code",
+      "totalLines": 179,
+      "nonEmptyLines": 164,
+      "functions": [
+        {
+          "name": "NewHandler",
+          "startLine": 16,
+          "endLine": 18,
+          "params": [
+            "svc"
+          ]
+        },
+        {
+          "name": "CreateList",
+          "startLine": 20,
+          "endLine": 38,
+          "params": [
+            "c"
+          ]
+        },
+        {
+          "name": "GetLists",
+          "startLine": 40,
+          "endLine": 47,
+          "params": [
+            "c"
+          ]
+        },
+        {
+          "name": "PatchList",
+          "startLine": 49,
+          "endLine": 71,
+          "params": [
+            "c"
+          ]
+        },
+        {
+          "name": "DeleteList",
+          "startLine": 73,
+          "endLine": 84,
+          "params": [
+            "c"
+          ]
+        },
+        {
+          "name": "CreateItem",
+          "startLine": 86,
+          "endLine": 106,
+          "params": [
+            "c"
+          ]
+        },
+        {
+          "name": "GetItems",
+          "startLine": 108,
+          "endLine": 140,
+          "params": [
+            "c"
+          ]
+        },
+        {
+          "name": "PatchItem",
+          "startLine": 142,
+          "endLine": 158,
+          "params": [
+            "c"
+          ]
+        },
+        {
+          "name": "DeleteItem",
+          "startLine": 160,
+          "endLine": 179,
+          "params": [
+            "c"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "Handler",
+          "startLine": 12,
+          "endLine": 14,
+          "methods": [
+            "CreateList",
+            "GetLists",
+            "PatchList",
+            "DeleteList",
+            "CreateItem",
+            "GetItems",
+            "PatchItem",
+            "DeleteItem"
+          ],
+          "properties": [
+            "svc"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "Handler",
+          "line": 12,
+          "isDefault": false
+        },
+        {
+          "name": "NewHandler",
+          "line": 16,
+          "isDefault": false
+        },
+        {
+          "name": "CreateList",
+          "line": 20,
+          "isDefault": false
+        },
+        {
+          "name": "GetLists",
+          "line": 40,
+          "isDefault": false
+        },
+        {
+          "name": "PatchList",
+          "line": 49,
+          "isDefault": false
+        },
+        {
+          "name": "DeleteList",
+          "line": 73,
+          "isDefault": false
+        },
+        {
+          "name": "CreateItem",
+          "line": 86,
+          "isDefault": false
+        },
+        {
+          "name": "GetItems",
+          "line": 108,
+          "isDefault": false
+        },
+        {
+          "name": "PatchItem",
+          "line": 142,
+          "isDefault": false
+        },
+        {
+          "name": "DeleteItem",
+          "line": 160,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "CreateList",
+          "callee": "c.ShouldBindJSON",
+          "lineNumber": 24
+        },
+        {
+          "caller": "CreateList",
+          "callee": "common.Error",
+          "lineNumber": 25
+        },
+        {
+          "caller": "CreateList",
+          "callee": "err.Error",
+          "lineNumber": 25
+        },
+        {
+          "caller": "CreateList",
+          "callee": "common.Error",
+          "lineNumber": 29
+        },
+        {
+          "caller": "CreateList",
+          "callee": "h.svc.CreateList",
+          "lineNumber": 32
+        },
+        {
+          "caller": "CreateList",
+          "callee": "common.Error",
+          "lineNumber": 34
+        },
+        {
+          "caller": "CreateList",
+          "callee": "err.Error",
+          "lineNumber": 34
+        },
+        {
+          "caller": "CreateList",
+          "callee": "common.Success",
+          "lineNumber": 37
+        },
+        {
+          "caller": "GetLists",
+          "callee": "h.svc.GetAllLists",
+          "lineNumber": 41
+        },
+        {
+          "caller": "GetLists",
+          "callee": "common.Error",
+          "lineNumber": 43
+        },
+        {
+          "caller": "GetLists",
+          "callee": "err.Error",
+          "lineNumber": 43
+        },
+        {
+          "caller": "GetLists",
+          "callee": "common.Success",
+          "lineNumber": 46
+        },
+        {
+          "caller": "PatchList",
+          "callee": "c.ShouldBindJSON",
+          "lineNumber": 54
+        },
+        {
+          "caller": "PatchList",
+          "callee": "common.Error",
+          "lineNumber": 55
+        },
+        {
+          "caller": "PatchList",
+          "callee": "err.Error",
+          "lineNumber": 55
+        },
+        {
+          "caller": "PatchList",
+          "callee": "common.Error",
+          "lineNumber": 59
+        },
+        {
+          "caller": "PatchList",
+          "callee": "common.Error",
+          "lineNumber": 63
+        },
+        {
+          "caller": "PatchList",
+          "callee": "h.svc.ModifyListName",
+          "lineNumber": 66
+        },
+        {
+          "caller": "PatchList",
+          "callee": "common.Error",
+          "lineNumber": 67
+        },
+        {
+          "caller": "PatchList",
+          "callee": "err.Error",
+          "lineNumber": 67
+        },
+        {
+          "caller": "PatchList",
+          "callee": "common.Success",
+          "lineNumber": 70
+        },
+        {
+          "caller": "DeleteList",
+          "callee": "strconv.ParseUint",
+          "lineNumber": 74
+        },
+        {
+          "caller": "DeleteList",
+          "callee": "c.Param",
+          "lineNumber": 74
+        },
+        {
+          "caller": "DeleteList",
+          "callee": "common.Error",
+          "lineNumber": 76
+        },
+        {
+          "caller": "DeleteList",
+          "callee": "h.svc.DeleteList",
+          "lineNumber": 79
+        },
+        {
+          "caller": "DeleteList",
+          "callee": "uint",
+          "lineNumber": 79
+        },
+        {
+          "caller": "DeleteList",
+          "callee": "common.Error",
+          "lineNumber": 80
+        },
+        {
+          "caller": "DeleteList",
+          "callee": "err.Error",
+          "lineNumber": 80
+        },
+        {
+          "caller": "DeleteList",
+          "callee": "common.Success",
+          "lineNumber": 83
+        },
+        {
+          "caller": "CreateItem",
+          "callee": "c.ShouldBindJSON",
+          "lineNumber": 88
+        },
+        {
+          "caller": "CreateItem",
+          "callee": "common.Error",
+          "lineNumber": 89
+        },
+        {
+          "caller": "CreateItem",
+          "callee": "err.Error",
+          "lineNumber": 89
+        },
+        {
+          "caller": "CreateItem",
+          "callee": "common.Error",
+          "lineNumber": 93
+        },
+        {
+          "caller": "CreateItem",
+          "callee": "common.Error",
+          "lineNumber": 97
+        },
+        {
+          "caller": "CreateItem",
+          "callee": "h.svc.CreateItem",
+          "lineNumber": 100
+        },
+        {
+          "caller": "CreateItem",
+          "callee": "common.Error",
+          "lineNumber": 102
+        },
+        {
+          "caller": "CreateItem",
+          "callee": "err.Error",
+          "lineNumber": 102
+        },
+        {
+          "caller": "CreateItem",
+          "callee": "common.Success",
+          "lineNumber": 105
+        },
+        {
+          "caller": "GetItems",
+          "callee": "c.ShouldBindQuery",
+          "lineNumber": 115
+        },
+        {
+          "caller": "GetItems",
+          "callee": "common.Error",
+          "lineNumber": 116
+        },
+        {
+          "caller": "GetItems",
+          "callee": "err.Error",
+          "lineNumber": 116
+        },
+        {
+          "caller": "GetItems",
+          "callee": "h.svc.GetItems",
+          "lineNumber": 134
+        },
+        {
+          "caller": "GetItems",
+          "callee": "common.Error",
+          "lineNumber": 136
+        },
+        {
+          "caller": "GetItems",
+          "callee": "err.Error",
+          "lineNumber": 136
+        },
+        {
+          "caller": "GetItems",
+          "callee": "common.Success",
+          "lineNumber": 139
+        },
+        {
+          "caller": "PatchItem",
+          "callee": "c.ShouldBindJSON",
+          "lineNumber": 144
+        },
+        {
+          "caller": "PatchItem",
+          "callee": "common.Error",
+          "lineNumber": 145
+        },
+        {
+          "caller": "PatchItem",
+          "callee": "err.Error",
+          "lineNumber": 145
+        },
+        {
+          "caller": "PatchItem",
+          "callee": "common.Error",
+          "lineNumber": 150
+        },
+        {
+          "caller": "PatchItem",
+          "callee": "h.svc.PatchItem",
+          "lineNumber": 153
+        },
+        {
+          "caller": "PatchItem",
+          "callee": "uint",
+          "lineNumber": 153
+        },
+        {
+          "caller": "PatchItem",
+          "callee": "common.Error",
+          "lineNumber": 154
+        },
+        {
+          "caller": "PatchItem",
+          "callee": "err.Error",
+          "lineNumber": 154
+        },
+        {
+          "caller": "PatchItem",
+          "callee": "common.Success",
+          "lineNumber": 157
+        },
+        {
+          "caller": "DeleteItem",
+          "callee": "c.ShouldBindJSON",
+          "lineNumber": 165
+        },
+        {
+          "caller": "DeleteItem",
+          "callee": "common.Error",
+          "lineNumber": 166
+        },
+        {
+          "caller": "DeleteItem",
+          "callee": "err.Error",
+          "lineNumber": 166
+        },
+        {
+          "caller": "DeleteItem",
+          "callee": "common.Error",
+          "lineNumber": 170
+        },
+        {
+          "caller": "DeleteItem",
+          "callee": "h.svc.DeleteItem",
+          "lineNumber": 174
+        },
+        {
+          "caller": "DeleteItem",
+          "callee": "common.Error",
+          "lineNumber": 175
+        },
+        {
+          "caller": "DeleteItem",
+          "callee": "err.Error",
+          "lineNumber": 175
+        },
+        {
+          "caller": "DeleteItem",
+          "callee": "common.Success",
+          "lineNumber": 178
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 10,
+        "functionCount": 9,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "mind-land-server/todo/model.go",
+      "language": "go",
+      "fileCategory": "code",
+      "totalLines": 17,
+      "nonEmptyLines": 15,
+      "classes": [
+        {
+          "name": "List",
+          "startLine": 3,
+          "endLine": 6,
+          "methods": [],
+          "properties": [
+            "ID",
+            "Name"
+          ]
+        },
+        {
+          "name": "Item",
+          "startLine": 8,
+          "endLine": 17,
+          "methods": [],
+          "properties": [
+            "ID",
+            "Content",
+            "Done",
+            "Star",
+            "Del",
+            "ListID",
+            "ListName",
+            "SortOrder"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "List",
+          "line": 3,
+          "isDefault": false
+        },
+        {
+          "name": "Item",
+          "line": 8,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 2,
+        "functionCount": 0,
+        "classCount": 2
+      }
+    },
+    {
+      "path": "mind-land-server/todo/service.go",
+      "language": "go",
+      "fileCategory": "code",
+      "totalLines": 95,
+      "nonEmptyLines": 84,
+      "functions": [
+        {
+          "name": "NewService",
+          "startLine": 11,
+          "endLine": 13,
+          "params": [
+            "db"
+          ]
+        },
+        {
+          "name": "CreateList",
+          "startLine": 15,
+          "endLine": 19,
+          "params": [
+            "name"
+          ]
+        },
+        {
+          "name": "GetAllLists",
+          "startLine": 21,
+          "endLine": 25,
+          "params": []
+        },
+        {
+          "name": "ModifyListName",
+          "startLine": 27,
+          "endLine": 34,
+          "params": [
+            "id",
+            "name"
+          ]
+        },
+        {
+          "name": "DeleteList",
+          "startLine": 36,
+          "endLine": 47,
+          "params": [
+            "id"
+          ]
+        },
+        {
+          "name": "CreateItem",
+          "startLine": 49,
+          "endLine": 52,
+          "params": [
+            "item"
+          ]
+        },
+        {
+          "name": "GetItems",
+          "startLine": 54,
+          "endLine": 58,
+          "params": [
+            "conds"
+          ]
+        },
+        {
+          "name": "PatchItem",
+          "startLine": 60,
+          "endLine": 84,
+          "params": [
+            "id",
+            "raw"
+          ]
+        },
+        {
+          "name": "DeleteItem",
+          "startLine": 86,
+          "endLine": 95,
+          "params": [
+            "id",
+            "permanent"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "Service",
+          "startLine": 7,
+          "endLine": 9,
+          "methods": [
+            "CreateList",
+            "GetAllLists",
+            "ModifyListName",
+            "DeleteList",
+            "CreateItem",
+            "GetItems",
+            "PatchItem",
+            "DeleteItem"
+          ],
+          "properties": [
+            "db"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "Service",
+          "line": 7,
+          "isDefault": false
+        },
+        {
+          "name": "NewService",
+          "line": 11,
+          "isDefault": false
+        },
+        {
+          "name": "CreateList",
+          "line": 15,
+          "isDefault": false
+        },
+        {
+          "name": "GetAllLists",
+          "line": 21,
+          "isDefault": false
+        },
+        {
+          "name": "ModifyListName",
+          "line": 27,
+          "isDefault": false
+        },
+        {
+          "name": "DeleteList",
+          "line": 36,
+          "isDefault": false
+        },
+        {
+          "name": "CreateItem",
+          "line": 49,
+          "isDefault": false
+        },
+        {
+          "name": "GetItems",
+          "line": 54,
+          "isDefault": false
+        },
+        {
+          "name": "PatchItem",
+          "line": 60,
+          "isDefault": false
+        },
+        {
+          "name": "DeleteItem",
+          "line": 86,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "CreateList",
+          "callee": "s.db.Create",
+          "lineNumber": 17
+        },
+        {
+          "caller": "GetAllLists",
+          "callee": "s.db.Find",
+          "lineNumber": 23
+        },
+        {
+          "caller": "ModifyListName",
+          "callee": "s.db.Transaction",
+          "lineNumber": 28
+        },
+        {
+          "caller": "ModifyListName",
+          "callee": "tx.Model(&Item{}).Where(\"list_id = ? AND del = ?\", id, false).Update",
+          "lineNumber": 29
+        },
+        {
+          "caller": "ModifyListName",
+          "callee": "tx.Model(&Item{}).Where",
+          "lineNumber": 29
+        },
+        {
+          "caller": "ModifyListName",
+          "callee": "tx.Model",
+          "lineNumber": 29
+        },
+        {
+          "caller": "ModifyListName",
+          "callee": "tx.Model(&List{}).Where(\"id = ?\", id).Update",
+          "lineNumber": 32
+        },
+        {
+          "caller": "ModifyListName",
+          "callee": "tx.Model(&List{}).Where",
+          "lineNumber": 32
+        },
+        {
+          "caller": "ModifyListName",
+          "callee": "tx.Model",
+          "lineNumber": 32
+        },
+        {
+          "caller": "DeleteList",
+          "callee": "s.db.Transaction",
+          "lineNumber": 37
+        },
+        {
+          "caller": "DeleteList",
+          "callee": "tx.Model(&Item{}).Where(\"list_id = ? AND del = ?\", id, false).Updates",
+          "lineNumber": 38
+        },
+        {
+          "caller": "DeleteList",
+          "callee": "tx.Model(&Item{}).Where",
+          "lineNumber": 38
+        },
+        {
+          "caller": "DeleteList",
+          "callee": "tx.Model",
+          "lineNumber": 38
+        },
+        {
+          "caller": "DeleteList",
+          "callee": "tx.Delete",
+          "lineNumber": 45
+        },
+        {
+          "caller": "CreateItem",
+          "callee": "s.db.Create",
+          "lineNumber": 50
+        },
+        {
+          "caller": "GetItems",
+          "callee": "s.db.Where(conds).Order(\"sort_order ASC, id ASC\").Find",
+          "lineNumber": 56
+        },
+        {
+          "caller": "GetItems",
+          "callee": "s.db.Where(conds).Order",
+          "lineNumber": 56
+        },
+        {
+          "caller": "GetItems",
+          "callee": "s.db.Where",
+          "lineNumber": 56
+        },
+        {
+          "caller": "PatchItem",
+          "callee": "len",
+          "lineNumber": 80
+        },
+        {
+          "caller": "PatchItem",
+          "callee": "s.db.Model(&Item{}).Where(\"id = ?\", id).Updates",
+          "lineNumber": 83
+        },
+        {
+          "caller": "PatchItem",
+          "callee": "s.db.Model(&Item{}).Where",
+          "lineNumber": 83
+        },
+        {
+          "caller": "PatchItem",
+          "callee": "s.db.Model",
+          "lineNumber": 83
+        },
+        {
+          "caller": "DeleteItem",
+          "callee": "s.db.Delete",
+          "lineNumber": 88
+        },
+        {
+          "caller": "DeleteItem",
+          "callee": "s.db.Model(&Item{}).Where(\"id = ?\", id).Updates",
+          "lineNumber": 90
+        },
+        {
+          "caller": "DeleteItem",
+          "callee": "s.db.Model(&Item{}).Where",
+          "lineNumber": 90
+        },
+        {
+          "caller": "DeleteItem",
+          "callee": "s.db.Model",
+          "lineNumber": 90
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 10,
+        "functionCount": 9,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "mind-land-server/upload/handler.go",
+      "language": "go",
+      "fileCategory": "code",
+      "totalLines": 85,
+      "nonEmptyLines": 71,
+      "functions": [
+        {
+          "name": "HandleUpload",
+          "startLine": 29,
+          "endLine": 85,
+          "params": [
+            "c"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "HandleUpload",
+          "line": 29,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "HandleUpload",
+          "callee": "http.MaxBytesReader",
+          "lineNumber": 31
+        },
+        {
+          "caller": "HandleUpload",
+          "callee": "c.Request.FormFile",
+          "lineNumber": 33
+        },
+        {
+          "caller": "HandleUpload",
+          "callee": "strings.Contains",
+          "lineNumber": 35
+        },
+        {
+          "caller": "HandleUpload",
+          "callee": "err.Error",
+          "lineNumber": 35
+        },
+        {
+          "caller": "HandleUpload",
+          "callee": "common.Error",
+          "lineNumber": 36
+        },
+        {
+          "caller": "HandleUpload",
+          "callee": "common.Error",
+          "lineNumber": 39
+        },
+        {
+          "caller": "HandleUpload",
+          "callee": "file.Close",
+          "lineNumber": 42
+        },
+        {
+          "caller": "HandleUpload",
+          "callee": "make",
+          "lineNumber": 45
+        },
+        {
+          "caller": "HandleUpload",
+          "callee": "file.Read",
+          "lineNumber": 46
+        },
+        {
+          "caller": "HandleUpload",
+          "callee": "common.Error",
+          "lineNumber": 47
+        },
+        {
+          "caller": "HandleUpload",
+          "callee": "http.DetectContentType",
+          "lineNumber": 50
+        },
+        {
+          "caller": "HandleUpload",
+          "callee": "common.Error",
+          "lineNumber": 54
+        },
+        {
+          "caller": "HandleUpload",
+          "callee": "fmt.Sprintf",
+          "lineNumber": 54
+        },
+        {
+          "caller": "HandleUpload",
+          "callee": "os.MkdirAll",
+          "lineNumber": 59
+        },
+        {
+          "caller": "HandleUpload",
+          "callee": "common.Error",
+          "lineNumber": 60
+        },
+        {
+          "caller": "HandleUpload",
+          "callee": "uuid.New().String",
+          "lineNumber": 65
+        },
+        {
+          "caller": "HandleUpload",
+          "callee": "uuid.New",
+          "lineNumber": 65
+        },
+        {
+          "caller": "HandleUpload",
+          "callee": "filepath.Join",
+          "lineNumber": 66
+        },
+        {
+          "caller": "HandleUpload",
+          "callee": "file.Seek",
+          "lineNumber": 69
+        },
+        {
+          "caller": "HandleUpload",
+          "callee": "os.Create",
+          "lineNumber": 70
+        },
+        {
+          "caller": "HandleUpload",
+          "callee": "common.Error",
+          "lineNumber": 72
+        },
+        {
+          "caller": "HandleUpload",
+          "callee": "dst.Close",
+          "lineNumber": 75
+        },
+        {
+          "caller": "HandleUpload",
+          "callee": "io.Copy",
+          "lineNumber": 77
+        },
+        {
+          "caller": "HandleUpload",
+          "callee": "common.Error",
+          "lineNumber": 78
+        },
+        {
+          "caller": "HandleUpload",
+          "callee": "common.Success",
+          "lineNumber": 82
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    }
+  ]
+}

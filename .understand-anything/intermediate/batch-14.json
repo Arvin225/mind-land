@@ -1,0 +1,68 @@
+{
+  "nodes": [
+    {
+      "id": "file:mind-land-web/public/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "mind-land-web/public/index.html",
+      "summary": "生产构建用的 HTML 模板文件，来源于 Create React App 模板工程。使用 `%PUBLIC_URL%` 占位符引用 favicon、apple-touch-icon 和 manifest.json。包含典型的 CRA 模板注释和 `noscript` 回退提示，挂载点为 `#root`。（注意：实际 Vite 构建以根目录 index.html 为准，此文件为遗留模板。）",
+      "tags": ["html", "template", "production", "legacy", "cra"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:mind-land-web/public/manifest.json",
+      "type": "file",
+      "name": "manifest.json",
+      "filePath": "mind-land-web/public/manifest.json",
+      "summary": "PWA Web App Manifest 配置文件，继承自 Create React App 模板。定义应用名称为「Create React App Sample」，包含三种尺寸图标（favicon、192x192、512x512），设置 start_url 为根路径、display 为 standalone（独立窗口模式）、theme_color 为 #000000、background_color 为 #ffffff。",
+      "tags": ["pwa", "manifest", "config", "icons", "progressive-web-app"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:mind-land-web/public/robots.txt",
+      "type": "file",
+      "name": "robots.txt",
+      "filePath": "mind-land-web/public/robots.txt",
+      "summary": "搜索引擎爬虫配置文件。允许所有 User-agent 抓取整个网站（Disallow 为空），未设置 Sitemap 路径。引用 robots.txt 标准协议文档链接。",
+      "tags": ["seo", "robots", "crawler", "config"],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:mind-land-web/public/index.html",
+      "target": "file:mind-land-web/public/manifest.json",
+      "type": "references",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:mind-land-web/public/manifest.json",
+      "target": "file:mind-land-web/public/index.html",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:mind-land-web/public/robots.txt",
+      "target": "file:mind-land-web/public/index.html",
+      "type": "controls-access",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:mind-land-web/public/index.html",
+      "target": "file:mind-land-web/index.html",
+      "type": "related-to",
+      "direction": "undirected",
+      "weight": 0.4
+    },
+    {
+      "source": "file:mind-land-web/public/manifest.json",
+      "target": "file:mind-land-web/index.html",
+      "type": "related-to",
+      "direction": "undirected",
+      "weight": 0.4
+    }
+  ]
+}

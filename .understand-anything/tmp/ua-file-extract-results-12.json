@@ -1,0 +1,110 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 4,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": "mind-land-server/README.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 84,
+      "nonEmptyLines": 64,
+      "sections": [
+        {
+          "heading": "mind-land-server",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "技术栈",
+          "level": 2,
+          "line": 5
+        },
+        {
+          "heading": "快速开始",
+          "level": 2,
+          "line": 12
+        },
+        {
+          "heading": "项目结构",
+          "level": 2,
+          "line": 26
+        },
+        {
+          "heading": "API",
+          "level": 2,
+          "line": 42
+        },
+        {
+          "heading": "SlipBox (卡片笔记)",
+          "level": 3,
+          "line": 46
+        },
+        {
+          "heading": "ToDo (任务管理)",
+          "level": 3,
+          "line": 59
+        },
+        {
+          "heading": "部署",
+          "level": 2,
+          "line": 72
+        },
+        {
+          "heading": "协议",
+          "level": 2,
+          "line": 82
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 9
+      }
+    },
+    {
+      "path": "mind-land-server/go.mod",
+      "language": "mod",
+      "fileCategory": "config",
+      "totalLines": 52,
+      "nonEmptyLines": 49,
+      "metrics": {}
+    },
+    {
+      "path": "mind-land-server/go.sum",
+      "language": "sum",
+      "fileCategory": "config",
+      "totalLines": 118,
+      "nonEmptyLines": 118,
+      "metrics": {}
+    },
+    {
+      "path": "mind-land-server/package.json",
+      "language": "json",
+      "fileCategory": "config",
+      "totalLines": 8,
+      "nonEmptyLines": 8,
+      "sections": [
+        {
+          "heading": "dependencies",
+          "level": 1,
+          "line": 2
+        },
+        {
+          "heading": "devDependencies",
+          "level": 1,
+          "line": 5
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 2
+      }
+    }
+  ]
+}

@@ -1,0 +1,145 @@
+{
+  "projectRoot": "/root/mind-land",
+  "batchFiles": [
+    {
+      "path": "mind-land-web/src/apis/interfaces/Response.ts",
+      "language": "typescript",
+      "sizeLines": 4,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mind-land-web/src/apis/layout.ts",
+      "language": "typescript",
+      "sizeLines": 19,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mind-land-web/src/apis/toDo.ts",
+      "language": "typescript",
+      "sizeLines": 50,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mind-land-web/src/apis/upload.ts",
+      "language": "typescript",
+      "sizeLines": 10,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mind-land-web/src/components/ToastProvider.tsx",
+      "language": "typescript",
+      "sizeLines": 101,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mind-land-web/src/pages/Container/index.tsx",
+      "language": "typescript",
+      "sizeLines": 373,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mind-land-web/src/pages/SlipBox/components/ImageUploadDialog.tsx",
+      "language": "typescript",
+      "sizeLines": 260,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mind-land-web/src/pages/ToDo/components/List/index.tsx",
+      "language": "typescript",
+      "sizeLines": 180,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mind-land-web/src/pages/ToDo/components/ToDoItem/index.tsx",
+      "language": "typescript",
+      "sizeLines": 167,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mind-land-web/src/pages/ToDo/index.tsx",
+      "language": "typescript",
+      "sizeLines": 216,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mind-land-web/src/pages/ToDo/interfaces.ts",
+      "language": "typescript",
+      "sizeLines": 13,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mind-land-web/src/store/hooks.ts",
+      "language": "typescript",
+      "sizeLines": 5,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mind-land-web/src/store/modules/toDoStore.ts",
+      "language": "typescript",
+      "sizeLines": 111,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mind-land-web/src/utils/request.ts",
+      "language": "typescript",
+      "sizeLines": 81,
+      "fileCategory": "code"
+    }
+  ],
+  "batchImportData": {
+    "mind-land-web/src/apis/interfaces/Response.ts": [],
+    "mind-land-web/src/apis/layout.ts": [
+      "mind-land-web/src/apis/interfaces/Response.ts",
+      "mind-land-web/src/pages/ToDo/interfaces.ts",
+      "mind-land-web/src/utils/request.ts"
+    ],
+    "mind-land-web/src/apis/toDo.ts": [
+      "mind-land-web/src/apis/interfaces/Response.ts",
+      "mind-land-web/src/pages/ToDo/interfaces.ts",
+      "mind-land-web/src/utils/request.ts"
+    ],
+    "mind-land-web/src/apis/upload.ts": [
+      "mind-land-web/src/apis/interfaces/Response.ts",
+      "mind-land-web/src/utils/request.ts"
+    ],
+    "mind-land-web/src/components/ToastProvider.tsx": [],
+    "mind-land-web/src/pages/Container/index.tsx": [
+      "mind-land-web/src/apis/layout.ts",
+      "mind-land-web/src/components/ToastProvider.tsx",
+      "mind-land-web/src/pages/Settings/index.tsx",
+      "mind-land-web/src/pages/ToDo/components/List/index.tsx",
+      "mind-land-web/src/store/hooks.ts",
+      "mind-land-web/src/store/modules/toDoStore.ts"
+    ],
+    "mind-land-web/src/pages/SlipBox/components/ImageUploadDialog.tsx": [
+      "mind-land-web/src/apis/upload.ts"
+    ],
+    "mind-land-web/src/pages/ToDo/components/List/index.tsx": [
+      "mind-land-web/src/apis/layout.ts",
+      "mind-land-web/src/components/ToastProvider.tsx",
+      "mind-land-web/src/store/hooks.ts",
+      "mind-land-web/src/store/modules/toDoStore.ts"
+    ],
+    "mind-land-web/src/pages/ToDo/components/ToDoItem/index.tsx": [
+      "mind-land-web/src/apis/toDo.ts",
+      "mind-land-web/src/components/ToastProvider.tsx",
+      "mind-land-web/src/lib/confirm.tsx",
+      "mind-land-web/src/pages/ToDo/interfaces.ts"
+    ],
+    "mind-land-web/src/pages/ToDo/index.tsx": [
+      "mind-land-web/src/apis/toDo.ts",
+      "mind-land-web/src/components/ToastProvider.tsx",
+      "mind-land-web/src/pages/ToDo/components/ToDoItem/index.tsx",
+      "mind-land-web/src/store/hooks.ts",
+      "mind-land-web/src/store/modules/toDoStore.ts"
+    ],
+    "mind-land-web/src/pages/ToDo/interfaces.ts": [],
+    "mind-land-web/src/store/hooks.ts": [],
+    "mind-land-web/src/store/modules/toDoStore.ts": [
+      "mind-land-web/src/apis/layout.ts",
+      "mind-land-web/src/apis/toDo.ts",
+      "mind-land-web/src/pages/ToDo/interfaces.ts"
+    ],
+    "mind-land-web/src/utils/request.ts": []
+  }
+}

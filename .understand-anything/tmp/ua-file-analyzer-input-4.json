@@ -1,0 +1,81 @@
+{
+  "projectRoot": "/root/mind-land",
+  "batchFiles": [
+    {
+      "path": "mind-land-web/src/App.tsx",
+      "language": "typescript",
+      "sizeLines": 19,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mind-land-web/src/index.tsx",
+      "language": "typescript",
+      "sizeLines": 13,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mind-land-web/src/pages/Settings/components/CustomSelect.tsx",
+      "language": "typescript",
+      "sizeLines": 70,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mind-land-web/src/pages/Settings/components/Preferences.tsx",
+      "language": "typescript",
+      "sizeLines": 111,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mind-land-web/src/pages/Settings/index.tsx",
+      "language": "typescript",
+      "sizeLines": 198,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mind-land-web/src/router/index.tsx",
+      "language": "typescript",
+      "sizeLines": 64,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mind-land-web/src/store/index.ts",
+      "language": "typescript",
+      "sizeLines": 17,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mind-land-web/src/store/modules/themeStore.ts",
+      "language": "typescript",
+      "sizeLines": 93,
+      "fileCategory": "code"
+    }
+  ],
+  "batchImportData": {
+    "mind-land-web/src/App.tsx": [
+      "mind-land-web/src/components/ToastProvider.tsx",
+      "mind-land-web/src/router/index.tsx",
+      "mind-land-web/src/store/index.ts"
+    ],
+    "mind-land-web/src/index.tsx": [
+      "mind-land-web/src/App.tsx",
+      "mind-land-web/src/index.css",
+      "mind-land-web/src/store/modules/themeStore.ts"
+    ],
+    "mind-land-web/src/pages/Settings/components/CustomSelect.tsx": [],
+    "mind-land-web/src/pages/Settings/components/Preferences.tsx": [
+      "mind-land-web/src/pages/Settings/components/CustomSelect.tsx",
+      "mind-land-web/src/store/modules/themeStore.ts"
+    ],
+    "mind-land-web/src/pages/Settings/index.tsx": [
+      "mind-land-web/src/pages/Settings/components/Preferences.tsx"
+    ],
+    "mind-land-web/src/router/index.tsx": [
+      "mind-land-web/src/pages/Container/index.tsx"
+    ],
+    "mind-land-web/src/store/index.ts": [
+      "mind-land-web/src/store/modules/slipBoxStore.ts",
+      "mind-land-web/src/store/modules/toDoStore.ts"
+    ],
+    "mind-land-web/src/store/modules/themeStore.ts": []
+  }
+}

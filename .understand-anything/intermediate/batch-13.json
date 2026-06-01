@@ -1,0 +1,107 @@
+{
+  "nodes": [
+    {
+      "id": "file:mind-land-web/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "mind-land-web/index.html",
+      "summary": "前端应用的 HTML 入口文件，Vite 开发服务器托管的页面。包含 meta 标签设置（字符集、视口、主题色 #0A0A0F、描述），引入 favicon 和 PWA manifest.json，通过 `<script type=\"module\" src=\"/src/index.tsx\">` 挂载 React 应用到 `#root` 节点。备注移除 Google Fonts 以规避 GFW 封锁。",
+      "tags": ["html", "entry-point", "vite", "pwa"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:mind-land-web/package.json",
+      "type": "file",
+      "name": "package.json",
+      "filePath": "mind-land-web/package.json",
+      "summary": "前端项目的 npm 配置清单。定义了三个脚本（dev 启动 Vite、build 执行双重 TypeScript 检查后构建、preview 预览产物）。运行时依赖包括 React 19、Redux Toolkit、TipTap 编辑器全家桶、axios、zustand、lucide-react 图标、dayjs 日期库等。开发依赖包括 Vite 6、Tailwind CSS 4、TypeScript 5.7、Vite React 插件和 @tailwindcss/vite。",
+      "tags": ["npm", "config", "dependencies", "scripts", "frontend"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:mind-land-web/tsconfig.app.json",
+      "type": "file",
+      "name": "tsconfig.app.json",
+      "filePath": "mind-land-web/tsconfig.app.json",
+      "summary": "TypeScript 应用编译配置，针对前端源码（src/ 目录）。目标 ES2020，使用 bundler 模块解析，启用 JSX react-jsx 模式。开启严格模式、未使用变量/参数检查、fallthrough 检查等严格 lint 规则。配置了 `@/*` 路径别名映射到 `./src/*`，使用 composite 项目引用和独立的 tsBuildInfoFile。",
+      "tags": ["typescript", "config", "compiler-options", "path-alias"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:mind-land-web/tsconfig.json",
+      "type": "file",
+      "name": "tsconfig.json",
+      "filePath": "mind-land-web/tsconfig.json",
+      "summary": "TypeScript 根配置文件，作为项目引用的入口。同样设定 ES2020 目标、bundler 模块解析、strict 模式、react-jsx 等基础选项。定义了 `@/*` 路径别名，通过 include 覆盖 src/ 目录和 vite-env.d.ts 类型声明文件。实际引用 tsconfig.app.json 和 tsconfig.node.json 两个子配置。",
+      "tags": ["typescript", "config", "root-config", "project-references"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:mind-land-web/tsconfig.node.json",
+      "type": "file",
+      "name": "tsconfig.node.json",
+      "filePath": "mind-land-web/tsconfig.node.json",
+      "summary": "TypeScript Node 环境编译配置，针对 Vite 配置文件（vite.config.ts）。使用 composite 模式、ESNext 模块系统、bundler 模块解析，启用 allowSyntheticDefaultImports 以兼容 CommonJS 模块。",
+      "tags": ["typescript", "config", "node", "vite"],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:mind-land-web/tsconfig.json",
+      "target": "file:mind-land-web/tsconfig.app.json",
+      "type": "references",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "file:mind-land-web/tsconfig.json",
+      "target": "file:mind-land-web/tsconfig.node.json",
+      "type": "references",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "file:mind-land-web/index.html",
+      "target": "file:mind-land-web/package.json",
+      "type": "configured-by",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:mind-land-web/package.json",
+      "target": "file:mind-land-web/tsconfig.json",
+      "type": "references",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:mind-land-web/package.json",
+      "target": "file:mind-land-web/tsconfig.app.json",
+      "type": "references",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:mind-land-web/package.json",
+      "target": "file:mind-land-web/tsconfig.node.json",
+      "type": "references",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:mind-land-web/tsconfig.app.json",
+      "target": "file:mind-land-web/tsconfig.json",
+      "type": "extends",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mind-land-web/tsconfig.node.json",
+      "target": "file:mind-land-web/tsconfig.json",
+      "type": "extends",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ]
+}

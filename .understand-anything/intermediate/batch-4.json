@@ -1,0 +1,308 @@
+{
+  "nodes": [
+    {
+      "id": "file:mind-land-web/src/App.tsx",
+      "type": "file",
+      "name": "App.tsx",
+      "filePath": "mind-land-web/src/App.tsx",
+      "summary": "应用根组件，组合 Redux Provider、ToastProvider 和 RouterProvider，作为整个前端 React 组件树的根节点。",
+      "tags": ["entry-point", "component", "provider"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:mind-land-web/src/index.tsx",
+      "type": "file",
+      "name": "index.tsx",
+      "filePath": "mind-land-web/src/index.tsx",
+      "summary": "前端应用入口文件，将 React 应用挂载到 DOM 节点，并在启动时初始化系统主题监听。",
+      "tags": ["entry-point", "bootstrap", "initialization"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:mind-land-web/src/pages/Settings/components/CustomSelect.tsx",
+      "type": "file",
+      "name": "CustomSelect.tsx",
+      "filePath": "mind-land-web/src/pages/Settings/components/CustomSelect.tsx",
+      "summary": "自定义下拉选择器组件，支持点击外部关闭和键盘无障碍导航，用于设置面板中的选项选取。",
+      "tags": ["component", "ui", "dropdown", "form"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:mind-land-web/src/pages/Settings/components/Preferences.tsx",
+      "type": "file",
+      "name": "Preferences.tsx",
+      "filePath": "mind-land-web/src/pages/Settings/components/Preferences.tsx",
+      "summary": "偏好设置面板组件，提供主题切换（系统/浅色/深色）、字号调整和语言选择等用户偏好配置。",
+      "tags": ["settings", "preferences", "ui", "theme"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:mind-land-web/src/pages/Settings/index.tsx",
+      "type": "file",
+      "name": "Settings.tsx",
+      "filePath": "mind-land-web/src/pages/Settings/index.tsx",
+      "summary": "设置弹窗组件，包含左侧菜单导航和右侧内容区域，实现了键盘焦点陷阱和 ESC 关闭等无障碍特性。",
+      "tags": ["settings", "modal", "ui", "keyboard-navigation"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:mind-land-web/src/router/index.tsx",
+      "type": "file",
+      "name": "router.tsx",
+      "filePath": "mind-land-web/src/router/index.tsx",
+      "summary": "应用路由配置中心，使用 React Router v7 的 createBrowserRouter 定义所有页面路径，全部页面组件通过 React.lazy 实现懒加载。",
+      "tags": ["router", "configuration", "lazy-loading", "entry-point"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:mind-land-web/src/store/index.ts",
+      "type": "file",
+      "name": "store.ts",
+      "filePath": "mind-land-web/src/store/index.ts",
+      "summary": "Redux store 配置中心，组合 toDo 和 slipBox 两个 reducer，导出 RootState 和 AppDispatch 类型供全局使用。",
+      "tags": ["redux", "store", "configuration", "barrel"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:mind-land-web/src/store/modules/themeStore.ts",
+      "type": "file",
+      "name": "themeStore.ts",
+      "filePath": "mind-land-web/src/store/modules/themeStore.ts",
+      "summary": "主题状态管理模块，使用 Zustand + persist 中间件实现主题切换和字号调整，自动响应系统深色模式变化并持久化用户偏好。",
+      "tags": ["state-management", "theme", "zustand", "persistence"],
+      "complexity": "moderate",
+      "languageNotes": "使用 Zustand 的 create 函数配合 persist 中间件实现持久化状态管理，通过 window.matchMedia 监听系统颜色模式变化。"
+    },
+    {
+      "id": "function:mind-land-web/src/App.tsx:App",
+      "type": "function",
+      "name": "App",
+      "filePath": "mind-land-web/src/App.tsx",
+      "lineRange": [7, 17],
+      "summary": "应用根函数组件，组合 Redux Provider、Toast 通知上下文和 React Router，渲染整个前端组件树。",
+      "tags": ["entry-point", "component", "provider"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mind-land-web/src/pages/Settings/components/CustomSelect.tsx:CustomSelect",
+      "type": "function",
+      "name": "CustomSelect",
+      "filePath": "mind-land-web/src/pages/Settings/components/CustomSelect.tsx",
+      "lineRange": [15, 68],
+      "summary": "自定义下拉选择器组件，使用 useState 管理展开状态，useRef 检测外部点击以自动关闭下拉菜单。",
+      "tags": ["component", "ui", "dropdown", "form"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:mind-land-web/src/pages/Settings/components/Preferences.tsx:Preferences",
+      "type": "function",
+      "name": "Preferences",
+      "filePath": "mind-land-web/src/pages/Settings/components/Preferences.tsx",
+      "lineRange": [24, 109],
+      "summary": "偏好设置面板函数组件，通过 useThemeStore 读取和修改主题与字号设置，使用 CustomSelect 组件提供下拉选择。",
+      "tags": ["settings", "preferences", "ui", "theme"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:mind-land-web/src/pages/Settings/index.tsx:Settings",
+      "type": "function",
+      "name": "Settings",
+      "filePath": "mind-land-web/src/pages/Settings/index.tsx",
+      "lineRange": [38, 196],
+      "summary": "设置弹窗函数组件，包含左侧菜单导航和右侧内容渲染区域，通过 useEffect 实现键盘焦点陷阱和 ESC 关闭功能。",
+      "tags": ["settings", "modal", "keyboard-navigation", "ui"],
+      "complexity": "complex",
+      "languageNotes": "实现了完整的键盘焦点陷阱（focus trap），在 Tab/Shift+Tab 时循环聚焦弹窗内的可聚焦元素。"
+    },
+    {
+      "id": "function:mind-land-web/src/store/modules/themeStore.ts:initThemeListener",
+      "type": "function",
+      "name": "initThemeListener",
+      "filePath": "mind-land-web/src/store/modules/themeStore.ts",
+      "lineRange": [73, 86],
+      "summary": "初始化系统深色模式媒体查询监听器，当用户主题设为「跟随系统」且系统主题变化时自动切换暗亮模式。",
+      "tags": ["theme", "initialization", "event-listener", "system"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:mind-land-web/src/store/modules/themeStore.ts:cleanupThemeListener",
+      "type": "function",
+      "name": "cleanupThemeListener",
+      "filePath": "mind-land-web/src/store/modules/themeStore.ts",
+      "lineRange": [88, 93],
+      "summary": "清理主题监听器，移除之前注册的媒体查询 change 事件处理器并重置清理引用。",
+      "tags": ["theme", "cleanup", "event-listener"],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:mind-land-web/src/App.tsx",
+      "target": "function:mind-land-web/src/App.tsx:App",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-web/src/App.tsx",
+      "target": "function:mind-land-web/src/App.tsx:App",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mind-land-web/src/pages/Settings/components/CustomSelect.tsx",
+      "target": "function:mind-land-web/src/pages/Settings/components/CustomSelect.tsx:CustomSelect",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-web/src/pages/Settings/components/CustomSelect.tsx",
+      "target": "function:mind-land-web/src/pages/Settings/components/CustomSelect.tsx:CustomSelect",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mind-land-web/src/pages/Settings/components/Preferences.tsx",
+      "target": "function:mind-land-web/src/pages/Settings/components/Preferences.tsx:Preferences",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-web/src/pages/Settings/components/Preferences.tsx",
+      "target": "function:mind-land-web/src/pages/Settings/components/Preferences.tsx:Preferences",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mind-land-web/src/pages/Settings/index.tsx",
+      "target": "function:mind-land-web/src/pages/Settings/index.tsx:Settings",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-web/src/pages/Settings/index.tsx",
+      "target": "function:mind-land-web/src/pages/Settings/index.tsx:Settings",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mind-land-web/src/store/modules/themeStore.ts",
+      "target": "function:mind-land-web/src/store/modules/themeStore.ts:initThemeListener",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-web/src/store/modules/themeStore.ts",
+      "target": "function:mind-land-web/src/store/modules/themeStore.ts:initThemeListener",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mind-land-web/src/store/modules/themeStore.ts",
+      "target": "function:mind-land-web/src/store/modules/themeStore.ts:cleanupThemeListener",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-web/src/store/modules/themeStore.ts",
+      "target": "function:mind-land-web/src/store/modules/themeStore.ts:cleanupThemeListener",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mind-land-web/src/App.tsx",
+      "target": "file:mind-land-web/src/components/ToastProvider.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:mind-land-web/src/App.tsx",
+      "target": "file:mind-land-web/src/router/index.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:mind-land-web/src/App.tsx",
+      "target": "file:mind-land-web/src/store/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:mind-land-web/src/index.tsx",
+      "target": "file:mind-land-web/src/App.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:mind-land-web/src/index.tsx",
+      "target": "file:mind-land-web/src/index.css",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:mind-land-web/src/index.tsx",
+      "target": "file:mind-land-web/src/store/modules/themeStore.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:mind-land-web/src/pages/Settings/components/Preferences.tsx",
+      "target": "file:mind-land-web/src/pages/Settings/components/CustomSelect.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:mind-land-web/src/pages/Settings/components/Preferences.tsx",
+      "target": "file:mind-land-web/src/store/modules/themeStore.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:mind-land-web/src/pages/Settings/index.tsx",
+      "target": "file:mind-land-web/src/pages/Settings/components/Preferences.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:mind-land-web/src/router/index.tsx",
+      "target": "file:mind-land-web/src/pages/Container/index.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:mind-land-web/src/store/index.ts",
+      "target": "file:mind-land-web/src/store/modules/slipBoxStore.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:mind-land-web/src/store/index.ts",
+      "target": "file:mind-land-web/src/store/modules/toDoStore.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    }
+  ]
+}

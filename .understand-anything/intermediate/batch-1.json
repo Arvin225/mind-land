@@ -1,0 +1,1460 @@
+{
+  "nodes": [
+    {
+      "id": "mind-land-web/src/apis/interfaces/Response.ts",
+      "type": "file",
+      "name": "Response.ts",
+      "filePath": "mind-land-web/src/apis/interfaces/Response.ts",
+      "summary": "API统一响应类型定义，包含泛型Response<T>接口，用于包裹所有后端返回数据",
+      "tags": ["类型定义", "API", "响应结构"],
+      "language": "TypeScript",
+      "totalLines": 5
+    },
+    {
+      "id": "mind-land-web/src/apis/layout.ts",
+      "type": "file",
+      "name": "layout.ts",
+      "filePath": "mind-land-web/src/apis/layout.ts",
+      "summary": "待办列表的API接口层，封装对待办列表的增删改查HTTP请求",
+      "tags": ["API", "待办", "HTTP请求"],
+      "language": "TypeScript",
+      "totalLines": 19
+    },
+    {
+      "id": "mind-land-web/src/apis/toDo.ts",
+      "type": "file",
+      "name": "toDo.ts",
+      "filePath": "mind-land-web/src/apis/toDo.ts",
+      "summary": "待办事项的API接口层，封装对待办事项的CRUD和查询HTTP请求",
+      "tags": ["API", "待办事项", "HTTP请求"],
+      "language": "TypeScript",
+      "totalLines": 50
+    },
+    {
+      "id": "mind-land-web/src/apis/upload.ts",
+      "type": "file",
+      "name": "upload.ts",
+      "filePath": "mind-land-web/src/apis/upload.ts",
+      "summary": "图片上传API接口，使用FormData格式上传图片文件",
+      "tags": ["API", "图片上传", "文件上传"],
+      "language": "TypeScript",
+      "totalLines": 10
+    },
+    {
+      "id": "mind-land-web/src/components/ToastProvider.tsx",
+      "type": "file",
+      "name": "ToastProvider.tsx",
+      "filePath": "mind-land-web/src/components/ToastProvider.tsx",
+      "summary": "Toast通知组件，基于React Context实现全局通知系统，提供成功/错误/信息/警告四种类型",
+      "tags": ["组件", "通知", "Context", "UI"],
+      "language": "TypeScript",
+      "totalLines": 101
+    },
+    {
+      "id": "mind-land-web/src/pages/Container/index.tsx",
+      "type": "file",
+      "name": "Container",
+      "filePath": "mind-land-web/src/pages/Container/index.tsx",
+      "summary": "应用主布局容器组件，包含可展开侧边栏导航、顶部工具栏、设置面板和路由出口",
+      "tags": ["布局", "导航", "侧边栏", "路由", "待办列表管理"],
+      "language": "TypeScript",
+      "totalLines": 373
+    },
+    {
+      "id": "mind-land-web/src/pages/SlipBox/components/ImageUploadDialog.tsx",
+      "type": "file",
+      "name": "ImageUploadDialog",
+      "filePath": "mind-land-web/src/pages/SlipBox/components/ImageUploadDialog.tsx",
+      "summary": "图片上传对话框组件，支持拖拽上传和URL链接两种模式，含文件类型/大小校验",
+      "tags": ["组件", "对话框", "图片上传", "拖拽"],
+      "language": "TypeScript",
+      "totalLines": 260
+    },
+    {
+      "id": "mind-land-web/src/pages/ToDo/components/List/index.tsx",
+      "type": "file",
+      "name": "List",
+      "filePath": "mind-land-web/src/pages/ToDo/components/List/index.tsx",
+      "summary": "待办列表项组件，支持重命名、删除、右键菜单等交互操作",
+      "tags": ["组件", "待办列表", "右键菜单", "编辑"],
+      "language": "TypeScript",
+      "totalLines": 180
+    },
+    {
+      "id": "mind-land-web/src/pages/ToDo/components/ToDoItem/index.tsx",
+      "type": "file",
+      "name": "ToDoItem",
+      "filePath": "mind-land-web/src/pages/ToDo/components/ToDoItem/index.tsx",
+      "summary": "待办事项组件，支持完成状态切换、星标收藏、内容编辑、右键删除和拖拽排序",
+      "tags": ["组件", "待办事项", "拖拽排序", "右键菜单"],
+      "language": "TypeScript",
+      "totalLines": 167
+    },
+    {
+      "id": "mind-land-web/src/pages/ToDo/index.tsx",
+      "type": "file",
+      "name": "ToDo",
+      "filePath": "mind-land-web/src/pages/ToDo/index.tsx",
+      "summary": "待办事项管理页面，支持查看/添加/拖拽排序/键盘排序/过滤待办事项",
+      "tags": ["页面", "待办事项", "任务管理"],
+      "language": "TypeScript",
+      "totalLines": 216
+    },
+    {
+      "id": "mind-land-web/src/pages/ToDo/interfaces.ts",
+      "type": "file",
+      "name": "interfaces.ts",
+      "filePath": "mind-land-web/src/pages/ToDo/interfaces.ts",
+      "summary": "待办模块类型定义，包含ToDoList和ToDoItem两个接口",
+      "tags": ["类型定义", "待办"],
+      "language": "TypeScript",
+      "totalLines": 13
+    },
+    {
+      "id": "mind-land-web/src/store/hooks.ts",
+      "type": "file",
+      "name": "hooks.ts",
+      "filePath": "mind-land-web/src/store/hooks.ts",
+      "summary": "Redux类型化hooks，提供带类型推断的useAppDispatch和useAppSelector",
+      "tags": ["状态管理", "Redux", "hooks"],
+      "language": "TypeScript",
+      "totalLines": 5
+    },
+    {
+      "id": "mind-land-web/src/store/modules/toDoStore.ts",
+      "type": "file",
+      "name": "toDoStore.ts",
+      "filePath": "mind-land-web/src/store/modules/toDoStore.ts",
+      "summary": "待办模块Redux状态管理，包含待办列表和事项的状态、异步thunk操作和排序逻辑",
+      "tags": ["状态管理", "Redux", "待办", "异步thunk"],
+      "language": "TypeScript",
+      "totalLines": 111
+    },
+    {
+      "id": "mind-land-web/src/utils/request.ts",
+      "type": "file",
+      "name": "request.ts",
+      "filePath": "mind-land-web/src/utils/request.ts",
+      "summary": "Axios HTTP客户端实例配置，含请求/响应拦截器，支持开发代理和生产环境",
+      "tags": ["工具", "HTTP客户端", "Axios"],
+      "language": "TypeScript",
+      "totalLines": 81
+    },
+    {
+      "id": "mind-land-web/src/apis/interfaces/Response.ts::Response",
+      "type": "type",
+      "name": "Response<T>",
+      "filePath": "mind-land-web/src/apis/interfaces/Response.ts",
+      "summary": "泛型响应接口，包含code状态码、message消息和可选的result数据",
+      "tags": ["类型", "泛型", "响应结构"],
+      "exportStatus": "exported"
+    },
+    {
+      "id": "mind-land-web/src/pages/ToDo/interfaces.ts::ToDoList",
+      "type": "type",
+      "name": "ToDoList",
+      "filePath": "mind-land-web/src/pages/ToDo/interfaces.ts",
+      "summary": "待办列表类型，包含id和name字段",
+      "tags": ["类型", "待办列表"],
+      "exportStatus": "exported"
+    },
+    {
+      "id": "mind-land-web/src/pages/ToDo/interfaces.ts::ToDoItem",
+      "type": "type",
+      "name": "ToDoItem",
+      "filePath": "mind-land-web/src/pages/ToDo/interfaces.ts",
+      "summary": "待办事项类型，包含id、内容、完成状态、星标、删除标记、列表关联和排序字段",
+      "tags": ["类型", "待办事项"],
+      "exportStatus": "exported"
+    },
+    {
+      "id": "mind-land-web/src/utils/request.ts::request",
+      "type": "variable",
+      "name": "request",
+      "filePath": "mind-land-web/src/utils/request.ts",
+      "summary": "Axios实例，baseURL自动适配开发/生产环境，配置请求/响应拦截器用于数据处理",
+      "tags": ["Axios", "HTTP客户端", "拦截器"],
+      "exportStatus": "exported"
+    },
+    {
+      "id": "mind-land-web/src/store/hooks.ts::useAppDispatch",
+      "type": "variable",
+      "name": "useAppDispatch",
+      "filePath": "mind-land-web/src/store/hooks.ts",
+      "summary": "类型化的useDispatch hook，返回AppDispatch类型",
+      "tags": ["Redux", "hook", "dispatch"],
+      "exportStatus": "exported"
+    },
+    {
+      "id": "mind-land-web/src/store/hooks.ts::useAppSelector",
+      "type": "variable",
+      "name": "useAppSelector",
+      "filePath": "mind-land-web/src/store/hooks.ts",
+      "summary": "类型化的useSelector hook，使用RootState类型进行状态选择",
+      "tags": ["Redux", "hook", "selector"],
+      "exportStatus": "exported"
+    },
+    {
+      "id": "mind-land-web/src/apis/layout.ts::getToDoListsAPI",
+      "type": "function",
+      "name": "getToDoListsAPI",
+      "filePath": "mind-land-web/src/apis/layout.ts",
+      "summary": "获取所有待办列表的API请求函数",
+      "tags": ["API", "待办列表", "GET"],
+      "startLine": 5,
+      "endLine": 7,
+      "exportStatus": "exported"
+    },
+    {
+      "id": "mind-land-web/src/apis/layout.ts::postToDoListAPI",
+      "type": "function",
+      "name": "postToDoListAPI",
+      "filePath": "mind-land-web/src/apis/layout.ts",
+      "summary": "创建新待办列表的API请求函数，接收列表名称",
+      "tags": ["API", "待办列表", "POST"],
+      "startLine": 9,
+      "endLine": 11,
+      "exportStatus": "exported"
+    },
+    {
+      "id": "mind-land-web/src/apis/layout.ts::deleteToDoListAPI",
+      "type": "function",
+      "name": "deleteToDoListAPI",
+      "filePath": "mind-land-web/src/apis/layout.ts",
+      "summary": "删除指定待办列表的API请求函数，接收列表ID",
+      "tags": ["API", "待办列表", "DELETE"],
+      "startLine": 13,
+      "endLine": 15,
+      "exportStatus": "exported"
+    },
+    {
+      "id": "mind-land-web/src/apis/layout.ts::patchToDoListAPI",
+      "type": "function",
+      "name": "patchToDoListAPI",
+      "filePath": "mind-land-web/src/apis/layout.ts",
+      "summary": "更新待办列表的API请求函数，接收包含id和name的对象",
+      "tags": ["API", "待办列表", "PATCH"],
+      "startLine": 17,
+      "endLine": 19,
+      "exportStatus": "exported"
+    },
+    {
+      "id": "mind-land-web/src/apis/toDo.ts::getToDoItemsAPI",
+      "type": "function",
+      "name": "getToDoItemsAPI",
+      "filePath": "mind-land-web/src/apis/toDo.ts",
+      "summary": "查询待办事项列表，支持按列表、星标、完成状态等过滤条件",
+      "tags": ["API", "待办事项", "GET"],
+      "startLine": 12,
+      "endLine": 14,
+      "exportStatus": "exported"
+    },
+    {
+      "id": "mind-land-web/src/apis/toDo.ts::postToDoItemAPI",
+      "type": "function",
+      "name": "postToDoItemAPI",
+      "filePath": "mind-land-web/src/apis/toDo.ts",
+      "summary": "创建新待办事项，默认done/star/del均为false",
+      "tags": ["API", "待办事项", "POST"],
+      "startLine": 25,
+      "endLine": 27,
+      "exportStatus": "exported"
+    },
+    {
+      "id": "mind-land-web/src/apis/toDo.ts::deleteToDoItemAPI",
+      "type": "function",
+      "name": "deleteToDoItemAPI",
+      "filePath": "mind-land-web/src/apis/toDo.ts",
+      "summary": "删除待办事项（支持软删和永久删除）",
+      "tags": ["API", "待办事项", "DELETE"],
+      "startLine": 29,
+      "endLine": 31,
+      "exportStatus": "exported"
+    },
+    {
+      "id": "mind-land-web/src/apis/toDo.ts::patchToDoItemAPI",
+      "type": "function",
+      "name": "patchToDoItemAPI",
+      "filePath": "mind-land-web/src/apis/toDo.ts",
+      "summary": "更新待办事项字段（内容、完成状态、星标、排序等）",
+      "tags": ["API", "待办事项", "PATCH"],
+      "startLine": 44,
+      "endLine": 46,
+      "exportStatus": "exported"
+    },
+    {
+      "id": "mind-land-web/src/apis/toDo.ts::getToDoItemAPI",
+      "type": "function",
+      "name": "getToDoItemAPI",
+      "filePath": "mind-land-web/src/apis/toDo.ts",
+      "summary": "根据ID获取单个待办事项",
+      "tags": ["API", "待办事项", "GET"],
+      "startLine": 48,
+      "endLine": 50,
+      "exportStatus": "exported"
+    },
+    {
+      "id": "mind-land-web/src/apis/upload.ts::uploadImage",
+      "type": "function",
+      "name": "uploadImage",
+      "filePath": "mind-land-web/src/apis/upload.ts",
+      "summary": "上传图片文件，使用FormData+multipart/form-data格式，返回图片URL",
+      "tags": ["API", "上传", "图片"],
+      "startLine": 4,
+      "endLine": 10,
+      "exportStatus": "exported"
+    },
+    {
+      "id": "mind-land-web/src/components/ToastProvider.tsx::useToast",
+      "type": "function",
+      "name": "useToast",
+      "filePath": "mind-land-web/src/components/ToastProvider.tsx",
+      "summary": "获取Toast上下文的hook，必须在ToastProvider内使用",
+      "tags": ["hook", "通知", "Context"],
+      "startLine": 18,
+      "endLine": 22,
+      "exportStatus": "exported"
+    },
+    {
+      "id": "mind-land-web/src/components/ToastProvider.tsx::ToastProvider",
+      "type": "function",
+      "name": "ToastProvider",
+      "filePath": "mind-land-web/src/components/ToastProvider.tsx",
+      "summary": "Toast通知容器组件，通过Context提供success/error/info/warning四种通知方法，支持自动消失和定时器管理",
+      "tags": ["组件", "通知", "Context提供者"],
+      "startLine": 24,
+      "endLine": 90,
+      "exportStatus": "exported"
+    },
+    {
+      "id": "mind-land-web/src/components/ToastProvider.tsx::setExternalToast",
+      "type": "function",
+      "name": "setExternalToast",
+      "filePath": "mind-land-web/src/components/ToastProvider.tsx",
+      "summary": "设置外部Toast引用，用于在非React组件中触发通知",
+      "tags": ["通知", "工具"],
+      "startLine": 93,
+      "endLine": 95,
+      "exportStatus": "exported"
+    },
+    {
+      "id": "mind-land-web/src/components/ToastProvider.tsx::toastSuccess",
+      "type": "function",
+      "name": "toastSuccess",
+      "filePath": "mind-land-web/src/components/ToastProvider.tsx",
+      "summary": "外部成功通知函数",
+      "tags": ["通知"],
+      "startLine": 96,
+      "endLine": 96,
+      "exportStatus": "exported"
+    },
+    {
+      "id": "mind-land-web/src/components/ToastProvider.tsx::toastError",
+      "type": "function",
+      "name": "toastError",
+      "filePath": "mind-land-web/src/components/ToastProvider.tsx",
+      "summary": "外部错误通知函数",
+      "tags": ["通知"],
+      "startLine": 97,
+      "endLine": 97,
+      "exportStatus": "exported"
+    },
+    {
+      "id": "mind-land-web/src/components/ToastProvider.tsx::toastInfo",
+      "type": "function",
+      "name": "toastInfo",
+      "filePath": "mind-land-web/src/components/ToastProvider.tsx",
+      "summary": "外部信息通知函数",
+      "tags": ["通知"],
+      "startLine": 98,
+      "endLine": 98,
+      "exportStatus": "exported"
+    },
+    {
+      "id": "mind-land-web/src/components/ToastProvider.tsx::toastWarning",
+      "type": "function",
+      "name": "toastWarning",
+      "filePath": "mind-land-web/src/components/ToastProvider.tsx",
+      "summary": "外部警告通知函数",
+      "tags": ["通知"],
+      "startLine": 99,
+      "endLine": 99,
+      "exportStatus": "exported"
+    },
+    {
+      "id": "mind-land-web/src/pages/Container/index.tsx::activeKeyFromPath",
+      "type": "function",
+      "name": "activeKeyFromPath",
+      "filePath": "mind-land-web/src/pages/Container/index.tsx",
+      "summary": "根据路径解析当前激活的导航键",
+      "tags": ["工具", "路由"],
+      "startLine": 71,
+      "endLine": 76,
+      "exportStatus": "internal"
+    },
+    {
+      "id": "mind-land-web/src/pages/Container/index.tsx::topKeyFromPath",
+      "type": "function",
+      "name": "topKeyFromPath",
+      "filePath": "mind-land-web/src/pages/Container/index.tsx",
+      "summary": "根据路径解析当前顶层导航键",
+      "tags": ["工具", "路由"],
+      "startLine": 78,
+      "endLine": 81,
+      "exportStatus": "internal"
+    },
+    {
+      "id": "mind-land-web/src/pages/Container/index.tsx::Container",
+      "type": "function",
+      "name": "Container",
+      "filePath": "mind-land-web/src/pages/Container/index.tsx",
+      "summary": "主布局容器组件，管理侧边栏展开/固定、ToDo子导航、列表创建、设置面板等状态",
+      "tags": ["组件", "布局", "导航"],
+      "startLine": 83,
+      "endLine": 372,
+      "exportStatus": "exported"
+    },
+    {
+      "id": "mind-land-web/src/pages/Container/index.tsx::addToDoListName",
+      "type": "function",
+      "name": "addToDoListName",
+      "filePath": "mind-land-web/src/pages/Container/index.tsx",
+      "summary": "通过回车键创建新的待办列表，调用API并在成功后刷新列表",
+      "tags": ["待办", "列表创建"],
+      "startLine": 123,
+      "endLine": 136,
+      "exportStatus": "internal"
+    },
+    {
+      "id": "mind-land-web/src/pages/SlipBox/components/ImageUploadDialog.tsx::ImageUploadDialog",
+      "type": "function",
+      "name": "ImageUploadDialog",
+      "filePath": "mind-land-web/src/pages/SlipBox/components/ImageUploadDialog.tsx",
+      "summary": "图片上传对话框，通过Portal渲染到body，支持上传和URL两种标签页，含拖拽上传和预览",
+      "tags": ["组件", "对话框", "图片上传"],
+      "startLine": 14,
+      "endLine": 258,
+      "exportStatus": "exported"
+    },
+    {
+      "id": "mind-land-web/src/pages/SlipBox/components/ImageUploadDialog.tsx::handleUpload",
+      "type": "function",
+      "name": "handleUpload",
+      "filePath": "mind-land-web/src/pages/SlipBox/components/ImageUploadDialog.tsx",
+      "summary": "处理图片上传，调用uploadImage API后将URL通过回调传递给父组件",
+      "tags": ["上传", "图片"],
+      "startLine": 80,
+      "endLine": 96,
+      "exportStatus": "internal"
+    },
+    {
+      "id": "mind-land-web/src/pages/ToDo/components/List/index.tsx::List",
+      "type": "function",
+      "name": "List",
+      "filePath": "mind-land-web/src/pages/ToDo/components/List/index.tsx",
+      "summary": "待办列表项组件，支持点击导航、双击重命名、右键菜单、删除确认等交互",
+      "tags": ["组件", "待办列表"],
+      "startLine": 9,
+      "endLine": 179,
+      "exportStatus": "exported"
+    },
+    {
+      "id": "mind-land-web/src/pages/ToDo/components/List/index.tsx::saveEdit",
+      "type": "function",
+      "name": "saveEdit",
+      "filePath": "mind-land-web/src/pages/ToDo/components/List/index.tsx",
+      "summary": "保存列表名称编辑，调用patchToDoListAPI并刷新列表",
+      "tags": ["编辑", "待办列表"],
+      "startLine": 23,
+      "endLine": 38,
+      "exportStatus": "internal"
+    },
+    {
+      "id": "mind-land-web/src/pages/ToDo/components/List/index.tsx::deleteList",
+      "type": "function",
+      "name": "deleteList",
+      "filePath": "mind-land-web/src/pages/ToDo/components/List/index.tsx",
+      "summary": "删除待办列表，调用API成功后刷新列表，若当前在删除列表中则导航回全部",
+      "tags": ["删除", "待办列表"],
+      "startLine": 41,
+      "endLine": 58,
+      "exportStatus": "internal"
+    },
+    {
+      "id": "mind-land-web/src/pages/ToDo/components/ToDoItem/index.tsx::ToDoItem",
+      "type": "function",
+      "name": "ToDoItem",
+      "filePath": "mind-land-web/src/pages/ToDo/components/ToDoItem/index.tsx",
+      "summary": "待办事项展示组件，含内联编辑、完成复选框、星标切换、拖拽手柄和右键删除",
+      "tags": ["组件", "待办事项"],
+      "startLine": 8,
+      "endLine": 166,
+      "exportStatus": "exported"
+    },
+    {
+      "id": "mind-land-web/src/pages/ToDo/components/ToDoItem/index.tsx::handleStarClick",
+      "type": "function",
+      "name": "handleStarClick",
+      "filePath": "mind-land-web/src/pages/ToDo/components/ToDoItem/index.tsx",
+      "summary": "切换待办事项星标状态，调用patchToDoItemAPI",
+      "tags": ["星标", "待办事项"],
+      "startLine": 14,
+      "endLine": 27,
+      "exportStatus": "internal"
+    },
+    {
+      "id": "mind-land-web/src/pages/ToDo/components/ToDoItem/index.tsx::handleBlur",
+      "type": "function",
+      "name": "handleBlur",
+      "filePath": "mind-land-web/src/pages/ToDo/components/ToDoItem/index.tsx",
+      "summary": "内容输入框失焦时保存修改，检测内容变化后调用patchToDoItemAPI",
+      "tags": ["编辑", "待办事项"],
+      "startLine": 33,
+      "endLine": 49,
+      "exportStatus": "internal"
+    },
+    {
+      "id": "mind-land-web/src/pages/ToDo/components/ToDoItem/index.tsx::checkItem",
+      "type": "function",
+      "name": "checkItem",
+      "filePath": "mind-land-web/src/pages/ToDo/components/ToDoItem/index.tsx",
+      "summary": "切换待办事项完成状态，调用patchToDoItemAPI并控制显示/隐藏",
+      "tags": ["完成状态", "待办事项"],
+      "startLine": 53,
+      "endLine": 67,
+      "exportStatus": "internal"
+    },
+    {
+      "id": "mind-land-web/src/pages/ToDo/components/ToDoItem/index.tsx::deleteItem",
+      "type": "function",
+      "name": "deleteItem",
+      "filePath": "mind-land-web/src/pages/ToDo/components/ToDoItem/index.tsx",
+      "summary": "删除待办事项（支持软删和永久删除），调用deleteToDoItemAPI",
+      "tags": ["删除", "待办事项"],
+      "startLine": 78,
+      "endLine": 91,
+      "exportStatus": "internal"
+    },
+    {
+      "id": "mind-land-web/src/pages/ToDo/index.tsx::ToDo",
+      "type": "function",
+      "name": "ToDo",
+      "filePath": "mind-land-web/src/pages/ToDo/index.tsx",
+      "summary": "待办事项管理页面组件，支持列表切换/添加/拖拽排序/键盘排序/显示标题管理",
+      "tags": ["页面", "待办事项", "任务管理"],
+      "startLine": 10,
+      "endLine": 215,
+      "exportStatus": "exported"
+    },
+    {
+      "id": "mind-land-web/src/pages/ToDo/index.tsx::addToDo",
+      "type": "function",
+      "name": "addToDo",
+      "filePath": "mind-land-web/src/pages/ToDo/index.tsx",
+      "summary": "添加新待办事项，调用postToDoItemAPI并刷新列表",
+      "tags": ["添加", "待办事项"],
+      "startLine": 136,
+      "endLine": 153,
+      "exportStatus": "internal"
+    },
+    {
+      "id": "mind-land-web/src/store/modules/toDoStore.ts::setToDoLists",
+      "type": "function",
+      "name": "setToDoLists",
+      "filePath": "mind-land-web/src/store/modules/toDoStore.ts",
+      "summary": "Redux reducer：设置待办列表数据",
+      "tags": ["Redux", "reducer", "待办列表"],
+      "startLine": 26,
+      "endLine": 28,
+      "exportStatus": "exported"
+    },
+    {
+      "id": "mind-land-web/src/store/modules/toDoStore.ts::setLoadingToDoLists",
+      "type": "function",
+      "name": "setLoadingToDoLists",
+      "filePath": "mind-land-web/src/store/modules/toDoStore.ts",
+      "summary": "Redux reducer：设置待办列表加载状态",
+      "tags": ["Redux", "reducer", "加载状态"],
+      "startLine": 29,
+      "endLine": 31,
+      "exportStatus": "exported"
+    },
+    {
+      "id": "mind-land-web/src/store/modules/toDoStore.ts::setToDoItems",
+      "type": "function",
+      "name": "setToDoItems",
+      "filePath": "mind-land-web/src/store/modules/toDoStore.ts",
+      "summary": "Redux reducer：设置待办事项数据",
+      "tags": ["Redux", "reducer", "待办事项"],
+      "startLine": 33,
+      "endLine": 35,
+      "exportStatus": "exported"
+    },
+    {
+      "id": "mind-land-web/src/store/modules/toDoStore.ts::setLoadingToDoItems",
+      "type": "function",
+      "name": "setLoadingToDoItems",
+      "filePath": "mind-land-web/src/store/modules/toDoStore.ts",
+      "summary": "Redux reducer：设置待办事项加载状态",
+      "tags": ["Redux", "reducer", "加载状态"],
+      "startLine": 36,
+      "endLine": 38,
+      "exportStatus": "exported"
+    },
+    {
+      "id": "mind-land-web/src/store/modules/toDoStore.ts::fetchGetToDoLists",
+      "type": "function",
+      "name": "fetchGetToDoLists",
+      "filePath": "mind-land-web/src/store/modules/toDoStore.ts",
+      "summary": "异步thunk：获取所有待办列表并更新Redux状态",
+      "tags": ["Redux", "thunk", "待办列表", "异步"],
+      "startLine": 46,
+      "endLine": 59,
+      "exportStatus": "exported"
+    },
+    {
+      "id": "mind-land-web/src/store/modules/toDoStore.ts::fetchGetToDoItems",
+      "type": "function",
+      "name": "fetchGetToDoItems",
+      "filePath": "mind-land-web/src/store/modules/toDoStore.ts",
+      "summary": "异步thunk：根据列表类型（全部/星标/已完成/回收站/自定义）获取待办事项",
+      "tags": ["Redux", "thunk", "待办事项", "异步", "过滤"],
+      "startLine": 61,
+      "endLine": 91,
+      "exportStatus": "exported"
+    },
+    {
+      "id": "mind-land-web/src/store/modules/toDoStore.ts::reorderToDoItems",
+      "type": "function",
+      "name": "reorderToDoItems",
+      "filePath": "mind-land-web/src/store/modules/toDoStore.ts",
+      "summary": "异步thunk：重新排序待办事项，乐观更新后批量保存排序，失败时回滚",
+      "tags": ["Redux", "thunk", "排序", "乐观更新"],
+      "startLine": 96,
+      "endLine": 109,
+      "exportStatus": "exported"
+    }
+  ],
+  "edges": [
+    {
+      "source": "mind-land-web/src/apis/layout.ts",
+      "target": "mind-land-web/src/apis/interfaces/Response.ts",
+      "type": "imports",
+      "label": "导入Response类型"
+    },
+    {
+      "source": "mind-land-web/src/apis/layout.ts",
+      "target": "mind-land-web/src/pages/ToDo/interfaces.ts",
+      "type": "imports",
+      "label": "导入ToDoList类型"
+    },
+    {
+      "source": "mind-land-web/src/apis/layout.ts",
+      "target": "mind-land-web/src/utils/request.ts",
+      "type": "imports",
+      "label": "导入request HTTP客户端"
+    },
+    {
+      "source": "mind-land-web/src/apis/toDo.ts",
+      "target": "mind-land-web/src/apis/interfaces/Response.ts",
+      "type": "imports",
+      "label": "导入Response类型"
+    },
+    {
+      "source": "mind-land-web/src/apis/toDo.ts",
+      "target": "mind-land-web/src/pages/ToDo/interfaces.ts",
+      "type": "imports",
+      "label": "导入ToDoItem类型"
+    },
+    {
+      "source": "mind-land-web/src/apis/toDo.ts",
+      "target": "mind-land-web/src/utils/request.ts",
+      "type": "imports",
+      "label": "导入request HTTP客户端"
+    },
+    {
+      "source": "mind-land-web/src/apis/upload.ts",
+      "target": "mind-land-web/src/apis/interfaces/Response.ts",
+      "type": "imports",
+      "label": "导入Response类型"
+    },
+    {
+      "source": "mind-land-web/src/apis/upload.ts",
+      "target": "mind-land-web/src/utils/request.ts",
+      "type": "imports",
+      "label": "导入request HTTP客户端"
+    },
+    {
+      "source": "mind-land-web/src/pages/Container/index.tsx",
+      "target": "mind-land-web/src/apis/layout.ts",
+      "type": "imports",
+      "label": "导入postToDoListAPI"
+    },
+    {
+      "source": "mind-land-web/src/pages/Container/index.tsx",
+      "target": "mind-land-web/src/components/ToastProvider.tsx",
+      "type": "imports",
+      "label": "导入useToast"
+    },
+    {
+      "source": "mind-land-web/src/pages/Container/index.tsx",
+      "target": "mind-land-web/src/pages/ToDo/components/List/index.tsx",
+      "type": "imports",
+      "label": "导入ListItem组件"
+    },
+    {
+      "source": "mind-land-web/src/pages/Container/index.tsx",
+      "target": "mind-land-web/src/store/hooks.ts",
+      "type": "imports",
+      "label": "导入useAppDispatch和useAppSelector"
+    },
+    {
+      "source": "mind-land-web/src/pages/Container/index.tsx",
+      "target": "mind-land-web/src/store/modules/toDoStore.ts",
+      "type": "imports",
+      "label": "导入fetchGetToDoLists"
+    },
+    {
+      "source": "mind-land-web/src/pages/SlipBox/components/ImageUploadDialog.tsx",
+      "target": "mind-land-web/src/apis/upload.ts",
+      "type": "imports",
+      "label": "导入uploadImage"
+    },
+    {
+      "source": "mind-land-web/src/pages/ToDo/components/List/index.tsx",
+      "target": "mind-land-web/src/apis/layout.ts",
+      "type": "imports",
+      "label": "导入deleteToDoListAPI和patchToDoListAPI"
+    },
+    {
+      "source": "mind-land-web/src/pages/ToDo/components/List/index.tsx",
+      "target": "mind-land-web/src/components/ToastProvider.tsx",
+      "type": "imports",
+      "label": "导入useToast"
+    },
+    {
+      "source": "mind-land-web/src/pages/ToDo/components/List/index.tsx",
+      "target": "mind-land-web/src/store/hooks.ts",
+      "type": "imports",
+      "label": "导入useAppDispatch"
+    },
+    {
+      "source": "mind-land-web/src/pages/ToDo/components/List/index.tsx",
+      "target": "mind-land-web/src/store/modules/toDoStore.ts",
+      "type": "imports",
+      "label": "导入fetchGetToDoLists"
+    },
+    {
+      "source": "mind-land-web/src/pages/ToDo/components/ToDoItem/index.tsx",
+      "target": "mind-land-web/src/apis/toDo.ts",
+      "type": "imports",
+      "label": "导入deleteToDoItemAPI和patchToDoItemAPI"
+    },
+    {
+      "source": "mind-land-web/src/pages/ToDo/components/ToDoItem/index.tsx",
+      "target": "mind-land-web/src/components/ToastProvider.tsx",
+      "type": "imports",
+      "label": "导入useToast"
+    },
+    {
+      "source": "mind-land-web/src/pages/ToDo/components/ToDoItem/index.tsx",
+      "target": "mind-land-web/src/pages/ToDo/interfaces.ts",
+      "type": "imports",
+      "label": "导入ToDoItem类型"
+    },
+    {
+      "source": "mind-land-web/src/pages/ToDo/index.tsx",
+      "target": "mind-land-web/src/apis/toDo.ts",
+      "type": "imports",
+      "label": "导入postToDoItemAPI"
+    },
+    {
+      "source": "mind-land-web/src/pages/ToDo/index.tsx",
+      "target": "mind-land-web/src/components/ToastProvider.tsx",
+      "type": "imports",
+      "label": "导入useToast"
+    },
+    {
+      "source": "mind-land-web/src/pages/ToDo/index.tsx",
+      "target": "mind-land-web/src/pages/ToDo/components/ToDoItem/index.tsx",
+      "type": "imports",
+      "label": "导入ToDoItem组件"
+    },
+    {
+      "source": "mind-land-web/src/pages/ToDo/index.tsx",
+      "target": "mind-land-web/src/store/hooks.ts",
+      "type": "imports",
+      "label": "导入useAppDispatch和useAppSelector"
+    },
+    {
+      "source": "mind-land-web/src/pages/ToDo/index.tsx",
+      "target": "mind-land-web/src/store/modules/toDoStore.ts",
+      "type": "imports",
+      "label": "导入fetchGetToDoItems/setLoadingToDoItems/reorderToDoItems"
+    },
+    {
+      "source": "mind-land-web/src/store/modules/toDoStore.ts",
+      "target": "mind-land-web/src/apis/layout.ts",
+      "type": "imports",
+      "label": "导入getToDoListsAPI"
+    },
+    {
+      "source": "mind-land-web/src/store/modules/toDoStore.ts",
+      "target": "mind-land-web/src/apis/toDo.ts",
+      "type": "imports",
+      "label": "导入getToDoItemsAPI和patchToDoItemAPI"
+    },
+    {
+      "source": "mind-land-web/src/store/modules/toDoStore.ts",
+      "target": "mind-land-web/src/pages/ToDo/interfaces.ts",
+      "type": "imports",
+      "label": "导入ToDoList和ToDoItem类型"
+    },
+    {
+      "source": "mind-land-web/src/apis/layout.ts",
+      "target": "mind-land-web/src/apis/layout.ts::getToDoListsAPI",
+      "type": "contains"
+    },
+    {
+      "source": "mind-land-web/src/apis/layout.ts",
+      "target": "mind-land-web/src/apis/layout.ts::postToDoListAPI",
+      "type": "contains"
+    },
+    {
+      "source": "mind-land-web/src/apis/layout.ts",
+      "target": "mind-land-web/src/apis/layout.ts::deleteToDoListAPI",
+      "type": "contains"
+    },
+    {
+      "source": "mind-land-web/src/apis/layout.ts",
+      "target": "mind-land-web/src/apis/layout.ts::patchToDoListAPI",
+      "type": "contains"
+    },
+    {
+      "source": "mind-land-web/src/apis/toDo.ts",
+      "target": "mind-land-web/src/apis/toDo.ts::getToDoItemsAPI",
+      "type": "contains"
+    },
+    {
+      "source": "mind-land-web/src/apis/toDo.ts",
+      "target": "mind-land-web/src/apis/toDo.ts::postToDoItemAPI",
+      "type": "contains"
+    },
+    {
+      "source": "mind-land-web/src/apis/toDo.ts",
+      "target": "mind-land-web/src/apis/toDo.ts::deleteToDoItemAPI",
+      "type": "contains"
+    },
+    {
+      "source": "mind-land-web/src/apis/toDo.ts",
+      "target": "mind-land-web/src/apis/toDo.ts::patchToDoItemAPI",
+      "type": "contains"
+    },
+    {
+      "source": "mind-land-web/src/apis/toDo.ts",
+      "target": "mind-land-web/src/apis/toDo.ts::getToDoItemAPI",
+      "type": "contains"
+    },
+    {
+      "source": "mind-land-web/src/apis/upload.ts",
+      "target": "mind-land-web/src/apis/upload.ts::uploadImage",
+      "type": "contains"
+    },
+    {
+      "source": "mind-land-web/src/components/ToastProvider.tsx",
+      "target": "mind-land-web/src/components/ToastProvider.tsx::useToast",
+      "type": "contains"
+    },
+    {
+      "source": "mind-land-web/src/components/ToastProvider.tsx",
+      "target": "mind-land-web/src/components/ToastProvider.tsx::ToastProvider",
+      "type": "contains"
+    },
+    {
+      "source": "mind-land-web/src/components/ToastProvider.tsx",
+      "target": "mind-land-web/src/components/ToastProvider.tsx::setExternalToast",
+      "type": "contains"
+    },
+    {
+      "source": "mind-land-web/src/components/ToastProvider.tsx",
+      "target": "mind-land-web/src/components/ToastProvider.tsx::toastSuccess",
+      "type": "contains"
+    },
+    {
+      "source": "mind-land-web/src/components/ToastProvider.tsx",
+      "target": "mind-land-web/src/components/ToastProvider.tsx::toastError",
+      "type": "contains"
+    },
+    {
+      "source": "mind-land-web/src/components/ToastProvider.tsx",
+      "target": "mind-land-web/src/components/ToastProvider.tsx::toastInfo",
+      "type": "contains"
+    },
+    {
+      "source": "mind-land-web/src/components/ToastProvider.tsx",
+      "target": "mind-land-web/src/components/ToastProvider.tsx::toastWarning",
+      "type": "contains"
+    },
+    {
+      "source": "mind-land-web/src/pages/Container/index.tsx",
+      "target": "mind-land-web/src/pages/Container/index.tsx::activeKeyFromPath",
+      "type": "contains"
+    },
+    {
+      "source": "mind-land-web/src/pages/Container/index.tsx",
+      "target": "mind-land-web/src/pages/Container/index.tsx::topKeyFromPath",
+      "type": "contains"
+    },
+    {
+      "source": "mind-land-web/src/pages/Container/index.tsx",
+      "target": "mind-land-web/src/pages/Container/index.tsx::Container",
+      "type": "contains"
+    },
+    {
+      "source": "mind-land-web/src/pages/Container/index.tsx",
+      "target": "mind-land-web/src/pages/Container/index.tsx::addToDoListName",
+      "type": "contains"
+    },
+    {
+      "source": "mind-land-web/src/pages/SlipBox/components/ImageUploadDialog.tsx",
+      "target": "mind-land-web/src/pages/SlipBox/components/ImageUploadDialog.tsx::ImageUploadDialog",
+      "type": "contains"
+    },
+    {
+      "source": "mind-land-web/src/pages/SlipBox/components/ImageUploadDialog.tsx",
+      "target": "mind-land-web/src/pages/SlipBox/components/ImageUploadDialog.tsx::handleUpload",
+      "type": "contains"
+    },
+    {
+      "source": "mind-land-web/src/pages/ToDo/components/List/index.tsx",
+      "target": "mind-land-web/src/pages/ToDo/components/List/index.tsx::List",
+      "type": "contains"
+    },
+    {
+      "source": "mind-land-web/src/pages/ToDo/components/List/index.tsx",
+      "target": "mind-land-web/src/pages/ToDo/components/List/index.tsx::saveEdit",
+      "type": "contains"
+    },
+    {
+      "source": "mind-land-web/src/pages/ToDo/components/List/index.tsx",
+      "target": "mind-land-web/src/pages/ToDo/components/List/index.tsx::deleteList",
+      "type": "contains"
+    },
+    {
+      "source": "mind-land-web/src/pages/ToDo/components/ToDoItem/index.tsx",
+      "target": "mind-land-web/src/pages/ToDo/components/ToDoItem/index.tsx::ToDoItem",
+      "type": "contains"
+    },
+    {
+      "source": "mind-land-web/src/pages/ToDo/components/ToDoItem/index.tsx",
+      "target": "mind-land-web/src/pages/ToDo/components/ToDoItem/index.tsx::handleStarClick",
+      "type": "contains"
+    },
+    {
+      "source": "mind-land-web/src/pages/ToDo/components/ToDoItem/index.tsx",
+      "target": "mind-land-web/src/pages/ToDo/components/ToDoItem/index.tsx::handleBlur",
+      "type": "contains"
+    },
+    {
+      "source": "mind-land-web/src/pages/ToDo/components/ToDoItem/index.tsx",
+      "target": "mind-land-web/src/pages/ToDo/components/ToDoItem/index.tsx::checkItem",
+      "type": "contains"
+    },
+    {
+      "source": "mind-land-web/src/pages/ToDo/components/ToDoItem/index.tsx",
+      "target": "mind-land-web/src/pages/ToDo/components/ToDoItem/index.tsx::deleteItem",
+      "type": "contains"
+    },
+    {
+      "source": "mind-land-web/src/pages/ToDo/index.tsx",
+      "target": "mind-land-web/src/pages/ToDo/index.tsx::ToDo",
+      "type": "contains"
+    },
+    {
+      "source": "mind-land-web/src/pages/ToDo/index.tsx",
+      "target": "mind-land-web/src/pages/ToDo/index.tsx::addToDo",
+      "type": "contains"
+    },
+    {
+      "source": "mind-land-web/src/store/modules/toDoStore.ts",
+      "target": "mind-land-web/src/store/modules/toDoStore.ts::setToDoLists",
+      "type": "contains"
+    },
+    {
+      "source": "mind-land-web/src/store/modules/toDoStore.ts",
+      "target": "mind-land-web/src/store/modules/toDoStore.ts::setLoadingToDoLists",
+      "type": "contains"
+    },
+    {
+      "source": "mind-land-web/src/store/modules/toDoStore.ts",
+      "target": "mind-land-web/src/store/modules/toDoStore.ts::setToDoItems",
+      "type": "contains"
+    },
+    {
+      "source": "mind-land-web/src/store/modules/toDoStore.ts",
+      "target": "mind-land-web/src/store/modules/toDoStore.ts::setLoadingToDoItems",
+      "type": "contains"
+    },
+    {
+      "source": "mind-land-web/src/store/modules/toDoStore.ts",
+      "target": "mind-land-web/src/store/modules/toDoStore.ts::fetchGetToDoLists",
+      "type": "contains"
+    },
+    {
+      "source": "mind-land-web/src/store/modules/toDoStore.ts",
+      "target": "mind-land-web/src/store/modules/toDoStore.ts::fetchGetToDoItems",
+      "type": "contains"
+    },
+    {
+      "source": "mind-land-web/src/store/modules/toDoStore.ts",
+      "target": "mind-land-web/src/store/modules/toDoStore.ts::reorderToDoItems",
+      "type": "contains"
+    },
+    {
+      "source": "mind-land-web/src/apis/layout.ts",
+      "target": "mind-land-web/src/apis/layout.ts::getToDoListsAPI",
+      "type": "exports"
+    },
+    {
+      "source": "mind-land-web/src/apis/layout.ts",
+      "target": "mind-land-web/src/apis/layout.ts::postToDoListAPI",
+      "type": "exports"
+    },
+    {
+      "source": "mind-land-web/src/apis/layout.ts",
+      "target": "mind-land-web/src/apis/layout.ts::deleteToDoListAPI",
+      "type": "exports"
+    },
+    {
+      "source": "mind-land-web/src/apis/layout.ts",
+      "target": "mind-land-web/src/apis/layout.ts::patchToDoListAPI",
+      "type": "exports"
+    },
+    {
+      "source": "mind-land-web/src/apis/toDo.ts",
+      "target": "mind-land-web/src/apis/toDo.ts::getToDoItemsAPI",
+      "type": "exports"
+    },
+    {
+      "source": "mind-land-web/src/apis/toDo.ts",
+      "target": "mind-land-web/src/apis/toDo.ts::postToDoItemAPI",
+      "type": "exports"
+    },
+    {
+      "source": "mind-land-web/src/apis/toDo.ts",
+      "target": "mind-land-web/src/apis/toDo.ts::deleteToDoItemAPI",
+      "type": "exports"
+    },
+    {
+      "source": "mind-land-web/src/apis/toDo.ts",
+      "target": "mind-land-web/src/apis/toDo.ts::patchToDoItemAPI",
+      "type": "exports"
+    },
+    {
+      "source": "mind-land-web/src/apis/toDo.ts",
+      "target": "mind-land-web/src/apis/toDo.ts::getToDoItemAPI",
+      "type": "exports"
+    },
+    {
+      "source": "mind-land-web/src/apis/upload.ts",
+      "target": "mind-land-web/src/apis/upload.ts::uploadImage",
+      "type": "exports"
+    },
+    {
+      "source": "mind-land-web/src/components/ToastProvider.tsx",
+      "target": "mind-land-web/src/components/ToastProvider.tsx::useToast",
+      "type": "exports"
+    },
+    {
+      "source": "mind-land-web/src/components/ToastProvider.tsx",
+      "target": "mind-land-web/src/components/ToastProvider.tsx::setExternalToast",
+      "type": "exports"
+    },
+    {
+      "source": "mind-land-web/src/components/ToastProvider.tsx",
+      "target": "mind-land-web/src/components/ToastProvider.tsx::toastSuccess",
+      "type": "exports"
+    },
+    {
+      "source": "mind-land-web/src/components/ToastProvider.tsx",
+      "target": "mind-land-web/src/components/ToastProvider.tsx::toastError",
+      "type": "exports"
+    },
+    {
+      "source": "mind-land-web/src/components/ToastProvider.tsx",
+      "target": "mind-land-web/src/components/ToastProvider.tsx::toastInfo",
+      "type": "exports"
+    },
+    {
+      "source": "mind-land-web/src/components/ToastProvider.tsx",
+      "target": "mind-land-web/src/components/ToastProvider.tsx::toastWarning",
+      "type": "exports"
+    },
+    {
+      "source": "mind-land-web/src/pages/Container/index.tsx",
+      "target": "mind-land-web/src/pages/Container/index.tsx::Container",
+      "type": "exports"
+    },
+    {
+      "source": "mind-land-web/src/pages/SlipBox/components/ImageUploadDialog.tsx",
+      "target": "mind-land-web/src/pages/SlipBox/components/ImageUploadDialog.tsx::ImageUploadDialog",
+      "type": "exports"
+    },
+    {
+      "source": "mind-land-web/src/pages/ToDo/components/List/index.tsx",
+      "target": "mind-land-web/src/pages/ToDo/components/List/index.tsx::List",
+      "type": "exports"
+    },
+    {
+      "source": "mind-land-web/src/pages/ToDo/components/ToDoItem/index.tsx",
+      "target": "mind-land-web/src/pages/ToDo/components/ToDoItem/index.tsx::ToDoItem",
+      "type": "exports"
+    },
+    {
+      "source": "mind-land-web/src/pages/ToDo/index.tsx",
+      "target": "mind-land-web/src/pages/ToDo/index.tsx::ToDo",
+      "type": "exports"
+    },
+    {
+      "source": "mind-land-web/src/store/hooks.ts",
+      "target": "mind-land-web/src/store/hooks.ts::useAppDispatch",
+      "type": "exports"
+    },
+    {
+      "source": "mind-land-web/src/store/hooks.ts",
+      "target": "mind-land-web/src/store/hooks.ts::useAppSelector",
+      "type": "exports"
+    },
+    {
+      "source": "mind-land-web/src/store/modules/toDoStore.ts",
+      "target": "mind-land-web/src/store/modules/toDoStore.ts::setToDoLists",
+      "type": "exports"
+    },
+    {
+      "source": "mind-land-web/src/store/modules/toDoStore.ts",
+      "target": "mind-land-web/src/store/modules/toDoStore.ts::setLoadingToDoLists",
+      "type": "exports"
+    },
+    {
+      "source": "mind-land-web/src/store/modules/toDoStore.ts",
+      "target": "mind-land-web/src/store/modules/toDoStore.ts::setToDoItems",
+      "type": "exports"
+    },
+    {
+      "source": "mind-land-web/src/store/modules/toDoStore.ts",
+      "target": "mind-land-web/src/store/modules/toDoStore.ts::setLoadingToDoItems",
+      "type": "exports"
+    },
+    {
+      "source": "mind-land-web/src/store/modules/toDoStore.ts",
+      "target": "mind-land-web/src/store/modules/toDoStore.ts::fetchGetToDoLists",
+      "type": "exports"
+    },
+    {
+      "source": "mind-land-web/src/store/modules/toDoStore.ts",
+      "target": "mind-land-web/src/store/modules/toDoStore.ts::fetchGetToDoItems",
+      "type": "exports"
+    },
+    {
+      "source": "mind-land-web/src/store/modules/toDoStore.ts",
+      "target": "mind-land-web/src/store/modules/toDoStore.ts::reorderToDoItems",
+      "type": "exports"
+    },
+    {
+      "source": "mind-land-web/src/utils/request.ts",
+      "target": "mind-land-web/src/utils/request.ts::request",
+      "type": "exports"
+    },
+    {
+      "source": "mind-land-web/src/apis/interfaces/Response.ts",
+      "target": "mind-land-web/src/apis/interfaces/Response.ts::Response",
+      "type": "exports"
+    },
+    {
+      "source": "mind-land-web/src/pages/ToDo/interfaces.ts",
+      "target": "mind-land-web/src/pages/ToDo/interfaces.ts::ToDoList",
+      "type": "exports"
+    },
+    {
+      "source": "mind-land-web/src/pages/ToDo/interfaces.ts",
+      "target": "mind-land-web/src/pages/ToDo/interfaces.ts::ToDoItem",
+      "type": "exports"
+    },
+    {
+      "source": "mind-land-web/src/apis/layout.ts::getToDoListsAPI",
+      "target": "mind-land-web/src/utils/request.ts::request",
+      "type": "calls",
+      "label": "调用request.get发送GET请求"
+    },
+    {
+      "source": "mind-land-web/src/apis/layout.ts::postToDoListAPI",
+      "target": "mind-land-web/src/utils/request.ts::request",
+      "type": "calls",
+      "label": "调用request.post发送POST请求"
+    },
+    {
+      "source": "mind-land-web/src/apis/layout.ts::deleteToDoListAPI",
+      "target": "mind-land-web/src/utils/request.ts::request",
+      "type": "calls",
+      "label": "调用request.delete发送DELETE请求"
+    },
+    {
+      "source": "mind-land-web/src/apis/layout.ts::patchToDoListAPI",
+      "target": "mind-land-web/src/utils/request.ts::request",
+      "type": "calls",
+      "label": "调用request.patch发送PATCH请求"
+    },
+    {
+      "source": "mind-land-web/src/apis/toDo.ts::getToDoItemsAPI",
+      "target": "mind-land-web/src/utils/request.ts::request",
+      "type": "calls",
+      "label": "调用request.get发送GET请求"
+    },
+    {
+      "source": "mind-land-web/src/apis/toDo.ts::postToDoItemAPI",
+      "target": "mind-land-web/src/utils/request.ts::request",
+      "type": "calls",
+      "label": "调用request.post发送POST请求"
+    },
+    {
+      "source": "mind-land-web/src/apis/toDo.ts::deleteToDoItemAPI",
+      "target": "mind-land-web/src/utils/request.ts::request",
+      "type": "calls",
+      "label": "调用request.delete发送DELETE请求"
+    },
+    {
+      "source": "mind-land-web/src/apis/toDo.ts::patchToDoItemAPI",
+      "target": "mind-land-web/src/utils/request.ts::request",
+      "type": "calls",
+      "label": "调用request.patch发送PATCH请求"
+    },
+    {
+      "source": "mind-land-web/src/apis/toDo.ts::getToDoItemAPI",
+      "target": "mind-land-web/src/utils/request.ts::request",
+      "type": "calls",
+      "label": "调用request.get发送GET请求"
+    },
+    {
+      "source": "mind-land-web/src/apis/upload.ts::uploadImage",
+      "target": "mind-land-web/src/utils/request.ts::request",
+      "type": "calls",
+      "label": "调用request.post发送带FormData的POST请求"
+    },
+    {
+      "source": "mind-land-web/src/store/modules/toDoStore.ts::fetchGetToDoLists",
+      "target": "mind-land-web/src/apis/layout.ts::getToDoListsAPI",
+      "type": "calls",
+      "label": "调用API获取待办列表"
+    },
+    {
+      "source": "mind-land-web/src/store/modules/toDoStore.ts::fetchGetToDoItems",
+      "target": "mind-land-web/src/apis/toDo.ts::getToDoItemsAPI",
+      "type": "calls",
+      "label": "调用API获取待办事项（根据列表类型过滤）"
+    },
+    {
+      "source": "mind-land-web/src/store/modules/toDoStore.ts::reorderToDoItems",
+      "target": "mind-land-web/src/apis/toDo.ts::patchToDoItemAPI",
+      "type": "calls",
+      "label": "调用API批量更新排序"
+    },
+    {
+      "source": "mind-land-web/src/pages/Container/index.tsx::Container",
+      "target": "mind-land-web/src/components/ToastProvider.tsx::useToast",
+      "type": "calls",
+      "label": "获取Toast通知上下文"
+    },
+    {
+      "source": "mind-land-web/src/pages/Container/index.tsx::Container",
+      "target": "mind-land-web/src/store/hooks.ts::useAppDispatch",
+      "type": "calls",
+      "label": "获取类型化dispatch"
+    },
+    {
+      "source": "mind-land-web/src/pages/Container/index.tsx::Container",
+      "target": "mind-land-web/src/store/hooks.ts::useAppSelector",
+      "type": "calls",
+      "label": "获取类型化selector"
+    },
+    {
+      "source": "mind-land-web/src/pages/Container/index.tsx::Container",
+      "target": "mind-land-web/src/store/modules/toDoStore.ts::fetchGetToDoLists",
+      "type": "calls",
+      "label": "派发获取待办列表的异步thunk"
+    },
+    {
+      "source": "mind-land-web/src/pages/Container/index.tsx::addToDoListName",
+      "target": "mind-land-web/src/apis/layout.ts::postToDoListAPI",
+      "type": "calls",
+      "label": "调用API创建新待办列表"
+    },
+    {
+      "source": "mind-land-web/src/pages/ToDo/components/List/index.tsx::saveEdit",
+      "target": "mind-land-web/src/apis/layout.ts::patchToDoListAPI",
+      "type": "calls",
+      "label": "调用API更新列表名称"
+    },
+    {
+      "source": "mind-land-web/src/pages/ToDo/components/List/index.tsx::saveEdit",
+      "target": "mind-land-web/src/store/modules/toDoStore.ts::fetchGetToDoLists",
+      "type": "calls",
+      "label": "保存后刷新待办列表"
+    },
+    {
+      "source": "mind-land-web/src/pages/ToDo/components/List/index.tsx::deleteList",
+      "target": "mind-land-web/src/apis/layout.ts::deleteToDoListAPI",
+      "type": "calls",
+      "label": "调用API删除列表"
+    },
+    {
+      "source": "mind-land-web/src/pages/ToDo/components/List/index.tsx::deleteList",
+      "target": "mind-land-web/src/store/modules/toDoStore.ts::fetchGetToDoLists",
+      "type": "calls",
+      "label": "删除后刷新待办列表"
+    },
+    {
+      "source": "mind-land-web/src/pages/ToDo/components/List/index.tsx::List",
+      "target": "mind-land-web/src/components/ToastProvider.tsx::useToast",
+      "type": "calls",
+      "label": "获取Toast通知上下文"
+    },
+    {
+      "source": "mind-land-web/src/pages/ToDo/components/List/index.tsx::List",
+      "target": "mind-land-web/src/store/hooks.ts::useAppDispatch",
+      "type": "calls",
+      "label": "获取类型化dispatch"
+    },
+    {
+      "source": "mind-land-web/src/pages/ToDo/components/ToDoItem/index.tsx::ToDoItem",
+      "target": "mind-land-web/src/components/ToastProvider.tsx::useToast",
+      "type": "calls",
+      "label": "获取Toast通知上下文"
+    },
+    {
+      "source": "mind-land-web/src/pages/ToDo/components/ToDoItem/index.tsx::handleStarClick",
+      "target": "mind-land-web/src/apis/toDo.ts::patchToDoItemAPI",
+      "type": "calls",
+      "label": "调用API切换星标状态"
+    },
+    {
+      "source": "mind-land-web/src/pages/ToDo/components/ToDoItem/index.tsx::handleBlur",
+      "target": "mind-land-web/src/apis/toDo.ts::patchToDoItemAPI",
+      "type": "calls",
+      "label": "调用API保存编辑内容"
+    },
+    {
+      "source": "mind-land-web/src/pages/ToDo/components/ToDoItem/index.tsx::checkItem",
+      "target": "mind-land-web/src/apis/toDo.ts::patchToDoItemAPI",
+      "type": "calls",
+      "label": "调用API切换完成状态"
+    },
+    {
+      "source": "mind-land-web/src/pages/ToDo/components/ToDoItem/index.tsx::deleteItem",
+      "target": "mind-land-web/src/apis/toDo.ts::deleteToDoItemAPI",
+      "type": "calls",
+      "label": "调用API删除待办事项"
+    },
+    {
+      "source": "mind-land-web/src/pages/ToDo/index.tsx::ToDo",
+      "target": "mind-land-web/src/components/ToastProvider.tsx::useToast",
+      "type": "calls",
+      "label": "获取Toast通知上下文"
+    },
+    {
+      "source": "mind-land-web/src/pages/ToDo/index.tsx::ToDo",
+      "target": "mind-land-web/src/store/hooks.ts::useAppDispatch",
+      "type": "calls",
+      "label": "获取类型化dispatch"
+    },
+    {
+      "source": "mind-land-web/src/pages/ToDo/index.tsx::ToDo",
+      "target": "mind-land-web/src/store/hooks.ts::useAppSelector",
+      "type": "calls",
+      "label": "获取类型化selector"
+    },
+    {
+      "source": "mind-land-web/src/pages/ToDo/index.tsx::ToDo",
+      "target": "mind-land-web/src/store/modules/toDoStore.ts::fetchGetToDoItems",
+      "type": "calls",
+      "label": "派发获取待办事项异步thunk"
+    },
+    {
+      "source": "mind-land-web/src/pages/ToDo/index.tsx::ToDo",
+      "target": "mind-land-web/src/store/modules/toDoStore.ts::setLoadingToDoItems",
+      "type": "calls",
+      "label": "派发设置加载状态action"
+    },
+    {
+      "source": "mind-land-web/src/pages/ToDo/index.tsx::ToDo",
+      "target": "mind-land-web/src/store/modules/toDoStore.ts::reorderToDoItems",
+      "type": "calls",
+      "label": "派发排序thunk进行乐观更新"
+    },
+    {
+      "source": "mind-land-web/src/pages/ToDo/index.tsx::addToDo",
+      "target": "mind-land-web/src/apis/toDo.ts::postToDoItemAPI",
+      "type": "calls",
+      "label": "调用API创建新待办事项"
+    },
+    {
+      "source": "mind-land-web/src/pages/SlipBox/components/ImageUploadDialog.tsx::handleUpload",
+      "target": "mind-land-web/src/apis/upload.ts::uploadImage",
+      "type": "calls",
+      "label": "调用API上传图片文件"
+    },
+    {
+      "source": "mind-land-web/src/store/modules/toDoStore.ts::fetchGetToDoLists",
+      "target": "mind-land-web/src/store/modules/toDoStore.ts::setToDoLists",
+      "type": "calls",
+      "label": "dispatch设置待办列表数据"
+    },
+    {
+      "source": "mind-land-web/src/store/modules/toDoStore.ts::fetchGetToDoLists",
+      "target": "mind-land-web/src/store/modules/toDoStore.ts::setLoadingToDoLists",
+      "type": "calls",
+      "label": "dispatch设置加载状态"
+    },
+    {
+      "source": "mind-land-web/src/store/modules/toDoStore.ts::fetchGetToDoItems",
+      "target": "mind-land-web/src/store/modules/toDoStore.ts::setToDoItems",
+      "type": "calls",
+      "label": "dispatch设置待办事项数据"
+    },
+    {
+      "source": "mind-land-web/src/store/modules/toDoStore.ts::fetchGetToDoItems",
+      "target": "mind-land-web/src/store/modules/toDoStore.ts::setLoadingToDoItems",
+      "type": "calls",
+      "label": "dispatch设置加载状态"
+    },
+    {
+      "source": "mind-land-web/src/store/modules/toDoStore.ts::reorderToDoItems",
+      "target": "mind-land-web/src/store/modules/toDoStore.ts::setToDoItems",
+      "type": "calls",
+      "label": "dispatch乐观更新/回滚待办事项排序"
+    },
+    {
+      "source": "mind-land-web/src/components/ToastProvider.tsx::ToastProvider",
+      "target": "mind-land-web/src/components/ToastProvider.tsx::setExternalToast",
+      "type": "calls",
+      "label": "挂载时注册外部Toast引用，卸载时清除"
+    }
+  ],
+  "filesAnalyzed": [
+    "mind-land-web/src/apis/interfaces/Response.ts",
+    "mind-land-web/src/apis/layout.ts",
+    "mind-land-web/src/apis/toDo.ts",
+    "mind-land-web/src/apis/upload.ts",
+    "mind-land-web/src/components/ToastProvider.tsx",
+    "mind-land-web/src/pages/Container/index.tsx",
+    "mind-land-web/src/pages/SlipBox/components/ImageUploadDialog.tsx",
+    "mind-land-web/src/pages/ToDo/components/List/index.tsx",
+    "mind-land-web/src/pages/ToDo/components/ToDoItem/index.tsx",
+    "mind-land-web/src/pages/ToDo/index.tsx",
+    "mind-land-web/src/pages/ToDo/interfaces.ts",
+    "mind-land-web/src/store/hooks.ts",
+    "mind-land-web/src/store/modules/toDoStore.ts",
+    "mind-land-web/src/utils/request.ts"
+  ],
+  "filesSkipped": [],
+  "importEdgesEmitted": 29
+}

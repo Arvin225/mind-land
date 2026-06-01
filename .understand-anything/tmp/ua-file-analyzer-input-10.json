@@ -1,0 +1,147 @@
+{
+  "projectRoot": "/root/mind-land",
+  "batchFiles": [
+    {
+      "path": ".playwright-mcp/page-2026-05-24T11-24-08-467Z.yml",
+      "language": "yaml",
+      "sizeLines": 119,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".playwright-mcp/page-2026-05-24T11-24-19-426Z.yml",
+      "language": "yaml",
+      "sizeLines": 136,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".playwright-mcp/page-2026-05-24T11-24-31-090Z.yml",
+      "language": "yaml",
+      "sizeLines": 147,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".playwright-mcp/page-2026-05-24T11-24-40-913Z.yml",
+      "language": "yaml",
+      "sizeLines": 149,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".playwright-mcp/page-2026-05-24T11-24-53-724Z.yml",
+      "language": "yaml",
+      "sizeLines": 140,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".playwright-mcp/page-2026-05-24T11-25-04-151Z.yml",
+      "language": "yaml",
+      "sizeLines": 147,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".playwright-mcp/page-2026-05-24T11-25-11-520Z.yml",
+      "language": "yaml",
+      "sizeLines": 184,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".playwright-mcp/page-2026-05-24T11-25-23-596Z.yml",
+      "language": "yaml",
+      "sizeLines": 136,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".playwright-mcp/page-2026-05-25T01-41-06-319Z.yml",
+      "language": "yaml",
+      "sizeLines": 0,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".playwright-mcp/page-2026-05-25T01-41-17-334Z.yml",
+      "language": "yaml",
+      "sizeLines": 166,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".playwright-mcp/page-2026-05-25T01-41-29-396Z.yml",
+      "language": "yaml",
+      "sizeLines": 0,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".playwright-mcp/page-2026-05-25T01-41-36-714Z.yml",
+      "language": "yaml",
+      "sizeLines": 110,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".playwright-mcp/page-2026-05-25T01-41-49-082Z.yml",
+      "language": "yaml",
+      "sizeLines": 0,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".playwright-mcp/page-2026-05-25T01-42-04-601Z.yml",
+      "language": "yaml",
+      "sizeLines": 0,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".playwright-mcp/page-2026-05-25T01-42-14-178Z.yml",
+      "language": "yaml",
+      "sizeLines": 110,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".playwright-mcp/page-2026-05-25T01-42-23-031Z.yml",
+      "language": "yaml",
+      "sizeLines": 115,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".playwright-mcp/page-2026-05-25T01-42-41-011Z.yml",
+      "language": "yaml",
+      "sizeLines": 0,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".playwright-mcp/page-2026-05-25T01-45-54-620Z.yml",
+      "language": "yaml",
+      "sizeLines": 0,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".playwright-mcp/page-2026-05-25T01-46-04-271Z.yml",
+      "language": "yaml",
+      "sizeLines": 166,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".playwright-mcp/page-2026-05-25T01-46-14-101Z.yml",
+      "language": "yaml",
+      "sizeLines": 166,
+      "fileCategory": "config"
+    }
+  ],
+  "batchImportData": {
+    ".playwright-mcp/page-2026-05-24T11-24-08-467Z.yml": [],
+    ".playwright-mcp/page-2026-05-24T11-24-19-426Z.yml": [],
+    ".playwright-mcp/page-2026-05-24T11-24-31-090Z.yml": [],
+    ".playwright-mcp/page-2026-05-24T11-24-40-913Z.yml": [],
+    ".playwright-mcp/page-2026-05-24T11-24-53-724Z.yml": [],
+    ".playwright-mcp/page-2026-05-24T11-25-04-151Z.yml": [],
+    ".playwright-mcp/page-2026-05-24T11-25-11-520Z.yml": [],
+    ".playwright-mcp/page-2026-05-24T11-25-23-596Z.yml": [],
+    ".playwright-mcp/page-2026-05-25T01-41-06-319Z.yml": [],
+    ".playwright-mcp/page-2026-05-25T01-41-17-334Z.yml": [],
+    ".playwright-mcp/page-2026-05-25T01-41-29-396Z.yml": [],
+    ".playwright-mcp/page-2026-05-25T01-41-36-714Z.yml": [],
+    ".playwright-mcp/page-2026-05-25T01-41-49-082Z.yml": [],
+    ".playwright-mcp/page-2026-05-25T01-42-04-601Z.yml": [],
+    ".playwright-mcp/page-2026-05-25T01-42-14-178Z.yml": [],
+    ".playwright-mcp/page-2026-05-25T01-42-23-031Z.yml": [],
+    ".playwright-mcp/page-2026-05-25T01-42-41-011Z.yml": [],
+    ".playwright-mcp/page-2026-05-25T01-45-54-620Z.yml": [],
+    ".playwright-mcp/page-2026-05-25T01-46-04-271Z.yml": [],
+    ".playwright-mcp/page-2026-05-25T01-46-14-101Z.yml": []
+  }
+}

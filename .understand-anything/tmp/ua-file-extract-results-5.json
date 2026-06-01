@@ -1,0 +1,361 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 7,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": "mind-land-web/src/components/ui/alert-dialog.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 138,
+      "nonEmptyLines": 125,
+      "functions": [
+        {
+          "name": "AlertDialogHeader",
+          "startLine": 46,
+          "endLine": 57,
+          "params": [
+            "{\n  className,\n  ...props\n}"
+          ]
+        },
+        {
+          "name": "AlertDialogFooter",
+          "startLine": 60,
+          "endLine": 71,
+          "params": [
+            "{\n  className,\n  ...props\n}"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "AlertDialog",
+          "line": 126,
+          "isDefault": false
+        },
+        {
+          "name": "AlertDialogPortal",
+          "line": 126,
+          "isDefault": false
+        },
+        {
+          "name": "AlertDialogOverlay",
+          "line": 126,
+          "isDefault": false
+        },
+        {
+          "name": "AlertDialogTrigger",
+          "line": 126,
+          "isDefault": false
+        },
+        {
+          "name": "AlertDialogContent",
+          "line": 126,
+          "isDefault": false
+        },
+        {
+          "name": "AlertDialogHeader",
+          "line": 126,
+          "isDefault": false
+        },
+        {
+          "name": "AlertDialogFooter",
+          "line": 126,
+          "isDefault": false
+        },
+        {
+          "name": "AlertDialogTitle",
+          "line": 126,
+          "isDefault": false
+        },
+        {
+          "name": "AlertDialogDescription",
+          "line": 126,
+          "isDefault": false
+        },
+        {
+          "name": "AlertDialogAction",
+          "line": 126,
+          "isDefault": false
+        },
+        {
+          "name": "AlertDialogCancel",
+          "line": 126,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "AlertDialogHeader",
+          "callee": "cn",
+          "lineNumber": 51
+        },
+        {
+          "caller": "AlertDialogFooter",
+          "callee": "cn",
+          "lineNumber": 65
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 11,
+        "functionCount": 2,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "mind-land-web/src/components/ui/button.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 57,
+      "nonEmptyLines": 52,
+      "exports": [
+        {
+          "name": "Button",
+          "line": 57,
+          "isDefault": false
+        },
+        {
+          "name": "buttonVariants",
+          "line": 57,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 2,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "mind-land-web/src/components/ui/card.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 76,
+      "nonEmptyLines": 68,
+      "exports": [
+        {
+          "name": "Card",
+          "line": 76,
+          "isDefault": false
+        },
+        {
+          "name": "CardHeader",
+          "line": 76,
+          "isDefault": false
+        },
+        {
+          "name": "CardFooter",
+          "line": 76,
+          "isDefault": false
+        },
+        {
+          "name": "CardTitle",
+          "line": 76,
+          "isDefault": false
+        },
+        {
+          "name": "CardDescription",
+          "line": 76,
+          "isDefault": false
+        },
+        {
+          "name": "CardContent",
+          "line": 76,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 6,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "mind-land-web/src/components/ui/input.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 22,
+      "nonEmptyLines": 19,
+      "exports": [
+        {
+          "name": "Input",
+          "line": 22,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "mind-land-web/src/lib/confirm.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 73,
+      "nonEmptyLines": 68,
+      "functions": [
+        {
+          "name": "showConfirm",
+          "startLine": 22,
+          "endLine": 73,
+          "params": [
+            "options"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "showConfirm",
+          "line": 22,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "showConfirm",
+          "callee": "document.createElement",
+          "lineNumber": 24
+        },
+        {
+          "caller": "showConfirm",
+          "callee": "document.body.appendChild",
+          "lineNumber": 25
+        },
+        {
+          "caller": "showConfirm",
+          "callee": "createRoot",
+          "lineNumber": 26
+        },
+        {
+          "caller": "done",
+          "callee": "resolve",
+          "lineNumber": 33
+        },
+        {
+          "caller": "done",
+          "callee": "setTimeout",
+          "lineNumber": 34
+        },
+        {
+          "caller": "done",
+          "callee": "root.unmount",
+          "lineNumber": 35
+        },
+        {
+          "caller": "done",
+          "callee": "div.parentNode.removeChild",
+          "lineNumber": 37
+        },
+        {
+          "caller": "showConfirm",
+          "callee": "root.render",
+          "lineNumber": 42
+        },
+        {
+          "caller": "showConfirm",
+          "callee": "done",
+          "lineNumber": 46
+        },
+        {
+          "caller": "showConfirm",
+          "callee": "done",
+          "lineNumber": 61
+        },
+        {
+          "caller": "showConfirm",
+          "callee": "done",
+          "lineNumber": 64
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "mind-land-web/src/lib/utils.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 6,
+      "nonEmptyLines": 5,
+      "functions": [
+        {
+          "name": "cn",
+          "startLine": 4,
+          "endLine": 6,
+          "params": [
+            "...inputs"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "cn",
+          "line": 4,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "cn",
+          "callee": "twMerge",
+          "lineNumber": 5
+        },
+        {
+          "caller": "cn",
+          "callee": "clsx",
+          "lineNumber": 5
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "mind-land-web/src/pages/SlipBox/functions/showDeleteConfirm.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 13,
+      "nonEmptyLines": 11,
+      "functions": [
+        {
+          "name": "showDeleteConfirm",
+          "startLine": 3,
+          "endLine": 11,
+          "params": [
+            "{ title, content, onOk }"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "showDeleteConfirm",
+          "callee": "showConfirm",
+          "lineNumber": 4
+        },
+        {
+          "caller": "showDeleteConfirm",
+          "callee": "onOk",
+          "lineNumber": 9
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    }
+  ]
+}

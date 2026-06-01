@@ -1,0 +1,170 @@
+{
+  "batch": 10,
+  "nodes": [
+    {
+      "id": "config:.playwright-mcp/page-2026-05-24T11-24-08-467Z.yml",
+      "language": "yaml",
+      "summary": "Playwright 页面快照 (2026-05-24)",
+      "type": "config",
+      "filePath": ".playwright-mcp/page-2026-05-24T11-24-08-467Z.yml"
+    },
+    {
+      "id": "config:.playwright-mcp/page-2026-05-24T11-24-19-426Z.yml",
+      "language": "yaml",
+      "summary": "Playwright 页面快照 (2026-05-24)",
+      "type": "config",
+      "filePath": ".playwright-mcp/page-2026-05-24T11-24-19-426Z.yml"
+    },
+    {
+      "id": "config:.playwright-mcp/page-2026-05-24T11-24-31-090Z.yml",
+      "language": "yaml",
+      "summary": "Playwright 页面快照 (2026-05-24)",
+      "type": "config",
+      "filePath": ".playwright-mcp/page-2026-05-24T11-24-31-090Z.yml"
+    },
+    {
+      "id": "config:.playwright-mcp/page-2026-05-24T11-24-40-913Z.yml",
+      "language": "yaml",
+      "summary": "Playwright 页面快照 (2026-05-24)",
+      "type": "config",
+      "filePath": ".playwright-mcp/page-2026-05-24T11-24-40-913Z.yml"
+    },
+    {
+      "id": "config:.playwright-mcp/page-2026-05-24T11-24-53-724Z.yml",
+      "language": "yaml",
+      "summary": "Playwright 页面快照 (2026-05-24)",
+      "type": "config",
+      "filePath": ".playwright-mcp/page-2026-05-24T11-24-53-724Z.yml"
+    },
+    {
+      "id": "config:.playwright-mcp/page-2026-05-24T11-25-04-151Z.yml",
+      "language": "yaml",
+      "summary": "Playwright 页面快照 (2026-05-24)",
+      "type": "config",
+      "filePath": ".playwright-mcp/page-2026-05-24T11-25-04-151Z.yml"
+    },
+    {
+      "id": "config:.playwright-mcp/page-2026-05-24T11-25-11-520Z.yml",
+      "language": "yaml",
+      "summary": "Playwright 页面快照 (2026-05-24)",
+      "type": "config",
+      "filePath": ".playwright-mcp/page-2026-05-24T11-25-11-520Z.yml"
+    },
+    {
+      "id": "config:.playwright-mcp/page-2026-05-24T11-25-23-596Z.yml",
+      "language": "yaml",
+      "summary": "Playwright 页面快照 (2026-05-24)",
+      "type": "config",
+      "filePath": ".playwright-mcp/page-2026-05-24T11-25-23-596Z.yml"
+    },
+    {
+      "id": "config:.playwright-mcp/page-2026-05-25T01-41-06-319Z.yml",
+      "language": "yaml",
+      "summary": "Playwright 页面快照 (2026-05-25)",
+      "type": "config",
+      "filePath": ".playwright-mcp/page-2026-05-25T01-41-06-319Z.yml"
+    },
+    {
+      "id": "config:.playwright-mcp/page-2026-05-25T01-41-17-334Z.yml",
+      "language": "yaml",
+      "summary": "Playwright 页面快照 (2026-05-25)",
+      "type": "config",
+      "filePath": ".playwright-mcp/page-2026-05-25T01-41-17-334Z.yml"
+    },
+    {
+      "id": "config:.playwright-mcp/page-2026-05-25T01-41-29-396Z.yml",
+      "language": "yaml",
+      "summary": "Playwright 页面快照 (2026-05-25)",
+      "type": "config",
+      "filePath": ".playwright-mcp/page-2026-05-25T01-41-29-396Z.yml"
+    },
+    {
+      "id": "config:.playwright-mcp/page-2026-05-25T01-41-36-714Z.yml",
+      "language": "yaml",
+      "summary": "Playwright 页面快照 (2026-05-25)",
+      "type": "config",
+      "filePath": ".playwright-mcp/page-2026-05-25T01-41-36-714Z.yml"
+    },
+    {
+      "id": "config:.playwright-mcp/page-2026-05-25T01-41-49-082Z.yml",
+      "language": "yaml",
+      "summary": "Playwright 页面快照 (2026-05-25)",
+      "type": "config",
+      "filePath": ".playwright-mcp/page-2026-05-25T01-41-49-082Z.yml"
+    },
+    {
+      "id": "config:.playwright-mcp/page-2026-05-25T01-42-04-601Z.yml",
+      "language": "yaml",
+      "summary": "Playwright 页面快照 (2026-05-25)",
+      "type": "config",
+      "filePath": ".playwright-mcp/page-2026-05-25T01-42-04-601Z.yml"
+    },
+    {
+      "id": "config:.playwright-mcp/page-2026-05-25T01-42-14-178Z.yml",
+      "language": "yaml",
+      "summary": "Playwright 页面快照 (2026-05-25)",
+      "type": "config",
+      "filePath": ".playwright-mcp/page-2026-05-25T01-42-14-178Z.yml"
+    },
+    {
+      "id": "config:.playwright-mcp/page-2026-05-25T01-42-23-031Z.yml",
+      "language": "yaml",
+      "summary": "Playwright 页面快照 (2026-05-25)",
+      "type": "config",
+      "filePath": ".playwright-mcp/page-2026-05-25T01-42-23-031Z.yml"
+    },
+    {
+      "id": "config:.playwright-mcp/page-2026-05-25T01-42-41-011Z.yml",
+      "language": "yaml",
+      "summary": "Playwright 页面快照 (2026-05-25)",
+      "type": "config",
+      "filePath": ".playwright-mcp/page-2026-05-25T01-42-41-011Z.yml"
+    },
+    {
+      "id": "config:.playwright-mcp/page-2026-05-25T01-45-54-620Z.yml",
+      "language": "yaml",
+      "summary": "Playwright 页面快照 (2026-05-25)",
+      "type": "config",
+      "filePath": ".playwright-mcp/page-2026-05-25T01-45-54-620Z.yml"
+    },
+    {
+      "id": "config:.playwright-mcp/page-2026-05-25T01-46-04-271Z.yml",
+      "language": "yaml",
+      "summary": "Playwright 页面快照 (2026-05-25)",
+      "type": "config",
+      "filePath": ".playwright-mcp/page-2026-05-25T01-46-04-271Z.yml"
+    },
+    {
+      "id": "config:.playwright-mcp/page-2026-05-25T01-46-14-101Z.yml",
+      "language": "yaml",
+      "summary": "Playwright 页面快照 (2026-05-25)",
+      "type": "config",
+      "filePath": ".playwright-mcp/page-2026-05-25T01-46-14-101Z.yml"
+    }
+  ],
+  "edges": [],
+  "filesAnalyzed": [
+    "config:.playwright-mcp/page-2026-05-24T11-24-08-467Z.yml",
+    "config:.playwright-mcp/page-2026-05-24T11-24-19-426Z.yml",
+    "config:.playwright-mcp/page-2026-05-24T11-24-31-090Z.yml",
+    "config:.playwright-mcp/page-2026-05-24T11-24-40-913Z.yml",
+    "config:.playwright-mcp/page-2026-05-24T11-24-53-724Z.yml",
+    "config:.playwright-mcp/page-2026-05-24T11-25-04-151Z.yml",
+    "config:.playwright-mcp/page-2026-05-24T11-25-11-520Z.yml",
+    "config:.playwright-mcp/page-2026-05-24T11-25-23-596Z.yml",
+    "config:.playwright-mcp/page-2026-05-25T01-41-06-319Z.yml",
+    "config:.playwright-mcp/page-2026-05-25T01-41-17-334Z.yml",
+    "config:.playwright-mcp/page-2026-05-25T01-41-29-396Z.yml",
+    "config:.playwright-mcp/page-2026-05-25T01-41-36-714Z.yml",
+    "config:.playwright-mcp/page-2026-05-25T01-41-49-082Z.yml",
+    "config:.playwright-mcp/page-2026-05-25T01-42-04-601Z.yml",
+    "config:.playwright-mcp/page-2026-05-25T01-42-14-178Z.yml",
+    "config:.playwright-mcp/page-2026-05-25T01-42-23-031Z.yml",
+    "config:.playwright-mcp/page-2026-05-25T01-42-41-011Z.yml",
+    "config:.playwright-mcp/page-2026-05-25T01-45-54-620Z.yml",
+    "config:.playwright-mcp/page-2026-05-25T01-46-04-271Z.yml",
+    "config:.playwright-mcp/page-2026-05-25T01-46-14-101Z.yml"
+  ],
+  "filesSkipped": [],
+  "importEdgesEmitted": 0
+}

@@ -9,7 +9,22 @@
       "Bash(rm -rf /root/mind-land/mind-land-server/.git /root/mind-land/mind-land-web/.git)",
       "Bash(git rm *)",
       "Bash(git add *)",
-      "Bash(git commit *)"
+      "Bash(git commit *)",
+      "Bash(python3 -c \"import json,sys; d=json.load\\(sys.stdin\\); import json; print\\(json.dumps\\(d\\)\\)\")",
+      "Read(//tmp/**)",
+      "Bash(python3 -c \"import json,sys; d=json.load\\(sys.stdin\\); print\\(json.dumps\\(d.get\\('pnpm',{}\\), indent=2\\)\\)\")",
+      "Bash(echo 'onlyBuiltDependencies[]=esbuild')",
+      "Bash(pnpm config *)",
+      "Bash(pnpm rebuild *)",
+      "Bash(pnpm approve-builds *)",
+      "Bash(python3 -c ' *)",
+      "Bash(pnpm install *)",
+      "Bash(python3 -c \"import json,sys; d=json.load\\(sys.stdin\\); print\\(json.dumps\\(d.get\\('scripts',{}\\), indent=2\\)\\)\")",
+      "Bash(npx tsc *)",
+      "Bash(node *)",
+      "Bash(env)",
+      "Read(//root/.claude/**)",
+      "Bash(python3 *)"
     ]
   }
 }

@@ -1,0 +1,42 @@
+{
+  "projectRoot": "/root/mind-land",
+  "batchFiles": [
+    {
+      "path": "mind-land-web/index.html",
+      "language": "html",
+      "sizeLines": 19,
+      "fileCategory": "markup"
+    },
+    {
+      "path": "mind-land-web/package.json",
+      "language": "json",
+      "sizeLines": 51,
+      "fileCategory": "config"
+    },
+    {
+      "path": "mind-land-web/tsconfig.app.json",
+      "language": "json",
+      "sizeLines": 31,
+      "fileCategory": "config"
+    },
+    {
+      "path": "mind-land-web/tsconfig.json",
+      "language": "json",
+      "sizeLines": 23,
+      "fileCategory": "config"
+    },
+    {
+      "path": "mind-land-web/tsconfig.node.json",
+      "language": "json",
+      "sizeLines": 10,
+      "fileCategory": "config"
+    }
+  ],
+  "batchImportData": {
+    "mind-land-web/index.html": [],
+    "mind-land-web/package.json": [],
+    "mind-land-web/tsconfig.app.json": [],
+    "mind-land-web/tsconfig.json": [],
+    "mind-land-web/tsconfig.node.json": []
+  }
+}

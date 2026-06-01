@@ -1,0 +1,246 @@
+{
+  "nodes": [
+    {
+      "id": "file:mind-land-web/src/components/ui/alert-dialog.tsx",
+      "type": "file",
+      "name": "alert-dialog.tsx",
+      "filePath": "mind-land-web/src/components/ui/alert-dialog.tsx",
+      "summary": "基于 Radix UI 构建的确认对话框组件集合，提供覆盖层、内容区域、标题、描述、操作和取消按钮等完整的对话框子组件，支持全屏半透明遮罩和响应式布局。",
+      "tags": ["ui-component", "dialog", "modal", "radix-ui"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:mind-land-web/src/components/ui/alert-dialog.tsx:AlertDialogHeader",
+      "type": "function",
+      "name": "AlertDialogHeader",
+      "filePath": "mind-land-web/src/components/ui/alert-dialog.tsx",
+      "lineRange": [46, 57],
+      "summary": "渲染对话框头部区域，移动端居中显示、桌面端左对齐，采用垂直 flex 布局。",
+      "tags": ["ui-component", "dialog-header", "layout"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mind-land-web/src/components/ui/alert-dialog.tsx:AlertDialogFooter",
+      "type": "function",
+      "name": "AlertDialogFooter",
+      "filePath": "mind-land-web/src/components/ui/alert-dialog.tsx",
+      "lineRange": [60, 71],
+      "summary": "渲染对话框底部操作按钮区域，移动端列向堆叠、桌面端横向右对齐排列。",
+      "tags": ["ui-component", "dialog-footer", "layout"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:mind-land-web/src/components/ui/button.tsx",
+      "type": "file",
+      "name": "button.tsx",
+      "filePath": "mind-land-web/src/components/ui/button.tsx",
+      "summary": "提供六种视觉变体（default/destructive/outline/secondary/ghost/link）和四种尺寸的按钮组件，支持 asChild 属性将按钮语义传递给子元素，基于 class-variance-authority 实现样式变体。",
+      "tags": ["ui-component", "button", "form", "tailwind"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:mind-land-web/src/components/ui/card.tsx",
+      "type": "file",
+      "name": "card.tsx",
+      "filePath": "mind-land-web/src/components/ui/card.tsx",
+      "summary": "实现卡片容器组件系列，包含 Card 容器、Header、Content、Footer、Title、Description 六个子组件，用于内容的分组展示和页面布局组织。",
+      "tags": ["ui-component", "card", "container", "layout"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:mind-land-web/src/components/ui/input.tsx",
+      "type": "file",
+      "name": "input.tsx",
+      "filePath": "mind-land-web/src/components/ui/input.tsx",
+      "summary": "封装的输入框组件，集成统一的 Tailwind CSS 样式、过渡动画和 focus-visible 状态环，支持所有原生 input 属性透传。",
+      "tags": ["ui-component", "input", "form"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:mind-land-web/src/lib/confirm.tsx",
+      "type": "file",
+      "name": "confirm.tsx",
+      "filePath": "mind-land-web/src/lib/confirm.tsx",
+      "summary": "提供 showConfirm() 编程式确认对话框函数，使用 React createRoot 将 AlertDialog 动态渲染到独立的 DOM 根节点，返回 Promise<boolean> 供调用方异步获取用户的选择结果。",
+      "tags": ["utility", "confirmation", "dialog", "dynamic-render"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:mind-land-web/src/lib/confirm.tsx:showConfirm",
+      "type": "function",
+      "name": "showConfirm",
+      "filePath": "mind-land-web/src/lib/confirm.tsx",
+      "lineRange": [22, 73],
+      "summary": "创建动态确认对话框，将 AlertDialog 渲染到 document.body 下独立的根节点，通过 Promise 异步返回用户的确认或取消选择，渲染完成后自动卸载清理 DOM。",
+      "tags": ["utility", "confirmation", "dialog", "dynamic-render"],
+      "complexity": "moderate",
+      "languageNotes": "使用 React 18 createRoot API 在 body 尾部创建临时 Portal 根节点，确认完成后通过 setTimeout 异步卸载以避免 React 状态更新冲突。"
+    },
+    {
+      "id": "file:mind-land-web/src/lib/utils.ts",
+      "type": "file",
+      "name": "utils.ts",
+      "filePath": "mind-land-web/src/lib/utils.ts",
+      "summary": "提供 cn() 工具函数，整合 clsx 和 tailwind-merge 实现 Tailwind CSS 类名的高效合并与冲突去重，是项目中所有 UI 组件的通用类名处理入口。",
+      "tags": ["utility", "tailwind", "helper", "classname"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mind-land-web/src/lib/utils.ts:cn",
+      "type": "function",
+      "name": "cn",
+      "filePath": "mind-land-web/src/lib/utils.ts",
+      "lineRange": [4, 6],
+      "summary": "合并多个类名输入，先经 clsx 处理条件类名和数组，再通过 twMerge 解决 Tailwind CSS 冲突类名，返回最终合并结果。",
+      "tags": ["utility", "tailwind", "helper", "classname"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:mind-land-web/src/pages/SlipBox/functions/showDeleteConfirm.tsx",
+      "type": "file",
+      "name": "showDeleteConfirm.tsx",
+      "filePath": "mind-land-web/src/pages/SlipBox/functions/showDeleteConfirm.tsx",
+      "summary": "封装 SlipBox 笔记删除的二次确认流程，调用 showConfirm 弹出确认对话框，用户在确认后执行传入的 onOk 删除回调函数。",
+      "tags": ["utility", "confirmation", "slipbox", "delete"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mind-land-web/src/pages/SlipBox/functions/showDeleteConfirm.tsx:showDeleteConfirm",
+      "type": "function",
+      "name": "showDeleteConfirm",
+      "filePath": "mind-land-web/src/pages/SlipBox/functions/showDeleteConfirm.tsx",
+      "lineRange": [3, 11],
+      "summary": "调用 showConfirm 弹出二次确认对话框，显示笔记标题和内容预览，确认后触发 onOk 删除回调。",
+      "tags": ["utility", "confirmation", "slipbox", "delete"],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:mind-land-web/src/components/ui/alert-dialog.tsx",
+      "target": "file:mind-land-web/src/components/ui/button.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:mind-land-web/src/components/ui/alert-dialog.tsx",
+      "target": "file:mind-land-web/src/lib/utils.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:mind-land-web/src/components/ui/button.tsx",
+      "target": "file:mind-land-web/src/lib/utils.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:mind-land-web/src/components/ui/card.tsx",
+      "target": "file:mind-land-web/src/lib/utils.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:mind-land-web/src/components/ui/input.tsx",
+      "target": "file:mind-land-web/src/lib/utils.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:mind-land-web/src/lib/confirm.tsx",
+      "target": "file:mind-land-web/src/components/ui/alert-dialog.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:mind-land-web/src/pages/SlipBox/functions/showDeleteConfirm.tsx",
+      "target": "file:mind-land-web/src/lib/confirm.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:mind-land-web/src/components/ui/alert-dialog.tsx",
+      "target": "function:mind-land-web/src/components/ui/alert-dialog.tsx:AlertDialogHeader",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-web/src/components/ui/alert-dialog.tsx",
+      "target": "function:mind-land-web/src/components/ui/alert-dialog.tsx:AlertDialogFooter",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-web/src/lib/confirm.tsx",
+      "target": "function:mind-land-web/src/lib/confirm.tsx:showConfirm",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-web/src/lib/utils.ts",
+      "target": "function:mind-land-web/src/lib/utils.ts:cn",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-web/src/pages/SlipBox/functions/showDeleteConfirm.tsx",
+      "target": "function:mind-land-web/src/pages/SlipBox/functions/showDeleteConfirm.tsx:showDeleteConfirm",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-web/src/components/ui/alert-dialog.tsx",
+      "target": "function:mind-land-web/src/components/ui/alert-dialog.tsx:AlertDialogHeader",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mind-land-web/src/components/ui/alert-dialog.tsx",
+      "target": "function:mind-land-web/src/components/ui/alert-dialog.tsx:AlertDialogFooter",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mind-land-web/src/lib/confirm.tsx",
+      "target": "function:mind-land-web/src/lib/confirm.tsx:showConfirm",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mind-land-web/src/lib/utils.ts",
+      "target": "function:mind-land-web/src/lib/utils.ts:cn",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mind-land-web/src/pages/SlipBox/functions/showDeleteConfirm.tsx",
+      "target": "function:mind-land-web/src/pages/SlipBox/functions/showDeleteConfirm.tsx:showDeleteConfirm",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:mind-land-web/src/pages/SlipBox/functions/showDeleteConfirm.tsx:showDeleteConfirm",
+      "target": "function:mind-land-web/src/lib/confirm.tsx:showConfirm",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ]
+}

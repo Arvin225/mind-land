@@ -1,0 +1,397 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 25,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": ".claude/memory/session-log.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 10,
+      "nonEmptyLines": 6,
+      "sections": [
+        {
+          "heading": "Session Log",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "Index",
+          "level": 2,
+          "line": 6
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 2
+      }
+    },
+    {
+      "path": ".claude/sessions/.last_inbox_check",
+      "language": "unknown",
+      "fileCategory": "code",
+      "totalLines": 1,
+      "nonEmptyLines": 1,
+      "metrics": {}
+    },
+    {
+      "path": ".claude/settings.local.json",
+      "language": "json",
+      "fileCategory": "config",
+      "totalLines": 29,
+      "nonEmptyLines": 29,
+      "sections": [
+        {
+          "heading": "permissions",
+          "level": 1,
+          "line": 2
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 1
+      }
+    },
+    {
+      "path": ".understand-anything/.understandignore",
+      "language": "unknown",
+      "fileCategory": "code",
+      "totalLines": 13,
+      "nonEmptyLines": 12,
+      "metrics": {}
+    },
+    {
+      "path": ".understand-anything/config.json",
+      "language": "json",
+      "fileCategory": "config",
+      "totalLines": 1,
+      "nonEmptyLines": 1,
+      "sections": [
+        {
+          "heading": "outputLanguage",
+          "level": 1,
+          "line": 1
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 1
+      }
+    },
+    {
+      "path": "mind-land-server/.claude/sessions/.last_inbox_check",
+      "language": "unknown",
+      "fileCategory": "code",
+      "totalLines": 1,
+      "nonEmptyLines": 1,
+      "metrics": {}
+    },
+    {
+      "path": "mind-land-server/.claude/state/breezing-timeline.jsonl",
+      "language": "jsonl",
+      "fileCategory": "code",
+      "totalLines": 1,
+      "nonEmptyLines": 1,
+      "metrics": {}
+    },
+    {
+      "path": "mind-land-server/.claude/state/changed-files.jsonl",
+      "language": "jsonl",
+      "fileCategory": "code",
+      "totalLines": 11,
+      "nonEmptyLines": 11,
+      "metrics": {}
+    },
+    {
+      "path": "mind-land-server/.claude/state/test-recommendation.json",
+      "language": "json",
+      "fileCategory": "config",
+      "totalLines": 7,
+      "nonEmptyLines": 7,
+      "sections": [
+        {
+          "heading": "timestamp",
+          "level": 1,
+          "line": 2
+        },
+        {
+          "heading": "changed_file",
+          "level": 1,
+          "line": 3
+        },
+        {
+          "heading": "test_command",
+          "level": 1,
+          "line": 4
+        },
+        {
+          "heading": "related_test",
+          "level": 1,
+          "line": 5
+        },
+        {
+          "heading": "recommendation",
+          "level": 1,
+          "line": 6
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 5
+      }
+    },
+    {
+      "path": "mind-land-server/mind-land-server",
+      "language": "unknown",
+      "fileCategory": "code",
+      "totalLines": 163154,
+      "nonEmptyLines": 156290,
+      "metrics": {}
+    },
+    {
+      "path": "mind-land-server/server",
+      "language": "unknown",
+      "fileCategory": "code",
+      "totalLines": 161071,
+      "nonEmptyLines": 154168,
+      "metrics": {}
+    },
+    {
+      "path": "mind-land-server/server-new",
+      "language": "unknown",
+      "fileCategory": "code",
+      "totalLines": 160495,
+      "nonEmptyLines": 153598,
+      "metrics": {}
+    },
+    {
+      "path": "mind-land-server/server-test",
+      "language": "unknown",
+      "fileCategory": "code",
+      "totalLines": 160495,
+      "nonEmptyLines": 153598,
+      "metrics": {}
+    },
+    {
+      "path": "mind-land-web/.claude/sessions/.last_inbox_check",
+      "language": "unknown",
+      "fileCategory": "code",
+      "totalLines": 1,
+      "nonEmptyLines": 1,
+      "metrics": {}
+    },
+    {
+      "path": "mind-land-web/.claude/state/breezing-timeline.jsonl",
+      "language": "jsonl",
+      "fileCategory": "code",
+      "totalLines": 1,
+      "nonEmptyLines": 1,
+      "metrics": {}
+    },
+    {
+      "path": "mind-land-web/.claude/state/changed-files.jsonl",
+      "language": "jsonl",
+      "fileCategory": "code",
+      "totalLines": 13,
+      "nonEmptyLines": 13,
+      "metrics": {}
+    },
+    {
+      "path": "mind-land-web/server/data.json",
+      "language": "json",
+      "fileCategory": "config",
+      "totalLines": 503,
+      "nonEmptyLines": 503,
+      "sections": [
+        {
+          "heading": "toDoListNames",
+          "level": 1,
+          "line": 2
+        },
+        {
+          "heading": "toDoList",
+          "level": 1,
+          "line": 20
+        },
+        {
+          "heading": "cards",
+          "level": 1,
+          "line": 362
+        },
+        {
+          "heading": "tags",
+          "level": 1,
+          "line": 372
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 4
+      }
+    },
+    {
+      "path": "mind-land-web/src/App.css",
+      "language": "css",
+      "fileCategory": "markup",
+      "totalLines": 1,
+      "nonEmptyLines": 0,
+      "metrics": {}
+    },
+    {
+      "path": "mind-land-web/src/index.css",
+      "language": "css",
+      "fileCategory": "markup",
+      "totalLines": 382,
+      "nonEmptyLines": 313,
+      "metrics": {}
+    },
+    {
+      "path": "mind-land-web/src/pages/AI/index.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 48,
+      "nonEmptyLines": 46,
+      "functions": [
+        {
+          "name": "AI",
+          "startLine": 11,
+          "endLine": 47,
+          "params": []
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "AI",
+          "callee": "plannedFeatures.map",
+          "lineNumber": 24
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "mind-land-web/src/pages/Diary/index.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 17,
+      "nonEmptyLines": 16,
+      "functions": [
+        {
+          "name": "Diary",
+          "startLine": 3,
+          "endLine": 16,
+          "params": []
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "mind-land-web/src/pages/Draft/index.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 17,
+      "nonEmptyLines": 16,
+      "functions": [
+        {
+          "name": "Draft",
+          "startLine": 3,
+          "endLine": 16,
+          "params": []
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "mind-land-web/src/pages/Home/index.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 17,
+      "nonEmptyLines": 16,
+      "functions": [
+        {
+          "name": "Home",
+          "startLine": 3,
+          "endLine": 16,
+          "params": []
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "mind-land-web/src/pages/MarkList/index.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 17,
+      "nonEmptyLines": 16,
+      "functions": [
+        {
+          "name": "MarkList",
+          "startLine": 3,
+          "endLine": 16,
+          "params": []
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "mind-land-web/src/pages/MindMap/index.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 17,
+      "nonEmptyLines": 16,
+      "functions": [
+        {
+          "name": "MindMap",
+          "startLine": 3,
+          "endLine": 16,
+          "params": []
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    }
+  ]
+}

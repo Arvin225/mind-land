@@ -1,0 +1,20 @@
+{
+  "fixedSectionOk": true,
+  "nodesRecovered": 0,
+  "edgesRestored": 0,
+  "crossBatchEdgesAdded": 0,
+  "typesRemapped": 0,
+  "complexityRemapped": 0,
+  "notes": [
+    "Fixed section numbers are reasonable: 114 ID corrections (31% of nodes) is notable but systemic across batches; 169 edge rewrites for 114 corrected IDs (~1.5 per node) is proportional; 205 complexity None->moderate defaults are expected from LLM output patterns.",
+    "16 'unknown type' nodes are legitimate domain-specific concepts from LLM analysis and should not be remapped: 6x 'test' (QA test scenarios), 3x 'type' (TypeScript interfaces), 3x 'variable' (exported variables), 2x 'plan' (refactoring plans), 2x 'ui-structure' (UI layout descriptions). No standard schema type adequately captures these semantics.",
+    "205 complexity None->moderate already handled by merge script - no further action needed.",
+    "25 dangling edges dropped: 22 with empty source/target (corrupt data, correct to drop), 3 additional with unresolvable source/target references. No missing nodes found in batch files to recover.",
+    "Cross-batch import edges verified: all 84 import edges from batch files (including Go server imports: main.go->slipbox/*, main.go->todo/*, main.go->upload, handler->common/response) are present in the assembled graph.",
+    "No nodes with missing IDs detected. Input/output node count identical (364).",
+    "Edge sources/targets verified against node set: all 518 edges reference existing nodes.",
+    "All 364 nodes have complexity field set (script defaulted missing values to 'moderate').",
+    "Two edges with recoveredFromImportMap=true already present at end of edge list (Container->Settings, ToDoItem->confirm).",
+    "The function:Note node has a minimal ID without filePath (only 'function:Note'), but it has valid incoming/outgoing edges so is internally consistent."
+  ]
+}

@@ -1,0 +1,129 @@
+{
+  "projectRoot": "/root/mind-land",
+  "batchFiles": [
+    {
+      "path": "mind-land-web/src/apis/slipBox.ts",
+      "language": "typescript",
+      "sizeLines": 63,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mind-land-web/src/pages/SlipBox/components/CardList/index.tsx",
+      "language": "typescript",
+      "sizeLines": 403,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mind-land-web/src/pages/SlipBox/components/PathBar/index.tsx",
+      "language": "typescript",
+      "sizeLines": 25,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mind-land-web/src/pages/SlipBox/components/RightSider/index.tsx",
+      "language": "typescript",
+      "sizeLines": 124,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mind-land-web/src/pages/SlipBox/components/SearchBar/index.tsx",
+      "language": "typescript",
+      "sizeLines": 37,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mind-land-web/src/pages/SlipBox/components/SlipEditor/TagHighlight.ts",
+      "language": "typescript",
+      "sizeLines": 57,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mind-land-web/src/pages/SlipBox/components/SlipEditor/TiptapEditor.tsx",
+      "language": "typescript",
+      "sizeLines": 170,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mind-land-web/src/pages/SlipBox/components/SlipEditor/index.tsx",
+      "language": "typescript",
+      "sizeLines": 13,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mind-land-web/src/pages/SlipBox/components/SortMenu/index.tsx",
+      "language": "typescript",
+      "sizeLines": 57,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mind-land-web/src/pages/SlipBox/hooks/usePathItems.ts",
+      "language": "typescript",
+      "sizeLines": 55,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mind-land-web/src/pages/SlipBox/index.tsx",
+      "language": "typescript",
+      "sizeLines": 264,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mind-land-web/src/pages/SlipBox/interfaces.ts",
+      "language": "typescript",
+      "sizeLines": 16,
+      "fileCategory": "code"
+    },
+    {
+      "path": "mind-land-web/src/store/modules/slipBoxStore.ts",
+      "language": "typescript",
+      "sizeLines": 93,
+      "fileCategory": "code"
+    }
+  ],
+  "batchImportData": {
+    "mind-land-web/src/apis/slipBox.ts": [
+      "mind-land-web/src/apis/interfaces/Response.ts",
+      "mind-land-web/src/pages/SlipBox/interfaces.ts",
+      "mind-land-web/src/utils/request.ts"
+    ],
+    "mind-land-web/src/pages/SlipBox/components/CardList/index.tsx": [
+      "mind-land-web/src/pages/SlipBox/components/SlipEditor/TagHighlight.ts",
+      "mind-land-web/src/pages/SlipBox/interfaces.ts"
+    ],
+    "mind-land-web/src/pages/SlipBox/components/PathBar/index.tsx": [],
+    "mind-land-web/src/pages/SlipBox/components/RightSider/index.tsx": [],
+    "mind-land-web/src/pages/SlipBox/components/SearchBar/index.tsx": [],
+    "mind-land-web/src/pages/SlipBox/components/SlipEditor/TagHighlight.ts": [],
+    "mind-land-web/src/pages/SlipBox/components/SlipEditor/TiptapEditor.tsx": [
+      "mind-land-web/src/pages/SlipBox/components/ImageUploadDialog.tsx",
+      "mind-land-web/src/pages/SlipBox/components/SlipEditor/TagHighlight.ts"
+    ],
+    "mind-land-web/src/pages/SlipBox/components/SlipEditor/index.tsx": [
+      "mind-land-web/src/pages/SlipBox/components/SlipEditor/TiptapEditor.tsx"
+    ],
+    "mind-land-web/src/pages/SlipBox/components/SortMenu/index.tsx": [],
+    "mind-land-web/src/pages/SlipBox/hooks/usePathItems.ts": [
+      "mind-land-web/src/pages/SlipBox/interfaces.ts"
+    ],
+    "mind-land-web/src/pages/SlipBox/index.tsx": [
+      "mind-land-web/src/apis/slipBox.ts",
+      "mind-land-web/src/components/ToastProvider.tsx",
+      "mind-land-web/src/pages/SlipBox/components/CardList/index.tsx",
+      "mind-land-web/src/pages/SlipBox/components/PathBar/index.tsx",
+      "mind-land-web/src/pages/SlipBox/components/RightSider/index.tsx",
+      "mind-land-web/src/pages/SlipBox/components/SearchBar/index.tsx",
+      "mind-land-web/src/pages/SlipBox/components/SlipEditor/index.tsx",
+      "mind-land-web/src/pages/SlipBox/components/SortMenu/index.tsx",
+      "mind-land-web/src/pages/SlipBox/functions/showDeleteConfirm.tsx",
+      "mind-land-web/src/pages/SlipBox/hooks/usePathItems.ts",
+      "mind-land-web/src/pages/SlipBox/interfaces.ts",
+      "mind-land-web/src/store/hooks.ts",
+      "mind-land-web/src/store/modules/slipBoxStore.ts"
+    ],
+    "mind-land-web/src/pages/SlipBox/interfaces.ts": [],
+    "mind-land-web/src/store/modules/slipBoxStore.ts": [
+      "mind-land-web/src/apis/slipBox.ts",
+      "mind-land-web/src/pages/SlipBox/interfaces.ts"
+    ]
+  }
+}

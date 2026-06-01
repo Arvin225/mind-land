@@ -1,0 +1,986 @@
+{
+  "nodes": [
+    {
+      "id": "file:mind-land-web/src/apis/slipBox.ts",
+      "type": "file",
+      "name": "slipBox.ts",
+      "filePath": "mind-land-web/src/apis/slipBox.ts",
+      "summary": "SlipBox 模块的 API 层，封装了对卡片和标签的所有后端请求方法（获取、创建、更新、删除），供 Redux Store 和页面组件调用。",
+      "tags": ["api-handler", "slipbox", "crud", "request"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:mind-land-web/src/apis/slipBox.ts:getCardsAPI",
+      "type": "function",
+      "name": "getCardsAPI",
+      "filePath": "mind-land-web/src/apis/slipBox.ts",
+      "lineRange": [5, 7],
+      "summary": "获取卡片列表，支持按删除状态、标签 ID、排序字段和排序顺序过滤。",
+      "tags": ["api", "get", "cards"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mind-land-web/src/apis/slipBox.ts:getCardAPI",
+      "type": "function",
+      "name": "getCardAPI",
+      "filePath": "mind-land-web/src/apis/slipBox.ts",
+      "lineRange": [9, 11],
+      "summary": "根据 ID 获取单个卡片详情。",
+      "tags": ["api", "get", "card"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mind-land-web/src/apis/slipBox.ts:getTagsAPI",
+      "type": "function",
+      "name": "getTagsAPI",
+      "filePath": "mind-land-web/src/apis/slipBox.ts",
+      "lineRange": [13, 15],
+      "summary": "获取所有标签列表。",
+      "tags": ["api", "get", "tags"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mind-land-web/src/apis/slipBox.ts:getTagAPI",
+      "type": "function",
+      "name": "getTagAPI",
+      "filePath": "mind-land-web/src/apis/slipBox.ts",
+      "lineRange": [17, 19],
+      "summary": "根据 ID 获取单个标签详情。",
+      "tags": ["api", "get", "tag"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mind-land-web/src/apis/slipBox.ts:postCardAPI",
+      "type": "function",
+      "name": "postCardAPI",
+      "filePath": "mind-land-web/src/apis/slipBox.ts",
+      "lineRange": [21, 23],
+      "summary": "创建新卡片，包含内容、统计信息和标签关联。",
+      "tags": ["api", "post", "card"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mind-land-web/src/apis/slipBox.ts:postTagAPI",
+      "type": "function",
+      "name": "postTagAPI",
+      "filePath": "mind-land-web/src/apis/slipBox.ts",
+      "lineRange": [25, 27],
+      "summary": "创建新标签，支持设置标签名、父标签和子标签关系。",
+      "tags": ["api", "post", "tag"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mind-land-web/src/apis/slipBox.ts:getTagByTagNameAPI",
+      "type": "function",
+      "name": "getTagByTagNameAPI",
+      "filePath": "mind-land-web/src/apis/slipBox.ts",
+      "lineRange": [29, 31],
+      "summary": "根据标签名模糊搜索标签。",
+      "tags": ["api", "get", "tag", "search"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mind-land-web/src/apis/slipBox.ts:patchTagAPI",
+      "type": "function",
+      "name": "patchTagAPI",
+      "filePath": "mind-land-web/src/apis/slipBox.ts",
+      "lineRange": [33, 35],
+      "summary": "更新标签信息，支持修改标签名、父标签和子标签列表。",
+      "tags": ["api", "patch", "tag"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mind-land-web/src/apis/slipBox.ts:patchCardAPI",
+      "type": "function",
+      "name": "patchCardAPI",
+      "filePath": "mind-land-web/src/apis/slipBox.ts",
+      "lineRange": [37, 39],
+      "summary": "更新卡片内容，通过 PUT 请求将新内容提交到后端。",
+      "tags": ["api", "put", "card"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mind-land-web/src/apis/slipBox.ts:deleteTagAPI",
+      "type": "function",
+      "name": "deleteTagAPI",
+      "filePath": "mind-land-web/src/apis/slipBox.ts",
+      "lineRange": [47, 49],
+      "summary": "删除指定标签，支持确认是否同时清理关联卡片。",
+      "tags": ["api", "delete", "tag"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mind-land-web/src/apis/slipBox.ts:createCardAPI",
+      "type": "function",
+      "name": "createCardAPI",
+      "filePath": "mind-land-web/src/apis/slipBox.ts",
+      "lineRange": [51, 53],
+      "summary": "异步创建新卡片，返回包含新卡片和关联标签的响应。",
+      "tags": ["api", "post", "card", "async"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mind-land-web/src/apis/slipBox.ts:deleteCardAPI",
+      "type": "function",
+      "name": "deleteCardAPI",
+      "filePath": "mind-land-web/src/apis/slipBox.ts",
+      "lineRange": [61, 63],
+      "summary": "异步删除卡片，支持软删除和永久删除，返回被删除的标签 ID 列表。",
+      "tags": ["api", "delete", "card", "async"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:mind-land-web/src/pages/SlipBox/components/CardList/index.tsx",
+      "type": "file",
+      "name": "index.tsx",
+      "filePath": "mind-land-web/src/pages/SlipBox/components/CardList/index.tsx",
+      "summary": "卡片列表组件，包含内联编辑器、右键菜单、详情弹窗、标签高亮渲染等功能，是 SlipBox 页面的核心展示组件。",
+      "tags": ["component", "card-list", "inline-editor", "context-menu"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:mind-land-web/src/pages/SlipBox/components/CardList/index.tsx:InlineEditor",
+      "type": "function",
+      "name": "InlineEditor",
+      "filePath": "mind-land-web/src/pages/SlipBox/components/CardList/index.tsx",
+      "lineRange": [33, 172],
+      "summary": "内联 TipTap 编辑器，支持富文本编辑（粗体、下划线、高亮、列表）和 Ctrl+Enter 快捷键提交。",
+      "tags": ["component", "editor", "tiptap", "inline-edit"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:mind-land-web/src/pages/SlipBox/components/CardList/index.tsx:CardList",
+      "type": "function",
+      "name": "CardList",
+      "filePath": "mind-land-web/src/pages/SlipBox/components/CardList/index.tsx",
+      "lineRange": [182, 402],
+      "summary": "卡片列表主组件，渲染卡片网格，支持右键菜单、双击编辑、复制内容、查看详情和删除操作。",
+      "tags": ["component", "card-list", "context-menu", "portal"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:mind-land-web/src/pages/SlipBox/components/PathBar/index.tsx",
+      "type": "file",
+      "name": "index.tsx",
+      "filePath": "mind-land-web/src/pages/SlipBox/components/PathBar/index.tsx",
+      "summary": "面包屑导航组件，根据当前选中的标签路径展示层级导航，支持点击跳转父级标签。",
+      "tags": ["component", "navigation", "breadcrumb", "path-bar"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mind-land-web/src/pages/SlipBox/components/PathBar/index.tsx:PathBar",
+      "type": "function",
+      "name": "PathBar",
+      "filePath": "mind-land-web/src/pages/SlipBox/components/PathBar/index.tsx",
+      "lineRange": [7, 24],
+      "summary": "面包屑导航组件，渲染标签层级路径，支持点击跳转到各层级标签。",
+      "tags": ["component", "navigation", "breadcrumb"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:mind-land-web/src/pages/SlipBox/components/RightSider/index.tsx",
+      "type": "file",
+      "name": "index.tsx",
+      "filePath": "mind-land-web/src/pages/SlipBox/components/RightSider/index.tsx",
+      "summary": "标签树导航侧边栏组件，展示可展开/折叠的标签树结构，支持键盘导航和选中状态高亮。",
+      "tags": ["component", "sidebar", "tag-tree", "navigation"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:mind-land-web/src/pages/SlipBox/components/RightSider/index.tsx:TreeItem",
+      "type": "function",
+      "name": "TreeItem",
+      "filePath": "mind-land-web/src/pages/SlipBox/components/RightSider/index.tsx",
+      "lineRange": [13, 102],
+      "summary": "递归树节点组件，支持展开/折叠、键盘方向键导航（上下左右）和选中样式。",
+      "tags": ["component", "tree", "recursive", "keyboard-nav"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:mind-land-web/src/pages/SlipBox/components/RightSider/index.tsx:RightSider",
+      "type": "function",
+      "name": "RightSider",
+      "filePath": "mind-land-web/src/pages/SlipBox/components/RightSider/index.tsx",
+      "lineRange": [104, 123],
+      "summary": "右侧标签导航侧边栏，包含「全部卡片」和「全部标签」两个根节点，渲染标签树。",
+      "tags": ["component", "sidebar", "tag-tree"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:mind-land-web/src/pages/SlipBox/components/SearchBar/index.tsx",
+      "type": "file",
+      "name": "index.tsx",
+      "filePath": "mind-land-web/src/pages/SlipBox/components/SearchBar/index.tsx",
+      "summary": "搜索栏组件，支持 Enter 键触发搜索和清除按钮，用于过滤卡片内容。",
+      "tags": ["component", "search", "input", "filter"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mind-land-web/src/pages/SlipBox/components/SearchBar/index.tsx:SearchBar",
+      "type": "function",
+      "name": "SearchBar",
+      "filePath": "mind-land-web/src/pages/SlipBox/components/SearchBar/index.tsx",
+      "lineRange": [4, 36],
+      "summary": "搜索输入框组件，支持 Enter 提交搜索和清除按钮重置输入内容。",
+      "tags": ["component", "search", "input"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:mind-land-web/src/pages/SlipBox/components/SlipEditor/TagHighlight.ts",
+      "type": "file",
+      "name": "TagHighlight.ts",
+      "filePath": "mind-land-web/src/pages/SlipBox/components/SlipEditor/TagHighlight.ts",
+      "summary": "ProseMirror 插件，通过正则匹配 `#标签名` 格式的文本并添加高亮装饰，用于 TipTap 编辑器中标签语法高亮。",
+      "tags": ["plugin", "prosemirror", "tag-highlight", "decoration"],
+      "complexity": "simple",
+      "languageNotes": "使用 ProseMirror 的 DecorationSet 在编辑器文档中为匹配 `#标签名` 模式的文本添加行内高亮样式，属于自定义 TipTap Extension 的典型实现。"
+    },
+    {
+      "id": "function:mind-land-web/src/pages/SlipBox/components/SlipEditor/TagHighlight.ts:findTags",
+      "type": "function",
+      "name": "findTags",
+      "filePath": "mind-land-web/src/pages/SlipBox/components/SlipEditor/TagHighlight.ts",
+      "lineRange": [7, 29],
+      "summary": "遍历 ProseMirror 文档树，使用正则匹配 `#标签名` 模式并生成对应的 DecorationSet。",
+      "tags": ["prosemirror", "decoration", "tag", "regex"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:mind-land-web/src/pages/SlipBox/components/SlipEditor/TiptapEditor.tsx",
+      "type": "file",
+      "name": "TiptapEditor.tsx",
+      "filePath": "mind-land-web/src/pages/SlipBox/components/SlipEditor/TiptapEditor.tsx",
+      "summary": "TipTap 富文本编辑器组件，支持标签插入、粗体、下划线、高亮、列表、图片上传等功能，带工具栏和表单提交按钮。",
+      "tags": ["component", "editor", "tiptap", "richtext"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:mind-land-web/src/pages/SlipBox/components/SlipEditor/TiptapEditor.tsx:TiptapEditor",
+      "type": "function",
+      "name": "TiptapEditor",
+      "filePath": "mind-land-web/src/pages/SlipBox/components/SlipEditor/TiptapEditor.tsx",
+      "lineRange": [25, 168],
+      "summary": "TipTap 富文本编辑器主体，集成 StarterKit、下划线、高亮、图片和占位符插件，提供格式化工具栏和提交按钮。",
+      "tags": ["component", "editor", "tiptap", "toolbar"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:mind-land-web/src/pages/SlipBox/components/SlipEditor/index.tsx",
+      "type": "file",
+      "name": "index.tsx",
+      "filePath": "mind-land-web/src/pages/SlipBox/components/SlipEditor/index.tsx",
+      "summary": "SlipEditor 组件入口，作为 TiptapEditor 的简单包装层，提供统一的编辑器 Props 接口。",
+      "tags": ["component", "editor", "wrapper"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mind-land-web/src/pages/SlipBox/components/SlipEditor/index.tsx:SlipEditor",
+      "type": "function",
+      "name": "SlipEditor",
+      "filePath": "mind-land-web/src/pages/SlipBox/components/SlipEditor/index.tsx",
+      "lineRange": [9, 11],
+      "summary": "TiptapEditor 的简单包装组件，透传 inputSubmit 和 submitting Props。",
+      "tags": ["component", "editor", "wrapper"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:mind-land-web/src/pages/SlipBox/components/SortMenu/index.tsx",
+      "type": "file",
+      "name": "index.tsx",
+      "filePath": "mind-land-web/src/pages/SlipBox/components/SortMenu/index.tsx",
+      "summary": "排序下拉菜单组件，支持按创建时间或编辑时间的升序/降序排列卡片。",
+      "tags": ["component", "sort", "dropdown", "menu"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:mind-land-web/src/pages/SlipBox/components/SortMenu/index.tsx:SortMenu",
+      "type": "function",
+      "name": "SortMenu",
+      "filePath": "mind-land-web/src/pages/SlipBox/components/SortMenu/index.tsx",
+      "lineRange": [16, 56],
+      "summary": "排序下拉菜单，提供四种排序选项（创建/编辑时间 x 升序/降序），选中后回调通知父组件。",
+      "tags": ["component", "sort", "dropdown"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:mind-land-web/src/pages/SlipBox/hooks/usePathItems.ts",
+      "type": "file",
+      "name": "usePathItems.ts",
+      "filePath": "mind-land-web/src/pages/SlipBox/hooks/usePathItems.ts",
+      "summary": "自定义 Hook，根据当前选中的标签构建面包屑路径数据，处理多级标签层级路径的展示逻辑。",
+      "tags": ["hook", "path-items", "breadcrumb", "tag-navigation"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:mind-land-web/src/pages/SlipBox/hooks/usePathItems.ts:usePathItems",
+      "type": "function",
+      "name": "usePathItems",
+      "filePath": "mind-land-web/src/pages/SlipBox/hooks/usePathItems.ts",
+      "lineRange": [10, 53],
+      "summary": "根据标签名层级结构构建面包屑导航数据，支持处理多级父标签路径和省略显示逻辑。",
+      "tags": ["hook", "path-items", "breadcrumb"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:mind-land-web/src/pages/SlipBox/index.tsx",
+      "type": "file",
+      "name": "index.tsx",
+      "filePath": "mind-land-web/src/pages/SlipBox/index.tsx",
+      "summary": "SlipBox 页面主组件，集成编辑器、卡片列表、标签树导航、搜索和排序功能，管理卡片和标签的加载、创建、更新、删除等核心交互流程。",
+      "tags": ["page", "slipbox", "container", "layout"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:mind-land-web/src/pages/SlipBox/index.tsx:SlipBox",
+      "type": "function",
+      "name": "SlipBox",
+      "filePath": "mind-land-web/src/pages/SlipBox/index.tsx",
+      "lineRange": [21, 262],
+      "summary": "SlipBox 页面主组件，编排 PathBar、SlipEditor、CardList、RightSider、SearchBar、SortMenu 等子组件，管理卡片 CRUD、标签导航、排序过滤等状态。",
+      "tags": ["component", "page", "container", "orchestrator"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:mind-land-web/src/pages/SlipBox/interfaces.ts",
+      "type": "file",
+      "name": "interfaces.ts",
+      "filePath": "mind-land-web/src/pages/SlipBox/interfaces.ts",
+      "summary": "定义 `Card` 和 `Tag` 两个核心 TypeScript 接口，描述卡片和标签的数据结构，供整个 SlipBox 模块使用。",
+      "tags": ["type-definition", "interface", "card", "tag"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:mind-land-web/src/store/modules/slipBoxStore.ts",
+      "type": "file",
+      "name": "slipBoxStore.ts",
+      "filePath": "mind-land-web/src/store/modules/slipBoxStore.ts",
+      "summary": "SlipBox 模块的 Redux Store，管理卡片列表、标签列表、加载状态和排序设置，提供异步 thunk 用于从后端获取数据。",
+      "tags": ["store", "redux", "slipbox", "state-management"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:mind-land-web/src/store/modules/slipBoxStore.ts:fetchGetCards",
+      "type": "function",
+      "name": "fetchGetCards",
+      "filePath": "mind-land-web/src/store/modules/slipBoxStore.ts",
+      "lineRange": [51, 70],
+      "summary": "Redux 异步 thunk，从后端获取卡片列表，处理 statistics 和 tags 字段的 JSON 解析，更新 store 中的卡片数据和加载状态。",
+      "tags": ["redux", "thunk", "async", "cards"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:mind-land-web/src/store/modules/slipBoxStore.ts:fetchGetTags",
+      "type": "function",
+      "name": "fetchGetTags",
+      "filePath": "mind-land-web/src/store/modules/slipBoxStore.ts",
+      "lineRange": [72, 89],
+      "summary": "Redux 异步 thunk，从后端获取标签列表，规范化 children 字段，更新 store 中的标签数据和加载状态。",
+      "tags": ["redux", "thunk", "async", "tags"],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:mind-land-web/src/apis/slipBox.ts",
+      "target": "file:mind-land-web/src/apis/interfaces/Response.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:mind-land-web/src/apis/slipBox.ts",
+      "target": "file:mind-land-web/src/pages/SlipBox/interfaces.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:mind-land-web/src/apis/slipBox.ts",
+      "target": "file:mind-land-web/src/utils/request.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:mind-land-web/src/apis/slipBox.ts",
+      "target": "function:mind-land-web/src/apis/slipBox.ts:getCardsAPI",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-web/src/apis/slipBox.ts",
+      "target": "function:mind-land-web/src/apis/slipBox.ts:getCardAPI",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-web/src/apis/slipBox.ts",
+      "target": "function:mind-land-web/src/apis/slipBox.ts:getTagsAPI",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-web/src/apis/slipBox.ts",
+      "target": "function:mind-land-web/src/apis/slipBox.ts:getTagAPI",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-web/src/apis/slipBox.ts",
+      "target": "function:mind-land-web/src/apis/slipBox.ts:postCardAPI",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-web/src/apis/slipBox.ts",
+      "target": "function:mind-land-web/src/apis/slipBox.ts:postTagAPI",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-web/src/apis/slipBox.ts",
+      "target": "function:mind-land-web/src/apis/slipBox.ts:getTagByTagNameAPI",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-web/src/apis/slipBox.ts",
+      "target": "function:mind-land-web/src/apis/slipBox.ts:patchTagAPI",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-web/src/apis/slipBox.ts",
+      "target": "function:mind-land-web/src/apis/slipBox.ts:patchCardAPI",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-web/src/apis/slipBox.ts",
+      "target": "function:mind-land-web/src/apis/slipBox.ts:deleteTagAPI",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-web/src/apis/slipBox.ts",
+      "target": "function:mind-land-web/src/apis/slipBox.ts:createCardAPI",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-web/src/apis/slipBox.ts",
+      "target": "function:mind-land-web/src/apis/slipBox.ts:deleteCardAPI",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-web/src/apis/slipBox.ts",
+      "target": "function:mind-land-web/src/apis/slipBox.ts:getCardsAPI",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mind-land-web/src/apis/slipBox.ts",
+      "target": "function:mind-land-web/src/apis/slipBox.ts:getCardAPI",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mind-land-web/src/apis/slipBox.ts",
+      "target": "function:mind-land-web/src/apis/slipBox.ts:getTagsAPI",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mind-land-web/src/apis/slipBox.ts",
+      "target": "function:mind-land-web/src/apis/slipBox.ts:getTagAPI",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mind-land-web/src/apis/slipBox.ts",
+      "target": "function:mind-land-web/src/apis/slipBox.ts:postCardAPI",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mind-land-web/src/apis/slipBox.ts",
+      "target": "function:mind-land-web/src/apis/slipBox.ts:postTagAPI",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mind-land-web/src/apis/slipBox.ts",
+      "target": "function:mind-land-web/src/apis/slipBox.ts:getTagByTagNameAPI",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mind-land-web/src/apis/slipBox.ts",
+      "target": "function:mind-land-web/src/apis/slipBox.ts:patchTagAPI",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mind-land-web/src/apis/slipBox.ts",
+      "target": "function:mind-land-web/src/apis/slipBox.ts:patchCardAPI",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mind-land-web/src/apis/slipBox.ts",
+      "target": "function:mind-land-web/src/apis/slipBox.ts:deleteTagAPI",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mind-land-web/src/apis/slipBox.ts",
+      "target": "function:mind-land-web/src/apis/slipBox.ts:createCardAPI",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mind-land-web/src/apis/slipBox.ts",
+      "target": "function:mind-land-web/src/apis/slipBox.ts:deleteCardAPI",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mind-land-web/src/pages/SlipBox/components/CardList/index.tsx",
+      "target": "file:mind-land-web/src/pages/SlipBox/components/SlipEditor/TagHighlight.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:mind-land-web/src/pages/SlipBox/components/CardList/index.tsx",
+      "target": "file:mind-land-web/src/pages/SlipBox/interfaces.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:mind-land-web/src/pages/SlipBox/components/CardList/index.tsx",
+      "target": "function:mind-land-web/src/pages/SlipBox/components/CardList/index.tsx:InlineEditor",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-web/src/pages/SlipBox/components/CardList/index.tsx",
+      "target": "function:mind-land-web/src/pages/SlipBox/components/CardList/index.tsx:CardList",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-web/src/pages/SlipBox/components/CardList/index.tsx",
+      "target": "function:mind-land-web/src/pages/SlipBox/components/CardList/index.tsx:CardList",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mind-land-web/src/pages/SlipBox/components/PathBar/index.tsx",
+      "target": "function:mind-land-web/src/pages/SlipBox/components/PathBar/index.tsx:PathBar",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-web/src/pages/SlipBox/components/PathBar/index.tsx",
+      "target": "function:mind-land-web/src/pages/SlipBox/components/PathBar/index.tsx:PathBar",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mind-land-web/src/pages/SlipBox/components/RightSider/index.tsx",
+      "target": "function:mind-land-web/src/pages/SlipBox/components/RightSider/index.tsx:TreeItem",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-web/src/pages/SlipBox/components/RightSider/index.tsx",
+      "target": "function:mind-land-web/src/pages/SlipBox/components/RightSider/index.tsx:RightSider",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-web/src/pages/SlipBox/components/RightSider/index.tsx",
+      "target": "function:mind-land-web/src/pages/SlipBox/components/RightSider/index.tsx:RightSider",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mind-land-web/src/pages/SlipBox/components/SearchBar/index.tsx",
+      "target": "function:mind-land-web/src/pages/SlipBox/components/SearchBar/index.tsx:SearchBar",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-web/src/pages/SlipBox/components/SearchBar/index.tsx",
+      "target": "function:mind-land-web/src/pages/SlipBox/components/SearchBar/index.tsx:SearchBar",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mind-land-web/src/pages/SlipBox/components/SlipEditor/TagHighlight.ts",
+      "target": "function:mind-land-web/src/pages/SlipBox/components/SlipEditor/TagHighlight.ts:findTags",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-web/src/pages/SlipBox/components/SlipEditor/TiptapEditor.tsx",
+      "target": "file:mind-land-web/src/pages/SlipBox/components/ImageUploadDialog.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:mind-land-web/src/pages/SlipBox/components/SlipEditor/TiptapEditor.tsx",
+      "target": "file:mind-land-web/src/pages/SlipBox/components/SlipEditor/TagHighlight.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:mind-land-web/src/pages/SlipBox/components/SlipEditor/TiptapEditor.tsx",
+      "target": "function:mind-land-web/src/pages/SlipBox/components/SlipEditor/TiptapEditor.tsx:TiptapEditor",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-web/src/pages/SlipBox/components/SlipEditor/TiptapEditor.tsx",
+      "target": "function:mind-land-web/src/pages/SlipBox/components/SlipEditor/TiptapEditor.tsx:TiptapEditor",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mind-land-web/src/pages/SlipBox/components/SlipEditor/index.tsx",
+      "target": "file:mind-land-web/src/pages/SlipBox/components/SlipEditor/TiptapEditor.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:mind-land-web/src/pages/SlipBox/components/SlipEditor/index.tsx",
+      "target": "function:mind-land-web/src/pages/SlipBox/components/SlipEditor/index.tsx:SlipEditor",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-web/src/pages/SlipBox/components/SlipEditor/index.tsx",
+      "target": "function:mind-land-web/src/pages/SlipBox/components/SlipEditor/index.tsx:SlipEditor",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mind-land-web/src/pages/SlipBox/components/SortMenu/index.tsx",
+      "target": "function:mind-land-web/src/pages/SlipBox/components/SortMenu/index.tsx:SortMenu",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-web/src/pages/SlipBox/components/SortMenu/index.tsx",
+      "target": "function:mind-land-web/src/pages/SlipBox/components/SortMenu/index.tsx:SortMenu",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mind-land-web/src/pages/SlipBox/hooks/usePathItems.ts",
+      "target": "file:mind-land-web/src/pages/SlipBox/interfaces.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:mind-land-web/src/pages/SlipBox/hooks/usePathItems.ts",
+      "target": "function:mind-land-web/src/pages/SlipBox/hooks/usePathItems.ts:usePathItems",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-web/src/pages/SlipBox/hooks/usePathItems.ts",
+      "target": "function:mind-land-web/src/pages/SlipBox/hooks/usePathItems.ts:usePathItems",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mind-land-web/src/pages/SlipBox/index.tsx",
+      "target": "file:mind-land-web/src/apis/slipBox.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:mind-land-web/src/pages/SlipBox/index.tsx",
+      "target": "file:mind-land-web/src/components/ToastProvider.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:mind-land-web/src/pages/SlipBox/index.tsx",
+      "target": "file:mind-land-web/src/pages/SlipBox/components/CardList/index.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:mind-land-web/src/pages/SlipBox/index.tsx",
+      "target": "file:mind-land-web/src/pages/SlipBox/components/PathBar/index.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:mind-land-web/src/pages/SlipBox/index.tsx",
+      "target": "file:mind-land-web/src/pages/SlipBox/components/RightSider/index.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:mind-land-web/src/pages/SlipBox/index.tsx",
+      "target": "file:mind-land-web/src/pages/SlipBox/components/SearchBar/index.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:mind-land-web/src/pages/SlipBox/index.tsx",
+      "target": "file:mind-land-web/src/pages/SlipBox/components/SlipEditor/index.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:mind-land-web/src/pages/SlipBox/index.tsx",
+      "target": "file:mind-land-web/src/pages/SlipBox/components/SortMenu/index.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:mind-land-web/src/pages/SlipBox/index.tsx",
+      "target": "file:mind-land-web/src/pages/SlipBox/functions/showDeleteConfirm.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:mind-land-web/src/pages/SlipBox/index.tsx",
+      "target": "file:mind-land-web/src/pages/SlipBox/hooks/usePathItems.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:mind-land-web/src/pages/SlipBox/index.tsx",
+      "target": "file:mind-land-web/src/pages/SlipBox/interfaces.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:mind-land-web/src/pages/SlipBox/index.tsx",
+      "target": "file:mind-land-web/src/store/hooks.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:mind-land-web/src/pages/SlipBox/index.tsx",
+      "target": "file:mind-land-web/src/store/modules/slipBoxStore.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:mind-land-web/src/pages/SlipBox/index.tsx",
+      "target": "function:mind-land-web/src/pages/SlipBox/index.tsx:SlipBox",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-web/src/pages/SlipBox/index.tsx",
+      "target": "function:mind-land-web/src/pages/SlipBox/index.tsx:SlipBox",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mind-land-web/src/store/modules/slipBoxStore.ts",
+      "target": "file:mind-land-web/src/apis/slipBox.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:mind-land-web/src/store/modules/slipBoxStore.ts",
+      "target": "file:mind-land-web/src/pages/SlipBox/interfaces.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:mind-land-web/src/store/modules/slipBoxStore.ts",
+      "target": "function:mind-land-web/src/store/modules/slipBoxStore.ts:fetchGetCards",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-web/src/store/modules/slipBoxStore.ts",
+      "target": "function:mind-land-web/src/store/modules/slipBoxStore.ts:fetchGetTags",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:mind-land-web/src/store/modules/slipBoxStore.ts",
+      "target": "function:mind-land-web/src/store/modules/slipBoxStore.ts:fetchGetCards",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:mind-land-web/src/store/modules/slipBoxStore.ts",
+      "target": "function:mind-land-web/src/store/modules/slipBoxStore.ts:fetchGetTags",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:mind-land-web/src/pages/SlipBox/index.tsx:SlipBox",
+      "target": "function:mind-land-web/src/store/hooks.ts:useAppDispatch",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:mind-land-web/src/pages/SlipBox/index.tsx:SlipBox",
+      "target": "function:mind-land-web/src/store/hooks.ts:useAppSelector",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:mind-land-web/src/pages/SlipBox/index.tsx:SlipBox",
+      "target": "function:mind-land-web/src/components/ToastProvider.tsx:useToast",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:mind-land-web/src/pages/SlipBox/index.tsx:SlipBox",
+      "target": "function:mind-land-web/src/pages/SlipBox/hooks/usePathItems.ts:usePathItems",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:mind-land-web/src/pages/SlipBox/index.tsx:SlipBox",
+      "target": "function:mind-land-web/src/store/modules/slipBoxStore.ts:fetchGetCards",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:mind-land-web/src/pages/SlipBox/index.tsx:SlipBox",
+      "target": "function:mind-land-web/src/store/modules/slipBoxStore.ts:fetchGetTags",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:mind-land-web/src/pages/SlipBox/index.tsx:handleCardUpdate",
+      "target": "function:mind-land-web/src/apis/slipBox.ts:patchCardAPI",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:mind-land-web/src/pages/SlipBox/index.tsx:inputSubmit",
+      "target": "function:mind-land-web/src/apis/slipBox.ts:createCardAPI",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:mind-land-web/src/pages/SlipBox/index.tsx:inputSubmit",
+      "target": "function:mind-land-web/src/apis/slipBox.ts:getTagAPI",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:mind-land-web/src/pages/SlipBox/index.tsx:handleCardDelete",
+      "target": "function:mind-land-web/src/apis/slipBox.ts:deleteCardAPI",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:mind-land-web/src/pages/SlipBox/index.tsx:onCardMenuClick",
+      "target": "function:mind-land-web/src/pages/SlipBox/functions/showDeleteConfirm.tsx:showDeleteConfirm",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:mind-land-web/src/store/modules/slipBoxStore.ts:fetchGetCards",
+      "target": "function:mind-land-web/src/apis/slipBox.ts:getCardsAPI",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:mind-land-web/src/store/modules/slipBoxStore.ts:fetchGetTags",
+      "target": "function:mind-land-web/src/apis/slipBox.ts:getTagsAPI",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ]
+}

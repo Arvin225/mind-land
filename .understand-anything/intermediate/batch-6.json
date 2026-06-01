@@ -1,0 +1,148 @@
+{
+  "nodes": [
+    {
+      "id": ".mcp.json",
+      "type": "file",
+      "title": "MCP 配置文件",
+      "description": "Playwright MCP 服务器配置文件，定义 npx @playwright/mcp 命令以 headless 无沙箱模式运行，为 Claude Code 提供浏览器自动化交互能力。",
+      "tags": ["配置", "MCP", "Playwright", "浏览器自动化", "测试工具"],
+      "metrics": {
+        "totalLines": 6,
+        "nonEmptyLines": 6,
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 1
+      }
+    },
+    {
+      "id": "CLAUDE.md",
+      "type": "file",
+      "title": "项目开发文档",
+      "description": "mind-land 主项目文档，详细描述 monorepo 结构（mind-land-web 前端和 mind-land-server 后端）、技术栈（React 19/Go 1.26）、架构目录、构建运行命令、API 路由、通信模式和关键设计模式。作为 Claude Code 的开发指南。",
+      "tags": ["文档", "项目架构", "开发指南", "monorepo", "API 文档"],
+      "metrics": {
+        "totalLines": 144,
+        "nonEmptyLines": 117,
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 14
+      }
+    },
+    {
+      "id": "Plans.md",
+      "type": "file",
+      "title": "Bug 审查修复计划",
+      "description": "五阶段 Bug 修复计划文档，涵盖后端错误处理（GORM 事务、JSON 解析、输入验证）、前端状态管理（Redux loading 死锁、内存泄漏、竞态条件）、类型安全（消除 any 类型、统一接口）、UI 边界情况（XSS 防护、无障碍访问、空状态）和页面可用性审查修复。",
+      "tags": ["文档", "计划", "Bug 修复", "重构", "技术债务"],
+      "metrics": {
+        "totalLines": 84,
+        "nonEmptyLines": 66,
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 6
+      }
+    },
+    {
+      "id": "QA_REPORT.md",
+      "type": "file",
+      "title": "QA 测试报告",
+      "description": "Playwright 自动化测试报告，执行 17 项测试（16 通过 1 失败），涵盖页面渲染、空状态引导、模态框键盘操作、Tab 导航、右键菜单、拖拽排序和字体切换。记录了 3 个低严重性控制台问题，以及拖拽排序无法通过 headless Playwright 验证的已知限制。",
+      "tags": ["文档", "QA", "测试报告", "Playwright", "质量保证"],
+      "metrics": {
+        "totalLines": 81,
+        "nonEmptyLines": 62,
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 7
+      }
+    },
+    {
+      "id": "README.md",
+      "type": "file",
+      "title": "项目 README",
+      "description": "mind-land 项目公共 README，概述个人笔记与任务管理系统功能（卡片笔记 SlipBox、Todo、日记、思维导图），展示项目目录结构、技术栈表格（React 19/Go 1.26）、快速开始命令、API 路由列表和 MIT 协议信息。",
+      "tags": ["文档", "README", "项目概述", "快速开始", "MIT"],
+      "metrics": {
+        "totalLines": 82,
+        "nonEmptyLines": 65,
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 9
+      }
+    },
+    {
+      "id": "package.json",
+      "type": "file",
+      "title": "根 package.json",
+      "description": "项目根目录的 npm 配置文件，声明唯一依赖 playwright ^1.60.0，用于支持 Playwright MCP 浏览器自动化工具。",
+      "tags": ["配置", "npm", "依赖管理", "Playwright"],
+      "metrics": {
+        "totalLines": 5,
+        "nonEmptyLines": 5,
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 1
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": ".mcp.json",
+      "target": "package.json",
+      "relation": "dependsOn",
+      "description": "MCP Playwright 配置文件中的 npx 命令依赖根 package.json 中声明的 playwright npm 包"
+    },
+    {
+      "source": "QA_REPORT.md",
+      "target": ".mcp.json",
+      "relation": "uses",
+      "description": "QA 测试报告依赖 Playwright MCP 配置来驱动浏览器自动化进行 17 项端到端测试"
+    },
+    {
+      "source": "QA_REPORT.md",
+      "target": "Plans.md",
+      "relation": "validates",
+      "description": "QA 测试报告验证了修复计划中各阶段的实施效果，涵盖页面渲染、空状态、模态框、键盘导航等修复项"
+    },
+    {
+      "source": "Plans.md",
+      "target": "CLAUDE.md",
+      "relation": "references",
+      "description": "修复计划中描述的前端架构（Redux store、React Router）和后端架构（GORM、Gin handler）参照 CLAUDE.md 中的项目架构说明"
+    },
+    {
+      "source": "CLAUDE.md",
+      "target": "README.md",
+      "relation": "relatedTo",
+      "description": "两者同为项目文档；CLAUDE.md 面向开发者提供详细架构和开发指南，README.md 面向用户提供项目概览和快速开始"
+    },
+    {
+      "source": "README.md",
+      "target": "CLAUDE.md",
+      "relation": "supersededBy",
+      "description": "CLAUDE.md 包含比 README.md 更全面深入的项目架构、API 路由和开发模式说明"
+    }
+  ],
+  "filesAnalyzed": [
+    ".mcp.json",
+    "CLAUDE.md",
+    "Plans.md",
+    "QA_REPORT.md",
+    "README.md",
+    "package.json"
+  ],
+  "filesSkipped": [],
+  "importEdgesEmitted": 0
+}

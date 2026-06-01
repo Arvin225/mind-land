@@ -9,6 +9,7 @@ import (
 	"gorm.io/gorm"
 
 	"mind-land-server/diary"
+	"mind-land-server/outline"
 	"mind-land-server/slipbox"
 	"mind-land-server/todo"
 	"mind-land-server/upload"
@@ -20,7 +21,7 @@ func main() {
 		panic("failed to connect database: " + err.Error())
 	}
 
-	if err := db.AutoMigrate(&slipbox.Card{}, &slipbox.Tag{}, &todo.List{}, &todo.Item{}, &diary.DiaryEntry{}); err != nil {
+	if err := db.AutoMigrate(&slipbox.Card{}, &slipbox.Tag{}, &todo.List{}, &todo.Item{}, &diary.DiaryEntry{}, &outline.OutlineFolder{}, &outline.OutlineDocument{}, &outline.OutlineNode{}, &outline.OutlineDocumentVersion{}); err != nil {
 		panic("failed to auto migrate: " + err.Error())
 	}
 
@@ -69,6 +70,40 @@ func main() {
 
 		// Upload
 		api.POST("/upload", upload.HandleUpload)
+
+		// Outline
+		outlineSvc := outline.NewService(db)
+		outlineH := outline.NewHandler(outlineSvc)
+
+		ol := api.Group("/outline")
+		{
+			ol.GET("/folders", outlineH.GetFolders)
+			ol.POST("/folders", outlineH.CreateFolder)
+			ol.PUT("/folders/:id", outlineH.UpdateFolder)
+			ol.DELETE("/folders/:id", outlineH.DeleteFolder)
+			ol.PATCH("/folders/:id/restore", outlineH.RestoreFolder)
+			ol.DELETE("/folders/:id/permanent", outlineH.PermanentDeleteFolder)
+			ol.GET("/documents", outlineH.GetDocuments)
+			ol.GET("/documents/:id", outlineH.GetDocument)
+			ol.POST("/documents", outlineH.CreateDocument)
+			ol.PUT("/documents/:id", outlineH.UpdateDocument)
+			ol.DELETE("/documents/:id", outlineH.DeleteDocument)
+			ol.PATCH("/documents/:id/restore", outlineH.RestoreDocument)
+			ol.DELETE("/documents/:id/permanent", outlineH.PermanentDeleteDocument)
+			ol.POST("/documents/:id/duplicate", outlineH.DuplicateDocument)
+			ol.PATCH("/documents/:id/move", outlineH.MoveDocument)
+			ol.PUT("/documents/:id/nodes", outlineH.SaveNodes)
+			ol.POST("/documents/:id/nodes/reorder", outlineH.ReorderNodes)
+			ol.DELETE("/trash", outlineH.EmptyTrash)
+
+			ol.GET("/search", outlineH.Search)
+
+			ol.GET("/documents/:id/versions", outlineH.GetVersions)
+			ol.GET("/documents/:id/versions/:vId", outlineH.GetVersion)
+			ol.POST("/documents/:id/versions", outlineH.CreateVersion)
+			ol.POST("/documents/:id/versions/:vId/restore", outlineH.RestoreVersion)
+			ol.DELETE("/documents/:id/versions/:vId", outlineH.DeleteVersion)
+		}
 
 		// Diary
 		diarySvc := diary.NewService(db)

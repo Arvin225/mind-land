@@ -1,0 +1,344 @@
+{
+  "nodes": [
+    {
+      "id": "file:.claude/memory/session-log.md",
+      "name": "session-log.md",
+      "type": "file",
+      "filePath": ".claude/memory/session-log.md",
+      "summary": "Claude AI 助手的会话活动日志文件（Markdown 格式），记录开发过程中按会话组织的作业日志。内容以日文和中文混合书写，指示重要决策应迁移至 decisions.md、可重用解法应迁移至 patterns.md 文件。",
+      "tags": ["文档", "Markdown", "会话日志", "Claude"]
+    },
+    {
+      "id": "file:.claude/sessions/.last_inbox_check",
+      "name": ".last_inbox_check",
+      "type": "file",
+      "filePath": ".claude/sessions/.last_inbox_check",
+      "summary": "存储收件箱(inbox)最后检查时间戳的文件，仅包含一个 Unix 时间戳数字（1779024386），用于记录上次检查收件箱的时间点。",
+      "tags": ["时间戳", "元数据", "Claude"]
+    },
+    {
+      "id": "file:.claude/settings.local.json",
+      "name": "settings.local.json",
+      "type": "file",
+      "filePath": ".claude/settings.local.json",
+      "summary": "Claude Code 的本地设置文件（JSON 格式），配置了权限白名单（allow 列表），包含 grep、curl、git、rm、python3、pnpm、npx tsc、node、env 等命令的执行权限，以及文件读取路径白名单。",
+      "tags": ["配置文件", "JSON", "权限设置", "Claude"]
+    },
+    {
+      "id": "file:.understand-anything/.understandignore",
+      "name": ".understandignore",
+      "type": "file",
+      "filePath": ".understand-anything/.understandignore",
+      "summary": "understand-anything 代码分析工具的忽略规则配置文件，语法类似 .gitignore。定义需排除的分析文件模式，包括测试文件（*.test.*、*.spec.*）和快照文件（*.snap）。默认内置排除 node_modules/、.git/、dist/、build/ 等目录。",
+      "tags": ["配置文件", "忽略规则", "代码分析"]
+    },
+    {
+      "id": "file:.understand-anything/config.json",
+      "name": "config.json",
+      "type": "file",
+      "filePath": ".understand-anything/config.json",
+      "summary": "understand-anything 分析工具的全局配置文件，设置输出语言为中文（{\"outputLanguage\": \"zh\"}），指导所有分析摘要使用中文生成。",
+      "tags": ["配置文件", "JSON", "代码分析"]
+    },
+    {
+      "id": "file:mind-land-server/.claude/sessions/.last_inbox_check",
+      "name": ".last_inbox_check",
+      "type": "file",
+      "filePath": "mind-land-server/.claude/sessions/.last_inbox_check",
+      "summary": "mind-land-server 子项目的收件箱最后检查时间戳文件，内容为 Unix 时间戳 1779022080。",
+      "tags": ["时间戳", "元数据", "Claude"]
+    },
+    {
+      "id": "file:mind-land-server/.claude/state/breezing-timeline.jsonl",
+      "name": "breezing-timeline.jsonl",
+      "type": "file",
+      "filePath": "mind-land-server/.claude/state/breezing-timeline.jsonl",
+      "summary": "mind-land-server 的 Claude 状态时间线日志（JSONL 格式），记录了一次任务完成事件：Phase 1 后端错误修复，包含 8 个子任务（GORM 事务错误修复、JSON 序列化错误修复、PatchItem 零值处理等），时间戳为 2026-05-17T12:47:25Z。",
+      "tags": ["时间线", "JSONL", "Claude状态", "任务记录"]
+    },
+    {
+      "id": "file:mind-land-server/.claude/state/changed-files.jsonl",
+      "name": "changed-files.jsonl",
+      "type": "file",
+      "filePath": "mind-land-server/.claude/state/changed-files.jsonl",
+      "summary": "mind-land-server 的变更文件追踪记录（JSONL 格式），包含 11 条文件变更事件，涵盖后端 handler 文件（slipbox/handler.go、todo/handler.go）和前端多个模块（SlipBox 组件、Container 布局、store 模块、request 工具等）的编辑操作，时间范围 2026-05-17T12:37 至 12:48。",
+      "tags": ["变更记录", "JSONL", "Claude状态", "文件追踪"]
+    },
+    {
+      "id": "file:mind-land-server/.claude/state/test-recommendation.json",
+      "name": "test-recommendation.json",
+      "type": "file",
+      "filePath": "mind-land-server/.claude/state/test-recommendation.json",
+      "summary": "测试推荐配置文件（JSON 格式），记录了针对 Container/index.tsx 文件变更后生成的测试建议，推荐运行 \"go test ./...\"，时间戳为 2026-05-17T12:49:11Z。",
+      "tags": ["配置文件", "JSON", "测试推荐", "Claude状态"]
+    },
+    {
+      "id": "file:mind-land-server/mind-land-server",
+      "name": "mind-land-server",
+      "type": "file",
+      "filePath": "mind-land-server/mind-land-server",
+      "summary": "Go 编译后的二进制可执行文件（约 163K 行），是 mind-land-server 后端服务的主编译产物。",
+      "tags": ["二进制文件", "编译产物", "Go"]
+    },
+    {
+      "id": "file:mind-land-server/server",
+      "name": "server",
+      "type": "file",
+      "filePath": "mind-land-server/server",
+      "summary": "Go 编译后的二进制可执行文件（约 161K 行），为后端服务的编译输出之一。",
+      "tags": ["二进制文件", "编译产物", "Go"]
+    },
+    {
+      "id": "file:mind-land-server/server-new",
+      "name": "server-new",
+      "type": "file",
+      "filePath": "mind-land-server/server-new",
+      "summary": "Go 编译后的二进制可执行文件（约 160K 行），为后端服务的新版本编译产物。",
+      "tags": ["二进制文件", "编译产物", "Go"]
+    },
+    {
+      "id": "file:mind-land-server/server-test",
+      "name": "server-test",
+      "type": "file",
+      "filePath": "mind-land-server/server-test",
+      "summary": "Go 编译后的测试二进制可执行文件（约 160K 行），包含测试符号，用于运行后端测试套件。",
+      "tags": ["二进制文件", "编译产物", "Go", "测试"]
+    },
+    {
+      "id": "file:mind-land-web/.claude/sessions/.last_inbox_check",
+      "name": ".last_inbox_check",
+      "type": "file",
+      "filePath": "mind-land-web/.claude/sessions/.last_inbox_check",
+      "summary": "mind-land-web 子项目的收件箱最后检查时间戳文件，内容为 Unix 时间戳 1779021858。",
+      "tags": ["时间戳", "元数据", "Claude"]
+    },
+    {
+      "id": "file:mind-land-web/.claude/state/breezing-timeline.jsonl",
+      "name": "breezing-timeline.jsonl",
+      "type": "file",
+      "filePath": "mind-land-web/.claude/state/breezing-timeline.jsonl",
+      "summary": "mind-land-web 的 Claude 状态时间线日志（JSONL 格式），记录了一次任务完成事件：Phase 3 Type Safety（类型安全修复），包括 API 类型修复、接口统一、ToDo 类型修复、contentRef 处理、死代码清理等子任务，时间戳为 2026-05-17T13:23:13Z。",
+      "tags": ["时间线", "JSONL", "Claude状态", "任务记录"]
+    },
+    {
+      "id": "file:mind-land-web/.claude/state/changed-files.jsonl",
+      "name": "changed-files.jsonl",
+      "type": "file",
+      "filePath": "mind-land-web/.claude/state/changed-files.jsonl",
+      "summary": "mind-land-web 的变更文件追踪记录（JSONL 格式），包含 13 条文件变更事件，涉及 Plans.md、ToDo 页面、API 层文件（slipBox.ts、toDo.ts、layout.ts）、ToastProvider、SlipBox 组件、TiptapEditor、Settings 页面等的编辑或写入操作，时间范围 2026-05-17T12:24 至 13:28。",
+      "tags": ["变更记录", "JSONL", "Claude状态", "文件追踪"]
+    },
+    {
+      "id": "file:mind-land-web/server/data.json",
+      "name": "data.json",
+      "type": "file",
+      "filePath": "mind-land-web/server/data.json",
+      "summary": "前端 Mock 开发服务器的模拟数据文件（JSON 格式，503 行），包含 4 个待办列表（\"执行\"、\"待购\"、\"项目\"、\"备忘\"）及其大量待办项、SlipBox 卡片数据（以 Java/JVM 为主题的 HTML 内容卡片）和层次化标签数据（Java → Java/JVM, Java/JUC）。部分数据为测试残留（listId 为空或空字符串）。",
+      "tags": ["数据文件", "JSON", "模拟数据", "Mock"]
+    },
+    {
+      "id": "file:mind-land-web/src/App.css",
+      "name": "App.css",
+      "type": "file",
+      "filePath": "mind-land-web/src/App.css",
+      "summary": "应用级 CSS 文件，当前为空文件（0 行有效内容），无任何样式定义，可能为预留的扩展点。",
+      "tags": ["CSS", "样式文件", "空文件"]
+    },
+    {
+      "id": "file:mind-land-web/src/index.css",
+      "name": "index.css",
+      "type": "file",
+      "filePath": "mind-land-web/src/index.css",
+      "summary": "全局样式主文件（382 行），使用 Tailwind CSS 4 的 @theme 指令定义完整的双主题系统：浅色主题（默认）和深色主题（.dark 类）。包含 CSS 变量体系（背景色、前景色、表面色、强调色、边框色等）、排版体系（sans/serif/mono 三类字体）、圆角体系、滚动条样式、Tooltip 编辑器（Tiptap/ProseMirror）主题、卡片内容 HTML 渲染样式、模块切换过渡动画、Möbius 装饰线条和金色发光效果。强调色为柔和金色（#D4A574）。",
+      "tags": ["CSS", "全局样式", "Tailwind CSS", "主题系统", "暗色模式"]
+    },
+    {
+      "id": "file:mind-land-web/src/pages/AI/index.tsx",
+      "name": "index.tsx",
+      "type": "file",
+      "filePath": "mind-land-web/src/pages/AI/index.tsx",
+      "summary": "AI 功能占位页面（48 行），使用 lucide-react 的 Sparkles 图标作为页头图标。列出 5 项规划中的 AI 功能卡片：智能笔记分类、AI 对话、智能搜索、内容摘要、写作辅助，每项包含图标、标题和描述。目前标注为\"功能开发中\"，尚未接入实际 AI 服务。",
+      "tags": ["TypeScript", "React组件", "占位页面", "AI功能", "lucide-react"]
+    },
+    {
+      "id": "file:mind-land-web/src/pages/Diary/index.tsx",
+      "name": "index.tsx",
+      "type": "file",
+      "filePath": "mind-land-web/src/pages/Diary/index.tsx",
+      "summary": "日记功能占位页面（17 行），使用 BookOpen 图标，描述为\"每日日记和心情记录。按时间线整理，支持标签分类和回顾。\"标注 \"Coming soon\" 标签。",
+      "tags": ["TypeScript", "React组件", "占位页面", "lucide-react"]
+    },
+    {
+      "id": "file:mind-land-web/src/pages/Draft/index.tsx",
+      "name": "index.tsx",
+      "type": "file",
+      "filePath": "mind-land-web/src/pages/Draft/index.tsx",
+      "summary": "草稿/稿纸功能占位页面（17 行），使用 FileText 图标，描述为\"富文本写作工具。支持 Markdown 编辑、实时预览，专注写作体验。\"标注 \"Coming soon\" 标签。",
+      "tags": ["TypeScript", "React组件", "占位页面", "lucide-react"]
+    },
+    {
+      "id": "file:mind-land-web/src/pages/Home/index.tsx",
+      "name": "index.tsx",
+      "type": "file",
+      "filePath": "mind-land-web/src/pages/Home/index.tsx",
+      "summary": "首页/仪表板占位页面（17 行），使用 HomeIcon 图标，描述为\"个人知识管理仪表板。在这里查看最近的笔记、待办事项和活动概览。\"标注 \"Coming soon\" 标签。",
+      "tags": ["TypeScript", "React组件", "占位页面", "lucide-react"]
+    },
+    {
+      "id": "file:mind-land-web/src/pages/MarkList/index.tsx",
+      "name": "index.tsx",
+      "type": "file",
+      "filePath": "mind-land-web/src/pages/MarkList/index.tsx",
+      "summary": "剪藏/书签管理占位页面（17 行），使用 Scissors 图标，描述为\"网页剪藏和书签管理。保存网页内容，分类整理，打造个人知识库。\"标注 \"Coming soon\" 标签。",
+      "tags": ["TypeScript", "React组件", "占位页面", "lucide-react"]
+    },
+    {
+      "id": "file:mind-land-web/src/pages/MindMap/index.tsx",
+      "name": "index.tsx",
+      "type": "file",
+      "filePath": "mind-land-web/src/pages/MindMap/index.tsx",
+      "summary": "思维导图占位页面（17 行），使用 GitBranch 图标，描述为\"可视化思维导图工具。通过节点和连线展现思维结构，支持拖拽编辑和导出。\"标注 \"Coming soon\" 标签。",
+      "tags": ["TypeScript", "React组件", "占位页面", "lucide-react"]
+    }
+  ],
+  "edges": [
+    {
+      "sourceId": "file:.understand-anything/.understandignore",
+      "targetId": "file:.understand-anything/config.json",
+      "type": "related-to",
+      "summary": "同属于 understand-anything 代码分析工具的系统配置文件"
+    },
+    {
+      "sourceId": "file:mind-land-server/.claude/state/breezing-timeline.jsonl",
+      "targetId": "file:mind-land-server/.claude/state/changed-files.jsonl",
+      "type": "related-to",
+      "summary": "同为 mind-land-server 的 Claude 会话状态追踪记录文件，时间线记录任务完成事件，变更文件记录具体文件修改明细"
+    },
+    {
+      "sourceId": "file:mind-land-server/.claude/state/breezing-timeline.jsonl",
+      "targetId": "file:mind-land-server/.claude/state/test-recommendation.json",
+      "type": "related-to",
+      "summary": "同为 mind-land-server 的 Claude 开发辅助记录，时间线记录修复任务，测试推荐提供对应的测试建议"
+    },
+    {
+      "sourceId": "file:mind-land-web/.claude/state/breezing-timeline.jsonl",
+      "targetId": "file:mind-land-web/.claude/state/changed-files.jsonl",
+      "type": "related-to",
+      "summary": "同为 mind-land-web 的 Claude 会话状态追踪记录文件，时间线记录类型安全修复任务，变更文件记录 13 条详细文件编辑日志"
+    },
+    {
+      "sourceId": "file:mind-land-server/mind-land-server",
+      "targetId": "file:mind-land-server/server",
+      "type": "related-to",
+      "summary": "均为 Go 语言编译产出的后端服务二进制可执行文件，文件体积和结构相似"
+    },
+    {
+      "sourceId": "file:mind-land-server/server",
+      "targetId": "file:mind-land-server/server-new",
+      "type": "related-to",
+      "summary": "均为 Go 编译产出的二进制可执行文件，server-new 为更新版本"
+    },
+    {
+      "sourceId": "file:mind-land-server/server-new",
+      "targetId": "file:mind-land-server/server-test",
+      "type": "related-to",
+      "summary": "server-new 为生产二进制，server-test 为包含测试符号的测试二进制，均通过 Go 编译产生"
+    },
+    {
+      "sourceId": "file:mind-land-web/src/pages/AI/index.tsx",
+      "targetId": "file:mind-land-web/src/pages/Diary/index.tsx",
+      "type": "related-to",
+      "summary": "均为 mind-land-web 中未完成的占位页面，使用相同模式（lucide-react 图标 + 居中布局 + 描述文本 + Coming soon 标签），共享 index.css 定义的全局 CSS 变量"
+    },
+    {
+      "sourceId": "file:mind-land-web/src/pages/Diary/index.tsx",
+      "targetId": "file:mind-land-web/src/pages/Draft/index.tsx",
+      "type": "related-to",
+      "summary": "同一模式的占位页面，均为 React 函数组件，使用 lucide-react 图标和 Coming soon 占位符"
+    },
+    {
+      "sourceId": "file:mind-land-web/src/pages/Draft/index.tsx",
+      "targetId": "file:mind-land-web/src/pages/Home/index.tsx",
+      "type": "related-to",
+      "summary": "同一模式的占位页面，结构高度相似"
+    },
+    {
+      "sourceId": "file:mind-land-web/src/pages/Home/index.tsx",
+      "targetId": "file:mind-land-web/src/pages/MarkList/index.tsx",
+      "type": "related-to",
+      "summary": "同一模式的占位页面，结构高度相似"
+    },
+    {
+      "sourceId": "file:mind-land-web/src/pages/MarkList/index.tsx",
+      "targetId": "file:mind-land-web/src/pages/MindMap/index.tsx",
+      "type": "related-to",
+      "summary": "同一模式的占位页面，结构高度相似"
+    },
+    {
+      "sourceId": "file:mind-land-web/src/index.css",
+      "targetId": "file:mind-land-web/src/pages/AI/index.tsx",
+      "type": "provides-styles",
+      "summary": "index.css 定义全局 CSS 变量（--foreground、--background、--border、--surface 等），AI 页面通过 CSS 变量引用这些样式"
+    },
+    {
+      "sourceId": "file:mind-land-web/src/index.css",
+      "targetId": "file:mind-land-web/src/pages/Diary/index.tsx",
+      "type": "provides-styles",
+      "summary": "提供浅色/深色主题 CSS 变量和排版样式，被 Diary 页面使用"
+    },
+    {
+      "sourceId": "file:mind-land-web/src/index.css",
+      "targetId": "file:mind-land-web/src/pages/Draft/index.tsx",
+      "type": "provides-styles",
+      "summary": "提供全局样式和主题变量，被 Draft 页面使用"
+    },
+    {
+      "sourceId": "file:mind-land-web/src/index.css",
+      "targetId": "file:mind-land-web/src/pages/Home/index.tsx",
+      "type": "provides-styles",
+      "summary": "提供全局样式和主题变量，被 Home 页面使用"
+    },
+    {
+      "sourceId": "file:mind-land-web/src/index.css",
+      "targetId": "file:mind-land-web/src/pages/MarkList/index.tsx",
+      "type": "provides-styles",
+      "summary": "提供全局样式和主题变量，被 MarkList 页面使用"
+    },
+    {
+      "sourceId": "file:mind-land-web/src/index.css",
+      "targetId": "file:mind-land-web/src/pages/MindMap/index.tsx",
+      "type": "provides-styles",
+      "summary": "提供全局样式和主题变量，被 MindMap 页面使用"
+    }
+  ],
+  "filesAnalyzed": [
+    ".claude/memory/session-log.md",
+    ".claude/sessions/.last_inbox_check",
+    ".claude/settings.local.json",
+    ".understand-anything/.understandignore",
+    ".understand-anything/config.json",
+    "mind-land-server/.claude/sessions/.last_inbox_check",
+    "mind-land-server/.claude/state/breezing-timeline.jsonl",
+    "mind-land-server/.claude/state/changed-files.jsonl",
+    "mind-land-server/.claude/state/test-recommendation.json",
+    "mind-land-web/.claude/sessions/.last_inbox_check",
+    "mind-land-web/.claude/state/breezing-timeline.jsonl",
+    "mind-land-web/.claude/state/changed-files.jsonl",
+    "mind-land-web/server/data.json",
+    "mind-land-web/src/App.css",
+    "mind-land-web/src/index.css",
+    "mind-land-web/src/pages/AI/index.tsx",
+    "mind-land-web/src/pages/Diary/index.tsx",
+    "mind-land-web/src/pages/Draft/index.tsx",
+    "mind-land-web/src/pages/Home/index.tsx",
+    "mind-land-web/src/pages/MarkList/index.tsx",
+    "mind-land-web/src/pages/MindMap/index.tsx"
+  ],
+  "filesSkipped": [
+    "mind-land-server/mind-land-server",
+    "mind-land-server/server",
+    "mind-land-server/server-new",
+    "mind-land-server/server-test"
+  ],
+  "importEdgesEmitted": 0
+}
