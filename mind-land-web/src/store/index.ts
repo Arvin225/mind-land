@@ -2,13 +2,14 @@ import { configureStore } from "@reduxjs/toolkit";
 import toDoReducer from "./modules/toDoStore";
 import slipBoxReducer from "./modules/slipBoxStore";
 import diaryReducer from "./modules/diaryStore";
+import outlineReducer from "./modules/outlineStore";
 
 const store = configureStore({
     reducer: {
-        // 配置到根store中
         toDo: toDoReducer,
         slipBox: slipBoxReducer,
-        diary: diaryReducer
+        diary: diaryReducer,
+        outline: outlineReducer,
     }
 })
 

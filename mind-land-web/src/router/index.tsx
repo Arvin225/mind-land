@@ -58,6 +58,10 @@ const router = createBrowserRouter([
                 path: "/note",
                 element: (<Suspense fallback={'加载中'}><Note /></Suspense>)
             },
+            {
+                path: "/note/:docId",
+                element: (<Suspense fallback={'加载中'}><Note /></Suspense>)
+            },
         ]
     },
 ])

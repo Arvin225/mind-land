@@ -1,17 +1,36 @@
-import { ListTree } from 'lucide-react';
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/store";
+import { openDocumentAction, fetchFoldersAction, fetchAllDocumentsAction } from "@/store/modules/outlineStore";
+import BreadcrumbBar from "./BreadcrumbBar";
+import FolderTreePanel from "./FolderTreePanel";
+import DocumentHome from "./DocumentHome";
+import OutlineEditor from "./OutlineEditor";
 
-function Note() {
-    return (
-        <div className="h-full flex flex-col items-center justify-center text-center px-6">
-            <ListTree className="w-16 h-16 text-[--foreground]/20 mb-6" />
-            <h2 className="text-2xl font-serif-display text-[--foreground]/80 mb-3">大纲笔记</h2>
-            <p className="text-[--foreground]/50 max-w-md leading-relaxed">
-                创建和编辑结构化的大纲笔记。支持多层缩进、折叠展开，适合整理思路和写作框架。
-            </p>
-            <div className="mt-8 px-4 py-2 rounded-full border border-[--border] text-xs text-[--foreground]/40">
-                Coming soon
-            </div>
-        </div>
-    );
+export default function Note() {
+  const { docId } = useParams();
+  const dispatch = useDispatch<AppDispatch>();
+  const viewMode = useSelector((s: RootState) => s.outline.viewMode);
+
+  useEffect(() => {
+    dispatch(fetchFoldersAction());
+    dispatch(fetchAllDocumentsAction());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (docId) {
+      dispatch(openDocumentAction(Number(docId)));
+    }
+  }, [docId, dispatch]);
+
+  return (
+    <div className="h-full flex">
+      <FolderTreePanel />
+      <div className="flex-1 flex flex-col min-w-0">
+        {viewMode !== "editor" && <BreadcrumbBar />}
+        {viewMode === "editor" ? <OutlineEditor /> : <DocumentHome />}
+      </div>
+    </div>
+  );
 }
-export default Note;
