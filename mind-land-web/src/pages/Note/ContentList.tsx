@@ -257,7 +257,7 @@ export default function ContentList({
                     >
                       {/* Left: icon + name */}
                       <div className="flex items-center gap-3 flex-1 min-w-0">
-                        <Folder className="w-5 h-5 text-text-muted shrink-0" />
+                        <Folder className="w-8 h-8 text-text-muted shrink-0" />
                         <div className="min-w-0">
                           <h3 className="text-base font-medium text-text-primary truncate">
                             {f.name}
@@ -298,7 +298,7 @@ export default function ContentList({
                 >
                   {/* Left: icon + name */}
                   <div className="flex items-center gap-3 flex-1 min-w-0">
-                    <FileText className="w-5 h-5 text-text-muted shrink-0" />
+                    <FileText className="w-8 h-8 text-text-muted shrink-0" />
                     <div className="min-w-0">
                       <h3 className="text-base font-medium text-text-primary truncate">
                         {doc.title || "未命名"}
@@ -336,8 +336,8 @@ export default function ContentList({
 
       {/* Footer */}
       {totalItems > 0 && (
-        <div className="border-t border-border">
-          <div className="max-w-[1000px] mx-auto px-4 py-2 text-xs text-text-muted">
+        <div>
+          <div className="max-w-[1000px] mx-auto px-4 py-2 text-xs text-text-muted text-right">
             共 {totalItems} 项
           </div>
         </div>
