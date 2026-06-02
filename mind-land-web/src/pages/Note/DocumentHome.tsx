@@ -16,6 +16,7 @@ export default function DocumentHome() {
   const { currentFolderId, currentView } = useSelector((s: RootState) => s.outline);
   const [showCreate, setShowCreate] = useState(false);
   const [createType, setCreateType] = useState<"document" | "folder">("document");
+  const [trashVersion, setTrashVersion] = useState(0);
 
   useEffect(() => {
     dispatch(fetchFoldersAction());
@@ -30,6 +31,8 @@ export default function DocumentHome() {
     dispatch(fetchDocumentsAction(params));
   }, [dispatch, currentView, currentFolderId]);
 
+  const handleTrashEmptied = () => setTrashVersion((v) => v + 1);
+
   return (
     <div className="flex-1 h-full min-w-0 flex flex-col">
       <ContentToolbar
@@ -37,8 +40,10 @@ export default function DocumentHome() {
         currentView={currentView}
         onCreateDocument={() => { setCreateType("document"); setShowCreate(true); }}
         onCreateFolder={() => { setCreateType("folder"); setShowCreate(true); }}
+        onTrashEmptied={handleTrashEmptied}
       />
       <ContentList
+        key={currentView === "trash" ? `trash-${trashVersion}` : currentView}
         currentFolderId={currentFolderId}
         currentView={currentView}
         onFolderClick={(folderId) => {

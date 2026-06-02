@@ -1,7 +1,7 @@
 import { useMemo, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState, AppDispatch } from "@/store";
-import { fetchDocumentsAction, fetchFoldersAction, fetchAllDocumentsAction } from "@/store/modules/outlineStore";
+import { fetchDocumentsAction, fetchAllDocumentsAction } from "@/store/modules/outlineStore";
 import { emptyTrash } from "@/apis/outline";
 import { showConfirm } from "@/lib/confirm";
 import { useToast } from "@/components/ToastProvider";
@@ -12,6 +12,7 @@ interface ContentToolbarProps {
   currentView: string;
   onCreateDocument: (folderId?: number | null) => void;
   onCreateFolder: (folderId?: number | null) => void;
+  onTrashEmptied?: () => void;
 }
 
 export default function ContentToolbar({
@@ -19,6 +20,7 @@ export default function ContentToolbar({
   currentView,
   onCreateDocument,
   onCreateFolder,
+  onTrashEmptied,
 }: ContentToolbarProps) {
   const dispatch = useDispatch<AppDispatch>();
   const toast = useToast();
@@ -33,9 +35,9 @@ export default function ContentToolbar({
     if (!confirmed) return;
     try {
       await emptyTrash();
-      dispatch(fetchFoldersAction(true));
       dispatch(fetchDocumentsAction({ trash: true }));
       dispatch(fetchAllDocumentsAction());
+      onTrashEmptied?.();
       toast.success("回收站已清空");
     } catch {
       toast.error("清空失败");

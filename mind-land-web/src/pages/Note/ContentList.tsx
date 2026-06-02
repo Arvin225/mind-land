@@ -1,4 +1,4 @@
-import { useMemo, useState, useCallback } from "react";
+import { useMemo, useState, useCallback, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState, AppDispatch } from "@/store";
 import {
@@ -8,7 +8,7 @@ import {
   fetchFoldersAction,
   fetchAllDocumentsAction,
 } from "@/store/modules/outlineStore";
-import { OutlineDocument, OutlineFolder } from "@/apis/outline";
+import { OutlineDocument, OutlineFolder, getTrashFolders } from "@/apis/outline";
 import { updateDocument, duplicateDocument, deleteFolder, restoreDocument, restoreFolder, permanentDeleteDocument, permanentDeleteFolder } from "@/apis/outline";
 import ContextMenu from "@/pages/Diary/ContextMenu";
 import { showConfirm } from "@/lib/confirm";
@@ -76,19 +76,29 @@ export default function ContentList({
     target: ContextTarget;
   } | null>(null);
 
-  const subFolders = useMemo(() => {
+  // 回收站文件夹（独立管理，不影响左侧树）
+  const [trashFolders, setTrashFolders] = useState<OutlineFolder[]>([]);
+
+  useEffect(() => {
     if (currentView === "trash") {
-      return folders.filter((f) => f.del).sort((a, b) => a.sortOrder - b.sortOrder);
+      getTrashFolders().then((res) => {
+        if (res.code === 0 && res.result) setTrashFolders(res.result);
+      });
     }
-    return folders
-      .filter((f) =>
-        currentFolderId === null
-          ? f.parentId === 0
-          : f.parentId === currentFolderId
-      )
-      .filter((f) => !f.del)
-      .sort((a, b) => a.sortOrder - b.sortOrder);
-  }, [folders, currentFolderId, currentView]);
+  }, [currentView]);
+
+  const subFolders = useMemo(
+    () =>
+      folders
+        .filter((f) =>
+          currentFolderId === null
+            ? f.parentId === 0
+            : f.parentId === currentFolderId
+        )
+        .filter((f) => !f.del)
+        .sort((a, b) => a.sortOrder - b.sortOrder),
+    [folders, currentFolderId]
+  );
 
   const filteredDocuments = useMemo(() => {
     let docs = documents;
@@ -220,9 +230,12 @@ export default function ContentList({
             onClick: async () => {
               await restoreFolder(f.id);
               dispatch(fetchFoldersAction());
-              dispatch(fetchFoldersAction(true));
               dispatch(fetchDocumentsAction({ trash: true }));
               dispatch(fetchAllDocumentsAction());
+              // 刷新本地回收站文件夹列表
+              getTrashFolders().then((res) => {
+                if (res.code === 0 && res.result) setTrashFolders(res.result);
+              });
               toast.success("已恢复");
             },
           },
@@ -236,8 +249,11 @@ export default function ContentList({
               });
               if (!confirmed) return;
               await permanentDeleteFolder(f.id);
-              dispatch(fetchFoldersAction(true));
               dispatch(fetchDocumentsAction({ trash: true }));
+              // 刷新本地回收站文件夹列表
+              getTrashFolders().then((res) => {
+                if (res.code === 0 && res.result) setTrashFolders(res.result);
+              });
               toast.success("已永久删除");
             },
             danger: true,
@@ -297,8 +313,10 @@ export default function ContentList({
     ];
   }, [contextTarget, documents, currentView, dispatch, toast, handleOpenDocument, handleRenameDocument, handleDuplicateDocument, handleFavoriteDocument, handleDeleteDocument, handleDeleteFolder]);
 
-  const showFolders = currentView === "all" || currentView === "trash";
-  const totalItems = subFolders.length + filteredDocuments.length;
+  const showFolders = currentView === "all";
+  const displayedFolders = currentView === "trash" ? trashFolders : subFolders;
+  const totalItems = displayedFolders.length + filteredDocuments.length;
+  const isTrashEmpty = currentView === "trash" && trashFolders.length === 0 && filteredDocuments.length === 0;
 
   return (
     <div className="h-full flex flex-col">
@@ -309,20 +327,24 @@ export default function ContentList({
             <div className="flex items-center justify-center h-32 text-sm text-text-muted">
               加载中...
             </div>
+          ) : isTrashEmpty ? (
+            <div className="flex flex-col items-center justify-center h-32 text-sm text-text-muted">
+              <span>暂无内容</span>
+            </div>
           ) : showFolders && subFolders.length === 0 && filteredDocuments.length === 0 ? (
             <div className="flex flex-col items-center justify-center h-32 text-sm text-text-muted">
               <span>暂无内容</span>
             </div>
-          ) : !showFolders && filteredDocuments.length === 0 ? (
+          ) : !showFolders && currentView !== "trash" && filteredDocuments.length === 0 ? (
             <div className="flex flex-col items-center justify-center h-32 text-sm text-text-muted">
               <span>暂无文档</span>
             </div>
           ) : (
             <>
               {/* ── Folders ── */}
-              {showFolders &&
-                subFolders.map((f) => {
-                  const childCount = countFolderChildren(f.id, folders, allDocuments);
+              {displayedFolders.length > 0 &&
+                displayedFolders.map((f) => {
+                  const childCount = currentView === "trash" ? 0 : countFolderChildren(f.id, folders, allDocuments);
                   return (
                     <div
                       key={`folder-${f.id}`}

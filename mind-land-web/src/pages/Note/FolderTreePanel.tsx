@@ -184,23 +184,15 @@ export default function FolderTreePanel() {
                 : "text-text-secondary hover:bg-hover hover:text-text-primary"
             }`}
             onClick={() => {
-              dispatch(closeDocument());
               dispatch(setCurrentView(item.view));
               dispatch(setCurrentFolderId(null));
-              if (item.view === "trash") {
-                dispatch(fetchFoldersAction(true));
-                dispatch(fetchDocumentsAction({ page: 1, size: 50, trash: true }));
-              } else {
-                // 仅从回收站切出时才刷新正常文件夹，避免「最近」「收藏」切换时闪烁
-                if (currentView === "trash") {
-                  dispatch(fetchFoldersAction());
-                }
-                dispatch(fetchDocumentsAction({
-                  page: 1, size: 50,
-                  favorite: item.view === "favorite" ? true : undefined,
-                  recent: item.view === "recent" ? true : undefined,
-                }));
-              }
+              dispatch(fetchDocumentsAction({
+                page: 1,
+                size: 50,
+                favorite: item.view === "favorite" ? true : undefined,
+                recent: item.view === "recent" ? true : undefined,
+                trash: item.view === "trash" ? true : undefined,
+              }));
             }}
           >
             {item.icon}
