@@ -191,7 +191,10 @@ export default function FolderTreePanel() {
                 dispatch(fetchFoldersAction(true));
                 dispatch(fetchDocumentsAction({ page: 1, size: 50, trash: true }));
               } else {
-                dispatch(fetchFoldersAction());
+                // 仅从回收站切出时才刷新正常文件夹，避免「最近」「收藏」切换时闪烁
+                if (currentView === "trash") {
+                  dispatch(fetchFoldersAction());
+                }
                 dispatch(fetchDocumentsAction({
                   page: 1, size: 50,
                   favorite: item.view === "favorite" ? true : undefined,
