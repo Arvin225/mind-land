@@ -184,6 +184,7 @@ export default function FolderTreePanel() {
                 : "text-text-secondary hover:bg-hover hover:text-text-primary"
             }`}
             onClick={() => {
+              dispatch(closeDocument());
               dispatch(setCurrentView(item.view));
               dispatch(setCurrentFolderId(null));
               dispatch(fetchDocumentsAction({
