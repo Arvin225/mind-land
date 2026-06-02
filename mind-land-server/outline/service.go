@@ -45,8 +45,58 @@ func (s *Service) UpdateFolder(id uint, updates map[string]interface{}) (*Outlin
 	return &folder, nil
 }
 
+func (s *Service) collectFolderAndDescendants(tx *gorm.DB, rootID uint) ([]uint, error) {
+	var result []uint
+	result = append(result, rootID)
+
+	var children []OutlineFolder
+	if err := tx.Where("parent_id = ?", rootID).Find(&children).Error; err != nil {
+		return nil, err
+	}
+	for _, child := range children {
+		descendants, err := s.collectFolderAndDescendants(tx, child.ID)
+		if err != nil {
+			return nil, err
+		}
+		result = append(result, descendants...)
+	}
+	return result, nil
+}
+
 func (s *Service) DeleteFolder(id uint) error {
-	return s.db.Model(&OutlineFolder{}).Where("id = ?", id).Update("del", true).Error
+	return s.db.Transaction(func(tx *gorm.DB) error {
+		folderIDs, err := s.collectFolderAndDescendants(tx, id)
+		if err != nil {
+			return err
+		}
+
+		if err := tx.Model(&OutlineFolder{}).
+			Where("id IN ?", folderIDs).
+			Update("del", true).Error; err != nil {
+			return err
+		}
+
+		var docIDs []uint
+		tx.Model(&OutlineDocument{}).
+			Where("folder_id IN ?", folderIDs).
+			Pluck("id", &docIDs)
+
+		if len(docIDs) > 0 {
+			if err := tx.Model(&OutlineDocument{}).
+				Where("id IN ?", docIDs).
+				Update("del", true).Error; err != nil {
+				return err
+			}
+
+			if err := tx.Model(&OutlineNode{}).
+				Where("document_id IN ?", docIDs).
+				Update("del", true).Error; err != nil {
+				return err
+			}
+		}
+
+		return nil
+	})
 }
 
 func (s *Service) GetDocuments(folderId uint, favorite bool, recent bool, trash bool, page int, size int) ([]OutlineDocument, int64, error) {
@@ -103,9 +153,11 @@ func (s *Service) GetDocument(id uint, withNodes bool) (*OutlineDocument, []Outl
 		return &doc, nil, nil
 	}
 	var nodes []OutlineNode
-	if err := s.db.Where("document_id = ? AND del = ?", id, false).
-		Order("sort_order ASC, id ASC").
-		Find(&nodes).Error; err != nil {
+	query := s.db.Where("document_id = ?", id)
+	if !doc.Del {
+		query = query.Where("del = ?", false)
+	}
+	if err := query.Order("sort_order ASC, id ASC").Find(&nodes).Error; err != nil {
 		return nil, nil, err
 	}
 	return &doc, nodes, nil
@@ -284,7 +336,28 @@ func (s *Service) RestoreDocument(id uint) error {
 }
 
 func (s *Service) RestoreFolder(id uint) error {
-	return s.db.Model(&OutlineFolder{}).Where("id = ?", id).Update("del", false).Error
+	return s.db.Transaction(func(tx *gorm.DB) error {
+		if err := tx.Model(&OutlineFolder{}).Where("id = ?", id).Update("del", false).Error; err != nil {
+			return err
+		}
+
+		var docIDs []uint
+		tx.Model(&OutlineDocument{}).Where("folder_id = ? AND del = ?", id, true).Pluck("id", &docIDs)
+		if len(docIDs) > 0 {
+			if err := tx.Model(&OutlineDocument{}).
+				Where("id IN ?", docIDs).
+				Update("del", false).Error; err != nil {
+				return err
+			}
+			if err := tx.Model(&OutlineNode{}).
+				Where("document_id IN ?", docIDs).
+				Update("del", false).Error; err != nil {
+				return err
+			}
+		}
+
+		return nil
+	})
 }
 
 func (s *Service) PermanentDeleteDocument(id uint) error {
@@ -302,7 +375,7 @@ func (s *Service) PermanentDeleteDocument(id uint) error {
 func (s *Service) PermanentDeleteFolder(id uint) error {
 	return s.db.Transaction(func(tx *gorm.DB) error {
 		var docIDs []uint
-		tx.Model(&OutlineDocument{}).Where("folder_id = ? AND del = ?", id, false).Pluck("id", &docIDs)
+		tx.Model(&OutlineDocument{}).Where("folder_id = ?", id).Pluck("id", &docIDs)
 
 		if len(docIDs) > 0 {
 			if err := tx.Where("document_id IN ?", docIDs).Delete(&OutlineDocumentVersion{}).Error; err != nil {
@@ -320,10 +393,33 @@ func (s *Service) PermanentDeleteFolder(id uint) error {
 	})
 }
 
+func appendUnique(slice []uint, items []uint) []uint {
+	seen := make(map[uint]bool)
+	for _, v := range slice {
+		seen[v] = true
+	}
+	for _, v := range items {
+		if !seen[v] {
+			slice = append(slice, v)
+			seen[v] = true
+		}
+	}
+	return slice
+}
+
 func (s *Service) EmptyTrash() error {
 	return s.db.Transaction(func(tx *gorm.DB) error {
 		var trashDocIDs []uint
 		tx.Model(&OutlineDocument{}).Where("del = ?", true).Pluck("id", &trashDocIDs)
+
+		var trashFolderIDs []uint
+		tx.Model(&OutlineFolder{}).Where("del = ?", true).Pluck("id", &trashFolderIDs)
+		if len(trashFolderIDs) > 0 {
+			var folderDocIDs []uint
+			tx.Model(&OutlineDocument{}).Where("folder_id IN ?", trashFolderIDs).Pluck("id", &folderDocIDs)
+			trashDocIDs = appendUnique(trashDocIDs, folderDocIDs)
+		}
+
 		if len(trashDocIDs) > 0 {
 			if err := tx.Where("document_id IN ?", trashDocIDs).Delete(&OutlineDocumentVersion{}).Error; err != nil {
 				return err
@@ -336,22 +432,7 @@ func (s *Service) EmptyTrash() error {
 			}
 		}
 
-		var trashFolderIDs []uint
-		tx.Model(&OutlineFolder{}).Where("del = ?", true).Pluck("id", &trashFolderIDs)
 		if len(trashFolderIDs) > 0 {
-			var folderDocIDs []uint
-			tx.Model(&OutlineDocument{}).Where("folder_id IN ?", trashFolderIDs).Pluck("id", &folderDocIDs)
-			if len(folderDocIDs) > 0 {
-				if err := tx.Where("document_id IN ?", folderDocIDs).Delete(&OutlineDocumentVersion{}).Error; err != nil {
-					return err
-				}
-				if err := tx.Where("document_id IN ?", folderDocIDs).Delete(&OutlineNode{}).Error; err != nil {
-					return err
-				}
-				if err := tx.Where("id IN ?", folderDocIDs).Delete(&OutlineDocument{}).Error; err != nil {
-					return err
-				}
-			}
 			if err := tx.Where("id IN ?", trashFolderIDs).Delete(&OutlineFolder{}).Error; err != nil {
 				return err
 			}

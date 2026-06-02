@@ -187,13 +187,17 @@ export default function FolderTreePanel() {
               dispatch(closeDocument());
               dispatch(setCurrentView(item.view));
               dispatch(setCurrentFolderId(null));
-              dispatch(fetchDocumentsAction({
-                page: 1,
-                size: 50,
-                favorite: item.view === "favorite" ? true : undefined,
-                recent: item.view === "recent" ? true : undefined,
-                trash: item.view === "trash" ? true : undefined,
-              }));
+              if (item.view === "trash") {
+                dispatch(fetchFoldersAction(true));
+                dispatch(fetchDocumentsAction({ page: 1, size: 50, trash: true }));
+              } else {
+                dispatch(fetchFoldersAction());
+                dispatch(fetchDocumentsAction({
+                  page: 1, size: 50,
+                  favorite: item.view === "favorite" ? true : undefined,
+                  recent: item.view === "recent" ? true : undefined,
+                }));
+              }
             }}
           >
             {item.icon}

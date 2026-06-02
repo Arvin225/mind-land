@@ -222,14 +222,14 @@ func TestTrashService(t *testing.T) {
 		}
 	})
 
-	t.Run("RestoreDocument_WhenFolderHardDeleted_RestoresToRoot", func(t *testing.T) {
+	t.Run("RestoreDocument_WhenFolderInTrash_RestoresToRoot", func(t *testing.T) {
 		db := setupTrashTestDB(t)
 		svc := NewService(db)
 
 		folder, _ := svc.CreateFolder("Folder", 0)
 		doc, _ := svc.CreateDocument("DocInFolder", folder.ID)
 		svc.DeleteDocument(doc.ID)
-		svc.PermanentDeleteFolder(folder.ID)
+		svc.DeleteFolder(folder.ID)
 
 		err := svc.RestoreDocument(doc.ID)
 		if err != nil {
@@ -242,7 +242,190 @@ func TestTrashService(t *testing.T) {
 			t.Fatal("expected del=false after restore")
 		}
 		if restored.FolderID != 0 {
-			t.Fatalf("expected FolderID=0 when original folder is gone, got %d", restored.FolderID)
+			t.Fatalf("expected FolderID=0 when original folder is trashed, got %d", restored.FolderID)
+		}
+	})
+
+	t.Run("DeleteFolder_CascadingSoftDelete", func(t *testing.T) {
+		db := setupTrashTestDB(t)
+		svc := NewService(db)
+
+		f, _ := svc.CreateFolder("F", 0)
+		fSub, _ := svc.CreateFolder("F_sub", f.ID)
+		d1, _ := svc.CreateDocument("D1", f.ID)
+		d2, _ := svc.CreateDocument("D2", fSub.ID)
+		db.Create(&OutlineNode{DocumentID: d1.ID, Content: "N1", SortOrder: 1})
+		db.Create(&OutlineNode{DocumentID: d2.ID, Content: "N2", SortOrder: 1})
+
+		err := svc.DeleteFolder(f.ID)
+		if err != nil {
+			t.Fatalf("DeleteFolder failed: %v", err)
+		}
+
+		var fDB OutlineFolder
+		db.First(&fDB, f.ID)
+		if !fDB.Del {
+			t.Fatal("expected F.del=true")
+		}
+
+		var fSubDB OutlineFolder
+		db.First(&fSubDB, fSub.ID)
+		if !fSubDB.Del {
+			t.Fatal("expected F_sub.del=true")
+		}
+
+		var d1DB OutlineDocument
+		db.First(&d1DB, d1.ID)
+		if !d1DB.Del {
+			t.Fatal("expected D1.del=true")
+		}
+
+		var d2DB OutlineDocument
+		db.First(&d2DB, d2.ID)
+		if !d2DB.Del {
+			t.Fatal("expected D2.del=true")
+		}
+
+		var nodeCount int64
+		db.Model(&OutlineNode{}).Where("document_id IN ?", []uint{d1.ID, d2.ID}).Count(&nodeCount)
+		if nodeCount != 2 {
+			t.Fatalf("expected 2 nodes, got %d", nodeCount)
+		}
+		var nodeDelCount int64
+		db.Model(&OutlineNode{}).Where("document_id IN ? AND del = ?", []uint{d1.ID, d2.ID}, false).Count(&nodeDelCount)
+		if nodeDelCount != 0 {
+			t.Fatal("expected all nodes del=true")
+		}
+
+		normalFolders, _ := svc.GetFolders(false)
+		for _, f2 := range normalFolders {
+			if f2.ID == f.ID || f2.ID == fSub.ID {
+				t.Fatal("expected F and F_sub not in normal folders")
+			}
+		}
+
+		normalDocs, _, _ := svc.GetDocuments(0, false, false, false, 1, 100)
+		for _, d := range normalDocs {
+			if d.ID == d1.ID || d.ID == d2.ID {
+				t.Fatal("expected D1 and D2 not in normal documents")
+			}
+		}
+	})
+
+	t.Run("RestoreFolder_CascadingRestore", func(t *testing.T) {
+		db := setupTrashTestDB(t)
+		svc := NewService(db)
+
+		f, _ := svc.CreateFolder("F", 0)
+		d, _ := svc.CreateDocument("D", f.ID)
+		db.Create(&OutlineNode{DocumentID: d.ID, Content: "N", SortOrder: 1})
+
+		svc.DeleteFolder(f.ID)
+
+		err := svc.RestoreFolder(f.ID)
+		if err != nil {
+			t.Fatalf("RestoreFolder failed: %v", err)
+		}
+
+		var fDB OutlineFolder
+		db.First(&fDB, f.ID)
+		if fDB.Del {
+			t.Fatal("expected F.del=false")
+		}
+
+		var dDB OutlineDocument
+		db.First(&dDB, d.ID)
+		if dDB.Del {
+			t.Fatal("expected D.del=false")
+		}
+
+		var node OutlineNode
+		db.First(&node, "document_id = ?", d.ID)
+		if node.Del {
+			t.Fatal("expected node.del=false")
+		}
+
+		normalFolders, _ := svc.GetFolders(false)
+		found := false
+		for _, f2 := range normalFolders {
+			if f2.ID == f.ID {
+				found = true
+				break
+			}
+		}
+		if !found {
+			t.Fatal("expected restored folder in normal query results")
+		}
+
+		normalDocs, _, _ := svc.GetDocuments(0, false, false, false, 1, 100)
+		found = false
+		for _, d2 := range normalDocs {
+			if d2.ID == d.ID {
+				found = true
+				break
+			}
+		}
+		if !found {
+			t.Fatal("expected restored document in normal query results")
+		}
+	})
+
+	t.Run("PermanentDeleteFolder_IncludesSoftDeletedDocs", func(t *testing.T) {
+		db := setupTrashTestDB(t)
+		svc := NewService(db)
+
+		f, _ := svc.CreateFolder("F", 0)
+		d1, _ := svc.CreateDocument("D1", f.ID)
+		d2, _ := svc.CreateDocument("D2", f.ID)
+		svc.DeleteDocument(d2.ID)
+
+		err := svc.PermanentDeleteFolder(f.ID)
+		if err != nil {
+			t.Fatalf("PermanentDeleteFolder failed: %v", err)
+		}
+
+		var docCount int64
+		db.Model(&OutlineDocument{}).Where("id IN ?", []uint{d1.ID, d2.ID}).Count(&docCount)
+		if docCount != 0 {
+			t.Fatal("expected both D1 and D2 to be permanently deleted")
+		}
+	})
+
+	t.Run("EmptyTrash_MixedStates", func(t *testing.T) {
+		db := setupTrashTestDB(t)
+		svc := NewService(db)
+
+		f, _ := svc.CreateFolder("F", 0)
+		d1, _ := svc.CreateDocument("D1", f.ID)
+		svc.DeleteDocument(d1.ID)
+		svc.DeleteFolder(f.ID)
+
+		d2, _ := svc.CreateDocument("D2", 0)
+		svc.DeleteDocument(d2.ID)
+
+		keepDoc, _ := svc.CreateDocument("Keep", 0)
+
+		err := svc.EmptyTrash()
+		if err != nil {
+			t.Fatalf("EmptyTrash failed: %v", err)
+		}
+
+		var docCount int64
+		db.Model(&OutlineDocument{}).Where("id IN ?", []uint{d1.ID, d2.ID}).Count(&docCount)
+		if docCount != 0 {
+			t.Fatal("expected D1 and D2 to be permanently deleted")
+		}
+
+		var folderCount int64
+		db.Model(&OutlineFolder{}).Where("id = ?", f.ID).Count(&folderCount)
+		if folderCount != 0 {
+			t.Fatal("expected folder F to be permanently deleted")
+		}
+
+		var keepCheck OutlineDocument
+		db.First(&keepCheck, keepDoc.ID)
+		if keepCheck.ID == 0 || keepCheck.Del {
+			t.Fatal("expected non-deleted document to survive EmptyTrash")
 		}
 	})
 }

@@ -1,4 +1,6 @@
 import { useState, useRef, useCallback, useEffect } from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "@/store";
 import DOMPurify from "dompurify";
 import { cn } from "@/lib/utils";
 
@@ -44,6 +46,7 @@ function restoreCaret(el: HTMLElement, offset: number) {
 }
 
 export default function NodeContent({ content, onUpdate }: NodeContentProps) {
+  const isReadOnly = useSelector((s: RootState) => s.outline.isReadOnly);
   const [showToolbar, setShowToolbar] = useState(false);
   const [toolbarPos, setToolbarPos] = useState({ top: 0, left: 0 });
   const divRef = useRef<HTMLDivElement>(null);
@@ -62,6 +65,7 @@ export default function NodeContent({ content, onUpdate }: NodeContentProps) {
   }, [content]);
 
   const handleBlur = useCallback((e: React.FocusEvent<HTMLDivElement>) => {
+    if (isReadOnly) { setShowToolbar(false); return; }
     const html = e.currentTarget.innerHTML;
     const sanitized = DOMPurify.sanitize(html, {
       ALLOWED_TAGS: ["b", "strong", "i", "em", "u", "br", "h1", "h2", "h3", "code", "del", "blockquote", "ul", "li"],
@@ -70,16 +74,18 @@ export default function NodeContent({ content, onUpdate }: NodeContentProps) {
     contentRef.current = sanitized;
     onUpdate(sanitized);
     setShowToolbar(false);
-  }, [onUpdate]);
+  }, [onUpdate, isReadOnly]);
 
   const handleKeyDown = useCallback((e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (isReadOnly) return;
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
       e.currentTarget.blur();
     }
-  }, []);
+  }, [isReadOnly]);
 
   const handleMouseUp = useCallback(() => {
+    if (isReadOnly) return;
     const sel = window.getSelection();
     if (!sel || sel.isCollapsed || !sel.rangeCount || !divRef.current) {
       setShowToolbar(false);
@@ -99,7 +105,7 @@ export default function NodeContent({ content, onUpdate }: NodeContentProps) {
       });
     }
     setShowToolbar(true);
-  }, []);
+  }, [isReadOnly]);
 
   const exec = useCallback((command: string) => {
     document.execCommand(command, false);
@@ -107,6 +113,7 @@ export default function NodeContent({ content, onUpdate }: NodeContentProps) {
   }, []);
 
   const handleInput = useCallback(() => {
+    if (isReadOnly) return;
     const el = divRef.current;
     if (!el) return;
 
@@ -156,10 +163,11 @@ export default function NodeContent({ content, onUpdate }: NodeContentProps) {
     <div className="relative flex-1 min-w-0">
       <div
         ref={divRef}
-        contentEditable
+        contentEditable={!isReadOnly}
         suppressContentEditableWarning
         className={cn(
-          "outline-none text-base text-text-primary py-0.5 px-1 rounded"
+          "outline-none text-base text-text-primary py-0.5 px-1 rounded",
+          isReadOnly && "cursor-default"
         )}
         onBlur={handleBlur}
         onKeyDown={handleKeyDown}

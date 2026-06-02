@@ -38,6 +38,7 @@ export default function OutlineEditor() {
     currentDocumentId,
     saveStatus,
     isMindMapView,
+    isReadOnly,
   } = useSelector((s: RootState) => s.outline);
 
   const [collapsedNodes, setCollapsedNodes] = useState<Set<number>>(new Set());
@@ -103,17 +104,18 @@ export default function OutlineEditor() {
 
   // Auto-save debounce
   useEffect(() => {
-    if (!currentDocumentId || saveStatus !== "unsaved") return;
+    if (!currentDocumentId || saveStatus !== "unsaved" || isReadOnly) return;
 
     const timer = setTimeout(() => {
       dispatch(saveNodesAction(currentDocumentId));
     }, 800);
 
     return () => clearTimeout(timer);
-  }, [saveStatus, currentDocumentId, dispatch]);
+  }, [saveStatus, currentDocumentId, dispatch, isReadOnly]);
 
   const handleKeyDown = useCallback(
     (e: KeyboardEvent) => {
+      if (isReadOnly) return;
       const target = e.target as HTMLElement;
       const isInNode = !!target.closest("[data-node-id]");
 
@@ -232,7 +234,7 @@ export default function OutlineEditor() {
         }
       }
     },
-    [dispatch, selectedNodeId, currentDocumentId, focusModeNodeId, nodes, showShortcutHelp, handleUndo, handleRedo, pushSnapshot],
+    [dispatch, selectedNodeId, currentDocumentId, focusModeNodeId, nodes, showShortcutHelp, handleUndo, handleRedo, pushSnapshot, isReadOnly],
   );
 
   useEffect(() => {
@@ -383,6 +385,9 @@ export default function OutlineEditor() {
           <BreadcrumbBar />
         </div>
         <div className="flex items-center gap-1 shrink-0 px-4 py-2">
+          {isReadOnly && (
+            <span className="text-xs text-text-muted bg-red-500/10 text-red-500 px-2 py-0.5 rounded">只读</span>
+          )}
           <button
             onClick={() => dispatch(setMindMapView(!isMindMapView))}
             className={`p-1.5 rounded-lg transition-colors ${

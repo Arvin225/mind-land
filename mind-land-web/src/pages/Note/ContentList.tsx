@@ -9,7 +9,7 @@ import {
   fetchAllDocumentsAction,
 } from "@/store/modules/outlineStore";
 import { OutlineDocument, OutlineFolder } from "@/apis/outline";
-import { updateDocument, duplicateDocument, deleteFolder } from "@/apis/outline";
+import { updateDocument, duplicateDocument, deleteFolder, restoreDocument, restoreFolder, permanentDeleteDocument, permanentDeleteFolder } from "@/apis/outline";
 import ContextMenu from "@/pages/Diary/ContextMenu";
 import { showConfirm } from "@/lib/confirm";
 import { useToast } from "@/components/ToastProvider";
@@ -76,18 +76,19 @@ export default function ContentList({
     target: ContextTarget;
   } | null>(null);
 
-  const subFolders = useMemo(
-    () =>
-      folders
-        .filter((f) =>
-          currentFolderId === null
-            ? f.parentId === 0
-            : f.parentId === currentFolderId
-        )
-        .filter((f) => !f.del)
-        .sort((a, b) => a.sortOrder - b.sortOrder),
-    [folders, currentFolderId]
-  );
+  const subFolders = useMemo(() => {
+    if (currentView === "trash") {
+      return folders.filter((f) => f.del).sort((a, b) => a.sortOrder - b.sortOrder);
+    }
+    return folders
+      .filter((f) =>
+        currentFolderId === null
+          ? f.parentId === 0
+          : f.parentId === currentFolderId
+      )
+      .filter((f) => !f.del)
+      .sort((a, b) => a.sortOrder - b.sortOrder);
+  }, [folders, currentFolderId, currentView]);
 
   const filteredDocuments = useMemo(() => {
     let docs = documents;
@@ -103,6 +104,13 @@ export default function ContentList({
   const handleOpenDocument = useCallback(
     (doc: OutlineDocument) => {
       dispatch(openDocumentAction(doc.id));
+    },
+    [dispatch]
+  );
+
+  const handleOpenDocumentReadOnly = useCallback(
+    (doc: OutlineDocument) => {
+      dispatch(openDocumentAction(doc.id, true));
     },
     [dispatch]
   );
@@ -201,6 +209,75 @@ export default function ContentList({
     danger?: boolean;
   }[] => {
     if (!contextTarget) return [];
+
+    // ── 回收站视图 ──
+    if (currentView === "trash") {
+      if (contextTarget.target.type === "folder") {
+        const f = contextTarget.target.folder;
+        return [
+          {
+            label: "恢复文件夹",
+            onClick: async () => {
+              await restoreFolder(f.id);
+              dispatch(fetchFoldersAction());
+              dispatch(fetchFoldersAction(true));
+              dispatch(fetchDocumentsAction({ trash: true }));
+              dispatch(fetchAllDocumentsAction());
+              toast.success("已恢复");
+            },
+          },
+          {
+            label: "永久删除",
+            onClick: async () => {
+              const confirmed = await showConfirm({
+                title: "永久删除",
+                description: `确定要永久删除文件夹"${f.name}"吗？此操作不可撤销。`,
+                confirmText: "永久删除",
+              });
+              if (!confirmed) return;
+              await permanentDeleteFolder(f.id);
+              dispatch(fetchFoldersAction(true));
+              dispatch(fetchDocumentsAction({ trash: true }));
+              toast.success("已永久删除");
+            },
+            danger: true,
+          },
+        ];
+      }
+
+      const doc = documents.find(
+        (d) => d.id === (contextTarget.target as { type: "document"; docId: number }).docId
+      );
+      if (!doc) return [];
+      return [
+        {
+          label: "恢复文档",
+          onClick: async () => {
+            await restoreDocument(doc.id);
+            dispatch(fetchDocumentsAction({ trash: true }));
+            dispatch(fetchAllDocumentsAction());
+            toast.success("已恢复");
+          },
+        },
+        {
+          label: "永久删除",
+          onClick: async () => {
+            const confirmed = await showConfirm({
+              title: "永久删除",
+              description: `确定要永久删除"${doc.title || "未命名"}"吗？此操作不可撤销。`,
+              confirmText: "永久删除",
+            });
+            if (!confirmed) return;
+            await permanentDeleteDocument(doc.id);
+            dispatch(fetchDocumentsAction({ trash: true }));
+            toast.success("已永久删除");
+          },
+          danger: true,
+        },
+      ];
+    }
+
+    // ── 正常视图 ──
     if (contextTarget.target.type === "folder") {
       const f = contextTarget.target.folder;
       return [
@@ -218,9 +295,9 @@ export default function ContentList({
       { label: doc.isFavorite ? "取消收藏" : "收藏", onClick: () => handleFavoriteDocument(doc) },
       { label: "删除", onClick: () => handleDeleteDocument(doc), danger: true },
     ];
-  }, [contextTarget, documents, handleOpenDocument, handleRenameDocument, handleDuplicateDocument, handleFavoriteDocument, handleDeleteDocument, handleDeleteFolder]);
+  }, [contextTarget, documents, currentView, dispatch, toast, handleOpenDocument, handleRenameDocument, handleDuplicateDocument, handleFavoriteDocument, handleDeleteDocument, handleDeleteFolder]);
 
-  const showFolders = currentView === "all";
+  const showFolders = currentView === "all" || currentView === "trash";
   const totalItems = subFolders.length + filteredDocuments.length;
 
   return (
@@ -290,7 +367,7 @@ export default function ContentList({
               {filteredDocuments.map((doc) => (
                 <div
                   key={`doc-${doc.id}`}
-                  onClick={() => handleOpenDocument(doc)}
+                  onClick={() => currentView === "trash" ? handleOpenDocumentReadOnly(doc) : handleOpenDocument(doc)}
                   onContextMenu={(e) =>
                     handleContextMenu(e, { type: "document", docId: doc.id })
                   }

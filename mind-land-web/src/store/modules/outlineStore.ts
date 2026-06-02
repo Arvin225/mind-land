@@ -37,6 +37,7 @@ export interface OutlineState {
   currentFolderId: number | null;
   breadcrumbPath: { id: number; name: string; type: "root" | "folder" | "document" }[];
   allDocuments: OutlineDocument[];
+  isReadOnly: boolean;
 }
 
 const initialState: OutlineState = {
@@ -59,6 +60,7 @@ const initialState: OutlineState = {
   currentFolderId: null,
   breadcrumbPath: [],
   allDocuments: [],
+  isReadOnly: false,
 };
 
 function collectDescendantIds(nodes: OutlineNode[], parentId: number): number[] {
@@ -347,7 +349,7 @@ const outlineStore = createSlice({
       const node = state.nodes.find((n) => n.id === action.payload);
       if (node) node.isCollapsed = false;
     },
-    openDocumentReducer(state, action: PayloadAction<{ documentId: number; nodes: OutlineNode[]; title?: string }>) {
+    openDocumentReducer(state, action: PayloadAction<{ documentId: number; nodes: OutlineNode[]; title?: string; readOnly?: boolean }>) {
       state.currentDocumentId = action.payload.documentId;
       state.currentDocumentTitle = action.payload.title || "";
       state.nodes = action.payload.nodes;
@@ -372,6 +374,7 @@ const outlineStore = createSlice({
       state.viewMode = "editor";
       state.saveStatus = "saved";
       state.currentFolderId = null;
+      state.isReadOnly = action.payload.readOnly ?? false;
     },
     closeDocument(state) {
       state.currentDocumentId = null;
@@ -380,6 +383,7 @@ const outlineStore = createSlice({
       state.focusModeNodeId = null;
       state.viewMode = "home";
       state.saveStatus = "";
+      state.isReadOnly = false;
     },
     setCurrentFolderId(state, action: PayloadAction<number | null>) {
       state.currentFolderId = action.payload;
@@ -503,14 +507,14 @@ export function fetchDocumentsAction(params?: {
   };
 }
 
-export function openDocumentAction(id: number) {
+export function openDocumentAction(id: number, readOnly?: boolean) {
   return async (dispatch: AppDispatch) => {
     dispatch(setLoading(true));
     try {
       const res = await getDocument(id, true);
       if (res.code === 0 && res.result) {
         const data = res.result as { document: OutlineDocument; nodes: OutlineNode[] };
-        dispatch(openDocumentReducer({ documentId: data.document.id, nodes: data.nodes, title: data.document.title }));
+        dispatch(openDocumentReducer({ documentId: data.document.id, nodes: data.nodes, title: data.document.title, readOnly }));
       }
     } catch (e) {
       console.error("outline: 打开文档失败", e);

@@ -1,6 +1,8 @@
 import { useState, useCallback } from "react";
+import { useSelector } from "react-redux";
 import { ChevronRight, ChevronDown, MoreHorizontal } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { RootState } from "@/store";
 import { OutlineNode as OutlineNodeType } from "@/apis/outline";
 import NodeContent from "./NodeContent";
 import NodeContextMenu from "./NodeContextMenu";
@@ -50,6 +52,7 @@ export default function OutlineNode({
   onFocus,
   isDragging,
 }: OutlineNodeProps) {
+  const isReadOnly = useSelector((s: RootState) => s.outline.isReadOnly);
   const [contextMenu, setContextMenu] = useState<{ x: number; y: number } | null>(null);
 
   const handleClick = useCallback(() => {
@@ -67,11 +70,12 @@ export default function OutlineNode({
   }, [onDoubleClickDot, node.id]);
 
   const handleContextMenu = useCallback((e: React.MouseEvent) => {
+    if (isReadOnly) return;
     e.preventDefault();
     e.stopPropagation();
     onSelect(node.id);
     setContextMenu({ x: e.clientX + 2, y: e.clientY + 2 });
-  }, [onSelect, node.id]);
+  }, [onSelect, node.id, isReadOnly]);
 
   const handleCopy = useCallback(async () => {
     try {
@@ -116,6 +120,7 @@ export default function OutlineNode({
           )}
         </button>
 
+        {!isReadOnly && (
         <button
           className="shrink-0 opacity-0 group-hover:opacity-100 transition-opacity p-1 rounded-lg hover:bg-hover"
           onClick={(e) => {
@@ -127,6 +132,7 @@ export default function OutlineNode({
         >
           <MoreHorizontal className="w-4 h-4 text-text-muted" />
         </button>
+        )}
 
         {/* Dot — always visible, used for drag */}
         <div
