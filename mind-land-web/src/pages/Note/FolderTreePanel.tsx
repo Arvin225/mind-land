@@ -137,14 +137,6 @@ export default function FolderTreePanel() {
     [dispatch]
   );
 
-  const getChildFolders = useCallback(
-    (parentId: number) =>
-      folders
-        .filter((f) => f.parentId === parentId)
-        .sort((a, b) => a.sortOrder - b.sortOrder),
-    [folders]
-  );
-
   const navItems = [
     { view: "favorite", label: "收藏", icon: <Star size={16} /> },
     { view: "recent", label: "最近", icon: <Clock size={16} /> },

@@ -9,6 +9,7 @@ import (
 	"gorm.io/gorm"
 
 	"mind-land-server/diary"
+	"mind-land-server/draft"
 	"mind-land-server/outline"
 	"mind-land-server/slipbox"
 	"mind-land-server/todo"
@@ -21,7 +22,7 @@ func main() {
 		panic("failed to connect database: " + err.Error())
 	}
 
-	if err := db.AutoMigrate(&slipbox.Card{}, &slipbox.Tag{}, &todo.List{}, &todo.Item{}, &diary.DiaryEntry{}, &outline.OutlineFolder{}, &outline.OutlineDocument{}, &outline.OutlineNode{}, &outline.OutlineDocumentVersion{}); err != nil {
+	if err := db.AutoMigrate(&slipbox.Card{}, &slipbox.Tag{}, &todo.List{}, &todo.Item{}, &diary.DiaryEntry{}, &outline.OutlineFolder{}, &outline.OutlineDocument{}, &outline.OutlineNode{}, &outline.OutlineDocumentVersion{}, &draft.Draft{}); err != nil {
 		panic("failed to auto migrate: " + err.Error())
 	}
 
@@ -123,6 +124,24 @@ func main() {
 			dr.POST("/entries", diaryH.CreateEntry)
 			dr.PUT("/entries/:id", diaryH.UpdateEntry)
 			dr.DELETE("/entries/:id", diaryH.DeleteEntry)
+		}
+
+		// Draft (稿纸模块)
+		draftSvc := draft.NewService(db)
+		draftH := draft.NewHandler(draftSvc)
+
+		df := api.Group("/drafts")
+		{
+			// 字面量路由必须在参数化路由之前 (否则 trash 被 :id 匹配)
+			df.DELETE("/trash", draftH.EmptyTrash)
+
+			df.POST("", draftH.Create)
+			df.GET("", draftH.List)
+			df.GET("/:id", draftH.Get)
+			df.PUT("/:id", draftH.Update)
+			df.DELETE("/:id", draftH.Delete)
+			df.PATCH("/:id/restore", draftH.Restore)
+			df.DELETE("/:id/permanent", draftH.PermanentDelete)
 		}
 	}
 

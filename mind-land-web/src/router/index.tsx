@@ -39,6 +39,10 @@ const router = createBrowserRouter([
                 element: (<Suspense fallback={'加载中'}><Draft /></Suspense>)
             },
             {
+                path: "/draft/:id",
+                element: (<Suspense fallback={'加载中'}><Draft /></Suspense>)
+            },
+            {
                 path: "/mindmap",
                 element: (<Suspense fallback={'加载中'}><MindMap /></Suspense>)
             },

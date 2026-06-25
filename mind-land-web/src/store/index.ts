@@ -3,6 +3,7 @@ import toDoReducer from "./modules/toDoStore";
 import slipBoxReducer from "./modules/slipBoxStore";
 import diaryReducer from "./modules/diaryStore";
 import outlineReducer from "./modules/outlineStore";
+import draftReducer from "./modules/draftStore";
 
 const store = configureStore({
     reducer: {
@@ -10,6 +11,7 @@ const store = configureStore({
         slipBox: slipBoxReducer,
         diary: diaryReducer,
         outline: outlineReducer,
+        draft: draftReducer,
     }
 })
 

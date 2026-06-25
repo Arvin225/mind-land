@@ -35,10 +35,6 @@ function formatRelativeTime(dateStr: string): string {
   return date.toLocaleDateString("zh-CN");
 }
 
-function formatDate(dateStr: string): string {
-  return new Date(dateStr).toLocaleDateString("zh-CN");
-}
-
 type ContextTarget =
   | { type: "document"; docId: number }
   | { type: "folder"; folder: OutlineFolder };

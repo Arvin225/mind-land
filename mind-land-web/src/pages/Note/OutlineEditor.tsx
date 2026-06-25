@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState, useRef, useMemo } from "react";
+import { useCallback, useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState, AppDispatch } from "@/store";
 import {
@@ -55,13 +55,6 @@ export default function OutlineEditor() {
   const documents = useSelector((s: RootState) => s.outline.documents);
   const title = useSelector((s: RootState) => s.outline.currentDocumentTitle) ||
     documents.find((d) => d.id === currentDocumentId)?.title || "无标题";
-
-  const saveStatusDot = useMemo(() => {
-    if (saveStatus === "saved") return "bg-emerald-400";
-    if (saveStatus === "saving") return "bg-amber-400 animate-pulse";
-    if (saveStatus === "unsaved") return "bg-orange-400";
-    return "bg-gray-400";
-  }, [saveStatus]);
 
   const handleTitleChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {

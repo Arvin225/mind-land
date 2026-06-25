@@ -145,14 +145,6 @@ export default function FolderSidebar({ currentView, onViewChange, onCreateFolde
     [dispatch]
   );
 
-  const getChildFolders = useCallback(
-    (parentId: number) =>
-      folders
-        .filter((f) => f.parentId === parentId)
-        .sort((a, b) => a.sortOrder - b.sortOrder),
-    [folders]
-  );
-
   return (
     <div className="w-[280px] shrink-0 border-r border-border h-full flex flex-col">
       <div className="flex items-center justify-between px-4 py-3">

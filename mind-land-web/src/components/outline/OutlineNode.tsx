@@ -32,7 +32,6 @@ interface OutlineNodeProps {
 
 export default function OutlineNode({
   node,
-  depth,
   hasChildren,
   isSelected,
   isSearchMatch,
@@ -40,7 +39,6 @@ export default function OutlineNode({
   onSelect,
   onToggleCollapse,
   onUpdateContent,
-  onDoubleClickDot,
   onInsertAbove,
   onInsertBelow,
   onCreateChild,
@@ -63,11 +61,6 @@ export default function OutlineNode({
     e.stopPropagation();
     onToggleCollapse(node.id);
   }, [onToggleCollapse, node.id]);
-
-  const handleDotDoubleClick = useCallback((e: React.MouseEvent) => {
-    e.stopPropagation();
-    onDoubleClickDot(node.id);
-  }, [onDoubleClickDot, node.id]);
 
   const handleContextMenu = useCallback((e: React.MouseEvent) => {
     if (isReadOnly) return;
